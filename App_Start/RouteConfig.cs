@@ -18,6 +18,18 @@ namespace QLBanVePhim
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+                name: "testView",
+                url: "QLHome",
+                defaults: new { controller = "QLHome", action = "", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+               name: "ViewLoginQL",
+               url: "LoginQL",
+               defaults: new { controller = "LoginQL", action = "", id = UrlParameter.Optional }
+           );
         }
     }
 }
