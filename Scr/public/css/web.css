@@ -1,0 +1,50 @@
+﻿
+.btn-color {
+    background-color: red;
+}
+
+.nav-link {
+    background-color: #dd256d;
+    color: white;
+    font-style: inherit;
+    font-size: 1.5rem;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+
+#login .container {
+    color: #dd256d;
+}
+
+    #login .container #login-row #login-column #login-box {
+        margin-top: 120px;
+        max-width: 600px;
+        height: 320px;
+        border: 1px solid #9C9C9C;
+        background-color: #EAEAEA;
+    }
+
+        #login .container #login-row #login-column #login-box #login-form {
+            padding: 20px;
+        }
+
+            #login .container #login-row #login-column #login-box #login-form #register-link {
+                margin-top: -85px;
+            }
+
+#video_background {
+    bottom: 0px;
+    right: 0px;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1000;
+    overflow: hidden;
+}
+
+

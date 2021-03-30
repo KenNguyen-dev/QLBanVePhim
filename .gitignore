@@ -355,3 +355,8 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+.vs/QLBanVePhim/v16/.suo
+*.cache
+obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+obj/Debug/QLBanVePhim.csprojAssemblyReference.cache
+.vs/QLBanVePhim/v16/.suo
