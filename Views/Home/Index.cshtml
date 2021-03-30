@@ -1,31 +1,30 @@
 ﻿@{
     ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/Layout.cshtml";
 }
-
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+<style>
+    .hot img{
+        display: block;
+        max-height: 400px;
+        max-width: 1000px;
+        margin: 0 auto 30px;
+       
+        border: 3px solid yellow;
+        align-content:center
+    }
+    .movie-pic {
+        border: 3px solid yellow;
+    }
+</style>
+<div class="sub-tab">
+    <ul><li class="current" style="margin:5px 0 5px 0;font-family:'High Tower Text'"><a href="#"><h1>DANH SÁCH PHIM HOT</h1></a> </li></ul>  
 </div>
+<div class="movie-content">
+    <div class="hot"><img src="~/Content/CINESTAR_files/1200x500.png" /></div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
+    <div class="movie-pic"><img src="~/Content/CINESTAR_files/bogia1203.jpg" /></div>
+
+    <div class="movie-pic"><img src="~/Content/CINESTAR_files/tom-jerry-quay-tung-new-york-684.jpg" /></div>
+    <div class="movie-pic"><img src="~/Content/CINESTAR_files/palm.jpg" /></div>
+    <div class="movie-pic"><img src="~/Content/CINESTAR_files/god.png" /></div>
 </div>
