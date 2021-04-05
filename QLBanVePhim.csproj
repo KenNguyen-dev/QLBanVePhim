@@ -161,10 +161,10 @@
     <Content Include="Content\CINESTAR_files\payment-visa.png" />
     <Content Include="Content\CINESTAR_files\raya.jpg" />
     <Content Include="Content\CINESTAR_files\share-combo-2.png" />
-    <Content Include="Content\CINESTAR_files\style.css" />
     <Content Include="Content\CINESTAR_files\tom-jerry-quay-tung-new-york-684.jpg" />
-    <Content Include="Content\CINESTAR_files\validationEngine.jquery.css" />
     <Content Include="Content\CINESTAR_files\zalopay.png" />
+    <Content Include="Content\Images\huongDan.PNG" />
+    <Content Include="CSS\Homepage.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -172,7 +172,6 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\CINESTAR_files\1760220167590183" />
-    <Content Include="Content\CINESTAR_files\saved_resource" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -194,11 +193,10 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Shared\Layout.cshtml" />
+    <Content Include="Views\Home\Register.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Shared\SharedHomepage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

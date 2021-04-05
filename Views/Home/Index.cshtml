@@ -1,30 +1,37 @@
 ﻿@{
     ViewBag.Title = "Home Page";
-    Layout = "~/Views/Shared/Layout.cshtml";
+    Layout = "~/Views/Shared/SharedHomepage.cshtml";
 }
-<style>
-    .hot img{
-        display: block;
-        max-height: 400px;
-        max-width: 1000px;
-        margin: 0 auto 30px;
-       
-        border: 3px solid yellow;
-        align-content:center
-    }
-    .movie-pic {
-        border: 3px solid yellow;
-    }
-</style>
-<div class="sub-tab">
-    <ul><li class="current" style="margin:5px 0 5px 0;font-family:'High Tower Text'"><a href="#"><h1>DANH SÁCH PHIM HOT</h1></a> </li></ul>  
-</div>
-<div class="movie-content">
-    <div class="hot"><img src="~/Content/CINESTAR_files/1200x500.png" /></div>
+<link href="~/CSS/Homepage.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
-    <div class="movie-pic"><img src="~/Content/CINESTAR_files/bogia1203.jpg" /></div>
+<!--SlideShow-->
+<section id="slideShow">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active ">
+                <img src="~/Content/CINESTAR_files/1200x500.png" alt="First slide">
+            </div>
+            <div class="carousel-item">
+                @*<img src="images/hinh2.jpg" alt="Second slide">*@
+            </div>
+            <div class="carousel-item">
+                @*<img src="images/hinh3.jpg" alt="Third slide">*@
+            </div>
+        </div>
+    </div>
+</section>
+<!--Tutorial--->
+<section id="tutorial">
+    <div class="container-fluid">
+        <div class="row" style="height:100px;background-color:white">
+            <div class="col-4">
+                <h1 style="color:#DD265D;text-shadow:2px 2px grey;font-size:50px">MUA VÉ ONLINE</h1>
+            </div>
+            <div class="col-8">
+                <img src="/Content/Images/huongDan.PNG" alt="Hướng dẫn" height="100" />
+            </div>
+        </div>
+    </div>
 
-    <div class="movie-pic"><img src="~/Content/CINESTAR_files/tom-jerry-quay-tung-new-york-684.jpg" /></div>
-    <div class="movie-pic"><img src="~/Content/CINESTAR_files/palm.jpg" /></div>
-    <div class="movie-pic"><img src="~/Content/CINESTAR_files/god.png" /></div>
-</div>
+</section>

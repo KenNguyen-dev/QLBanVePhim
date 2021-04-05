@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Trang chủ</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link href="~/CSS/Homepage.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/20b4152aa7.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div>
+        <!--Nav Bar Chính-->
+        <section id="navBarChinh">
+            <nav class="navbar navbar-dark bg-dark">
+                <a href="#" class="navbar-brand">Text mẫu</a>
+                <div class="nav-item">
+                    <ul>
+                        <li><a href="#">Trang Chủ</a></li>
+                        <li><a href="#">Phim</a></li>
+                        <li><a href="#">Suất chiếu</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </section>
+        <!--Nav Bar Phu-->
+        <section id="navBarPhu" style="margin-bottom:1px;box-shadow:2px 2px #808080;">
+            <nav class="navbar navbardark bg-white">
+                <nav class="navbar-brand">
+                    <div id="dangKy">
+                        <span class="fas fa-gifts"></span>
+                        <!--thay thế text đăng ký-->
+                        <p style="margin-bottom:0px;">Đăng ký</p>
+                    </div>
+                    <div id="dangNhap">
+                        <span class="fas fa-bell"></span>
+                        <p style="margin-bottom:0px;">Đăng nhập</p>
+                        <!--thay thế text đăng nhập-->
+
+                    </div>
+                </nav>
+            </nav>
+        </section>
+       
+        <!--Main Body--->
+        <section id="main-body">
+            @RenderBody()
+        </section>
+
+        <!---Footer-->
+       
+        <section id="footer" style="margin-top:10px;background-color:#1A1A1D">
+            <div id="container" style="overflow:hidden">
+
+                <div id="footerChinh">
+
+                    <div class="row text-center justify-content-md-center">
+
+                        <div class="col-md-4" style="color:white;line-height:7.5px">
+                            <h1>Chi nhánh của CineStar</h1>
+                            <p>CineStar Quốc Thanh</p>
+                            <p>CineStar Đà Lạt</p>
+                            <p>CineStar Hai Bà Trưng</p>
+                            <p>CineStar Bình Dương</p>
+                            <p>CineStar Huế</p>
+
+                        </div>
+                        <div class="col-md-4" style="color:white">
+                            <h1>Liên hệ</h1>
+                            <p>Miền Nam: 090xxxxxxx</p>
+                            <p>Miền Bắc: 090xxxxxxx</p>
+
+                        </div>
+                        <div class="col-md-4 text-left " style="padding-right: 0;color:white">
+                            <h1>Nhận thông báo mới</h1>
+                            <p>Nhập địa chỉ mail bạn tại đây</p>
+                            <div class="input-group" style="overflow:hidden">
+                                <input type="text" class="form-control" placeholder="Email của bạn">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" type="button">Gửi</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+    </div>
+
+    
+</body>
+</html>

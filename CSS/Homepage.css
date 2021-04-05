@@ -1,0 +1,94 @@
+﻿
+*{
+    margin:0px;
+    padding:0px;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0px;
+    padding: 5px;
+}
+
+.nav-item {
+    border: 1px solid black;
+    background-color: #950740;
+    border-radius:30px;
+}
+
+.nav-item li{
+    float:left;
+    font-weight:bold;
+    font-size:25px;
+    margin-left:25px;
+    margin-right:25px;
+    padding-top:5px;
+    padding-bottom:10px;
+
+}
+
+li a{
+    text-decoration:none;
+    color:white;
+}
+
+#dangNhap{
+    float: left;
+    font-weight: bold;
+    font-size: 25px;
+    margin-left: 25px;
+    margin-right: 50px;
+}
+
+#dangKy {
+    float: left;
+    font-weight: bold;
+    font-size: 25px;
+    margin-left: 25px;
+    margin-right: 50px;
+}
+
+.fas{
+    float:left;
+    margin-right:10px;
+    padding:0px;
+}
+
+/* ------------------Carousel------------------- */
+
+#myCarousel {
+    margin-left: 0px;
+    padding: 0px;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 500px;
+}
+
+/* ------------------Tutorial------------------- */
+
+#muaVe {
+    color: #DD265D;
+    box-shadow:2px 2px grey;
+    
+}
+
+/* ------------------Footer------------------- */
+
+
+#footerChinh .col-md-4 h1 {
+    font-weight: 600;
+}
+
+#footerChinh .col-md-4 h1::after {
+    content: '';
+    background-color: coral;
+    width: 100px;
+    height: 5px;
+    display: block;
+    margin: 20px;
+    border-radius: 3px;
+    position: relative;
+    left: 135px;
+}
