@@ -5,12 +5,53 @@
     <title>@ViewBag.Title</title>
     <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.slim.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="~/Font/fontawesome-free-5.15.2-web/css/all.min.css">
-    <link href="~/Scr/public/css/web.css" rel="stylesheet"/>
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="~/Font/fontawesome-free-5.15.2-web/css/all.min.css" />
+    <link rel="stylesheet" href="~/CSS/web.css" />
+    <style>
+        .nav-item {
+            border: double;
+        }
+
+        a:focus {
+            background-color: darkgray;
+        }
+    </style>
+
 
 </head>
 <body>
+    <div id="navition">
+        <ul class="nav justify-content-center" style=" background-color: #DD256D;">
+
+            <li class="nav-item">
+                <a class="nav-link" href="/QLHome/QLNV"><i class="fas fa-user"></i> Nhân viên</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="fas fa-film"></i> Phim</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="far fa-clock"></i> Suất chiếu</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="fas fa-utensils"></i> Đồ ăn</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="fas fa-plus"></i> Combo</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="fas fa-home"></i> Phòng chiếu </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/QLHome/QLKH"><i class="fas fa-users"></i> Khách hàng</a>
+            </li>
+        </ul>
+    </div>
+
+
+
     <div>
         @RenderBody()
     </div>

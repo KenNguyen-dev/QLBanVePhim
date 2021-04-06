@@ -14,22 +14,29 @@ namespace QLBanVePhim
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
-            );
+              name: "Default",
+              url: "{controller}/{action}/{id}",
+              defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+          );
 
             routes.MapRoute(
                 name: "testView",
-                url: "QLHome",
-                defaults: new { controller = "QLHome", action = "", id = UrlParameter.Optional }
+                url: "{controller}/{action}",
+                defaults: new { controller = "QLHome", action = "Index", id = UrlParameter.Optional }
             );
+            routes.MapRoute(
+               name: "QLKH",
+               url: "{controller}/{action}",
+               defaults: new { controller = "QLHome", action = "QLKH", id = UrlParameter.Optional }
+           );
 
             routes.MapRoute(
-               name: "ViewLoginQL",
-               url: "LoginQL",
-               defaults: new { controller = "LoginQL", action = "", id = UrlParameter.Optional }
+               name: "Login",
+               url: "{controller}",
+               defaults: new { controller = "LoginQL", action = "Index", id = UrlParameter.Optional }
            );
+
+           
         }
     }
 }

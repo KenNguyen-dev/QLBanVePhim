@@ -1,0 +1,97 @@
+﻿
+@{
+    ViewBag.Title = "AddNV";
+    Layout = "~/Views/QLHome/ViewQLHome.cshtml";
+}
+
+<script>
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#imageResult')
+                    .attr('src', e.target.result);
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $(function () {
+        $('#upload').on('change', function () {
+            readURL(input);
+        });
+    });
+
+    var input = document.getElementById('upload');
+    var infoArea = document.getElementById('upload-label');
+
+    input.addEventListener('change', showFileName);
+    function showFileName(event) {
+        var input = event.srcElement;
+        var fileName = input.files[0].name;
+        infoArea.textContent = 'File name: ' + fileName;
+    }
+</script>
+<div class="left" style="width:25%;font-size:1.5rem">
+    <div class="card">
+        <div class="card-body" style="height:600px; margin-top:10px;">
+            <Center><p>Tra cứu nhân viên</p></Center>
+            <div class="form-check">
+                <input class="form-check-input" style="margin-top:13px" type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                    Mã nhân viên
+                </label>
+                <div class="input-group mb-3">
+                    <span class="input-group-text">ID</span>
+                    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                </div>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" style="margin-top:13px" type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                    Tên nhân viên
+                </label>
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Tên</span>
+                    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="right" style="">
+    <div class="card">
+        <div class="card-body" style="height:600px">
+            <center><div><label class="lb_themnv">Thêm nhân viên</label></div></center>
+            <div class="left-in">
+                <div class="container py-4" style="padding:0px;">
+                    <div class="row py-4" style="padding:0px;">
+                        <div class="col-lg-8 mx-auto">
+                            <div class="image-area mt-4">
+                                <img id="imageResult" src="#" alt="" class="img-fluid rounded shadow-sm mx-auto d-block">
+                            </div>
+                            <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
+                                <input id="upload" type="file" onchange="readURL(this);" class="form-control border-0">
+                                <label id="upload-label" for="upload" class="font-weight-light text-muted">Choose file</label>
+                                <div class="input-group-append">
+                                    <label for="upload" class="btn btn-light m-0 rounded-pill px-4"> <i class="fa fa-cloud-upload mr-2 text-muted"></i><small class="text-uppercase font-weight-bold text-muted">Choose file</small></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div>
+                <center>
+                    <input type="button" onclick="location.href='';" value="Lưu" />
+                    <input type="button" onclick="location.href='';" value="Hủy" />
+                </center>
+
+            </div>
+        </div>
+    </div>
+</div>
+

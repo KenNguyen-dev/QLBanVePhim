@@ -13,5 +13,19 @@ namespace QLBanVePhim.Controllers
         {
             return View();
         }
+        public ActionResult QLKH()
+        {
+            return View();
+        }
+
+        public ActionResult AddNV()
+        {
+            return View();
+        }
+
+        public ActionResult QLNV()
+        {
+            return View();
+        }
     }
 }
