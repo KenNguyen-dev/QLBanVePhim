@@ -1,84 +1,144 @@
-﻿@{
+﻿@model QLBanVePhim.Models.khach_hang
+
+@{
     ViewBag.Title = "Register";
-    Layout = "~/Views/Shared/Layout.cshtml";
+    Layout = "~/Views/Shared/SharedHomepage.cshtml";
 }
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
-<h1 style="text-align:center; background-color:antiquewhite; margin-top:8px; margin-bottom:0px">Đăng kí thành viên</h1>
-<p style="text-align:center; background-color:antiquewhite; font:italic; margin-bottom:0px; padding:5px">Vui lòng nhập đầy đủ thông tin</p>
+
 <style>
-    .formDangKy{
-        text-align:center;
-        width:auto;
-        background-color:antiquewhite;
-        margin-bottom:5px;
-    }
-    .form-control{
-        text-align:center;
-        width:500px;
-    }
-    .row:nth-child(even) {
-        background-color: antiquewhite;
-    }
-    .row:nth-child(odd) {
-        background-color: antiquewhite;
-    }
-    .col-form-label{
-        font-weight:bold;
-        font-size:20px;
-    }
+.formDangKy {
+    width: 70%;
+    background-color: antiquewhite;
+    margin-bottom: 2px;
+    margin:auto;
+    border:1px solid black;
+    border-radius:10px 10px;
+    padding:10px;
+    margin-top:2px;
+    
+
+}
+
+.btnDangKy{
+    border:1px solid black;
+    border-radius:5px 5px;
+    background-color:lightblue;
+    color:white;
+    font-weight:bold;
+    padding:5px
+}
+
+.form-control {
+    text-align: left;
+    width: 100%;
+}
+
+
+.col-form-label {
+    font-weight: bold;
+    font-size: 20px;
+}
 </style>
 
-<form class="formDangKy">
-    <div class="form-group row">
-        <label class="col-sm-4 col-form-label" style="font:bold">Họ tên</label>
-        <input type="text" class="form-control" id="hoTen" placeholder="Nhập họ tên" />
-    </div>
-    <div class="form-group row">
-        <label class="col-sm-4 col-form-label">Chứng minh nhân dân</label>
-        <input type="text" class="form-control" id="cmnd" placeholder="Nhập chứng minh nhân dân" />
-    </div>
-    <div class="form-group row">
-        <label class="col-sm-4 col-form-label">Mật khẩu</label>
-        <input type="password" class="form-control" id="passWord" placeholder="Nhập mật khẩu" />
-    </div>
-    <div class="form-group row">
-        <label class="col-sm-4 col-form-label">Số điện thoại</label>
-        <input type="text" class="form-control" id="sdt" placeholder="Nhập số điện thoại" />
-    </div>
-    <div class="form-group row">
-        <label class="col-sm-4 col-form-label">Email</label>
-        <input type="email" class="form-control" id="email" placeholder="Nhập email" />
-    </div>
-    <div class="form-group row">
-        <label class="col-sm-4 col-form-label">Địa chỉ</label>
-        <input type="text" class="form-control" id="diaChi" placeholder="Nhập địa chỉ" />
-    </div>
-    <div class="form-group row">
-        <label class="col-sm-4 col-form-label">Ngày sinh</label>
-        <input type="date" class="form-control" id="ngàySinh" placeholder="Nhập email" />
-    </div>
-    <fieldset class="form-group">
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+
+<div class="form-horizontal formDangKy">
+    <h1 style="text-align:center; background-color:antiquewhite; margin-top:8px; margin-bottom:0px">Đăng kí thành viên</h1>
+    <p style="text-align:center; background-color:antiquewhite; font:italic; margin-bottom:0px; padding:5px">Vui lòng nhập đầy đủ thông tin</p>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="container">
         <div class="row">
-            <label class="col-form-label col-sm-4 pt-0">Giới tính</label>
-            <div class="col-sm-6" style="text-align:left">
-                <div class="form-check form-check-inline" style="text-align:left">
-                    <input class="form-check-input" type="radio" name="gridRadios" id="gioiTinhNam" value="0">
-                    <label class="form-check-label" style="font-size:20px">
-                        Nam
-                    </label>
+            <div class="col">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ho_ten)
+                    <div>
+                        @Html.EditorFor(model => model.ho_ten, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ho_ten, "", new { @class = "text-danger" })
+                    </div>
                 </div>
-                <div class="form-check form-check-inline" style="text-align:left">
-                    <input class="form-check-input" type="radio" name="gridRadios" id="gioiTinhNu" value="1">
-                    <label class="form-check-label" style="font-size:20px">
-                        Nữ
-                    </label>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.so_cmnd)
+                    <div>
+                        @Html.EditorFor(model => model.so_cmnd, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.so_cmnd, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.mat_khau)
+                    <div>
+                        @Html.EditorFor(model => model.mat_khau, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.mat_khau, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.so_dien_thoai)
+                    <div>
+                        @Html.EditorFor(model => model.so_dien_thoai, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.so_dien_thoai, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.email)
+                    <div>
+                        @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                    </div>
                 </div>
             </div>
+
+            <div class="col">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.dia_chi)
+                    <div>
+                        @Html.EditorFor(model => model.dia_chi, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.dia_chi, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ngay_sinh)
+                    <div>
+                        @Html.EditorFor(model => model.ngay_sinh, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ngay_sinh, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.gioi_tinh)
+                    <div>
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.gioi_tinh)
+                            @Html.ValidationMessageFor(model => model.gioi_tinh, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div>
+                        <input type="submit" value="Đăng ký thành viên" class="btnDangKy" />
+                    </div>
+                </div>
+
+
+            </div>
+            
         </div>
-    </fieldset>
 
-    <input type="submit" value="Đăng ký" class="btn btn-success" />
+    </div>
 
-</form>
+   
+
+   
+</div>
+}
