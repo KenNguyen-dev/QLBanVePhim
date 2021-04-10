@@ -29,7 +29,7 @@ namespace QLBanVePhim.Controllers
                 database.khach_hang.Add(khachHang);
                 khachHang.ngay_dang_ky = DateTime.Today;
                 database.SaveChanges();
-                return RedirectToAction("Login");
+                return RedirectToAction("Index");
             }
             catch
             {

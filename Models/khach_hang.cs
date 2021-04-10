@@ -24,7 +24,7 @@ namespace QLBanVePhim.Models
         public int id { get; set; }
         [Required(ErrorMessage = "Họ tên không được để trống")]
         [StringLength(50), MinLength(5)]
-        [Display(Name = "Tên User")]
+        [Display(Name = "Họ tên")]
         public string ho_ten { get; set; }
 
         [Display(Name = "CMND")]
@@ -56,6 +56,7 @@ namespace QLBanVePhim.Models
         public Nullable<System.DateTime> ngay_sinh { get; set; }
 
         [Display(Name = "Giới tính")]
+        
         public Nullable<bool> gioi_tinh { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
