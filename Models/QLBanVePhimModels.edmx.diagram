@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="80b4b34c1b25440c9cbc6185b0154e1f" Name="Diagram1" ZoomLevel="64">
+        <EntityTypeShape EntityType="QLBanVePhimModel.combo" Width="1.5" PointX="13.25" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBanVePhimModel.chi_tiet_combo" Width="1.5" PointX="15.5" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBanVePhimModel.dinh_dang_phim" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBanVePhimModel.do_an" Width="1.5" PointX="11" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBanVePhimModel.do_an_chi_tiet" Width="1.5" PointX="13.25" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBanVePhimModel.ghe_ngoi" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBanVePhimModel.gia_ve" Width="1.5" PointX="6" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBanVePhimModel.hoa_don" Width="1.5" PointX="16.25" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBanVePhimModel.hoa_don_chi_tiet" Width="1.5" PointX="18.5" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBanVePhimModel.kich_co_do_an" Width="1.5" PointX="11" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBanVePhimModel.khach_hang" Width="1.5" PointX="1.5" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBanVePhimModel.loai_do_an" Width="1.5" PointX="8.75" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBanVePhimModel.loai_ghe" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBanVePhimModel.loai_phim" Width="1.5" PointX="1.5" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBanVePhimModel.nguoi_dung" Width="1.5" PointX="6" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBanVePhimModel.phim" Width="1.5" PointX="3.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBanVePhimModel.phong_chieu" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBanVePhimModel.suat_chieu" Width="1.5" PointX="6" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBanVePhimModel.sysdiagrams" Width="1.5" PointX="10.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBanVePhimModel.vai_tro" Width="1.5" PointX="3.75" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBanVePhimModel.ve_ban" Width="1.5" PointX="8.25" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBanVePhimModel.ve_dat" Width="1.5" PointX="3.75" PointY="17.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBanVePhimModel.ve_dat_chi_tiet" Width="1.5" PointX="6" PointY="17.5" IsExpanded="true" />
+        <AssociationConnector Association="QLBanVePhimModel.FK_chi_tiet_combo_combo" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBanVePhimModel.FK_hoa_don_chi_tiet_combo" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBanVePhimModel.FK_chi_tiet_combo_do_an_chi_tiet" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBanVePhimModel.FK_suat_chieu_dinh_dang_phim" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBanVePhimModel.FK_do_an_chi_tiet_do_an" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBanVePhimModel.FK_do_an_loai_do_an" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBanVePhimModel.FK_do_an_chi_tiet_kich_co_do_an" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBanVePhimModel.FK_hoa_don_chi_tiet_do_an_chi_tiet" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBanVePhimModel.FK_ghe_ngoi_loai_ghe" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBanVePhimModel.FK_ghe_ngoi_phong_chieu" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBanVePhimModel.FK_ve_ban_ghe_ngoi" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBanVePhimModel.FK_ve_ban_gia_ve" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBanVePhimModel.FK_hoa_don_chi_tiet_hoa_don" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBanVePhimModel.FK_hoa_don_nguoi_dung" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBanVePhimModel.FK_ve_dat_khach_hang" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBanVePhimModel.FK_phim_loai_phim" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBanVePhimModel.FK_nguoi_dung_vai_tro" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBanVePhimModel.FK_ve_ban_nguoi_dung" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBanVePhimModel.FK_suat_chieu_phim" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBanVePhimModel.FK_suat_chieu_phong_chieu" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBanVePhimModel.FK_ve_ban_suat_chieu" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBanVePhimModel.FK_ve_ban_ve_dat_chi_tiet" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBanVePhimModel.FK_ve_dat_chi_tiet_ve_dat" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
