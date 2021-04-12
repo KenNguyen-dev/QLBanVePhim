@@ -1,0 +1,127 @@
+﻿
+@{
+    ViewBag.Title = "AddPhim";
+    Layout = "~/Views/Shared/ViewQLHome.cshtml";
+}
+
+<div class="left" style="width:25%;font-size:1.5rem">
+    <div class="card" style="height:600px; margin-right:5px;">
+        <div class="card-body">
+            <Center><p>Tra cứu phim</p></Center>
+            <div class="form-check">
+                <input class="form-check-input" style="margin-top:13px" type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                    Tên phim
+                </label>
+                <div class="input-group mb-3">
+                    <span class="input-group-text">ID</span>
+                    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                </div>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" style="margin-top:13px" type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                    Ngày công chiếu
+                </label>
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Tên</span>
+                    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .col-sm {
+        border: 1px solid black;
+        padding: 5px;
+    }
+
+    label {
+        color: #000020;
+        font-size: 20px;
+        font-family: serif;
+        padding-left: 10px
+    }
+
+    td {
+        padding-left: 5px;
+    }
+
+    .input1 {
+        width: 100%;
+        padding-left: 10px;
+    }
+</style>
+<div class="right" style="">
+    <div class="card">
+        <div class="card-body" style="height:600px">
+            <center> <h3>Thêm phim</h3></center>
+            <div class="left-in" style="float:left;">
+                <div class="row py-4">
+                    <div class="col-lg-8 mx-auto">
+                        <div class="image-area mt-4">
+                            <img id="imageResult" src="#" alt="" class="img-fluid rounded shadow-sm mx-auto d-block">
+                        </div>
+                    </div>
+                </div>
+                <table>
+                    <tr>
+                        <td width="150px"><label>Tên phim</label></td>
+                        <td width="70%"><input type="text" name="hoten" class="input1" /></td>
+                    </tr>
+                    <tr>
+                        <td style="padding-top: 10px; padding-bottom: 10px;"><label>Thời lượng </label></td>
+                        <td><input type="text" name="hoten" class="input1" /></td>
+                    </tr>
+                    <tr>
+                        <td><label>Giới hạn tuổi </label></td>
+                        <td><input type="text" name="hoten" class="input1" /></td>
+                    </tr>
+
+                </table>
+            </div>
+            <div class="right-in" style="float:left;padding-top:20px">
+                <table>
+                    <tr>
+                        <td width="150px"><label>Diễn viên chính</label></td>
+                        <td width="70%"><input type="text" name="hoten" class="input1" /></td>
+                    </tr>
+                    <tr>
+                        <td style="padding-top: 10px; padding-bottom: 10px;"><label>Đạo diễn </label></td>
+                        <td><input type="text" name="hoten" class="input1" /></td>
+                    </tr>
+                    <tr>
+                        <td><label>Quốc gia </label></td>
+                        <td><input type="text" name="hoten" class="input1" /></td>
+                    </tr>
+                    <tr>
+                        <td style="padding-top: 10px; padding-bottom: 10px;"><label>Trạng thái </label></td>
+                        <td><input type="text" name="hoten" class="input1" /></td>
+                    </tr>
+                    <tr>
+                        <td style="padding-top: 10px; padding-bottom: 10px;"><label>Thể loại </label></td>
+                        <td><input type="text" name="hoten" class="input1" /></td>
+                    </tr>
+                    <tr>
+                        <td style="padding-top: 10px; padding-bottom: 10px;"><label>Ngày chiếu </label></td>
+                        <td><input type="text" name="hoten" class="input1" /></td>
+                    </tr>
+                    <tr>
+                        <td style="padding-top: 10px; padding-bottom: 10px;"><label>Ngôn ngữ </label></td>
+                        <td><input type="text" name="hoten" class="input1" /></td>
+                    </tr>
+
+                </table>
+
+
+            </div>
+            <div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+

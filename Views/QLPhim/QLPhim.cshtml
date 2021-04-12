@@ -1,0 +1,89 @@
+﻿
+@{
+    ViewBag.Title = "QLPhim";
+    Layout = "~/Views/Shared/ViewQLHome.cshtml";
+}
+
+
+<div class="left" style="width:25%;font-size:1.5rem">
+    <div class="card" style="height:600px; margin-right:5px;">
+        <div class="card-body">
+            <Center><p>Tra cứu phim</p></Center>
+            <div class="form-check">
+                <input class="form-check-input" style="margin-top:13px" type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                    Tên phim
+                </label>
+                <div class="input-group mb-3">
+                    <span class="input-group-text">ID</span>
+                    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                </div>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" style="margin-top:13px" type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                    Ngày công chiếu
+                </label>
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Tên</span>
+                    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .col-sm {
+        border: 1px solid black;
+        padding: 5px;
+    }
+</style>
+<div class="right" style="">
+    <div class="card">
+        <div class="card-body" style="height:600px">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm">
+                        STT
+                    </div>
+                    <div class="col-sm">
+                        Mã phim
+                    </div>
+                    <div class="col-sm">
+                        Tên phim
+                    </div>
+                    <div class="col-sm">
+                        Thời lượng
+                    </div>
+                    <div class="col-sm">
+                        Giới hạn tuổi
+                    </div>
+                    <div class="col-sm">
+                        Ngày chiếu 
+                    </div>
+                    <div class="col-sm">
+                        Ngôn ngữ
+                    </div> <div class="col-sm">
+                        Quốc gia
+                    </div> <div class="col-sm">
+                        Trạng thái
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <center>
+                    <input type="button" onclick="location.href='/QLPhim/AddPhim';" value="Thêm phim" />
+                    <input type="button" onclick="location.href='';" value="Cập nhập phim" />
+                </center>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
