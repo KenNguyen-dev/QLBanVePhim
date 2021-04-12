@@ -1,9 +1,8 @@
-﻿
+﻿@model IEnumerable<QLBanVePhim.Models.nguoi_dung>
 @{
-    ViewBag.Title = "QLNV";
+    ViewBag.Title = "QL Nhân Viên";
     Layout = "~/Views/QLHome/ViewQLHome.cshtml";
 }
-
 <div class="left" style="width:25%;font-size:1.5rem">
     <div class="card" style="height:600px;margin-right:5px;">
         <div class="card-body">
@@ -28,6 +27,13 @@
                     <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
                 </div>
             </div>
+            <br>
+            <Center><p>Tools</p></Center>
+            <div>
+                <center>
+                    <input type="button" onclick="location.href='/QLHome/AddNV';" value="Thêm nhân viên" />
+                </center>
+            </div>
         </div>
     </div>
 </div>
@@ -41,45 +47,56 @@
     <div class="card">
         <div class="card-body" style="height:600px">
             <div class="container">
-                <div class="row">
-                    <div class="col-sm">
-                        STT
-                    </div>
-                    <div class="col-sm">
-                        Mã nhân viên
-                    </div>
-                    <div class="col-sm">
-                        Họ tên
-                    </div>
-                    <div class="col-sm">
-                        STT
-                    </div>
-                    <div class="col-sm">
-                        Email
-                    </div>
-                    <div class="col-sm">
-                        Ngày vào làm
-                    </div>
-                    <div class="col-sm">
-                        Giới tính
-                    </div> <div class="col-sm">
-                        Vai trò
-                    </div> <div class="col-sm">
-                        Trạng thái
-                    </div>
-                </div>
-            </div>
+                <table class="table">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ho_ten)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.so_cmnd)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.so_dien_thoai)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.gioi_tinh)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.vai_tro.ten)
+                        </th>
+                        <th></th>
+                    </tr>
+                    @if (Model.Count() == 0) { <tr> <td colspan = "5"> Records not found </td></tr>
+                    } else {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ho_ten)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.so_cmnd)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.so_dien_thoai)
+                            </td>
+                            <td>
+                                @((bool)item.gioi_tinh ? "Nam":"Nữ")
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.vai_tro.ten)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                                @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                            </td>
+                        </tr>
+                    }
+                    }
 
-            <div>
-                <center>
-                    <input type="button" onclick="location.href='/QLHome/AddNV';" value="Thêm nhân viên" />
-                    <input type="button" onclick="location.href='';" value="Cập nhập nhân viên" />
-                </center>
-
+                </table>
             </div>
         </div>
     </div>
-
 </div>
-
-

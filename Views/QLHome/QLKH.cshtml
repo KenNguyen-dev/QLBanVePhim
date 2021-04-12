@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<QLBanVePhim.Models.khach_hang>
 @{
-    ViewBag.Title = "QLKH";
+    ViewBag.Title = "QL Khách Hàng";
     Layout = "~/Views/QLHome/ViewQLHome.cshtml";
 }
 
@@ -12,11 +12,11 @@
             <div class="form-check">
                 <input class="form-check-input" style="margin-top:13px" type="checkbox" value="" id="flexCheckDefault">
                 <label class="form-check-label" for="flexCheckDefault">
-                    Mã khách hàng
+                    Số điện thoại
                 </label>
                 <div class="input-group mb-3">
-                    <span class="input-group-text">ID</span>
-                    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                    <span class="input-group-text">SDT</span>
+                    <input type="text" class="form-control" aria-label="Phone Number">
                 </div>
             </div>
             <div class="form-check">
@@ -26,7 +26,7 @@
                 </label>
                 <div class="input-group mb-3">
                     <span class="input-group-text">Tên</span>
-                    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                    <input type="text" class="form-control" aria-label="Name">
                 </div>
             </div>
         </div>
@@ -35,82 +35,56 @@
 <div class="right" style="">
     <div class="card">
         <div class="card-body" style="height:600px">
-            <div class="container"> </div>
-
-
-
-            <table class="table">
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.ho_ten)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.so_cmnd)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.mat_khau)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.so_dien_thoai)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.email)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.dia_chi)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.ngay_dang_ky)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.ngay_sinh)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.gioi_tinh)
-                    </th>
-                    <th></th>
-                </tr>
-
-                @foreach (var item in Model)
-                {
+            <div class="container">
+                <table class="table">
                     <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ho_ten)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.so_cmnd)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.mat_khau)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.so_dien_thoai)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.email)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.dia_chi)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ngay_dang_ky)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ngay_sinh)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.gioi_tinh)
-                        </td>
-                        <td>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
-                            @Html.ActionLink("Details", "Details", new { id = item.id }) |
-                            @Html.ActionLink("Delete", "Delete", new { id = item.id })
-                        </td>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ho_ten)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.so_cmnd)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.so_dien_thoai)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.gioi_tinh)
+                        </th>
+                        <th></th>
                     </tr>
-                }
 
-            </table>
+                    @if (Model.Count() == 0)
+                    {
+                        <tr> <td colspan="4"> Records not found </td></tr>
+                    }
+                    else
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ho_ten)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.so_cmnd)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.so_dien_thoai)
+                                </td>
+                                <td>
+                                    @((bool)item.gioi_tinh ? "Nam" : "Nữ")
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                                    @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                                </td>
+                            </tr>
+                        }
+                    }
+
+                    </table>
+            </div>
         </div>
     </div>
-
 </div>

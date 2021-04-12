@@ -11,7 +11,7 @@ namespace QLBanVePhim.Controllers
     
     public class QLHomeController : Controller
     {
-        QLBanVePhimEntities db = new QLBanVePhimEntities();
+        QLBanVePhimEntities2 db = new QLBanVePhimEntities2();
         // GET: QLHome
         public ActionResult Index()
         {
@@ -30,7 +30,7 @@ namespace QLBanVePhim.Controllers
 
         public ActionResult QLNV()
         {
-            return View();
+            return View(db.nguoi_dung.ToList());
         }
     }
 }
