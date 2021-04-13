@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using QLBanVePhim.Models;
+
 
 namespace QLBanVePhim.Controllers
 {
+    
     public class QLHomeController : Controller
     {
+        QLBanVePhimEntities2 db = new QLBanVePhimEntities2();
         // GET: QLHome
         public ActionResult Index()
         {
@@ -15,7 +19,8 @@ namespace QLBanVePhim.Controllers
         }
         public ActionResult QLKH()
         {
-            return View();
+            
+            return View(db.khach_hang.ToList());
         }
 
         public ActionResult AddNV()
@@ -25,7 +30,7 @@ namespace QLBanVePhim.Controllers
 
         public ActionResult QLNV()
         {
-            return View();
+            return View(db.nguoi_dung.ToList());
         }
     }
 }

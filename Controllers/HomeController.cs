@@ -31,9 +31,9 @@ namespace QLBanVePhim.Controllers
                 database.SaveChanges();
                 return RedirectToAction("Index");
             }
-            catch
+            catch(Exception e)
             {
-                return Content("Error Create New User");
+                return Content(e.ToString());
             }
         }
 

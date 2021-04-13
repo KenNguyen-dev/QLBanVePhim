@@ -1,8 +1,9 @@
-﻿
+﻿@model IEnumerable<QLBanVePhim.Models.khach_hang>
 @{
-    ViewBag.Title = "QLKH";
-    Layout = "~/Views/QLHome/ViewQLHome.cshtml";
+    ViewBag.Title = "QL Khách Hàng";
+    Layout = "~/Views/Shared/ViewQLHome.cshtml";
 }
+
 
 <div class="left" style="width:25%;font-size:1.5rem">
     <div class="card" style="height:600px; margin-right:5px;">
@@ -11,11 +12,11 @@
             <div class="form-check">
                 <input class="form-check-input" style="margin-top:13px" type="checkbox" value="" id="flexCheckDefault">
                 <label class="form-check-label" for="flexCheckDefault">
-                    Mã khách hàng
+                    Số điện thoại
                 </label>
                 <div class="input-group mb-3">
-                    <span class="input-group-text">ID</span>
-                    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                    <span class="input-group-text">SDT</span>
+                    <input type="text" class="form-control" aria-label="Phone Number">
                 </div>
             </div>
             <div class="form-check">
@@ -25,56 +26,65 @@
                 </label>
                 <div class="input-group mb-3">
                     <span class="input-group-text">Tên</span>
-                    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                    <input type="text" class="form-control" aria-label="Name">
                 </div>
             </div>
         </div>
     </div>
 </div>
-<style>
-    .col-sm {
-        border: 1px solid black;
-        padding: 5px;
-    }
-</style>
 <div class="right" style="">
     <div class="card">
         <div class="card-body" style="height:600px">
             <div class="container">
-                <div class="row">
-                    <div class="col-sm">
-                        STT
-                    </div>
-                    <div class="col-sm">
-                        Mã khách hàng
-                    </div>
-                    <div class="col-sm">
-                        Họ tên
-                    </div>
-                    <div class="col-sm">
-                        STT
-                    </div>
-                    <div class="col-sm">
-                        Email
-                    </div>
-                    <div class="col-sm">
-                        Ngày vào làm
-                    </div>
-                    <div class="col-sm">
-                        Giới tính
-                    </div> <div class="col-sm">
-                        Vai trò
-                    </div> <div class="col-sm">
-                        Trạng thái
-                    </div>
-                </div>
+                <table class="table">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ho_ten)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.so_cmnd)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.so_dien_thoai)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.gioi_tinh)
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @if (Model.Count() == 0)
+                    {
+                        <tr> <td colspan="4"> Records not found </td></tr>
+                    }
+                    else
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ho_ten)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.so_cmnd)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.so_dien_thoai)
+                                </td>
+                                <td>
+                                    @((bool)item.gioi_tinh ? "Nam" : "Nữ")
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                                    @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                                </td>
+                            </tr>
+                        }
+                    }
+
+                    </table>
             </div>
-
-
         </div>
     </div>
-
 </div>
-
-
-
