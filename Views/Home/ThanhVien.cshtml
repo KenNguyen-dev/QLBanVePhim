@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewBag.Title = "ThanhVien";
+    Layout = "~/Views/Shared/SharedHomepage.cshtml";
+}
+
+<style>
+    h3 {
+        color: #950740;
+    }
+
+    form {
+        width: 100%;
+        padding: 30px;
+    }
+
+    .main-form {
+        display: flex;
+        justify-content: left;
+        align-items: flex-start;
+        background-color: white;
+        width: 70%;
+    }
+
+    .footer {
+        display: flex;
+        justify-content: space-between;
+    }
+
+        .footer button {
+            padding: 5px;
+            color: #950740;
+            font-weight: 600;
+            border: 1px solid #808080;
+            background-color: transparent;
+        }
+
+    .coban {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .tichdiem {
+        background-color: #dccece;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #808080;
+        width: 300px;
+    }
+</style>
+<div class="main-form">
+    <form>
+        <h3>Thông tin thành viên</h3>
+        <div class="coban">
+            <div>
+                <label>Họ tên: </label> <br />
+                <label>Giới tính:  </label>  <br />
+                <label>Ngày sinh:   </label>  <br />
+            </div>
+            <div class="tichdiem">
+                <div class="tichdiem-wrapper">
+                    <label>Tổng số diểm tích lũy: </label>  <br />
+                    <label>Loại thẻ thành viên:  </label>
+                </div>
+            </div>
+        </div>
+        <label>Địa chỉ: </label>  <br />
+        <label>Số CMND/bằng lái:  </label>  <br />
+        <label>Điện thoại:  </label>  <br />
+        <label>Tên đăng nhập: </label>  <br />
+        <div class="footer">
+            <label>Email:  </label>  <br />
+            <button>Thay đổi thông tin</button>
+        </div>
+    </form>
+</div>
+

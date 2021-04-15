@@ -11,7 +11,7 @@ namespace QLBanVePhim.Controllers
     
     public class QLHomeController : Controller
     {
-        QLBanVePhimEntities2 db = new QLBanVePhimEntities2();
+        QLBanVePhimEntities1 db = new QLBanVePhimEntities1();
         // GET: QLHome
         public ActionResult Index()
         {
