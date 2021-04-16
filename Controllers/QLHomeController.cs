@@ -19,7 +19,6 @@ namespace QLBanVePhim.Controllers
         }
         public ActionResult QLKH()
         {
-            
             return View(db.khach_hang.ToList());
         }
 

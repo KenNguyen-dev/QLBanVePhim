@@ -1,16 +1,18 @@
-﻿@model IEnumerable<QLBanVePhim.Models.nguoi_dung>
+﻿@model IEnumerable<QLBanVePhim.Models.phim>
 @{
-    ViewBag.Title = "QL Nhân Viên";
+    ViewBag.Title = "QLPhim";
     Layout = "~/Views/Shared/ViewQLHome.cshtml";
 }
+
+
 <div class="left" style="width:25%;font-size:1.5rem">
-    <div class="card" style="height:600px;margin-right:5px;">
+    <div class="card" style="height:600px; margin-right:5px;">
         <div class="card-body">
-            <Center><p>Tra cứu nhân viên</p></Center>
+            <Center><p>Tra cứu phim</p></Center>
             <div class="form-check">
                 <input class="form-check-input" style="margin-top:13px" type="checkbox" value="" id="flexCheckDefault">
                 <label class="form-check-label" for="flexCheckDefault">
-                    Mã nhân viên
+                    Tên phim
                 </label>
                 <div class="input-group mb-3">
                     <span class="input-group-text">ID</span>
@@ -20,7 +22,7 @@
             <div class="form-check">
                 <input class="form-check-input" style="margin-top:13px" type="checkbox" value="" id="flexCheckDefault">
                 <label class="form-check-label" for="flexCheckDefault">
-                    Tên nhân viên
+                    Ngày công chiếu
                 </label>
                 <div class="input-group mb-3">
                     <span class="input-group-text">Tên</span>
@@ -31,7 +33,7 @@
             <Center><p>Tools</p></Center>
             <div>
                 <center>
-                    <input type="button" onclick="location.href='/QLHome/AddNV';" value="Thêm nhân viên" />
+                    <input type="button" onclick="location.href='/QLPhim/AddPhim';" value="Thêm phim" />
                 </center>
             </div>
         </div>
@@ -50,43 +52,35 @@
                 <table class="table">
                     <tr>
                         <th>
-                            @Html.DisplayNameFor(model => model.ho_ten)
+                            @Html.DisplayNameFor(model => model.ten)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.so_cmnd)
+                            @Html.DisplayNameFor(model => model.thoi_luong)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.so_dien_thoai)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.gioi_tinh)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.vai_tro.ten)
+                            @Html.DisplayNameFor(model => model.ngay_cong_chieu)
                         </th>
                     </tr>
-                    @if (Model.Count() == 0) { <tr> <td colspan = "5"> Records not found </td></tr>
-                    } else {
-                    foreach (var item in Model)
+                    @if (Model.Count() == 0)
                     {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.ho_ten)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.so_cmnd)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.so_dien_thoai)
-                            </td>
-                            <td>
-                                @((bool)item.gioi_tinh ? "Nam":"Nữ")
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.vai_tro.ten)
-                            </td>
-                        </tr>
+                        <tr> <td colspan="5"> Records not found </td></tr>
                     }
+                    else
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ten)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.thoi_luong)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ngay_cong_chieu)
+                                </td>
+                            </tr>
+                        }
                     }
 
                 </table>
@@ -94,3 +88,8 @@
         </div>
     </div>
 </div>
+
+
+
+
+
