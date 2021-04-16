@@ -2017,7 +2017,6 @@
     <Content Include="Views\LoginQL\Index.cshtml" />
     <Content Include="Views\LoginQL\ViewLoginQL.cshtml" />
     <Content Include="Views\QLHome\Index.cshtml" />
-    <Content Include="Views\QLHome\ViewQLHome.cshtml" />
     <Content Include="Views\QLHome\QLKH.cshtml" />
     <Content Include="Views\QLHome\QLNV.cshtml" />
     <Content Include="Views\QLHome\AddNV.cshtml" />

@@ -11,7 +11,7 @@ namespace QLBanVePhim.Controllers
     
     public class QLHomeController : Controller
     {
-        QLBanVePhimEntities1 db = new QLBanVePhimEntities1();
+        QLBanVePhimEntities2 db = new QLBanVePhimEntities2();
         // GET: QLHome
         public ActionResult Index()
         {
@@ -19,7 +19,6 @@ namespace QLBanVePhim.Controllers
         }
         public ActionResult QLKH()
         {
-            
             return View(db.khach_hang.ToList());
         }
 
