@@ -10,7 +10,7 @@ namespace QLBanVePhim.Controllers
     public class HomeController : Controller
     {
 
-        QLBanVePhimEntities2 database = new QLBanVePhimEntities2();
+        QLBanVePhimEntities database = new QLBanVePhimEntities();
         public ActionResult Index()
         {
             return View();

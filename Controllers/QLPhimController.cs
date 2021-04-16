@@ -10,11 +10,11 @@ namespace QLBanVePhim.Controllers
 {
     public class QLPhimController : Controller
     {
-        QLBanVePhimEntities2 db = new QLBanVePhimEntities2();
+        QLBanVePhimEntities db = new QLBanVePhimEntities();
         // GET: QLPhim
         public ActionResult QLPhim()
         {
-            return View(db.phims.ToList());
+            return View(db.phim.ToList());
         }
 
         public ActionResult AddPhim()
@@ -27,7 +27,7 @@ namespace QLBanVePhim.Controllers
         {
             try
             {
-                db.phims.Add(_phim);
+                db.phim.Add(_phim);
                 db.SaveChanges();
                 return RedirectToAction("QLPhim");
             }
