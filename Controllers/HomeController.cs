@@ -42,7 +42,16 @@ namespace QLBanVePhim.Controllers
             }
         }
 
- 
+        public ActionResult MovieList()
+        {
+            return View(database.phim.ToList());
+        }
+
+        
+        public ActionResult Details(string id)
+        {
+            return View(database.phim.Where(s => s.id == id).FirstOrDefault());
+        }
 
         public ActionResult Login()
         {

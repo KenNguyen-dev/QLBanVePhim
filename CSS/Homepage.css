@@ -27,9 +27,20 @@ ul {
 
 }
 
+link:hover {
+    text-decoration: none;
+    color: black;
+}
+
 li a{
     text-decoration:none;
     color:white;
+    
+}
+
+li a:hover{
+    color:white;
+    text-decoration:none;
 }
 
 #dangNhap{

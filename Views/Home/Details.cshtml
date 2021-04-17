@@ -1,0 +1,65 @@
+﻿@model QLBanVePhim.Models.phim
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/SharedHomepage.cshtml";
+}
+
+<style>
+    #hinhAnh{
+        width:250px;
+        height:300px;
+
+    }
+
+    .chiTietPhim{
+        color:white;
+        min-height:800px;
+        margin:auto;
+        width:70%
+    }
+
+    #chiTiet{
+        text-align:left;
+        line-height:20px;
+        font-size:25px;
+        font-family:Arial
+        
+    }
+
+    
+
+</style>
+
+
+<div class="chiTietPhim">
+    <h2 style="padding:5px;font-weight:bold;margin-left:2px">Nội Dung Phim</h2>
+    <hr style="color:white"/>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3">
+                <img src=@Html.DisplayFor(model=>model.hinh_anh) id="hinhAnh" />
+
+            </div>
+
+            <div class="col-sm-9" id="chiTiet">
+                <h1>@Html.DisplayFor(model => model.ten)</h1>
+                <hr />
+                <p><strong>Nhà sản xuất :</strong> @Html.DisplayFor(model => model.nha_san_xuat)</p>
+                <p><strong>Diễn viên : </strong>@Html.DisplayFor(model => model.dien_vien) </p>
+                <p><strong>Thể loại : </strong> @Html.DisplayFor(model => model.loai_phim.ten)</p>
+                <p><strong>Ngày công chiếu : </strong>@Model.ngay_cong_chieu.Value.ToShortDateString()</p>
+                <p><strong>Thời lượng :</strong> @Html.DisplayFor(model => model.thoi_luong)</p>
+                <p><strong>Ngôn ngữ : </strong>@Html.DisplayFor(model => model.ngon_ngu)</p>
+                <p><strong>Rated: @Html.DisplayFor(model => model.gioi_han_tuoi)</strong></p>
+                <p><strong>Tóm tắt:</strong> </p>
+                <text>
+                    @Html.DisplayFor(model => model.tom_tat)
+                </text>
+                <br />
+                <button class="btn btn-success">Mua vé</button>
+            </div>
+        </div>
+    </div>
+</div>
