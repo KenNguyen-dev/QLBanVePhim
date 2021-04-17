@@ -21,6 +21,11 @@ namespace QLBanVePhim.Controllers
             return View();
         }
 
+        public ActionResult ThanhVien()
+        {
+            return View();
+        }
+
         [HttpPost]
         public ActionResult Register(khach_hang khachHang)
         {
