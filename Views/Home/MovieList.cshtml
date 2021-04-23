@@ -11,7 +11,7 @@
 <style>
     .card{
         width:300px;
-        max-height:500px;
+        max-height:auto;
         margin:20px;
         padding:10px;
         background-color:antiquewhite;
@@ -29,7 +29,7 @@
 
         @foreach (var item in Model)
         {
-            if (item.da_xoa == false)
+            if (item.da_xoa == false || item.da_xoa == null)
             {
                 <div class="card">
                     <img class="card-img-top" src=@Html.DisplayFor(modelItem => item.hinh_anh) alt="Card image cap" style="max-width:300px">

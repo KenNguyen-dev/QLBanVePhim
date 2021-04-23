@@ -12,13 +12,28 @@ namespace QLBanVePhim.Controllers
     {
         QLBanVePhimEntities db = new QLBanVePhimEntities();
         // GET: QLPhim
+        
         public ActionResult QLPhim()
         {
             return View(db.phim.ToList());
         }
-
+        public ActionResult EditPhim(string id)
+        {
+            var loaiphimList = db.loai_phim.ToList();
+            ViewBag.LoaiPhimList = new SelectList(loaiphimList, "id", "ten");
+            return View(db.phim.Where(s => s.id == id).FirstOrDefault());
+        }
+        [HttpPost]
+        public ActionResult EditPhim(string id, phim phim)
+        {
+            db.Entry(phim).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("QLPhim");
+        }
         public ActionResult AddPhim()
         {
+            var loaiphimList = db.loai_phim.ToList();
+            ViewBag.LoaiPhimList = new SelectList(loaiphimList, "id", "ten");
             return View();
         }
 
@@ -31,21 +46,9 @@ namespace QLBanVePhim.Controllers
                 db.SaveChanges();
                 return RedirectToAction("QLPhim");
             }
-            catch (DbEntityValidationException e)
+            catch (Exception e)
             {
-                string error = "";
-                foreach (var eve in e.EntityValidationErrors)
-                {
-                    error += ("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
-                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
-                    foreach (var ve in eve.ValidationErrors)
-                    {
-                        error += ("- Property: \"{0}\", Error: \"{1}\"",
-                            ve.PropertyName, ve.ErrorMessage);
-                    }
-                }
-                return Content(error);
-                throw;
+                return Content(e.ToString());
             }
         }
     }
