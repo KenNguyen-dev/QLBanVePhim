@@ -13,6 +13,10 @@ namespace QLBanVePhim.Controllers
         QLBanVePhimEntities database = new QLBanVePhimEntities();
         public ActionResult Index()
         {
+            if (Session["UserID"] != null)
+            {
+                return View();
+            }
             return View();
         }
 
@@ -48,9 +52,16 @@ namespace QLBanVePhim.Controllers
             return View(database.phims.Where(s => s.id == id).FirstOrDefault());
         }
 
-        public ActionResult Login()
+        public ActionResult Login(khach_hang khachHang)
         {
-            return View();
+            var currentUser = database.khach_hang.Where(user => user.email == khachHang.email && user.mat_khau == khachHang.mat_khau).FirstOrDefault();
+            if (currentUser != null)
+            {
+                Session["Username"] = currentUser.ho_ten.ToString();
+                Session["Id"] = currentUser.id;
+                return RedirectToAction("Index");
+            }
+            return View(khachHang);
         }
 
         public ActionResult ThanhVien()
