@@ -60,6 +60,8 @@
                         <th>
                             @Html.DisplayNameFor(model => model.ngay_cong_chieu)
                         </th>
+                        <th>
+                        </th>
                     </tr>
                     @if (Model.Count() == 0)
                     {
@@ -74,10 +76,13 @@
                                     @Html.DisplayFor(modelItem => item.ten)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.thoi_luong)
+                                    @Html.DisplayFor(modelItem => item.thoi_luong) Phút
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.ngay_cong_chieu)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Edit", "EditPhim", new { id = item.id })
                                 </td>
                             </tr>
                         }
@@ -88,8 +93,6 @@
         </div>
     </div>
 </div>
-
-
 
 
 

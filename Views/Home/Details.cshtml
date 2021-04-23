@@ -49,7 +49,7 @@
                 <p><strong>Nhà sản xuất :</strong> @Html.DisplayFor(model => model.nha_san_xuat)</p>
                 <p><strong>Diễn viên : </strong>@Html.DisplayFor(model => model.dien_vien) </p>
                 <p><strong>Thể loại : </strong> @Html.DisplayFor(model => model.loai_phim.ten)</p>
-                <p><strong>Ngày công chiếu : </strong>@Model.ngay_cong_chieu.Value.ToShortDateString()</p>
+                <p><strong>Ngày công chiếu : </strong>@Html.DisplayFor(model => model.ngay_cong_chieu)</p>
                 <p><strong>Thời lượng :</strong> @Html.DisplayFor(model => model.thoi_luong)</p>
                 <p><strong>Ngôn ngữ : </strong>@Html.DisplayFor(model => model.ngon_ngu)</p>
                 <p><strong>Rated: @Html.DisplayFor(model => model.gioi_han_tuoi)</strong></p>
