@@ -16,8 +16,8 @@
                 <a href="#" class="navbar-brand">Text mẫu</a>
                 <div class="nav-item">
                     <ul>
-                        <li><a href="#">Trang Chủ</a></li>
-                        <li><a href="#">Phim</a></li>
+                        <li><a href=@Url.Action("Index","Home")>Trang Chủ</a></li>
+                        <li><a href=@Url.Action("MovieList","Home")>Phim</a></li>
                         <li><a href="#">Suất chiếu</a></li>
                     </ul>
                 </div>
@@ -28,23 +28,20 @@
             <nav class="navbar navbardark bg-white">
                 <nav class="navbar-brand">
                     <div id="dangKy">
-                        <span class="fas fa-gifts"><a class="link"style="float:right;margin-left:15px;color:black" href=@Url.Action("Register","Home")>Đăng ký</a></span>                      
+                        <span class="fas fa-gifts"><a class="link" style="float:right;margin-left:15px;color:black" href=@Url.Action("Register","Home")>Đăng ký</a></span>
                     </div>
                     <div id="dangNhap">
-                        <span class="fas fa-bell"><a class="link"style="float:right;margin-left:15px;color:black" >Đăng nhập</a></span>
-                        <!--thay thế text đăng nhập-->
-
+                        <span class="fas fa-bell"><a class="link" style="float:right;margin-left:15px;color:black" href=@Url.Action("Login","Home")>Đăng nhập</a></span>
+                    </div>
+                    <div>
+                    @if (Session["UserName"] != null)
+                    {<text>
+                            Welcome @Session["UserName"].ToString() </text>
+                    }
                     </div>
                 </nav>
             </nav>
         </section>
-       
-        <style>
-            #main-body{
-                display:flex;
-                justify-content:center;
-                align-items:center;
-            }
         </style>
         <!--Main Body--->
         <section id="main-body" style="background-color:#343a40">
