@@ -14,7 +14,7 @@ namespace QLBanVePhim.Controllers
         // GET: QLPhim
         public ActionResult QLPhim()
         {
-            return View(db.phim.ToList());
+            return View(db.phims.ToList());
         }
 
         public ActionResult AddPhim()
@@ -22,12 +22,18 @@ namespace QLBanVePhim.Controllers
             return View();
         }
 
+        public ActionResult EditPhim()
+        {
+            return View();
+        }
+
+
         [HttpPost]
         public ActionResult AddPhim(phim _phim)
         {
             try
             {
-                db.phim.Add(_phim);
+                db.phims.Add(_phim);
                 db.SaveChanges();
                 return RedirectToAction("QLPhim");
             }

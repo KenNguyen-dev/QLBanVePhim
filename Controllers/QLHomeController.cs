@@ -27,6 +27,16 @@ namespace QLBanVePhim.Controllers
             return View();
         }
 
+        public ActionResult EditNV()
+        {
+            return View();
+        }
+
+        public ActionResult ADdKH()
+        {
+            return View();
+        }
+
         public ActionResult QLNV()
         {
             return View(db.nguoi_dung.ToList());

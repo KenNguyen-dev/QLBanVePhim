@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "AddNV";
+    ViewBag.Title = "EditNV";
     Layout = "~/Views/Shared/ViewQLHome.cshtml";
 }
 
@@ -67,7 +67,7 @@
 <div class="right" style="">
     <div class="card">
         <div class="card-body" style="height:600px">
-            <center><div><label class="lb_themnv">Thêm nhân viên</label></div></center>
+            <center><div><label class="lb_themnv">Sửa thông tin nhân viên</label></div></center>
             <div class="left-in" style="float:left">
                 <div class="container py-4" style="padding:0px;">
                     <div class="row py-4" style="padding:0px;">
@@ -76,12 +76,12 @@
                                 <img id="imageResult" src="#" alt="" class="img-fluid rounded shadow-sm mx-auto d-block">
                             </div>
                             @*<div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
-                            <input id="upload" type="file" onchange="readURL(this);" class="form-control border-0">
-                            <label id="upload-label" for="upload" class="font-weight-light text-muted">Choose file</label>
-                            <div class="input-group-append">
-                                <label for="upload" class="btn btn-light m-0 rounded-pill px-4"> <i class="fa fa-cloud-upload mr-2 text-muted"></i><small class="text-uppercase font-weight-bold text-muted">Choose file</small></label>
-                            </div>
-                        </div>*@
+                                    <input id="upload" type="file" onchange="readURL(this);" class="form-control border-0">
+                                    <label id="upload-label" for="upload" class="font-weight-light text-muted">Choose file</label>
+                                    <div class="input-group-append">
+                                        <label for="upload" class="btn btn-light m-0 rounded-pill px-4"> <i class="fa fa-cloud-upload mr-2 text-muted"></i><small class="text-uppercase font-weight-bold text-muted">Choose file</small></label>
+                                    </div>
+                                </div>*@
                         </div>
                     </div>
                     <table>
@@ -151,12 +151,13 @@
 
                 </table>
             </div>
-            <center>
-                <input type="button" onclick="location.href='';" value="Lưu" />
-                <input type="button" onclick="location.href='';" value="Thoát" />
-            </center>
         </div>
-       
+        <center>
+            <input type="button" onclick="location.href='';" value="Lưu" />
+            <input type="button" onclick="location.href='';" value="Hủy" />
+        </center>
     </div>
 </div>
+
+
 
