@@ -205,9 +205,6 @@
     <Compile Include="Models\suat_chieu.cs">
       <DependentUpon>QLBanVePhimModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\sysdiagrams.cs">
-      <DependentUpon>QLBanVePhimModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\vai_tro.cs">
       <DependentUpon>QLBanVePhimModel.tt</DependentUpon>
     </Compile>

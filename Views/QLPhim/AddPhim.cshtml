@@ -36,14 +36,11 @@
         <div class="card-body" style="height:auto">
             <center> <h3>Thêm phim</h3></center>
             <div class="left-in" style="float:left;">
-                <div class="row py-4">
-                    <div class="col-lg-8 mx-auto">
-                        <div class="image-area mt-4">
-                            <img id="imageResult" src="#" alt="" class="img-fluid rounded shadow-sm mx-auto d-block">
-                        </div>
-                    </div>
-                </div>
                 <table>
+                    <tr>
+                        <td width="150px">@Html.LabelFor(model => model.hinh_anh)</td>
+                        <td width="70%">@Html.EditorFor(model => model.hinh_anh, new { htmlAttributes = new { @class = "form-control" } })</td>
+                    </tr>
                     <tr>
                         <td width="150px">@Html.LabelFor(model => model.ten)</td>
                         <td width="70%">@Html.EditorFor(model => model.ten, new { htmlAttributes = new { @class = "form-control" } })</td>
@@ -86,8 +83,16 @@
                         <td>@Html.EditorFor(model => model.tom_tat, new { htmlAttributes = new { @class = "form-control" } })</td>
                     </tr>
                     <tr>
+
                         <td style=" padding-bottom: 10px;">@Html.LabelFor(model => model.loai_phim_id)</td>
                         <td>@Html.EditorFor(model => model.loai_phim_id, new { htmlAttributes = new { @class = "form-control" } })</td>
+
+                        <td style="padding-top: 10px; padding-bottom: 10px;">@Html.LabelFor(model => model.loai_phim_id)</td>
+                        <td>
+                            @Html.DropDownListFor(model => model.loai_phim_id, ViewBag.LoaiPhimList as SelectList, "Loại Phim",
+                            new { @class = "form-control" })
+                        </td>
+
                     </tr>
                     <tr>
                         <td style=" padding-bottom: 10px;">@Html.LabelFor(model => model.id)</td>
