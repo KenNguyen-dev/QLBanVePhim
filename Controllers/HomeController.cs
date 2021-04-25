@@ -74,10 +74,6 @@ namespace QLBanVePhim.Controllers
             return View(khachHang);
         }
 
-        public ActionResult ThanhVien()
-        {
-            return View();
-        }
        
 
     }
