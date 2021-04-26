@@ -1,0 +1,95 @@
+﻿
+@{
+    ViewBag.Title = "QLPhongChieu";
+    Layout = "~/Views/Shared/ViewQLHome.cshtml";
+}
+
+<style>
+    .left {
+        width: 25%;
+        font-size: 1.5rem;
+    }
+
+    .card {
+        height: 600px;
+        margin-right: 5px;
+    }
+
+    .custom-control-input {
+        margin-top: 30px;
+    }
+
+    .card-body {
+        justify-content: center
+    }
+
+    .table {
+        text-align: center;
+    }
+
+    .modalItem {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .form-control1 {
+        width: 20%;
+        height: 30px;
+        font-size: 12px;
+    }
+</style>
+<div class="left">
+    <div class="card">
+        <div class="card-body">
+            <h3 style="text-align:center">Tra cứu phòng chiếu</h3>
+            <form style="padding-top:20px">
+                <div class="custom-control custom-checkbox mb-3">
+                    <input type="checkbox" class="custom-control-input" id="customControlValidation1" checked>
+                    <label class="custom-control-label" for="customControlValidation1">Theo số phòng</label>
+                    <input id="datepicker" />
+                </div>
+
+
+            </form>
+            <button type="button" class="btn btn-success" onclick="location.href='/QLHome/AddPhongChieu'" data-toggle="modal" data-target="#exampleModal">
+                Thêm phòng chiếu
+            </button>
+            <button type="button" class="btn btn-success" onclick="location.href='/QLHome/EditPhongChieu'" data-toggle="modal" data-target="#exampleModal">
+                Sửa phòng chiếu
+            </button>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="right">
+    <div class="card">
+        <div class="card-body" style="height:600px">
+            <div class="container">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Số phòng</th>
+                            <th>Số ghế</th>
+                            <th>Số lượng dãy </th>
+                            <th>Số lượng cột</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>B01</td>
+                            <td>100</td>
+                            <td>10</td>
+                            <td>10</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -32,7 +32,7 @@ namespace QLBanVePhim.Controllers
             return View();
         }
 
-        public ActionResult ADdKH()
+        public ActionResult AddKH()
         {
             return View();
         }
@@ -42,6 +42,20 @@ namespace QLBanVePhim.Controllers
             return View(db.nguoi_dung.ToList());
         }
         public ActionResult QLSuatChieu()
+        {
+            return View();
+        }
+
+        public ActionResult QLPhongChieu()
+        {
+            return View();
+        }
+        public ActionResult AddPhongChieu()
+        {
+            return View();
+        }
+
+        public ActionResult EditPhongChieu()
         {
             return View();
         }
