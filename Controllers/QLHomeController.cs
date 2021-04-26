@@ -41,5 +41,9 @@ namespace QLBanVePhim.Controllers
         {
             return View(db.nguoi_dung.ToList());
         }
+        public ActionResult QLSuatChieu()
+        {
+            return View();
+        }
     }
 }

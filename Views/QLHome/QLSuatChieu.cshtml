@@ -1,0 +1,180 @@
+﻿
+@{
+    ViewBag.Title = "QLSuatChieu";
+    Layout = "~/Views/Shared/ViewQLHome.cshtml";
+}
+
+<style>
+    .left {
+        width: 25%;
+        font-size: 1.5rem;
+    }
+
+    .card {
+        height: 600px;
+        margin-right: 5px;
+    }
+
+    .custom-control-input {
+        margin-top: 30px;
+    }
+
+    .card-body {
+        justify-content: center
+    }
+</style>
+<div class="left">
+    <div class="card">
+        <div class="card-body">
+            <h3 style="text-align:center">Tra cứu suất chiếu</h3>
+            <form style="padding-top:20px">
+                <div class="custom-control custom-checkbox mb-3">
+                    <input type="checkbox" class="custom-control-input" id="customControlValidation1" checked>
+                    <label class="custom-control-label" for="customControlValidation1">Ngày chiếu</label>
+                    <input id="datepicker" />
+                </div>
+                <div class="custom-control custom-checkbox mb-3">
+                    <input type="checkbox" class="custom-control-input" id="customControlValidation2">
+                    <label class="custom-control-label" for="customControlValidation2">Tên phim</label>
+                    <select class="form-control" id="exampleFormControlSelect1">
+                        <option>Bố già</option>
+                        <option>Lật mặt</option>
+                        <option>Baymax</option>
+                    </select>
+                </div>
+                <div class="custom-control custom-checkbox mb-3">
+                    <input type="checkbox" class="custom-control-input" id="customControlValidation3">
+                    <label class="custom-control-label" for="customControlValidation3">Tình trạng</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                        <label class="form-check-label" for="exampleRadios1">
+                            Đang chiếu
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                        <label class="form-check-label" for="exampleRadios2">
+                            Sắp chiếu
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option2">
+                        <label class="form-check-label" for="exampleRadios3">
+                            Đã chiếu
+                        </label>
+                    </div>
+                </div>
+            </form>
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
+                Thêm suất chiếu
+            </button>
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Thêm suất chiếu</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="modalItem">
+
+                                <p>Tên phim</p>
+                                <select class="form-control1" id="exampleFormControlSelect1">
+                                    <option>Bố già</option>
+                                    <option>Lật mặt</option>
+                                    <option>Baymax</option>
+                                </select>
+
+
+                                <p>Định dạng</p>
+                                <select class="form-control1" id="exampleFormControlSelect2">
+                                    <option>2D</option>
+                                    <option>3D</option>
+                                </select>
+                            </div>
+                            <div class="modalItem">
+
+                                <p>Phòng chiếu</p>
+                                <select class="form-control1" id="exampleFormControlSelect3">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                </select>
+
+
+                                <p>Giờ bắt đầu</p>
+
+                            </div>
+
+
+
+                        </div>
+
+
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .table {
+        text-align: center;
+    }
+
+    .modalItem {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .form-control1 {
+        width: 20%;
+        height: 30px;
+        font-size: 12px;
+    }
+</style>
+<div class="right">
+    <div class="card">
+        <div class="card-body" style="height:600px">
+            <div class="container">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Mã suất chiếu</th>
+                            <th>Tên phim</th>
+                            <th>Ngày chiếu</th>
+                            <th>Giờ chiếu</th>
+                            <th>Định dạng</th>
+                            <th>Ngôn ngữ</th>
+                            <th>Phòng chiếu</th>
+                            <th>Tình trạng</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>SH110</td>
+                            <td>Bố già</td>
+                            <td>21/02/2021</td>
+                            <td>21:00</td>
+                            <td>3D</td>
+                            <td>Tiếng Việt</td>
+                            <td>3</td>
+                            <td>Sắp chiếu</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
