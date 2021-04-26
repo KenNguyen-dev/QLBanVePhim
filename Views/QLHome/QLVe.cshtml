@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "QLPhongChieu";
+    ViewBag.Title = "QLVe";
     Layout = "~/Views/Shared/ViewQLHome.cshtml";
 }
 
@@ -41,21 +41,21 @@
 <div class="left">
     <div class="card">
         <div class="card-body">
-            <h3 style="text-align:center">Tra cứu phòng chiếu</h3>
+            <h3 style="text-align:center">Tra cứu vé</h3>
             <form style="padding-top:20px">
                 <div class="custom-control custom-checkbox mb-3">
                     <input type="checkbox" class="custom-control-input" id="customControlValidation1" checked>
-                    <label class="custom-control-label" for="customControlValidation1">Theo số phòng</label>
+                    <label class="custom-control-label" for="customControlValidation1">Mã vé</label>
                     <input id="datepicker" />
                 </div>
 
 
             </form>
             <button type="button" class="btn btn-success" onclick="location.href='/QLHome/AddPhongChieu'" data-toggle="modal" data-target="#exampleModal">
-                Thêm phòng chiếu
+                Thêm vé
             </button>
             <button type="button" class="btn btn-success" onclick="location.href='/QLHome/EditPhongChieu'" data-toggle="modal" data-target="#exampleModal">
-                Sửa phòng chiếu
+                Cập nhật vé
             </button>
 
         </div>
@@ -69,19 +69,23 @@
                     <thead>
                         <tr>
                             <th>STT</th>
-                            <th>Số phòng</th>
-                            <th>Số ghế</th>
-                            <th>Số lượng dãy </th>
-                            <th>Số lượng cột</th>
+                            <th>Mã vé</th>
+                            <th>Mã suất chiếu</th>
+                            <th>Vị trí ghế </th>
+                            <th>Ngày bán </th>
+                            <th>Giá vé</th>
+                            <th>Nhân viên bán</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>1</td>
-                            <td>B01</td>
-                            <td>100</td>
-                            <td>10</td>
-                            <td>10</td>
+                            <td>TK01</td>
+                            <td>?????????</td>
+                            <td>A01</td>
+                            <td>02/05/2021</td>
+                            <td>79000 vnđ</td>
+                            <td>Lê Trí Kiệt</td>
                         </tr>
                     </tbody>
                 </table>
@@ -90,4 +94,5 @@
         </div>
     </div>
 </div>
+
 

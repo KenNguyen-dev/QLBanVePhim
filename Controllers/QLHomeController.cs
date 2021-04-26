@@ -59,5 +59,10 @@ namespace QLBanVePhim.Controllers
         {
             return View();
         }
+
+        public ActionResult QLVe()
+        {
+            return View();
+        }
     }
 }
