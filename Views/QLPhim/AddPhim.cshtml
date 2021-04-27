@@ -85,9 +85,6 @@
                     <tr>
 
                         <td style=" padding-bottom: 10px;">@Html.LabelFor(model => model.loai_phim_id)</td>
-                        <td>@Html.EditorFor(model => model.loai_phim_id, new { htmlAttributes = new { @class = "form-control" } })</td>
-
-                        <td style="padding-top: 10px; padding-bottom: 10px;">@Html.LabelFor(model => model.loai_phim_id)</td>
                         <td>
                             @Html.DropDownListFor(model => model.loai_phim_id, ViewBag.LoaiPhimList as SelectList, "Loại Phim",
                             new { @class = "form-control" })

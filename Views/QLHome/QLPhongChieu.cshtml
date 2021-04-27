@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<QLBanVePhim.Models.phong_chieu>
 @{
     ViewBag.Title = "QLPhongChieu";
     Layout = "~/Views/Shared/ViewQLHome.cshtml";
@@ -48,8 +48,6 @@
                     <label class="custom-control-label" for="customControlValidation1">Theo số phòng</label>
                     <input id="datepicker" />
                 </div>
-
-
             </form>
             <button type="button" class="btn btn-success" onclick="location.href='/QLHome/AddPhongChieu'" data-toggle="modal" data-target="#exampleModal">
                 Thêm phòng chiếu
@@ -57,7 +55,6 @@
             <button type="button" class="btn btn-success" onclick="location.href='/QLHome/EditPhongChieu'" data-toggle="modal" data-target="#exampleModal">
                 Sửa phòng chiếu
             </button>
-
         </div>
     </div>
 </div>
@@ -68,26 +65,36 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>STT</th>
-                            <th>Số phòng</th>
-                            <th>Số ghế</th>
-                            <th>Số lượng dãy </th>
-                            <th>Số lượng cột</th>
+                            <th>@Html.DisplayNameFor(model => model.id)</th>
+                            <th>@Html.DisplayNameFor(model => model.so_luong_cot)</th>
+                            <th>@Html.DisplayNameFor(model => model.so_luong_day)</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>B01</td>
-                            <td>100</td>
-                            <td>10</td>
-                            <td>10</td>
-                        </tr>
+                        @if (Model.Count() == 0)
+                        {
+                            <tr> <td colspan="4"> Records not found </td></tr>
+                        }
+                        else
+                        {
+                            foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.id)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.so_luong_cot)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.so_luong_day)
+                                    </td>
+                                </tr>
+                            }
+                        }
                     </tbody>
                 </table>
-
             </div>
         </div>
     </div>
 </div>
-
