@@ -1,0 +1,91 @@
+﻿@model QLBanVePhim.Models.khach_hang
+
+@{
+    ViewBag.Title = "DetailsKH";
+    Layout = "~/Views/Shared/ViewQLHome.cshtml";
+}
+
+<h2>DetailsKH</h2>
+
+<div>
+    <div class="card">
+        <div class="card-body">
+            <div class="container">
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.ho_ten)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.ho_ten)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.so_cmnd)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.so_cmnd)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.mat_khau)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.mat_khau)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.so_dien_thoai)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.so_dien_thoai)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.email)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.email)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.dia_chi)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.dia_chi)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.ngay_dang_ky)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.ngay_dang_ky)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.ngay_sinh)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.ngay_sinh)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.gioi_tinh)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.gioi_tinh)
+                    </dd>
+
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>

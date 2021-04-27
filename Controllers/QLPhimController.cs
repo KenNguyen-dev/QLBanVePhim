@@ -15,13 +15,13 @@ namespace QLBanVePhim.Controllers
         
         public ActionResult QLPhim()
         {
-            return View(db.phims.ToList());
+            return View(db.phim.ToList());
         }
         public ActionResult EditPhim(string id)
         {
             var loaiphimList = db.loai_phim.ToList();
             ViewBag.LoaiPhimList = new SelectList(loaiphimList, "id", "ten");
-            return View(db.phims.Where(s => s.id == id).FirstOrDefault());
+            return View(db.phim.Where(s => s.id == id).FirstOrDefault());
         }
         [HttpPost]
         public ActionResult EditPhim(string id, phim phim)
@@ -42,7 +42,7 @@ namespace QLBanVePhim.Controllers
         {
             try
             {
-                db.phims.Add(_phim);
+                db.phim.Add(_phim);
                 db.SaveChanges();
                 return RedirectToAction("QLPhim");
             }

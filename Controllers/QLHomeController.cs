@@ -31,5 +31,9 @@ namespace QLBanVePhim.Controllers
         {
             return View(db.nguoi_dung.ToList());
         }
+        public ActionResult DetailsKH(int id)
+        {
+            return View(db.khach_hang.Where(s => s.id == id).FirstOrDefault());
+        }
     }
 }
