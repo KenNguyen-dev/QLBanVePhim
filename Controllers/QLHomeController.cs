@@ -144,5 +144,15 @@ namespace QLBanVePhim.Controllers
         {
             return View();
         }
+
+        public ActionResult QLDoAn()
+        {
+            return View();
+        }
+
+        public ActionResult Login()
+        {
+            return View();
+        }
     }
 }
