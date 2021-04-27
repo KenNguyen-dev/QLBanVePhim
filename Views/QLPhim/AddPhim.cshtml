@@ -33,7 +33,7 @@
 
 <div class="right" style="">
     <div class="card">
-        <div class="card-body" style="height:600px">
+        <div class="card-body" style="height:auto">
             <center> <h3>Thêm phim</h3></center>
             <div class="left-in" style="float:left;">
                 <table>
@@ -59,48 +59,56 @@
             <div class="right-in" style="float:left;padding-top:20px">
                 <table>
                     <tr>
-                        <td width="150px">@Html.LabelFor(model => model.dien_vien)</td>
+                        <td style=" padding-bottom: 10px;" width="150px">@Html.LabelFor(model => model.dien_vien)</td>
                         <td width="70%">@Html.EditorFor(model => model.dien_vien, new { htmlAttributes = new { @class = "form-control" } })</td>
                     </tr>
                     <tr>
-                        <td>@Html.LabelFor(model => model.quoc_gia)</td>
+                        <td style=" padding-bottom: 10px;">@Html.LabelFor(model => model.quoc_gia)</td>
                         <td>@Html.EditorFor(model => model.quoc_gia, new { htmlAttributes = new { @class = "form-control" } })</td>
                     </tr>
                     <tr>
-                        <td style="padding-top: 10px; padding-bottom: 10px;">@Html.LabelFor(model => model.ngay_cong_chieu)</td>
+                        <td style=" padding-bottom: 10px;">@Html.LabelFor(model => model.ngay_cong_chieu)</td>
                         <td>@Html.EditorFor(model => model.ngay_cong_chieu, new { htmlAttributes = new { @class = "form-control" } })</td>
                     </tr>
                     <tr>
-                        <td style="padding-top: 10px; padding-bottom: 10px;">@Html.LabelFor(model => model.ngon_ngu)</td>
+                        <td style=" padding-bottom: 10px;">@Html.LabelFor(model => model.ngon_ngu)</td>
                         <td>@Html.EditorFor(model => model.ngon_ngu, new { htmlAttributes = new { @class = "form-control" } })</td>
                     </tr>
                     <tr>
-                        <td style="padding-top: 10px; padding-bottom: 10px;">@Html.LabelFor(model => model.trang_thai)</td>
+                        <td style=" padding-bottom: 10px;">@Html.LabelFor(model => model.trang_thai)</td>
                         <td>@Html.EditorFor(model => model.trang_thai, new { htmlAttributes = new { @class = "form-control" } })</td>
                     </tr>
                     <tr>
-                        <td style="padding-top: 10px; padding-bottom: 10px;">@Html.LabelFor(model => model.tom_tat)</td>
+                        <td style=" padding-bottom: 10px;">@Html.LabelFor(model => model.tom_tat)</td>
                         <td>@Html.EditorFor(model => model.tom_tat, new { htmlAttributes = new { @class = "form-control" } })</td>
                     </tr>
                     <tr>
+
+                        <td style=" padding-bottom: 10px;">@Html.LabelFor(model => model.loai_phim_id)</td>
+                        <td>@Html.EditorFor(model => model.loai_phim_id, new { htmlAttributes = new { @class = "form-control" } })</td>
+
                         <td style="padding-top: 10px; padding-bottom: 10px;">@Html.LabelFor(model => model.loai_phim_id)</td>
                         <td>
                             @Html.DropDownListFor(model => model.loai_phim_id, ViewBag.LoaiPhimList as SelectList, "Loại Phim",
                             new { @class = "form-control" })
                         </td>
+
                     </tr>
                     <tr>
-                        <td style="padding-top: 10px; padding-bottom: 10px;">@Html.LabelFor(model => model.id)</td>
+                        <td style=" padding-bottom: 10px;">@Html.LabelFor(model => model.id)</td>
                         <td>@Html.EditorFor(model => model.id, new { htmlAttributes = new { @class = "form-control" } })</td>
                     </tr>
 
                 </table>
 
 
-            </div>
-            <div>
 
             </div>
+
+            <center>
+                <label>Mô tả</label>
+                <textarea id="w3review" name="w3review" rows="4" cols="100"></textarea>
+            </center>
             <div class="form-group">
                 <center>
                     <input type="submit" value="Thêm phim">
@@ -108,7 +116,8 @@
             </div>
         </div>
     </div>
-    
+   
+   
 </div>
 }
 

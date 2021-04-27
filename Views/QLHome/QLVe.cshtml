@@ -1,0 +1,98 @@
+﻿
+@{
+    ViewBag.Title = "QLVe";
+    Layout = "~/Views/Shared/ViewQLHome.cshtml";
+}
+
+<style>
+    .left {
+        width: 25%;
+        font-size: 1.5rem;
+    }
+
+    .card {
+        height: 600px;
+        margin-right: 5px;
+    }
+
+    .custom-control-input {
+        margin-top: 30px;
+    }
+
+    .card-body {
+        justify-content: center
+    }
+
+    .table {
+        text-align: center;
+    }
+
+    .modalItem {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .form-control1 {
+        width: 20%;
+        height: 30px;
+        font-size: 12px;
+    }
+</style>
+<div class="left">
+    <div class="card">
+        <div class="card-body">
+            <h3 style="text-align:center">Tra cứu vé</h3>
+            <form style="padding-top:20px">
+                <div class="custom-control custom-checkbox mb-3">
+                    <input type="checkbox" class="custom-control-input" id="customControlValidation1" checked>
+                    <label class="custom-control-label" for="customControlValidation1">Mã vé</label>
+                    <input id="datepicker" />
+                </div>
+
+
+            </form>
+            <button type="button" class="btn btn-success" onclick="location.href='/QLHome/AddPhongChieu'" data-toggle="modal" data-target="#exampleModal">
+                Thêm vé
+            </button>
+            <button type="button" class="btn btn-success" onclick="location.href='/QLHome/EditPhongChieu'" data-toggle="modal" data-target="#exampleModal">
+                Cập nhật vé
+            </button>
+
+        </div>
+    </div>
+</div>
+<div class="right">
+    <div class="card">
+        <div class="card-body" style="height:600px">
+            <div class="container">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Mã vé</th>
+                            <th>Mã suất chiếu</th>
+                            <th>Vị trí ghế </th>
+                            <th>Ngày bán </th>
+                            <th>Giá vé</th>
+                            <th>Nhân viên bán</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>TK01</td>
+                            <td>?????????</td>
+                            <td>A01</td>
+                            <td>02/05/2021</td>
+                            <td>79000 vnđ</td>
+                            <td>Lê Trí Kiệt</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+

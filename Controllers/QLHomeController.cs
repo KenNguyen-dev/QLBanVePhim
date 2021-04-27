@@ -27,6 +27,16 @@ namespace QLBanVePhim.Controllers
             return View();
         }
 
+        public ActionResult EditNV()
+        {
+            return View();
+        }
+
+        public ActionResult AddKH()
+        {
+            return View();
+        }
+
         public ActionResult QLNV()
         {
             return View(db.nguoi_dung.ToList());
@@ -34,6 +44,29 @@ namespace QLBanVePhim.Controllers
         public ActionResult DetailsKH(int id)
         {
             return View(db.khach_hang.Where(s => s.id == id).FirstOrDefault());
+        }
+        public ActionResult QLSuatChieu()
+        {
+            return View();
+        }
+
+        public ActionResult QLPhongChieu()
+        {
+            return View();
+        }
+        public ActionResult AddPhongChieu()
+        {
+            return View();
+        }
+
+        public ActionResult EditPhongChieu()
+        {
+            return View();
+        }
+
+        public ActionResult QLVe()
+        {
+            return View();
         }
     }
 }

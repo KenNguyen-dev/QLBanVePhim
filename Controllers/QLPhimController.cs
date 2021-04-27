@@ -37,6 +37,12 @@ namespace QLBanVePhim.Controllers
             return View();
         }
 
+        public ActionResult EditPhim()
+        {
+            return View();
+        }
+
+
         [HttpPost]
         public ActionResult AddPhim(phim _phim)
         {
