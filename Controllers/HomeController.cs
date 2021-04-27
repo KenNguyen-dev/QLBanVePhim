@@ -26,6 +26,16 @@ namespace QLBanVePhim.Controllers
             return View();
         }
 
+        public ActionResult ThanhVien()
+        {
+            return View();
+        }
+
+        public ActionResult QLPhim()
+        {
+            return View();
+        }
+
         [HttpPost]
         public ActionResult Register(khach_hang khachHang)
         {
@@ -67,10 +77,6 @@ namespace QLBanVePhim.Controllers
             return View(khachHang);
         }
 
-        public ActionResult ThanhVien()
-        {
-            return View();
-        }
        
 
     }
