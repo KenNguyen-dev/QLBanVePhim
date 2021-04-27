@@ -48,7 +48,34 @@ namespace QLBanVePhim.Controllers
 
         public ActionResult QLSuatChieu()
         {
+            return View(db.suat_chieu.ToList());
+        }
+
+        public ActionResult AddSuatChieu()
+        {
+            var phimList = db.phims.ToList();
+            ViewBag.PhimList = new SelectList(phimList, "id", "ten");
+            ViewBag.PhimImgList = new SelectList(phimList, "id", "hinh_anh");
+            var ddphimList = db.dinh_dang_phim.ToList();
+            ViewBag.DDPhimList = new SelectList(ddphimList, "id", "ten");
+            var phongchieuList = db.phong_chieu.ToList();
+            ViewBag.PhongChieuList = new SelectList(phongchieuList, "id", "id");
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddSuatChieu(suat_chieu _suatchieu)
+        {
+            try
+            {
+                db.suat_chieu.Add(_suatchieu);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch (Exception e)
+            {
+                return Content(e.ToString());
+            }
         }
 
         public ActionResult QLPhongChieu()
