@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -53,13 +54,14 @@ namespace QLBanVePhim.Controllers
 
         public ActionResult MovieList()
         {
-            return View(database.phims.ToList());
+            return View(database.phim.ToList());
+ 
         }
 
         
         public ActionResult Details(string id)
         {
-            return View(database.phims.Where(s => s.id == id).FirstOrDefault());
+            return View(database.phim.Where(s => s.id == id).FirstOrDefault());
         }
 
         public ActionResult Login(khach_hang khachHang)
@@ -67,6 +69,7 @@ namespace QLBanVePhim.Controllers
             var currentUser = database.khach_hang.Where(user => user.email == khachHang.email && user.mat_khau == khachHang.mat_khau).FirstOrDefault();
             if (currentUser != null)
             {
+                Debug.WriteLine(currentUser.ho_ten.ToString());
                 Session["Username"] = currentUser.ho_ten.ToString();
                 Session["Id"] = currentUser.id;
                 return RedirectToAction("Index");
