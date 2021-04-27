@@ -53,7 +53,7 @@ namespace QLBanVePhim.Controllers
 
         public ActionResult AddSuatChieu()
         {
-            var phimList = db.phims.ToList();
+            var phimList = db.phim.ToList();
             ViewBag.PhimList = new SelectList(phimList, "id", "ten");
             ViewBag.PhimImgList = new SelectList(phimList, "id", "hinh_anh");
             var ddphimList = db.dinh_dang_phim.ToList();
@@ -101,20 +101,20 @@ namespace QLBanVePhim.Controllers
 
                 List<ghe_ngoi> ds_ghe = new List<ghe_ngoi>();
                 string[] col = new string[] { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J" };
-                for (int i = 0; i < 10; i++)
+                for (int i = 1; i < 11; i++)
                 {
-                    for (int j = 0; j < 10; j++)
+                    for (int j = 1; j < 11; j++)
                     {
                         ghe_ngoi ghe = new ghe_ngoi();
                         ghe.da_chon = false;
                         ghe.phong_chieu_id = _phong.id;
                         ghe.vi_tri_day = i;
-                        ghe.vi_tri_cot = col[j];
+                        ghe.vi_tri_cot = col[j-1];
                         ghe.id = ghe.phong_chieu_id + "_" + ghe.vi_tri_day + ghe.vi_tri_cot;
-                        ghe.loai_ghe_id = "0";
+                        ghe.loai_ghe_id = "NORMAL";
                         if ((i >= 2 && i <= 6) && (j >= 3 && j <= 6))
                         {
-                            ghe.loai_ghe_id = "1";
+                            ghe.loai_ghe_id = "VIP";
                         }
                         ds_ghe.Add(ghe);
                     }
