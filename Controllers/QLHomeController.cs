@@ -53,7 +53,7 @@ namespace QLBanVePhim.Controllers
 
         public ActionResult AddSuatChieu()
         {
-            var phimList = db.phim.ToList();
+            var phimList = db.phims.ToList();
             ViewBag.PhimList = new SelectList(phimList, "id", "ten");
             ViewBag.PhimImgList = new SelectList(phimList, "id", "hinh_anh");
             var ddphimList = db.dinh_dang_phim.ToList();
