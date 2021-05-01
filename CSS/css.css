@@ -43,7 +43,6 @@ body {
     overflow: hidden;
 }
 
-
 .left {
     float: left;
     color: blue;
@@ -67,7 +66,8 @@ body {
 }
 
 .left-in {
-    width: 50%;
+    width: 0%;
+    float: left;
 }
 
 .right-in {

@@ -38,125 +38,92 @@
     }
 
 </script>
-
-
-
-<style>
-    .col-sm {
-        border: 1px solid black;
-        padding: 5px;
-    }
-
-    label {
-        color: #000020;
-        font-size: 20px;
-        font-family: serif;
-        padding-left: 10px
-    }
-
-    td {
-        padding-left: 5px;
-    }
-
-    .input1 {
-        width: 100%;
-        padding-left: 10px;
-    }
-</style>
-
-<div class="right" style="">
+<div class="right">
     <div class="card">
-        <div class="card-body" style="height:600px">
-            <center><div><label class="lb_themnv">Thêm nhân viên</label></div></center>
-            <div class="left-in" style="float:left">
-                <div class="container py-4" style="padding:0px;">
-                    <div class="row py-4" style="padding:0px;">
-                        <div class="col-lg-8 mx-auto">
-                            <div class="image-area mt-4">
-                                <img id="imageResult" src="#" alt="" class="img-fluid rounded shadow-sm mx-auto d-block">
-                            </div>
-                            @*<div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
-                            <input id="upload" type="file" onchange="readURL(this);" class="form-control border-0">
-                            <label id="upload-label" for="upload" class="font-weight-light text-muted">Choose file</label>
-                            <div class="input-group-append">
-                                <label for="upload" class="btn btn-light m-0 rounded-pill px-4"> <i class="fa fa-cloud-upload mr-2 text-muted"></i><small class="text-uppercase font-weight-bold text-muted">Choose file</small></label>
-                            </div>
-                        </div>*@
-                        </div>
+        <div class="card-body">
+            <center><h2>Thêm nhân viên</h2></center>
+            <div class="container-md">
+                <center>
+                        <table>
+                            <tr>
+                                <td rowspan="4" colspan="2">
+                                    <div class="row py-4">
+                                        <div class="col-lg-10 mx-auto">
+                                            <div class="image-area mt-4">
+                                                <img id="imageResult" src="#" alt="" class="img-fluid rounded shadow-sm mx-auto d-block">
+                                            </div>
+                                            @*<div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
+                    <input id="upload" type="file" onchange="readURL(this);" class="form-control border-0">
+                    <label id="upload-label" for="upload" class="font-weight-light text-muted">Choose file</label>
+                    <div class="input-group-append">
+                        <label for="upload" class="btn btn-light m-0 rounded-pill px-4"> <i class="fa fa-cloud-upload mr-2 text-muted"></i><small class="text-uppercase font-weight-bold text-muted">Choose file</small></label>
                     </div>
-                    <table>
-                        <tr>
-                            <td width="150px"><label>Họ tên</label></td>
-                            <td width="70%"><input type="text" name="hoten" class="input1" /></td>
-                        </tr>
-                        <tr>
-                            <td style="padding-top: 10px; padding-bottom: 10px;"><label>CMND </label></td>
-                            <td><input type="text" name="hoten" class="input1" /></td>
-                        </tr>
-                        <tr>
-                            <td><label>Ngày sinh  </label></td>
-                            <td>  <input type="datetime-local" id="birthdaytime" name="birthdaytime" style="width: 100%;"></td>
-                        </tr>
-                    </table>
+                </div>*@
+                                        </div>
+                                    </div>
+                                </td>
+                                
+                                <td><label>Giới tính</label></td>
+                                <td>
+                                    <input type="radio" id="male" name="gender" value="male">
+                                    <label for="male">Nam</label>
+                                    <input type="radio" id="female" name="gender" value="female">
+                                    <label for="female">Nữ</label>
+                                    <input type="radio" id="female" name="gender" value="female">
+                                    <label for="female">Khác</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Email</label></td>
+                                <td><input type="text" name="hoten" class="input1" /></td>
+                            </tr>
+                            <tr>
+                                <td><label>Địa chỉ </label></td>
+                                <td><input type="text" name="hoten" class="input1" /></td>
+                            </tr>
+                            <tr>
+                                <td><label>Số điện thoại </label></td>
+                                <td><input type="text" name="hoten" class="input1" /></td>
+                            </tr>
+                            <tr>
+                                <td style="width:15%"><label>Họ tên</label></td>
+                                <td style="width:35%"><input type="text" name="hoten" class="input1" /></td>
+                                <td style="width:15%;padding-top: 10px; padding-bottom: 10px;"><label>Ngày đăng ký </label></td>
+                                <td style="width:35%"><input type="datetime-local" id="birthdaytime" name="birthdaytime" style="width: 100%;"></td>
+                            </tr>
+                            <tr>
+                                <td><label>CMND </label></td>
+                                <td><input type="text" name="hoten" class="input1" /></td>
+                                <td><label>Vai trò </label></td>
+                                <td>
+                                    <select id="vaitro" name="vaitro">
+                                        <option value="nvBanVe">---Nhân viên bán vé---</option>
+                                        <option value="nvThuNgan">---Nhân viên thu ngân---</option>
+                                    </select>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td><label>Ngày sinh  </label></td>
+                                <td>  <input type="datetime-local" id="birthdaytime" name="birthdaytime"></td>
+                                <td style="padding-top: 10px; padding-bottom: 10px;"><label>Trạng thái </label></td>
+                                <td>
+                                    <select id="trangthai" name="trangthai">
+                                        <option value="ttnghi">---Đang làm---</option>
+                                        <option value="ttlam">---Đã nghỉ---</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                    </center>
+                    <br />
+                    <center>
+                        <button type="button" class="btn btn-primary" onclick="location.href = '';">Thêm</button>
+                        <button type="button" class="btn btn-danger" onclick="location.href = '';">Thoát</button>
+                    </center>
                 </div>
-
             </div>
-            <div class="right-in" style="float:left;padding-top:20px">
-                <table>
-                    <tr>
-                        <td width="150px"><label>Giới tính</label></td>
-                        <td width="70%">
-                            <input type="radio" id="male" name="gender" value="male">
-                            <label for="male">Nam</label>
-                            <input type="radio" id="female" name="gender" value="female">
-                            <label for="female">Nữ</label>
-                            <input type="radio" id="female" name="gender" value="female">
-                            <label for="female">Khác</label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="padding-top: 10px; padding-bottom: 10px;"><label>Email</label></td>
-                        <td><input type="text" name="hoten" class="input1" /></td>
-                    </tr>
-                    <tr>
-                        <td><label>Địa chỉ </label></td>
-                        <td><input type="text" name="hoten" class="input1" /></td>
-                    </tr>
-                    <tr>
-                        <td style="padding-top: 10px; padding-bottom: 10px;"><label>Số điện thoại </label></td>
-                        <td><input type="text" name="hoten" class="input1" /></td>
-                    </tr>
-                    <tr>
-                        <td style="padding-top: 10px; padding-bottom: 10px;"><label>Ngày đăng ký </label></td>
-                        <td><input type="datetime-local" id="birthdaytime" name="birthdaytime" style="width: 100%;"></td>
-                    </tr>
-                    <tr>
-                        <td style="padding-top: 10px; padding-bottom: 10px;"><label>Vai trò </label></td>
-                        <td>
-                            <select style="width: 100%;" id="vaitro" name="vaitro">
-                                <option value="nvBanVe">---Nhân viên bán vé---</option>
-                                <option value="nvThuNgan">---Nhân viên thu ngân---</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="padding-top: 10px; padding-bottom: 10px;"><label>Trạng thái </label></td>
-                        <td>
-                            <select style="width: 100%;" id="trangthai" name="trangthai">
-                                <option value="ttnghi">---Đang làm---</option>
-                                <option value="ttlam">---Đã nghỉ---</option>
-                            </select>
-                        </td>
-                    </tr>
-
-                </table>
-            </div>
-            <center>
-                <input type="button" onclick="location.href='';" value="Lưu" />
-                <input type="button" onclick="location.href='';" value="Thoát" />
-            </center>
-        </div>
-       
+        </div> 
     </div>
 </div>
 

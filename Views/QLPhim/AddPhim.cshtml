@@ -4,116 +4,74 @@
     Layout = "~/Views/Shared/ViewQLHome.cshtml";
 }
 
-
-<style>
-    .col-sm {
-        border: 1px solid black;
-        padding: 5px;
-    }
-
-    label {
-        color: #000020;
-        font-size: 20px;
-        font-family: serif;
-        padding-left: 10px
-    }
-
-    td {
-        padding-left: 5px;
-    }
-
-    .input1 {
-        width: 100%;
-        padding-left: 10px;
-    }
-</style>
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
-<div class="right" style="">
+<div class="right">
     <div class="card">
-        <div class="card-body" style="height:auto">
-            <center> <h3>Thêm phim</h3></center>
-            <div class="left-in" style="float:left;">
+        <div class="card-body">
+            <center> <h2>Thêm phim</h2></center>
+            <div class="container-md">
+                <center>
                 <table>
                     <tr>
-                        <td width="150px">@Html.LabelFor(model => model.hinh_anh)</td>
-                        <td width="70%">@Html.EditorFor(model => model.hinh_anh, new { htmlAttributes = new { @class = "form-control" } })</td>
+                        <td width="15%">@Html.LabelFor(model => model.hinh_anh)</td>
+                        <td width="35%">@Html.EditorFor(model => model.hinh_anh, new { htmlAttributes = new { @class = "form-control" } })</td>
+                        <td width="15%">@Html.LabelFor(model => model.dien_vien)</td>
+                        <td width="35%">@Html.EditorFor(model => model.dien_vien, new { htmlAttributes = new { @class = "form-control" } })</td>
                     </tr>
                     <tr>
-                        <td width="150px">@Html.LabelFor(model => model.ten)</td>
-                        <td width="70%">@Html.EditorFor(model => model.ten, new { htmlAttributes = new { @class = "form-control" } })</td>
+                        <td>@Html.LabelFor(model => model.ten)</td>
+                        <td>@Html.EditorFor(model => model.ten, new { htmlAttributes = new { @class = "form-control" } })</td>
+                        <td>@Html.LabelFor(model => model.quoc_gia)</td>
+                        <td>@Html.EditorFor(model => model.quoc_gia, new { htmlAttributes = new { @class = "form-control" } })</td>
                     </tr>
                     <tr>
-                        <td style="padding-top: 10px; padding-bottom: 10px;">@Html.LabelFor(model => model.thoi_luong)</td>
+                        <td>@Html.LabelFor(model => model.thoi_luong)</td>
                         <td>@Html.EditorFor(model => model.thoi_luong, new { htmlAttributes = new { @class = "form-control" } })</td>
+                        <td>@Html.LabelFor(model => model.ngay_cong_chieu)</td>
+                        <td>@Html.EditorFor(model => model.ngay_cong_chieu, new { htmlAttributes = new { @class = "form-control" } })</td>
                     </tr>
                     <tr>
                         <td>@Html.LabelFor(model => model.gioi_han_tuoi)</td>
                         <td>@Html.EditorFor(model => model.gioi_han_tuoi, new { htmlAttributes = new { @class = "form-control" } })</td>
-                    </tr>
-
-                </table>
-            </div>
-            <div class="right-in" style="float:left;padding-top:20px">
-                <table>
-                    <tr>
-                        <td style=" padding-bottom: 10px;" width="150px">@Html.LabelFor(model => model.dien_vien)</td>
-                        <td width="70%">@Html.EditorFor(model => model.dien_vien, new { htmlAttributes = new { @class = "form-control" } })</td>
-                    </tr>
-                    <tr>
-                        <td style=" padding-bottom: 10px;">@Html.LabelFor(model => model.quoc_gia)</td>
-                        <td>@Html.EditorFor(model => model.quoc_gia, new { htmlAttributes = new { @class = "form-control" } })</td>
-                    </tr>
-                    <tr>
-                        <td style=" padding-bottom: 10px;">@Html.LabelFor(model => model.ngay_cong_chieu)</td>
-                        <td>@Html.EditorFor(model => model.ngay_cong_chieu, new { htmlAttributes = new { @class = "form-control" } })</td>
-                    </tr>
-                    <tr>
-                        <td style=" padding-bottom: 10px;">@Html.LabelFor(model => model.ngon_ngu)</td>
+                        <td>@Html.LabelFor(model => model.ngon_ngu)</td>
                         <td>@Html.EditorFor(model => model.ngon_ngu, new { htmlAttributes = new { @class = "form-control" } })</td>
                     </tr>
                     <tr>
-                        <td style=" padding-bottom: 10px;">@Html.LabelFor(model => model.trang_thai)</td>
+                        <td>@Html.LabelFor(model => model.trang_thai)</td>
                         <td>@Html.EditorFor(model => model.trang_thai, new { htmlAttributes = new { @class = "form-control" } })</td>
-                    </tr>
-                    <tr>
-                        <td style=" padding-bottom: 10px;">@Html.LabelFor(model => model.tom_tat)</td>
+                        <td>@Html.LabelFor(model => model.tom_tat)</td>
                         <td>@Html.EditorFor(model => model.tom_tat, new { htmlAttributes = new { @class = "form-control" } })</td>
                     </tr>
                     <tr>
 
-                        <td style=" padding-bottom: 10px;">@Html.LabelFor(model => model.loai_phim_id)</td>
+                        <td>@Html.LabelFor(model => model.loai_phim_id)</td>
                         <td>
                             @Html.DropDownListFor(model => model.loai_phim_id, ViewBag.LoaiPhimList as SelectList, "Loại Phim",
                             new { @class = "form-control" })
                         </td>
-
-                    </tr>
-                    <tr>
-                        <td style=" padding-bottom: 10px;">@Html.LabelFor(model => model.id)</td>
+                        <td>@Html.LabelFor(model => model.id)</td>
                         <td>@Html.EditorFor(model => model.id, new { htmlAttributes = new { @class = "form-control" } })</td>
                     </tr>
-
+                    <tr>
+                        <td colspan="4">
+                            <center>
+                                <label class="align-top">Mô tả</label>
+                                <textarea id="w3review" name="w3review" rows="4" cols="100"></textarea>
+                            </center>
+                        </td>
+                    </tr>
                 </table>
-
-
-
-            </div>
-
-            <center>
-                <label>Mô tả</label>
-                <textarea id="w3review" name="w3review" rows="4" cols="100"></textarea>
-            </center>
-            <div class="form-group">
+                </center>
                 <center>
-                    <input type="submit" value="Thêm phim">
+                    <input type="submit" value="Thêm" class="btn-primary"/>
+                    <button type="button" class="btn-danger" onclick="location.href='#'">Thoát</button>
                 </center>
             </div>
-        </div>
     </div>
-   
+   </div>
    
 </div>
 }
