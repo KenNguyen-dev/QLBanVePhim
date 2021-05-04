@@ -129,95 +129,91 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\LoginQLController.cs" />
     <Compile Include="Controllers\QLHomeController.cs" />
     <Compile Include="Controllers\QLPhimController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\chi_tiet_combo.cs">
-      <DependentUpon>QLBanVePhimModels.tt</DependentUpon>
+      <DependentUpon>QLBanVePhimModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\combo.cs">
-      <DependentUpon>QLBanVePhimModels.tt</DependentUpon>
+      <DependentUpon>QLBanVePhimModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\dinh_dang_phim.cs">
-      <DependentUpon>QLBanVePhimModels.tt</DependentUpon>
+      <DependentUpon>QLBanVePhimModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\do_an.cs">
-      <DependentUpon>QLBanVePhimModels.tt</DependentUpon>
+      <DependentUpon>QLBanVePhimModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\do_an_chi_tiet.cs">
-      <DependentUpon>QLBanVePhimModels.tt</DependentUpon>
+      <DependentUpon>QLBanVePhimModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ghe_ngoi.cs">
-      <DependentUpon>QLBanVePhimModels.tt</DependentUpon>
+      <DependentUpon>QLBanVePhimModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\gia_ve.cs">
-      <DependentUpon>QLBanVePhimModels.tt</DependentUpon>
+      <DependentUpon>QLBanVePhimModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\hoa_don.cs">
-      <DependentUpon>QLBanVePhimModels.tt</DependentUpon>
+      <DependentUpon>QLBanVePhimModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\hoa_don_chi_tiet.cs">
-      <DependentUpon>QLBanVePhimModels.tt</DependentUpon>
+      <DependentUpon>QLBanVePhimModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\khach_hang.cs">
-      <DependentUpon>QLBanVePhimModels.tt</DependentUpon>
+      <DependentUpon>QLBanVePhimModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\kich_co_do_an.cs">
-      <DependentUpon>QLBanVePhimModels.tt</DependentUpon>
+      <DependentUpon>QLBanVePhimModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\loai_do_an.cs">
-      <DependentUpon>QLBanVePhimModels.tt</DependentUpon>
+      <DependentUpon>QLBanVePhimModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\loai_ghe.cs">
-      <DependentUpon>QLBanVePhimModels.tt</DependentUpon>
+      <DependentUpon>QLBanVePhimModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\loai_phim.cs">
-      <DependentUpon>QLBanVePhimModels.tt</DependentUpon>
+      <DependentUpon>QLBanVePhimModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\nguoi_dung.cs">
-      <DependentUpon>QLBanVePhimModels.tt</DependentUpon>
+      <DependentUpon>QLBanVePhimModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\phim.cs">
-      <DependentUpon>QLBanVePhimModels.tt</DependentUpon>
+      <DependentUpon>QLBanVePhimModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\phong_chieu.cs">
-      <DependentUpon>QLBanVePhimModels.tt</DependentUpon>
+      <DependentUpon>QLBanVePhimModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\QLBanVePhimModels.Context.cs">
+    <Compile Include="Models\QLBanVePhimModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>QLBanVePhimModels.Context.tt</DependentUpon>
+      <DependentUpon>QLBanVePhimModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\QLBanVePhimModels.cs">
+    <Compile Include="Models\QLBanVePhimModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>QLBanVePhimModels.tt</DependentUpon>
+      <DependentUpon>QLBanVePhimModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\QLBanVePhimModels.Designer.cs">
+    <Compile Include="Models\QLBanVePhimModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>QLBanVePhimModels.edmx</DependentUpon>
+      <DependentUpon>QLBanVePhimModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\suat_chieu.cs">
-      <DependentUpon>QLBanVePhimModels.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sysdiagrams.cs">
-      <DependentUpon>QLBanVePhimModels.tt</DependentUpon>
+      <DependentUpon>QLBanVePhimModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\vai_tro.cs">
-      <DependentUpon>QLBanVePhimModels.tt</DependentUpon>
+      <DependentUpon>QLBanVePhimModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ve_ban.cs">
-      <DependentUpon>QLBanVePhimModels.tt</DependentUpon>
+      <DependentUpon>QLBanVePhimModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ve_dat.cs">
-      <DependentUpon>QLBanVePhimModels.tt</DependentUpon>
+      <DependentUpon>QLBanVePhimModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ve_dat_chi_tiet.cs">
-      <DependentUpon>QLBanVePhimModels.tt</DependentUpon>
+      <DependentUpon>QLBanVePhimModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -1915,15 +1911,15 @@
     <Content Include="Font\fontawesome-free-5.15.2-web\webfonts\fa-solid-900.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\QLBanVePhimModels.Context.tt">
+    <Content Include="Models\QLBanVePhimModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>QLBanVePhimModels.edmx</DependentUpon>
-      <LastGenOutput>QLBanVePhimModels.Context.cs</LastGenOutput>
+      <DependentUpon>QLBanVePhimModel.edmx</DependentUpon>
+      <LastGenOutput>QLBanVePhimModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\QLBanVePhimModels.tt">
+    <Content Include="Models\QLBanVePhimModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>QLBanVePhimModels.edmx</DependentUpon>
-      <LastGenOutput>QLBanVePhimModels.cs</LastGenOutput>
+      <DependentUpon>QLBanVePhimModel.edmx</DependentUpon>
+      <LastGenOutput>QLBanVePhimModel.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -1982,12 +1978,12 @@
     <Content Include="Font\fontawesome-free-5.15.2-web\webfonts\fa-solid-900.ttf" />
     <Content Include="Font\fontawesome-free-5.15.2-web\webfonts\fa-solid-900.woff" />
     <Content Include="Font\fontawesome-free-5.15.2-web\webfonts\fa-solid-900.woff2" />
-    <EntityDeploy Include="Models\QLBanVePhimModels.edmx">
+    <EntityDeploy Include="Models\QLBanVePhimModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>QLBanVePhimModels.Designer.cs</LastGenOutput>
+      <LastGenOutput>QLBanVePhimModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\QLBanVePhimModels.edmx.diagram">
-      <DependentUpon>QLBanVePhimModels.edmx</DependentUpon>
+    <Content Include="Models\QLBanVePhimModel.edmx.diagram">
+      <DependentUpon>QLBanVePhimModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -2028,7 +2024,7 @@
     <Content Include="Views\QLPhim\QLPhim.cshtml" />
     <Content Include="Views\Home\ThanhVien.cshtml" />
     <Content Include="Views\QLHome\AddSuatChieu.cshtml" />
-    <Content Include="Views\Home\ShowTime.cshtml" />
+    <Content Include="Views\Home\LichChieuPhim.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
