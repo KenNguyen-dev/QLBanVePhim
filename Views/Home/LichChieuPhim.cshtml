@@ -1,0 +1,173 @@
+﻿@model QLBanVePhim.Models.suat_chieu
+
+@{
+    ViewBag.Title = "Lich Chieu Phim";
+    Layout = "~/Views/Shared/SharedHomepage.cshtml";
+}
+
+<style>
+    .poster{
+        width:300px;
+        height:450px;
+    }
+    .col-sm-3{
+        
+        display:inline-block
+    }
+    .container-fluid{display:inline-block;}
+    h1{
+        color:white;
+        margin: 0 auto;
+    }
+    .suatchieu {
+        background-color: #ffff4d;
+        width:100%; height:80px;
+        font-family:Arial;
+        align-content:center
+    }
+    .giochieu {
+        font-size: 23px;
+        color:white;
+        width: 70px;
+        margin-right: 10px;
+        display: inline-block;
+        background-color: #ff6666;
+        border: 1px solid black;
+        text-align:center;
+    }
+    .giochieu-container {
+        margin-left: 45px;       
+        height:50px;       
+        align-content: center;
+    }
+    .giochieu:hover {
+        color: #99ccff
+    }
+</style>
+<div class="container-fluid" >
+    <div class="row">
+        <div class="col-sm-3 ">
+            <img class="poster" src=@Html.DisplayFor(s=>s.phim.hinh_anh) />
+        </div>
+        <div class="col-sm-9">
+            <br />
+            <div class="row"><h1>Tên Phim @Html.DisplayFor(s => s.phim.ten)</h1></div>
+            <br /> <br />
+            <div class="row suatchieu">
+                <div style=" margin: 0 5px 0 5px;font-size: 28px;">
+                    <strong>04/05 @Html.DisplayFor(s => s.ngay_chieu)</strong>
+                </div>
+                <div class="giochieu-container">
+                    <a href="#" class="giochieu">
+                        <strong>10:20 @Html.DisplayFor(s => s.gio_bat_dau)</strong>
+                    </a>
+                    <a href="#" class="giochieu">
+                        <strong>11:00 @Html.DisplayFor(s => s.gio_bat_dau)</strong>
+                    </a>
+                    <a href="#" class="giochieu">
+                        <strong>11:20 @Html.DisplayFor(s => s.gio_bat_dau)</strong>
+                    </a>
+                    <a href="#" class="giochieu">
+                        <strong>12:20 @Html.DisplayFor(s => s.gio_bat_dau)</strong>
+                    </a>
+                    <a href="#" class="giochieu">
+                        <strong>15:20 @Html.DisplayFor(s => s.gio_bat_dau)</strong>
+                    </a>
+                    <a href="#" class="giochieu">
+                        <strong>16:20 @Html.DisplayFor(s => s.gio_bat_dau)</strong>
+                    </a>
+                    <a href="#" class="giochieu">
+                        <strong>17:20 @Html.DisplayFor(s => s.gio_bat_dau)</strong>
+                    </a>
+                    <a href="#" class="giochieu">
+                        <strong>18:20 @Html.DisplayFor(s => s.gio_bat_dau)</strong>
+                    </a>
+                    <a href="#" class="giochieu">
+                        <strong>19:20 @Html.DisplayFor(s => s.gio_bat_dau)</strong>
+                    </a>
+                    <a href="#" class="giochieu">
+                        <strong>20:20 @Html.DisplayFor(s => s.gio_bat_dau)</strong>
+                    </a>
+                </div>
+            </div>
+            <br />
+            <div class="row suatchieu">
+                <div style=" margin: 0 5px 0 5px;font-size: 28px;">
+                    <strong>05/05 @Html.DisplayFor(s => s.ngay_chieu)</strong>
+                </div>
+                <div class="giochieu-container">
+                    <a href="#" class="giochieu">
+                        <strong>10:20 @Html.DisplayFor(s => s.gio_bat_dau)</strong>
+                    </a>
+                    <a href="#" class="giochieu">
+                        <strong>11:00 @Html.DisplayFor(s => s.gio_bat_dau)</strong>
+                    </a>
+                    <a href="#" class="giochieu">
+                        <strong>11:20 @Html.DisplayFor(s => s.gio_bat_dau)</strong>
+                    </a>
+                    <a href="#" class="giochieu">
+                        <strong>12:20 @Html.DisplayFor(s => s.gio_bat_dau)</strong>
+                    </a>
+                    <a href="#" class="giochieu">
+                        <strong>15:20 @Html.DisplayFor(s => s.gio_bat_dau)</strong>
+                    </a>
+                    <a href="#" class="giochieu">
+                        <strong>16:20 @Html.DisplayFor(s => s.gio_bat_dau)</strong>
+                    </a>
+                    <a href="#" class="giochieu">
+                        <strong>17:20 @Html.DisplayFor(s => s.gio_bat_dau)</strong>
+                    </a>
+                    <a href="#" class="giochieu">
+                        <strong>18:20 @Html.DisplayFor(s => s.gio_bat_dau)</strong>
+                    </a>
+                    <a href="#" class="giochieu">
+                        <strong>19:20 @Html.DisplayFor(s => s.gio_bat_dau)</strong>
+                    </a>
+                    <a href="#" class="giochieu">
+                        <strong>20:20 @Html.DisplayFor(s => s.gio_bat_dau)</strong>
+                    </a>
+                </div>
+            </div>
+            <br />
+            <div class="row suatchieu">
+                <div style=" margin: 0 5px 0 5px;font-size: 28px;">
+                    <strong>06/05 @Html.DisplayFor(s => s.ngay_chieu)</strong>
+                </div>
+                <div class="giochieu-container">
+                    <a href="#" class="giochieu">
+                        <strong>10:20 @Html.DisplayFor(s => s.gio_bat_dau)</strong>
+                    </a>
+                    <a href="#" class="giochieu">
+                        <strong>11:00 @Html.DisplayFor(s => s.gio_bat_dau)</strong>
+                    </a>
+                    <a href="#" class="giochieu">
+                        <strong>11:20 @Html.DisplayFor(s => s.gio_bat_dau)</strong>
+                    </a>
+                    <a href="#" class="giochieu">
+                        <strong>12:20 @Html.DisplayFor(s => s.gio_bat_dau)</strong>
+                    </a>
+                    <a href="#" class="giochieu">
+                        <strong>15:20 @Html.DisplayFor(s => s.gio_bat_dau)</strong>
+                    </a>
+                    <a href="#" class="giochieu">
+                        <strong>16:20 @Html.DisplayFor(s => s.gio_bat_dau)</strong>
+                    </a>
+                    <a href="#" class="giochieu">
+                        <strong>17:20 @Html.DisplayFor(s => s.gio_bat_dau)</strong>
+                    </a>
+                    <a href="#" class="giochieu">
+                        <strong>18:20 @Html.DisplayFor(s => s.gio_bat_dau)</strong>
+                    </a>
+                    <a href="#" class="giochieu">
+                        <strong>19:20 @Html.DisplayFor(s => s.gio_bat_dau)</strong>
+                    </a>
+                    <a href="#" class="giochieu">
+                        <strong>20:20 @Html.DisplayFor(s => s.gio_bat_dau)</strong>
+                    </a>
+                </div>
+            </div>
+            <br />
+
+        </div>
+    </div>
+</div>

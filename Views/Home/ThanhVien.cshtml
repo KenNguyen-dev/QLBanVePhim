@@ -1,4 +1,4 @@
-﻿
+﻿@model QLBanVePhim.Models.khach_hang
 @{
     ViewBag.Title = "ThanhVien";
     Layout = "~/Views/Shared/SharedHomepage.cshtml";
@@ -20,6 +20,7 @@
         align-items: flex-start;
         background-color: white;
         width: 70%;
+        margin:0 auto;
     }
 
     .footer {
@@ -54,9 +55,9 @@
         <h3>Thông tin thành viên</h3>
         <div class="coban">
             <div>
-                <label>Họ tên: </label> <br />
-                <label>Giới tính:  </label>  <br />
-                <label>Ngày sinh:   </label>  <br />
+                <label>Họ tên: @Html.DisplayFor(s => s.ho_ten)</label>  <br />
+                <label>Giới tính: @Html.DisplayFor(s => s.gioi_tinh)</label>   <br />
+                <label>Ngày sinh:   @Html.DisplayFor(s => s.ngay_sinh)</label>  <br />
             </div>
             <div class="tichdiem">
                 <div class="tichdiem-wrapper">
@@ -65,12 +66,12 @@
                 </div>
             </div>
         </div>
-        <label>Địa chỉ: </label>  <br />
-        <label>Số CMND/bằng lái:  </label>  <br />
-        <label>Điện thoại:  </label>  <br />
+        <label>Địa chỉ: @Html.DisplayFor(s => s.dia_chi)</label>  <br />
+        <label>Số CMND/CCCD:  @Html.DisplayFor(s => s.so_cmnd)</label>  <br />
+        <label>Điện thoại:  @Html.DisplayFor(s => s.so_dien_thoai)</label>  <br />
         <label>Tên đăng nhập: </label>  <br />
         <div class="footer">
-            <label>Email:  </label>  <br />
+            <label>Email:  @Html.DisplayFor(s => s.email)</label>  <br />
             <button>Thay đổi thông tin</button>
         </div>
     </form>

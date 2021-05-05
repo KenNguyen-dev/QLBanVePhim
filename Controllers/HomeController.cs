@@ -76,6 +76,10 @@ namespace QLBanVePhim.Controllers
             }
             return View(khachHang);
         }
+        public ActionResult LichChieuPhim(string id)
+        {
+            return View(database.suat_chieu.Where(s => s.phim_id == id).FirstOrDefault());
+        }
 
        
 
