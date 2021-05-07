@@ -1,164 +1,136 @@
-﻿
+﻿@model QLBanVePhim.Models.nguoi_dung
 @{
-    ViewBag.Title = "EditNV";
+    ViewBag.Title = "Edit NV";
     Layout = "~/Views/Shared/ViewQLHome.cshtml";
 }
+<script src="~/Scripts/admin/add.js"></script>
 
-<script>
-    $(function () {
-        $('#datetimepicker4').datetimepicker();
-    });
-
-    function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-
-            reader.onload = function (e) {
-                $('#imageResult')
-                    .attr('src', e.target.result);
-            };
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-
-    $(function () {
-        $('#upload').on('change', function () {
-            readURL(input);
-        });
-    });
-
-    var input = document.getElementById('upload');
-    var infoArea = document.getElementById('upload-label');
-
-    input.addEventListener('change', showFileName);
-    function showFileName(event) {
-        var input = event.srcElement;
-        var fileName = input.files[0].name;
-        infoArea.textContent = 'File name: ' + fileName;
-    }
-
-</script>
-
-
-
-<style>
-    .col-sm {
-        border: 1px solid black;
-        padding: 5px;
-    }
-
-    label {
-        color: #000020;
-        font-size: 20px;
-        font-family: serif;
-        padding-left: 10px
-    }
-
-    td {
-        padding-left: 5px;
-    }
-
-    .input1 {
-        width: 100%;
-        padding-left: 10px;
-    }
-</style>
-
-<div class="right" style="">
-    <div class="card">
-        <div class="card-body" style="height:600px">
-            <center><div><label class="lb_themnv">Sửa thông tin nhân viên</label></div></center>
-            <div class="left-in" style="float:left">
-                <div class="container py-4" style="padding:0px;">
-                    <div class="row py-4" style="padding:0px;">
-                        <div class="col-lg-8 mx-auto">
-                            <div class="image-area mt-4">
-                                <img id="imageResult" src="#" alt="" class="img-fluid rounded shadow-sm mx-auto d-block">
-                            </div>
-                            @*<div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
-                                    <input id="upload" type="file" onchange="readURL(this);" class="form-control border-0">
-                                    <label id="upload-label" for="upload" class="font-weight-light text-muted">Choose file</label>
-                                    <div class="input-group-append">
-                                        <label for="upload" class="btn btn-light m-0 rounded-pill px-4"> <i class="fa fa-cloud-upload mr-2 text-muted"></i><small class="text-uppercase font-weight-bold text-muted">Choose file</small></label>
-                                    </div>
-                                </div>*@
+@using (Html.BeginForm())
+{
+    <div class="container bodyContainer">
+        <div class="row">
+            <div class="col-sm">
+                <p><center>Sửa Nhân Viên</center></p> <hr />
+                @Html.AntiForgeryToken()
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ho_ten, htmlAttributes: new { @class = "control-label" })
+                        <div>
+                            @Html.EditorFor(model => model.ho_ten, new { htmlAttributes = new { @class = "form-control", @onInput = "onInput_NV('ten')" } })
+                            @Html.ValidationMessageFor(model => model.ho_ten, "", new { @class = "text-danger" })
                         </div>
                     </div>
-                    <table>
-                        <tr>
-                            <td width="150px"><label>Họ tên</label></td>
-                            <td width="70%"><input type="text" name="hoten" class="input1" /></td>
-                        </tr>
-                        <tr>
-                            <td style="padding-top: 10px; padding-bottom: 10px;"><label>CMND </label></td>
-                            <td><input type="text" name="hoten" class="input1" /></td>
-                        </tr>
-                        <tr>
-                            <td><label>Ngày sinh  </label></td>
-                            <td>  <input type="datetime-local" id="birthdaytime" name="birthdaytime" style="width: 100%;"></td>
-                        </tr>
-                    </table>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.vai_tro_id, "vai_tro_id", htmlAttributes: new { @class = "control-label" })
+                        <div>
+                            @Html.DropDownListFor(model => model.vai_tro_id, ViewBag.VaiTroList as SelectList, "Vai Trò", new { @class = "form-control", @onchange = "onInput_NV('vt')" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.gioi_tinh)
+                        <div>
+                            <div class="checkbox">
+                                @Html.DropDownListFor(model => model.gioi_tinh, new SelectList(new[]
+                                   {
+                               new SelectListItem { Value = "null", Text = "Giới Tính"},
+                                       new SelectListItem { Value = "True", Text = "Nam"},
+                                       new SelectListItem { Value = "False", Text = "Nữ" },
+                                   },
+                                   "Value",
+                                   "Text"
+                                   ),
+                            new { @class = "form-control", @onchange = "onInput_NV('gt')" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.mat_khau, htmlAttributes: new { @class = "control-label" })
+                        <div>
+                            @Html.EditorFor(model => model.mat_khau, new { htmlAttributes = new { @class = "form-control", @onInput = "onInput_NV('mk')" } })
+                            @Html.ValidationMessageFor(model => model.mat_khau, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.so_cmnd, htmlAttributes: new { @class = "control-label" })
+                        <div>
+                            @Html.EditorFor(model => model.so_cmnd, new { htmlAttributes = new { @class = "form-control", @onInput = "onInput_NV('cmnd')" } })
+                            @Html.ValidationMessageFor(model => model.so_cmnd, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.so_dien_thoai, htmlAttributes: new { @class = "control-label" })
+                        <div>
+                            @Html.EditorFor(model => model.so_dien_thoai, new { htmlAttributes = new { @class = "form-control", @onInput = "onInput_NV('sdt')" } })
+                            @Html.ValidationMessageFor(model => model.so_dien_thoai, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.email, htmlAttributes: new { @class = "control-label" })
+                        <div>
+                            @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control", @onInput = "onInput_NV('email')" } })
+                            @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.dia_chi, htmlAttributes: new { @class = "control-label" })
+                        <div>
+                            @Html.EditorFor(model => model.dia_chi, new { htmlAttributes = new { @class = "form-control", @onInput = "onInput_NV('diachi')" } })
+                            @Html.ValidationMessageFor(model => model.dia_chi, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
                 </div>
-
             </div>
-            <div class="right-in" style="float:left;padding-top:20px">
-                <table>
-                    <tr>
-                        <td width="150px"><label>Giới tính</label></td>
-                        <td width="70%">
-                            <input type="radio" id="male" name="gender" value="male">
-                            <label for="male">Nam</label>
-                            <input type="radio" id="female" name="gender" value="female">
-                            <label for="female">Nữ</label>
-                            <input type="radio" id="female" name="gender" value="female">
-                            <label for="female">Khác</label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="padding-top: 10px; padding-bottom: 10px;"><label>Email</label></td>
-                        <td><input type="text" name="hoten" class="input1" /></td>
-                    </tr>
-                    <tr>
-                        <td><label>Địa chỉ </label></td>
-                        <td><input type="text" name="hoten" class="input1" /></td>
-                    </tr>
-                    <tr>
-                        <td style="padding-top: 10px; padding-bottom: 10px;"><label>Số điện thoại </label></td>
-                        <td><input type="text" name="hoten" class="input1" /></td>
-                    </tr>
-                    <tr>
-                        <td style="padding-top: 10px; padding-bottom: 10px;"><label>Ngày đăng ký </label></td>
-                        <td><input type="datetime-local" id="birthdaytime" name="birthdaytime" style="width: 100%;"></td>
-                    </tr>
-                    <tr>
-                        <td style="padding-top: 10px; padding-bottom: 10px;"><label>Vai trò </label></td>
-                        <td>
-                            <select style="width: 100%;" id="vaitro" name="vaitro">
-                                <option value="nvBanVe">---Nhân viên bán vé---</option>
-                                <option value="nvThuNgan">---Nhân viên thu ngân---</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="padding-top: 10px; padding-bottom: 10px;"><label>Trạng thái </label></td>
-                        <td>
-                            <select style="width: 100%;" id="trangthai" name="trangthai">
-                                <option value="ttnghi">---Đang làm---</option>
-                                <option value="ttlam">---Đã nghỉ---</option>
-                            </select>
-                        </td>
-                    </tr>
+            <div class="col-sm">
+                <p><center>Preview</center></p> <hr />
 
-                </table>
+                <div class="card previewCardContainer">
+                    <div class="card-body previewCard">
+                        <center>
+                            <h4 class="card-title" id="previews_ten">@Html.DisplayFor(model => model.ho_ten)</h4>
+                            <p class="card-subtitle text-muted" id="previews_vaitro">@Html.DisplayFor(model => model.vai_tro.ten)</p><br />
+                        </center>
+                        <p class="card-text" id="previews_gioitinh">Giới tính: @Html.DisplayFor(model => model.gioi_tinh)</p>
+                        <p class="card-text" id="previews_email">Email: @Html.DisplayFor(model => model.email)</p>
+                        <p class="card-text" id="previews_sdt">SĐT: @Html.DisplayFor(model => model.so_dien_thoai)</p>
+                        <p class="card-text" id="previews_cmnd">CMND: @Html.DisplayFor(model => model.so_cmnd)</p>
+                        <p class="card-text" id="previews_diachi">Địa chỉ: @Html.DisplayFor(model => model.dia_chi)</p>
+                        <p class="card-text" id="previews_mk">Mật khẩu: <password>@Html.DisplayFor(model => model.mat_khau)</password></p>
+                    </div>
+
+                    <div class="form-group" style="padding-top:10px">
+                        <center>
+                            <input type="submit" value="Update" class="btn btn-primary" />
+                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
+                                Delete
+                            </button>
+                        </center>
+                    </div>
+                </div>
             </div>
         </div>
-        <center>
-            <input type="submit" class="btn-primary" value="Lưu"/>
-            <button type="button" class="btn btn-danger" onclick="location.href = '#';">Thoát</button>
-        </center>
+    </div>
+}
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Xác nhận</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Bạn có chắc muốn xóa?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Không</button>
+                <form action="/QLHome/DeleteNV/@Html.DisplayFor(model => model.id)" method="post">
+                    <input type="submit" class="btn btn-danger" value="Xóa" />
+                </form>
+            </div>
+        </div>
     </div>
 </div>
-
-
-
--

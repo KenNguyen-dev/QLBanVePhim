@@ -21,6 +21,23 @@ namespace QLBanVePhim.Controllers
             return View(db.khach_hang.ToList());
         }
 
+        public ActionResult DetailsKH(int id)
+        {
+            return View(db.khach_hang.Where(s => s.id == id).FirstOrDefault());
+        }
+
+        public ActionResult AddKH()
+        {
+            return View();
+        }
+
+        #region Nhân Viên
+
+        public ActionResult QLNV()
+        {
+            return View(db.nguoi_dung.ToList());
+        }
+
         public ActionResult AddNV()
         {
             var vaitrolist = db.vai_tro.ToList();
@@ -45,25 +62,38 @@ namespace QLBanVePhim.Controllers
             }
         }
 
-        public ActionResult EditNV()
+        public ActionResult EditNV(int id)
         {
-            return View();
+            var vaitrolist = db.vai_tro.ToList();
+            ViewBag.VaiTroList = new SelectList(vaitrolist, "id", "ten");
+            return View(db.nguoi_dung.Where(s => s.id == id).FirstOrDefault());
         }
 
-        public ActionResult AddKH()
+        [HttpPost]
+        public ActionResult EditNV(int id, nguoi_dung _ngdung)
         {
-            return View();
+            db.Entry(_ngdung).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("QLNV");
         }
 
-        public ActionResult QLNV()
+        [HttpPost]
+        public ActionResult DeleteNV(int id, nguoi_dung _ngdung)
         {
-            return View(db.nguoi_dung.ToList());
+            try
+            {
+                _ngdung = db.nguoi_dung.Where(item => item.id == id).FirstOrDefault();
+                db.nguoi_dung.Remove(_ngdung);
+                db.SaveChanges();
+                return RedirectToAction("QLNV");
+            }
+            catch (Exception e)
+            {
+                return Content(e.ToString());
+            }
         }
 
-        public ActionResult DetailsKH(int id)
-        {
-            return View(db.khach_hang.Where(s => s.id == id).FirstOrDefault());
-        }
+        #endregion Nhân Viên
 
         #region Suất chiếu
 
