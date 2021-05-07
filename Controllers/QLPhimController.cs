@@ -33,6 +33,22 @@ namespace QLBanVePhim.Controllers
             return RedirectToAction("QLPhim");
         }
 
+        [HttpPost]
+        public ActionResult DeletePhim(string id, phim phim)
+        {
+            try
+            {
+                phim = db.phims.Where(item => item.id == id).FirstOrDefault();
+                db.phims.Remove(phim);
+                db.SaveChanges();
+                return RedirectToAction("QLPhim");
+            }
+            catch (Exception e)
+            {
+                return Content(e.ToString());
+            }
+        }
+
         public ActionResult AddPhim()
         {
             var loaiphimList = db.loai_phim.ToList();

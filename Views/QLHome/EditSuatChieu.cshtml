@@ -1,7 +1,7 @@
 ﻿@model QLBanVePhim.Models.suat_chieu
 
 @{
-    ViewBag.Title = "AddSuatChieu";
+    ViewBag.Title = "EditSuatChieu";
     Layout = "~/Views/Shared/ViewQLHome.cshtml";
 }
 <script src="~/Scripts/admin/add.js"></script>
@@ -10,14 +10,14 @@
     <div class="container bodyContainer">
         <div class="row">
             <div class="col-sm">
-                <p><center>Thêm Suất Chiếu</center></p> <hr />
+                <p><center>Sửa Suất Chiếu</center></p> <hr />
                 @Html.AntiForgeryToken()
                 <div class="form-horizontal">
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     <div class="form-group">
                         @Html.LabelFor(model => model.id, htmlAttributes: new { @class = "control-label" })
                         <div>
-                            @Html.EditorFor(model => model.id, new { htmlAttributes = new { @class = "form-control", @onInput = "onInput_SuatChieu('id')" } })
+                            @Html.EditorFor(model => model.id, new { htmlAttributes = new { @disabled = "disabled", @class = "form-control", @onInput = "onInput_SuatChieu('id')" } })
                             @Html.ValidationMessageFor(model => model.id, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -73,18 +73,21 @@
                 <center>
                     <div class="card previewCardContainer">
                         <div class="card-body previewCard">
-                            <img id="previews_image" onerror="errorImg()" style="max-height:250px; max-width:300px; width:auto;" />
-                            <h4 class="card-title" id="previews_phim"></h4>
-                            <p class="card-subtitle text-muted" id="previews_time"></p>
+                            <img id="previews_image" onerror="errorImg()" style="max-height:250px; max-width:300px; width:auto;" src=@Html.DisplayFor(model => model.phim.hinh_anh) />
+                            <h4 class="card-title" id="previews_phim">@Html.DisplayFor(model => model.phim.ten)</h4>
+                            <p class="card-subtitle text-muted" id="previews_time">@Html.DisplayFor(model => model.gio_bat_dau) - @Html.DisplayFor(model => model.gio_ket_thuc)</p>
                             <br />
-                            <p class="card-text" id="previews_date"></p>
-                            <p class="card-text" id="previews_id"></p>
-                            <p class="card-text" id="previews_ddphim"></p>
-                            <p class="card-text" id="previews_pc"></p>
+                            <p class="card-text" id="previews_date">Ngày chiếu: @Html.DisplayFor(model => model.ngay_chieu)</p>
+                            <p class="card-text" id="previews_id">ID Suất Chiếu: @Html.DisplayFor(model => model.id)</p>
+                            <p class="card-text" id="previews_ddphim">Định dạng phim: @Html.DisplayFor(model => model.dinh_dang_phim.ten)</p>
+                            <p class="card-text" id="previews_pc">ID Phòng Chiếu: @Html.DisplayFor(model => model.phong_chieu.id)</p>
                         </div>
                         <div class="form-group" style="padding-top:10px">
                             <center>
-                                <input type="submit" value="Create" class="btn btn-primary" />
+                                <input type="submit" value="Update" class="btn btn-primary" />
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
+                                    Delete
+                                </button>
                             </center>
                         </div>
                     </div>
@@ -93,3 +96,25 @@
         </div>
     </div>
 }
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Xác nhận</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Bạn có chắc muốn xóa?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Không</button>
+                <form action="/QLHome/DeleteSuatChieu/@Html.DisplayFor(model => model.id)" method="post">
+                    <input type="submit" class="btn btn-danger" value="Xóa" />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

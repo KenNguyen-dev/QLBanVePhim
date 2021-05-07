@@ -1,100 +1,100 @@
 ﻿@model IEnumerable<QLBanVePhim.Models.phong_chieu>
-@{
+    @{
     ViewBag.Title = "QLPhongChieu";
     Layout = "~/Views/Shared/ViewQLHome.cshtml";
-}
-
-<style>
-    .left {
-        width: 25%;
-        font-size: 1.5rem;
     }
 
-    .card {
-        height: 600px;
-        margin-right: 5px;
-    }
+    <style>
+        .left {
+            width: 25%;
+            font-size: 1.5rem;
+        }
 
-    .custom-control-input {
-        margin-top: 30px;
-    }
+        .card {
+            height: 600px;
+            margin-right: 5px;
+        }
 
-    .card-body {
-        justify-content: center
-    }
+        .custom-control-input {
+            margin-top: 30px;
+        }
 
-    .table {
-        text-align: center;
-    }
+        .card-body {
+            justify-content: center
+        }
 
-    .modalItem {
-        display: flex;
-        justify-content: space-between;
-    }
+        .table {
+            text-align: center;
+        }
 
-    .form-control1 {
-        width: 20%;
-        height: 30px;
-        font-size: 12px;
-    }
-</style>
-<div class="left">
-    <div class="card">
-        <div class="card-body">
-            <h3 style="text-align:center">Tra cứu phòng chiếu</h3>
-            <form style="padding-top:20px">
-                <div class="custom-control custom-checkbox mb-3">
-                    <input type="checkbox" class="custom-control-input" id="customControlValidation1" checked>
-                    <label class="custom-control-label" for="customControlValidation1">Theo số phòng</label>
-                    <input id="datepicker" />
-                </div>
-            </form>
-            <button type="button" class="btn btn-success" onclick="location.href='/QLHome/AddPhongChieu'" data-toggle="modal" data-target="#exampleModal">
-                Thêm phòng chiếu
-            </button>
-            <button type="button" class="btn btn-success" onclick="location.href='/QLHome/EditPhongChieu'" data-toggle="modal" data-target="#exampleModal">
-                Sửa phòng chiếu
-            </button>
-        </div>
-    </div>
-</div>
-<div class="right">
-    <div class="card">
-        <div class="card-body" style="height:600px">
-            <div class="container">
-                <table class="table table-hover shadow p-3 mb-5 bg-white rounded">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th>@Html.DisplayNameFor(model => model.id)</th>
-                            <th>@Html.DisplayNameFor(model => model.so_luong_cot)</th>
-                            <th>@Html.DisplayNameFor(model => model.so_luong_day)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @if (Model.Count() == 0)
-                        {
-                        <tr> <td colspan="4"> Records not found </td></tr>
-                        }
-                        else
-                        {
-                        foreach (var item in Model)
-                        {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.id)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.so_luong_cot)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.so_luong_day)
-                            </td>
-                        </tr>
-                        }
-                        }
-                    </tbody>
-                </table>
+        .modalItem {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .form-control1 {
+            width: 20%;
+            height: 30px;
+            font-size: 12px;
+        }
+    </style>
+    <div class="left">
+        <div class="card">
+            <div class="card-body">
+                <h3 style="text-align:center">Tra cứu phòng chiếu</h3>
+                <form style="padding-top:20px">
+                    <div class="custom-control custom-checkbox mb-3">
+                        <input type="checkbox" class="custom-control-input" id="customControlValidation1" checked>
+                        <label class="custom-control-label" for="customControlValidation1">Theo số phòng</label>
+                        <input id="datepicker" />
+                    </div>
+                </form>
+                <button type="button" class="btn btn-success" onclick="location.href='/QLHome/AddPhongChieu'" data-toggle="modal" data-target="#exampleModal">
+                    Thêm phòng chiếu
+                </button>
+                <button type="button" class="btn btn-success" onclick="location.href='/QLHome/EditPhongChieu'" data-toggle="modal" data-target="#exampleModal">
+                    Sửa phòng chiếu
+                </button>
             </div>
         </div>
     </div>
-</div>
+    <div class="right">
+        <div class="card">
+            <div class="card-body" style="height:600px">
+                <div class="container">
+                    <table class="table table-hover shadow p-3 mb-5 bg-white rounded">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>@Html.DisplayNameFor(model => model.id)</th>
+                                <th>@Html.DisplayNameFor(model => model.so_luong_cot)</th>
+                                <th>@Html.DisplayNameFor(model => model.so_luong_day)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.Count() == 0)
+                            {
+                            <tr> <td colspan="4"> Records not found </td></tr>
+                            }
+                            else
+                            {
+                            foreach (var item in Model)
+                            {
+                            <tr onclick="window.location.href = '/QLHome/EditPhongChieu/@Html.DisplayFor(modelItem => item.id)';">
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.id)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.so_luong_cot)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.so_luong_day)
+                                </td>
+                            </tr>
+                            }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>

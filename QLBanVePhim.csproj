@@ -2025,6 +2025,16 @@
     <Content Include="Views\Home\ThanhVien.cshtml" />
     <Content Include="Views\QLHome\AddSuatChieu.cshtml" />
     <Content Include="Views\Home\LichChieuPhim.cshtml" />
+    <Content Include="Views\QLPhim\EditPhim.cshtml" />
+    <Content Include="Views\QLHome\AddPhongChieu.cshtml" />
+    <Content Include="Views\QLHome\DetailsKH.cshtml" />
+    <Content Include="Views\QLHome\EditNV.cshtml" />
+    <Content Include="Views\QLHome\EditPhongChieu.cshtml" />
+    <Content Include="Views\QLHome\Login.cshtml" />
+    <Content Include="Views\QLHome\QLPhongChieu.cshtml" />
+    <Content Include="Views\QLHome\QLSuatChieu.cshtml" />
+    <Content Include="Views\QLHome\QLVe.cshtml" />
+    <Content Include="Views\QLHome\EditSuatChieu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

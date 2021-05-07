@@ -65,6 +65,8 @@ namespace QLBanVePhim.Controllers
             return View(db.khach_hang.Where(s => s.id == id).FirstOrDefault());
         }
 
+        #region Suất chiếu
+
         public ActionResult QLSuatChieu()
         {
             return View(db.suat_chieu.ToList());
@@ -96,6 +98,46 @@ namespace QLBanVePhim.Controllers
                 return Content(e.ToString());
             }
         }
+
+        public ActionResult EditSuatChieu(string id)
+        {
+            var phimList = db.phims.ToList();
+            ViewBag.PhimList = new SelectList(phimList, "id", "ten");
+            ViewBag.PhimImgList = new SelectList(phimList, "id", "hinh_anh");
+            var ddphimList = db.dinh_dang_phim.ToList();
+            ViewBag.DDPhimList = new SelectList(ddphimList, "id", "ten");
+            var phongchieuList = db.phong_chieu.ToList();
+            ViewBag.PhongChieuList = new SelectList(phongchieuList, "id", "id");
+            return View(db.suat_chieu.Where(s => s.id == id).FirstOrDefault());
+        }
+
+        [HttpPost]
+        public ActionResult EditSuatChieu(string id, suat_chieu _suatchieu)
+        {
+            db.Entry(_suatchieu).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("QLSuatChieu");
+        }
+
+        [HttpPost]
+        public ActionResult DeleteSuatChieu(string id, suat_chieu _suatchieu)
+        {
+            try
+            {
+                _suatchieu = db.suat_chieu.Where(item => item.id == id).FirstOrDefault();
+                db.suat_chieu.Remove(_suatchieu);
+                db.SaveChanges();
+                return RedirectToAction("QLSuatChieu");
+            }
+            catch (Exception e)
+            {
+                return Content(e.ToString());
+            }
+        }
+
+        #endregion Suất chiếu
+
+        #region Phòng chiếu
 
         public ActionResult QLPhongChieu()
         {
@@ -154,12 +196,36 @@ namespace QLBanVePhim.Controllers
             }
         }
 
-        public ActionResult EditPhongChieu()
+        public ActionResult EditPhongChieu(int id)
         {
-            return View();
+            return View(db.phong_chieu.Where(s => s.id == id).FirstOrDefault());
         }
 
+        [HttpPost]
+        public ActionResult DeletePhongChieu(int id)
+        {
+            try
+            {
+                phong_chieu phong_Chieu = db.phong_chieu.Where(item => item.id == id).FirstOrDefault();
+                List<ghe_ngoi> ghe_Ngoi = db.ghe_ngoi.Where(item => item.phong_chieu_id == id).ToList();
+                foreach (ghe_ngoi ghe in ghe_Ngoi)
+                {
+                    db.ghe_ngoi.Remove(ghe);
+                }
+                db.phong_chieu.Remove(phong_Chieu);
+                db.SaveChanges();
+                return RedirectToAction("QLPhongChieu");
+            }
+            catch (Exception e)
+            {
+                return Content(e.ToString());
+            }
+        }
+
+        #endregion Phòng chiếu
+
         public ActionResult QLVe()
+
         {
             return View();
         }
