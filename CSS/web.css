@@ -10,8 +10,6 @@ body {
     background-image: linear-gradient(147deg, #262626 0%, #100f0f 100%);
 }
 
-
-
 #login .container {
     color: #dd256d;
 }
@@ -44,8 +42,8 @@ body {
 }
 
 .card {
-    height:auto !important;
-    min-height:600px !important;
+    height: auto !important;
+    min-height: 600px !important;
 }
 
 .form-check-input {
@@ -61,11 +59,11 @@ table {
 }
 
 td {
-    padding-left:1%
+    padding-left: 1%
 }
 
 h2 {
-    color:blue;
+    color: blue;
 }
 
 .left {
@@ -83,7 +81,7 @@ h2 {
 .card-body {
     background-color: #757f9a;
     background-image: linear-gradient( 147deg, #a1a9c1 0%, #d7dde8 100%);
-    height:100%;
+    height: 100%;
 }
 
 .lb_themnv {
@@ -116,7 +114,6 @@ h2 {
     transform: translateY(-50%);
 }
 
-
 .image-area {
     border: 2px dashed rgba(255, 255, 255, 0.7);
     position: relative;
@@ -140,12 +137,6 @@ h2 {
         z-index: 2;
         position: relative;
     }
-/*QLHomepage*/
-html {
-    height: 100%;
-    background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
-    overflow: hidden;
-}
 
 #stars {
     width: 1px;

@@ -1,9 +1,31 @@
 ﻿.bodyContent {
     background: #ededed;
 }
+
 .bodyContainer {
     padding: 20px 30px 30px 10px;
 }
+
 .previewCard {
     background: #ffffff !important;
+    word-break: break-all;
 }
+
+.previewCardNoBreak {
+    background: #ffffff !important;
+}
+
+.previewCardContainer {
+    position: sticky;
+    top: 0;
+}
+
+password {
+    color: black;
+    background-color: black;
+}
+
+    password:hover {
+        color: black;
+        background-color: #00000000;
+    }

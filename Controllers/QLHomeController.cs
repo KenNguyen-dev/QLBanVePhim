@@ -23,7 +23,26 @@ namespace QLBanVePhim.Controllers
 
         public ActionResult AddNV()
         {
+            var vaitrolist = db.vai_tro.ToList();
+            ViewBag.VaiTroList = new SelectList(vaitrolist, "id", "ten");
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddNV(nguoi_dung _ngdung)
+        {
+            try
+            {
+                _ngdung.dang_lam = true;
+                _ngdung.ngay_vao_lam = DateTime.Now;
+                db.nguoi_dung.Add(_ngdung);
+                db.SaveChanges();
+                return RedirectToAction("QLNV");
+            }
+            catch (Exception e)
+            {
+                return Content(e.ToString());
+            }
         }
 
         public ActionResult EditNV()
@@ -70,7 +89,7 @@ namespace QLBanVePhim.Controllers
             {
                 db.suat_chieu.Add(_suatchieu);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("QLSuatChieu");
             }
             catch (Exception e)
             {
@@ -109,7 +128,7 @@ namespace QLBanVePhim.Controllers
                         ghe.da_chon = false;
                         ghe.phong_chieu_id = _phong.id;
                         ghe.vi_tri_day = i;
-                        ghe.vi_tri_cot = col[j-1];
+                        ghe.vi_tri_cot = col[j - 1];
                         ghe.id = ghe.phong_chieu_id + "_" + ghe.vi_tri_day + ghe.vi_tri_cot;
                         ghe.loai_ghe_id = "NORMAL";
                         if ((i >= 2 && i <= 6) && (j >= 3 && j <= 6))

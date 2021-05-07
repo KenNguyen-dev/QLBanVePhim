@@ -10,19 +10,21 @@ namespace QLBanVePhim.Controllers
 {
     public class QLPhimController : Controller
     {
-        QLBanVePhimEntities db = new QLBanVePhimEntities();
+        private QLBanVePhimEntities db = new QLBanVePhimEntities();
         // GET: QLPhim
 
         public ActionResult QLPhim()
         {
             return View(db.phims.ToList());
         }
+
         public ActionResult EditPhim(string id)
         {
             var loaiphimList = db.loai_phim.ToList();
             ViewBag.LoaiPhimList = new SelectList(loaiphimList, "id", "ten");
             return View(db.phims.Where(s => s.id == id).FirstOrDefault());
         }
+
         [HttpPost]
         public ActionResult EditPhim(string id, phim phim)
         {
@@ -30,6 +32,7 @@ namespace QLBanVePhim.Controllers
             db.SaveChanges();
             return RedirectToAction("QLPhim");
         }
+
         public ActionResult AddPhim()
         {
             var loaiphimList = db.loai_phim.ToList();
@@ -37,17 +40,12 @@ namespace QLBanVePhim.Controllers
             return View();
         }
 
-        public ActionResult EditPhim()
-        {
-            return View();
-        }
-
-
         [HttpPost]
         public ActionResult AddPhim(phim _phim)
         {
             try
             {
+                _phim.da_xoa = false;
                 db.phims.Add(_phim);
                 db.SaveChanges();
                 return RedirectToAction("QLPhim");
