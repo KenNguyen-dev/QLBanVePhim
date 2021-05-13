@@ -28,10 +28,10 @@
             <nav class="navbar navbardark bg-white">
                 <nav class="navbar-brand">
                     <div id="dangKy">
-                        <span class="fas fa-gifts"><a class="link"style="float:right;margin-left:15px;color:black" href=@Url.Action("Register","Home")>Đăng ký</a></span>                      
+                        <span class="fas fa-gifts"><a class="link" style="float:right;margin-left:15px;color:black" href=@Url.Action("Register","Home")>Đăng ký</a></span>
                     </div>
                     <div id="dangNhap">
-                        <span class="fas fa-bell"><a class="link"style="float:right;margin-left:15px;color:black" href=@Url.Action("Login","Home") >Đăng nhập</a></span>
+                        <span class="fas fa-bell"><a class="link" style="float:right;margin-left:15px;color:black" href=@Url.Action("Login","Home")>Đăng nhập</a></span>
                         <!--thay thế text đăng nhập-->
 
                     </div>
@@ -39,12 +39,14 @@
             </nav>
         </section>
         <!--Main Body--->
+        @Scripts.Render("~/bundles/jquery")
         <section id="main-body" style="background-color:#343a40">
+
             @RenderBody()
         </section>
 
         <!---Footer-->
-       
+
         <section id="footer" style="margin-top:10px;background-color:#1A1A1D">
             <div id="container" style="overflow:hidden">
 
@@ -86,6 +88,10 @@
         </section>
     </div>
 
-    
+
 </body>
+
+
+
 </html>
+

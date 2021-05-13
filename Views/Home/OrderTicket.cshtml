@@ -1,0 +1,212 @@
+﻿@model QLBanVePhim.Models.phim
+
+@{
+    ViewBag.Title = "OrderTicket";
+    Layout = "~/Views/Shared/SharedHomepage.cshtml";
+}
+
+<style> 
+    .col-8{
+        color:black;
+        background-color:beige;
+        border:1px solid black;
+        border-radius:5px 5px;
+        
+    }
+    .col-4{
+        background-color:antiquewhite;
+    }
+
+    .suatChieu a{
+        text-decoration:none;
+        font-weight:bold;
+        color:black;
+
+    }
+
+    .suatChieu {
+        padding:5px 15px 5px 15px;
+        border:1px dashed black;
+        margin:3px 5px 3px 5px;
+    }
+    .suatChieu:hover{
+        background-color:burlywood
+    }
+
+    #choNgoi{
+         width:80%;
+         margin:auto;
+
+    }
+
+    .suatChieu a:hover{
+        color:black;
+    }
+
+    .disabled {
+        pointer-events: none;
+    }
+
+    #manHinh{
+        margin:auto;
+        width:80%;
+        text-align:center;
+        font-weight:bold;
+    }
+
+        #manHinh::after {
+        content: '';
+        background-color: black;
+        width: 648px;
+        height: 5px;
+        display: block;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        position: relative;
+        left: 55px;
+        }
+</style>
+
+
+<script language="javascript" >
+
+    var arr = [];
+    function chooseChair(click_id) {
+        document.getElementById(click_id).style.color = "orange";
+        document.getElementById(click_id).classList.add("disabled");
+        arr.push(click_id);
+        var tenGhe = click_id.substring(2, 4);
+        document.getElementById("ghe").innerHTML += '<div style="font-weight:bold;padding:5px">' + tenGhe + '</div>';
+        document.getElementById("listGhe").value = arr;
+    }
+
+    function chonSuatChieu(id) {
+        document.getElementById("tbSuatChieu").value = id;
+    }
+
+</script>
+
+<div id="formDatVe">
+<h1 style="color:aliceblue">Đặt Vé</h1>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-8">
+                <h3>Phòng: @ViewBag.RoomNumber</h3>
+                <div id="manHinh">
+                    SCREEN
+                </div>
+                @{ string[] col = new string[] { "", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J" }; }
+                @if (ViewBag.DsGhe != null)
+                {
+                    //Đừng đụng vào trừ khi biết code chạy như thế nào -  cả 1 buổi chiều đấy
+                    int i = 0;
+                    <table id="choNgoi">
+                        @for (int k = 0; k < 11; k++)
+                        {
+                            <tr style="padding:10px">
+                                @for (int j = 0; j < 11; j++)
+                                {
+                                    if (k == 0)
+                                    {
+                                        <th style="padding:5px 10px 5px 10px">
+                                            @col[j]
+                                        </th>
+                                    }
+                                    else if (j == 0)
+                                    {
+                                        <td style="padding:5px 10px 5px 10px">
+                                            @k
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td style="padding:5px">
+                                            @if (ViewBag.DsGhe[i].loai_ghe_id == "NORMAL")
+                                            {
+                                                if (ViewBag.DsGhe[i].da_chon == true)
+                                                {
+                                                    <span class="fas fa-couch disabled" id=@ViewBag.DsGhe[i].id style="color:gray" onclick="chooseChair(this.id)" />
+                                                }
+                                                else
+                                                {
+                                                    <span class="fas fa-couch" id=@ViewBag.DsGhe[i].id onclick="chooseChair(this.id)" />
+                                                }
+
+                                            }
+                                            else
+                                            {
+                                                if (ViewBag.DsGhe[i].da_chon == true)
+                                                {
+                                                    <span class="fas fa-couch disabled" id=@ViewBag.DsGhe[i].id style="color:gray" onclick="chooseChair(this.id)" />
+                                                }
+                                                else
+                                                {
+                                                    <span class="fas fa-couch" id=@ViewBag.DsGhe[i].id style="color:brown" onclick="chooseChair(this.id)" />
+                                                }
+                                            }
+                                            @{
+                                                i++;
+                                            }
+                                        </td>
+                                    }
+
+                                }
+                            </tr>
+                        }
+                    </table>
+                }
+
+
+                <h4>Chú thích</h4>
+                <span class="fas fa-couch" style="color:gray" /> : Đã Đặt
+                <span class="fas fa-couch" style="color:black"/> : Ghế thường
+                <span class="fas fa-couch" style="color:brown" /> : Ghế VIP
+            </div>
+            <div class="col-4">
+                
+                <h3>Vui lòng chọn suất chiếu</h3>
+                
+                    @using (Html.BeginForm("OrderTicket","Home"))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal" style="color:white">
+                            <hr />
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                             <div style="display:flex">
+                                 @foreach (var item in ViewBag.SuatChieu)
+                                  {
+                                        <div class="suatChieu" >
+                                            <a href=@Url.Action("GetRoom","Home", new { id=item.phong_chieu.id,scId=item.id}) id=@item.id >
+                                                @item.gio_bat_dau
+                                            </a>
+                                        </div>
+                                  }
+                             </div>
+
+                            <input type="text" name="dsGhe" id="listGhe"/>
+                            <input type="text" name="suatChieu" value=@ViewBag.SuatChieuChon readonly/>
+                            @*2 dòng trên chỉ dùng để debug*@
+
+                            <h4 style="color:black">Các ghế đã chọn</h4>
+                            <div id="ghe" style="color:black;display:flex">
+
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Đặt vé" class="btn btn-success " />
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
