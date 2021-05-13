@@ -1,0 +1,121 @@
+﻿
+@{
+    ViewBag.Title = "QLDoAn";
+    Layout = "~/Views/Shared/ViewQLHome.cshtml";
+}
+
+<style>
+   .col-sm-2{
+       border:2px solid black;
+   }
+    .col-sm-6 {
+        border: 2px solid black;
+    }
+    .col-sm-4 {
+        border: 2px solid black;
+    }
+    .card-body{
+        border:1px solid black;
+    }
+    .container-fluid {
+        background-color: #757f9a;
+        background-image: linear-gradient( 147deg, #a1a9c1 0%, #d7dde8 100%);
+    }
+    .btn-center {
+        margin-left:25%;
+    }
+</style>
+
+<div class="container-fluid" >
+    <div class="row">
+        <div class="col-sm-2" >
+            <h3 style="text-align:center">Tra cứu đồ ăn</h3>
+            <form style="padding-top:20px">
+                <div class="custom-control custom-checkbox mb-3">
+                    <input type="checkbox" class="custom-control-input" id="customControlValidation1" checked>
+                    <label class="custom-control-label" for="customControlValidation1">Theo tên</label>
+                    <input id="datepicker" />
+                </div>
+                <div class="custom-control custom-checkbox mb-3">
+                    <input type="checkbox" class="custom-control-input" id="customControlValidation2">
+                    <label class="custom-control-label" for="customControlValidation2">Loại đồ ăn</label>
+                    <select class="form-control" id="exampleFormControlSelect1">
+                        <option>---Thức ăn nhanh---</option>
+                        <option>Nước giải khát</option>
+                    </select>
+                </div>
+            </form>
+        </div>
+        <div class="col-sm-6">
+            <h3 style="text-align:center">Đồ ăn</h3>
+            <div class="card-body" style="height:auto">
+                <div class="container">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Mã đồ ăn</th>
+                                <th>Tên đồ ăn</th>
+                                <th>Loại đồ ăn </th>
+                                <th>Giá</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>BR</td>
+                                <td>Bắp rang</td>
+                                <td>Thức ăn nhanh</td>
+                                <td>30.000 vnđ</td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="btn-center">
+                    <div class="btn">
+                        <button type="button" class="btn btn-primary">Thêm đồ ăn</button>
+                        <button type="button" class="btn btn-primary">Cập nhập đồ ăn</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <h3 style="text-align:center">Kích cỡ đồ ăn</h3>
+            <div class="col-sm-12">
+                <div class="card-body" style="height:auto">
+                    <div class="container">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Kích cỡ</th>
+                                    <th>Đơn giá</th>
+                                    <th>Trạng thái</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>BR</td>
+                                    <td>Bắp rang</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="btn-center">
+                    <div class="btn">
+                        <button type="button" class="btn btn-primary">Thêm kích cỡ</button>
+                        <button type="button" class="btn btn-primary">Cập nhập kích cỡ</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

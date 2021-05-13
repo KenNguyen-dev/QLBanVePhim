@@ -56,14 +56,14 @@ namespace QLBanVePhim.Controllers
 
         public ActionResult MovieList()
         {
-            return View(database.phim.ToList());
+            return View(database.phims.ToList());
  
         }
 
         
         public ActionResult Details(string id)
         {
-            return View(database.phim.Where(s => s.id == id).FirstOrDefault());
+            return View(database.phims.Where(s => s.id == id).FirstOrDefault());
         }
 
         
@@ -190,6 +190,10 @@ namespace QLBanVePhim.Controllers
                 return RedirectToAction("Index");
             }
             return View(khachHang);
+        }
+        public ActionResult LichChieuPhim(string id)
+        {
+            return View(database.suat_chieu.Where(s => s.phim_id == id).FirstOrDefault());
         }
 
         public ActionResult Confirmation()

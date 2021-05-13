@@ -9,7 +9,7 @@
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="~/Font/fontawesome-free-5.15.2-web/css/all.min.css" />
-    <link rel="stylesheet" href="~/CSS/css.css" />
+    <link rel="stylesheet" href="@Url.Content("~/CSS/web.css")" type="text/css" />
     <link rel="stylesheet" href="~/CSS/Admin.css" />
     <style>
         .navigation {
@@ -208,7 +208,7 @@
                         <a class="nav-link" href="/QLHome/QLSuatChieu"><i class="far fa-clock"></i> Suất chiếu</a>
                     </li>
                     <li>
-                        <a class="nav-link" href="#"><i class="fas fa-utensils"></i> Đồ ăn</a>
+                        <a class="nav-link" href="/QLDoAn/QLDoAn"><i class="fas fa-utensils"></i> Đồ ăn</a>
                     </li>
                     <li>
                         <a class="nav-link" href="#"><i class="fas fa-plus"></i> Combo</a>
@@ -220,15 +220,12 @@
                         <a class="nav-link" href="/QLHome/QLKH"><i class="fas fa-users"></i> Khách hàng</a>
                     </li>
                     <li>
-                        <a class="nav-link" href="/QLHome/QLKH"><i class="fas fa-ticket-alt"></i> Vé</a>
+                        <a class="nav-link" href="/QLHome/QLVe"><i class="fas fa-ticket-alt"></i> Vé</a>
                     </li>
                 </ul>
             </nav>
         </div>
     </section>
-
-
-
     <div class="bodyContent">
         @RenderBody()
     </div>

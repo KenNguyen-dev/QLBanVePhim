@@ -6,10 +6,10 @@ using System.Web.Mvc;
 
 namespace QLBanVePhim.Controllers
 {
-    public class LoginQLController : Controller
+    public class QLDoAnController : Controller
     {
-        // GET: LoginQL
-        public ActionResult Index()
+        // GET: QLDoAn
+        public ActionResult QLDoAn()
         {
             return View();
         }
