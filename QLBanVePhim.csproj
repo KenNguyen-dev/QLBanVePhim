@@ -129,7 +129,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\LoginQLController.cs" />
+    <Compile Include="Controllers\QLDoAnController.cs" />
     <Compile Include="Controllers\QLHomeController.cs" />
     <Compile Include="Controllers\QLPhimController.cs" />
     <Compile Include="Global.asax.cs">
