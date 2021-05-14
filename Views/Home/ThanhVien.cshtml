@@ -56,7 +56,16 @@
         <div class="coban">
             <div>
                 <label>Họ tên: @Html.DisplayFor(s => s.ho_ten)</label>  <br />
-                <label>Giới tính: @Html.DisplayFor(s => s.gioi_tinh)</label>   <br />
+                <label>Giới tính:
+                @if (Model.gioi_tinh == true)
+                {
+                    <label>Nam</label>
+                }
+                else
+                {
+                     <label>Nữ</label>
+                }
+                </label>   <br />
                 <label>Ngày sinh:   @Html.DisplayFor(s => s.ngay_sinh)</label>  <br />
             </div>
             <div class="tichdiem">
