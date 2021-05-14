@@ -30,12 +30,13 @@ namespace QLBanVePhim.Controllers
 
         public ActionResult ThanhVien()
         {
-            return View();
-        }
-
-        public ActionResult QLPhim()
-        {
-            return View();
+            if (Session["Id"]!=null)
+            {
+                int id = Convert.ToInt32(Session["Id"]);
+                return View(database.khach_hang.Where(kh=>kh.id==id).FirstOrDefault());
+            }
+            return RedirectToAction("Login");
+            
         }
 
         [HttpPost]
@@ -56,39 +57,38 @@ namespace QLBanVePhim.Controllers
 
         public ActionResult MovieList()
         {
-            return View(database.phims.ToList());
+            return View(database.phim.ToList());
  
         }
 
         
         public ActionResult Details(string id)
         {
-            return View(database.phims.Where(s => s.id == id).FirstOrDefault());
+            return View(database.phim.Where(s => s.id == id).FirstOrDefault());
         }
 
         
         [HttpGet]
         public ActionResult OrderTicket(string id)
         {
+            if (Session["Id"] != null || Session["Username"] != null)
+            {
+                var suatChieu = database.suat_chieu.ToList().Where(s => s.phim_id == id);
+                ViewBag.SuatChieu = suatChieu;
 
-            var suatChieu = database.suat_chieu.ToList().Where(s => s.phim_id == id);
+                return View(database.phim.Where(s => s.id == id).FirstOrDefault());
+            }
+            return RedirectToAction("Login");
 
-            ViewBag.SuatChieu = suatChieu;
-            //if(Session["Id"]!=null|| Session["Username"] != null)
-            //{
-            //    return View();
-            //}
-            //return RedirectToAction("Login");
-            return View(database.phim.Where(s=>s.id==id).FirstOrDefault());
         }
 
-        
+
         [HttpPost]
         public ActionResult OrderTicket(string suatChieu,string dsGhe)
         {           
             try
             {
-                Session["Id"] = 1;
+                //Session["Id"] = 1;
                 //Dòng trên chỉ để test code
                 suat_chieu sc = database.suat_chieu.Where(s => s.id == suatChieu).FirstOrDefault();
                 ve_dat veDat = new ve_dat();
@@ -104,7 +104,7 @@ namespace QLBanVePhim.Controllers
                 }
 
                 veDat.id = Session["Id"].ToString() + "-" + sc.id + "-" + DateTime.Now.ToString("dd/MM/yyyy");
-                veDat.khach_hang_id = ((int)Session["Id"]);
+                veDat.khach_hang_id = Convert.ToInt32(Session["Id"]);
                 veDat.ngay_dat = DateTime.Now.Date;
 
 

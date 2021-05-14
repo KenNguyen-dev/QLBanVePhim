@@ -18,7 +18,7 @@
                     <ul>
                         <li><a href=@Url.Action("Index","Home")>Trang Chủ</a></li>
                         <li><a href=@Url.Action("MovieList","Home")>Phim</a></li>
-                        <li><a href="#">Suất chiếu</a></li>
+                        <li><a href=@Url.Action("LichChieuPhim","Home")>Suất chiếu</a></li>                   
                     </ul>
                 </div>
             </nav>
@@ -33,7 +33,14 @@
                     <div id="dangNhap">
                         <span class="fas fa-bell"><a class="link" style="float:right;margin-left:15px;color:black" href=@Url.Action("Login","Home")>Đăng nhập</a></span>
                         <!--thay thế text đăng nhập-->
-
+                    </div>
+                    <div>
+                        @if (Session["UserName"] != null)
+                        {
+                            <a class="link" href=@Url.Action("ThanhVien","Home")>
+                                Welcome @Session["UserName"].ToString()
+                           </a>
+                        }
                     </div>
                 </nav>
             </nav>
@@ -41,7 +48,6 @@
         <!--Main Body--->
         @Scripts.Render("~/bundles/jquery")
         <section id="main-body" style="background-color:#343a40">
-
             @RenderBody()
         </section>
 
