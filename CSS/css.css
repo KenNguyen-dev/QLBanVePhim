@@ -10,8 +10,6 @@ body {
     background-image: linear-gradient(147deg, #262626 0%, #100f0f 100%);
 }
 
-
-
 #login .container {
     color: #dd256d;
 }
@@ -43,7 +41,6 @@ body {
     overflow: hidden;
 }
 
-
 .left {
     float: left;
     color: blue;
@@ -67,7 +64,8 @@ body {
 }
 
 .left-in {
-    width: 50%;
+    width: 0%;
+    float: left;
 }
 
 .right-in {
@@ -88,7 +86,6 @@ body {
     left: 1rem;
     transform: translateY(-50%);
 }
-
 
 .image-area {
     border: 2px dashed rgba(255, 255, 255, 0.7);
@@ -113,12 +110,6 @@ body {
         z-index: 2;
         position: relative;
     }
-/*QLHomepage*/
-html {
-    height: 100%;
-    background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
-    overflow: hidden;
-}
 
 #stars {
     width: 1px;

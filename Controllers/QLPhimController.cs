@@ -10,19 +10,21 @@ namespace QLBanVePhim.Controllers
 {
     public class QLPhimController : Controller
     {
-        QLBanVePhimEntities db = new QLBanVePhimEntities();
+        private QLBanVePhimEntities db = new QLBanVePhimEntities();
         // GET: QLPhim
 
         public ActionResult QLPhim()
         {
-            return View(db.phims.ToList());
+            return View(db.phim.ToList());
         }
+
         public ActionResult EditPhim(string id)
         {
             var loaiphimList = db.loai_phim.ToList();
             ViewBag.LoaiPhimList = new SelectList(loaiphimList, "id", "ten");
-            return View(db.phims.Where(s => s.id == id).FirstOrDefault());
+            return View(db.phim.Where(s => s.id == id).FirstOrDefault());
         }
+
         [HttpPost]
         public ActionResult EditPhim(string id, phim phim)
         {
@@ -30,6 +32,23 @@ namespace QLBanVePhim.Controllers
             db.SaveChanges();
             return RedirectToAction("QLPhim");
         }
+
+        [HttpPost]
+        public ActionResult DeletePhim(string id, phim phim)
+        {
+            try
+            {
+                phim = db.phim.Where(item => item.id == id).FirstOrDefault();
+                db.phim.Remove(phim);
+                db.SaveChanges();
+                return RedirectToAction("QLPhim");
+            }
+            catch (Exception e)
+            {
+                return Content(e.ToString());
+            }
+        }
+
         public ActionResult AddPhim()
         {
             var loaiphimList = db.loai_phim.ToList();
@@ -37,18 +56,13 @@ namespace QLBanVePhim.Controllers
             return View();
         }
 
-        public ActionResult EditPhim()
-        {
-            return View();
-        }
-
-
         [HttpPost]
         public ActionResult AddPhim(phim _phim)
         {
             try
             {
-                db.phims.Add(_phim);
+                _phim.da_xoa = false;
+                db.phim.Add(_phim);
                 db.SaveChanges();
                 return RedirectToAction("QLPhim");
             }

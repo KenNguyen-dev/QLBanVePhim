@@ -222,6 +222,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\armchair.svg" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -2028,7 +2029,19 @@
     <Content Include="Views\QLPhim\QLPhim.cshtml" />
     <Content Include="Views\Home\ThanhVien.cshtml" />
     <Content Include="Views\QLHome\AddSuatChieu.cshtml" />
-    <Content Include="Views\Home\ShowTime.cshtml" />
+    <Content Include="Views\Home\OrderTicket.cshtml" />
+    <Content Include="Views\Home\Confirmation.cshtml" />
+    <Content Include="Views\Home\LichChieuPhim.cshtml" />
+    <Content Include="Views\QLPhim\EditPhim.cshtml" />
+    <Content Include="Views\QLHome\AddPhongChieu.cshtml" />
+    <Content Include="Views\QLHome\DetailsKH.cshtml" />
+    <Content Include="Views\QLHome\EditNV.cshtml" />
+    <Content Include="Views\QLHome\EditPhongChieu.cshtml" />
+    <Content Include="Views\QLHome\Login.cshtml" />
+    <Content Include="Views\QLHome\QLPhongChieu.cshtml" />
+    <Content Include="Views\QLHome\QLSuatChieu.cshtml" />
+    <Content Include="Views\QLHome\QLVe.cshtml" />
+    <Content Include="Views\QLHome\EditSuatChieu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

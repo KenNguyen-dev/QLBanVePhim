@@ -4,44 +4,10 @@
     Layout = "~/Views/Shared/ViewQLHome.cshtml";
     }
 
-    <style>
-        .left {
-            width: 25%;
-            font-size: 1.5rem;
-        }
-
-        .card {
-            height: 600px;
-            margin-right: 5px;
-        }
-
-        .custom-control-input {
-            margin-top: 30px;
-        }
-
-        .card-body {
-            justify-content: center
-        }
-
-        .table {
-            text-align: center;
-        }
-
-        .modalItem {
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .form-control1 {
-            width: 20%;
-            height: 30px;
-            font-size: 12px;
-        }
-    </style>
     <div class="left">
         <div class="card">
             <div class="card-body">
-                <h3 style="text-align:center">Tra cứu suất chiếu</h3>
+                <center><h3>Tra cứu suất chiếu</h3></center>
                 <form style="padding-top:20px">
                     <div class="custom-control custom-checkbox mb-3">
                         <input type="checkbox" class="custom-control-input" id="customControlValidation1" checked>
@@ -80,7 +46,7 @@
                         </div>
                     </div>
                 </form>
-                <input type="button" onclick="location.href='/QLHome/AddSuatChieu';" value="Thêm Suất chiếu" />
+                <input type="button" class="btn btn-success" onclick="location.href='/QLHome/AddSuatChieu';" value="Thêm Suất chiếu" />
             </div>
         </div>
     </div>
@@ -89,8 +55,8 @@
         <div class="card">
             <div class="card-body" style="height:600px">
                 <div class="container">
-                    <table class="table">
-                        <thead>
+                    <table class="table table-hover shadow p-3 mb-5 bg-white rounded">
+                        <thead class="thead-dark">
                             <tr>
                                 <th>@Html.DisplayNameFor(model => model.id)</th>
                                 <th>@Html.DisplayNameFor(model => model.phim_id)</th>
@@ -98,7 +64,7 @@
                                 <th>@Html.DisplayNameFor(model => model.gio_ket_thuc)</th>
                                 <th>@Html.DisplayNameFor(model => model.ngay_chieu)</th>
                                 <th>@Html.DisplayNameFor(model => model.phong_chieu_id)</th>
-                                <th>@Html.DisplayNameFor(model => model.dinh_danh_phim_id)</th>
+                                <th>@Html.DisplayNameFor(model => model.dinh_dang_phim_id)</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -110,7 +76,7 @@
                             {
                             foreach (var item in Model)
                             {
-                            <tr>
+                            <tr onclick="window.location.href = '/QLHome/EditSuatChieu/@Html.DisplayFor(modelItem => item.id)';">
                                 <td>
                                     @Html.DisplayFor(modelItem => item.id)
                                 </td>
@@ -130,7 +96,7 @@
                                     @Html.DisplayFor(modelItem => item.phong_chieu_id)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.dinh_danh_phim_id)
+                                    @Html.DisplayFor(modelItem => item.dinh_dang_phim_id)
                                 </td>
                             </tr>
                             }

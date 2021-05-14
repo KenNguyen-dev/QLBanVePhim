@@ -39,7 +39,11 @@
                         <p class="card-text">Thể loại: @Html.DisplayFor(modelItem => item.loai_phim.ten)</p>
                         <p class="card-text">Thời lượng: @Html.DisplayFor(modelItem => item.thoi_luong) </p>
                         <p class="card-text">Khởi chiếu: @item.ngay_cong_chieu.Value.ToShortDateString()</p>
-                        @Html.ActionLink("Xem Thêm", "Details", new { id = item.id }, new { @class = "btn btn-info", @style="width:100%" })
+                        <div style="display:flex">
+                            @Html.ActionLink("Xem Thêm", "Details", new { id = item.id }, new { @class = "btn btn-info", @style = "width:50%" })
+                            @Html.ActionLink("Đặt vé", "OrderTicket", new { id = item.id }, new { @class = "btn btn-info", @style = "width:50%" })
+                        </div>
+
                     </div>
                 </div>
             }

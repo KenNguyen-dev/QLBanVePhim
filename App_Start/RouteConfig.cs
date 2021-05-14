@@ -26,6 +26,12 @@ namespace QLBanVePhim
         );
 
             routes.MapRoute(
+           name: "Order",
+           url: "{controller}/{action}/{id}",
+           defaults: new { controller = "Home", action = "OrderTicket", id = UrlParameter.Optional }
+       );
+
+            routes.MapRoute(
                 name: "testView",
                 url: "{controller}/{action}",
                 defaults: new { controller = "QLHome", action = "Index", id = UrlParameter.Optional }
