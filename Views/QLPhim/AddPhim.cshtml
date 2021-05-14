@@ -38,6 +38,7 @@
                         @Html.LabelFor(model => model.loai_phim_id, "loai_phim_id", htmlAttributes: new { @class = "control-label" })
                         <div>
                             @Html.DropDownListFor(model => model.loai_phim_id, ViewBag.LoaiPhimList as SelectList, "Loại Phim", new { @class = "form-control", @onchange = "onInput_Phim('loai')" })
+                            @Html.ValidationMessageFor(model => model.loai_phim_id, "", new { @class = "text-danger" })
                         </div>
                     </div>
 
@@ -132,7 +133,7 @@
                     </div>
                     <div class="form-group" style="padding-top:10px">
                         <center>
-                            <input type="submit" value="Update" class="btn btn-primary" />
+                            <input type="submit" value="Thêm Phim" class="btn btn-primary" />
                         </center>
                     </div>
                 </div>
@@ -141,3 +142,5 @@
     </div>
 
 }
+
+@Scripts.Render("~/bundles/jqueryval")

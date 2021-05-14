@@ -47,7 +47,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.mat_khau, htmlAttributes: new { @class = "control-label" })
                         <div>
-                            @Html.EditorFor(model => model.mat_khau, new { htmlAttributes = new { @class = "form-control", @onInput = "onInput_NV('mk')" } })
+                            @Html.EditorFor(model => model.mat_khau, new { htmlAttributes = new { @type = "password", @class = "form-control", @onInput = "onInput_NV('mk')" } })
                             @Html.ValidationMessageFor(model => model.mat_khau, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -108,3 +108,4 @@
         </div>
     </div>
 }
+@Scripts.Render("~/bundles/jqueryval")

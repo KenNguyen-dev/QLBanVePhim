@@ -7,75 +7,75 @@
 <script src="~/Scripts/admin/add.js"></script>
 @using (Html.BeginForm())
 {
-<div class="container bodyContainer">
-    <div class="row">
-        <div class="col-sm">
-            <p><center>Sửa Phòng Chiếu</center></p> <hr />
-            @Html.AntiForgeryToken()
-            <div class="form-horizontal">
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group">
-                    @Html.LabelFor(model => model.id, htmlAttributes: new { @class = "control-label" })
-                    <div>
-                        @Html.EditorFor(model => model.id, new { htmlAttributes = new { @disabled="disabled", @class = "form-control", @onInput = "onInput_PhongChieu()" } })
-                        @Html.ValidationMessageFor(model => model.id, "", new { @class = "text-danger" })
+    <div class="container bodyContainer">
+        <div class="row">
+            <div class="col-sm">
+                <p><center>Sửa Phòng Chiếu</center></p> <hr />
+                @Html.AntiForgeryToken()
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.id, htmlAttributes: new { @class = "control-label" })
+                        <div>
+                            @Html.EditorFor(model => model.id, new { htmlAttributes = new { @disabled = "disabled", @class = "form-control", @onInput = "onInput_PhongChieu()" } })
+                            @Html.ValidationMessageFor(model => model.id, "", new { @class = "text-danger" })
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-sm">
-            <p><center>Preview</center></p> <hr />
-            <center>
-                <div class="card previewCardContainer">
-                    <div class="card-body previewCardNoBreak">
-                        <h4 class="card-title" id="previews_id">ID @Html.DisplayFor(model => model.id)</h4>
-                        <p class="card-subtitle text-muted">10 dãy, 10 cột</p>
-                        <div class="card-text container">
-                            @{string[] col = new string[] { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J" };}
-                            @for (int i = 0; i <= 10; i++)
-                            {
-                            <div class="row">
-                                @for (int j = 0; j <= 10; j++)
+            <div class="col-sm">
+                <p><center>Preview</center></p> <hr />
+                <center>
+                    <div class="card previewCardContainer">
+                        <div class="card-body previewCardNoBreak">
+                            <h4 class="card-title" id="previews_id">ID @Html.DisplayFor(model => model.id)</h4>
+                            <p class="card-subtitle text-muted">10 dãy, 10 cột</p>
+                            <div class="card-text container">
+                                @{string[] col = new string[] { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J" };}
+                                @for (int i = 0; i <= 10; i++)
                                 {
-                                <div class="col">
-                                    @if (j != 0)
-                                    {
-                                    if (i == 0)
-                                    {
-                                    @col[j - 1]
-                                    }
-                                    else if ((i >= 3 && i <= 7) && (j >= 4 && j <= 7))
-                                    {
-                                    <font color="yellow">■</font>
-                                    }
-                                    else
-                                    {
-                                    @:■
-                                    }
-                                    }
-                                    else if (i != 0)
-                                    {
-                                    string num = i < 10 ? "0" + i : i + "";
-                                    @num
-                                    }
-                                </div>
+                                    <div class="row">
+                                        @for (int j = 0; j <= 10; j++)
+                                        {
+                                            <div class="col">
+                                                @if (j != 0)
+                                                {
+                                                    if (i == 0)
+                                                    {
+                                                        @col[j - 1]
+                                                    }
+                                                    else if ((i >= 3 && i <= 7) && (j >= 4 && j <= 7))
+                                                    {
+                                                        <font color="yellow">■</font>
+                                                    }
+                                                    else
+                                                    {
+                                                        @:■
+                                                    }
+                                                }
+                                                else if (i != 0)
+                                                {
+                                                    string num = i < 10 ? "0" + i : i + "";
+                                                    @num
+                                                }
+                                            </div>
+                                        }
+                                    </div>
                                 }
                             </div>
-                            }
+                        </div>
+                        <div class="form-group" style="padding-top:10px">
+                            <center>
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
+                                    Delete
+                                </button>
+                            </center>
                         </div>
                     </div>
-                    <div class="form-group" style="padding-top:10px">
-                        <center>
-                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
-                                Delete
-                            </button>
-                        </center>
-                    </div>
-                </div>
-            </center>
+                </center>
+            </div>
         </div>
     </div>
-</div>
 }
 <!-- Modal -->
 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
@@ -99,3 +99,4 @@
         </div>
     </div>
 </div>
+@Scripts.Render("~/bundles/jqueryval")

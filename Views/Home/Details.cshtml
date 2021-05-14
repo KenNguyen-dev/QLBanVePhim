@@ -6,38 +6,34 @@
 }
 
 <style>
-    #hinhAnh{
-        width:250px;
-        height:300px;
-
+    #hinhAnh {
+        width: 250px;
+        height: 300px;
     }
 
-    .chiTietPhim{
-        color:white;
-        min-height:800px;
-        margin:auto;
-        width:70%
+    .chiTietPhim {
+        color: white;
+        min-height: 800px;
+        margin: auto;
+        width: 70%
     }
 
-    #chiTiet{
-        text-align:left;
-        line-height:20px;
-        font-size:25px;
-        font-family:Arial
-        
+    #chiTiet {
+        text-align: left;
+        line-height: 20px;
+        font-size: 25px;
+        font-family: Arial
     }
 </style>
 
-
 <div class="chiTietPhim">
     <h2 style="padding:5px;font-weight:bold;margin-left:2px">Nội Dung Phim</h2>
-    <hr style="color:white"/>
+    <hr style="color:white" />
 
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-3">
-                <img src=@Html.DisplayFor(model=>model.hinh_anh) id="hinhAnh" />
-
+                <img src=@Html.DisplayFor(model=>model.hinh_anh) id="hinhAnh"/>
             </div>
 
             <div class="col-sm-9" id="chiTiet">
