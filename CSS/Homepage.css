@@ -59,6 +59,22 @@ li a:hover{
     margin-right: 50px;
 }
 
+#nguoiDung {
+    float: left;
+    font-weight: bold;
+    font-size: 25px;
+    margin-left: 25px;
+    margin-right: 50px;
+}
+
+#danhSach {
+    float: left;
+    font-weight: bold;
+    font-size: 25px;
+    margin-left: 25px;
+    margin-right: 50px;
+}
+
 .fas{
     float:left;
     margin-right:10px;

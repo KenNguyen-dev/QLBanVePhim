@@ -2042,6 +2042,9 @@
     <Content Include="Views\QLHome\QLSuatChieu.cshtml" />
     <Content Include="Views\QLHome\QLVe.cshtml" />
     <Content Include="Views\QLHome\EditSuatChieu.cshtml" />
+    <Content Include="Views\Home\TicketPrice.cshtml" />
+    <Content Include="Views\Home\TicketList.cshtml" />
+    <Content Include="Views\Home\CancelTicket.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

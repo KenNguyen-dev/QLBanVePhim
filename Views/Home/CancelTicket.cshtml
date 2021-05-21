@@ -1,0 +1,77 @@
+﻿@model QLBanVePhim.Models.ve_ban
+
+@{
+    ViewBag.Title = "CancelTicket";
+    Layout = "~/Views/Shared/SharedHomepage.cshtml";
+}
+
+<style>
+    #huyVe {
+        margin: auto;
+        width: 50%;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+</style>
+
+<div id="huyVe">
+    <h1 style="color:aquamarine  ">-HỦY VÉ-</h1>
+
+    <h2 style="color:azure">Bạn có thực sự chắc muốn hủy vé này</h2>
+    <div class="card" id="ve">
+        <div class="card-header">
+            <h1 style="font-family:'Berlin Sans FB'">CINESTAR</h1>
+            <p>VÉ ĐẶT</p>
+        </div>
+        <div class="card-body">
+            @try
+            {
+                <h2>@Html.DisplayFor(model=>model.id)</h2>
+                <div class="container-fluid">
+                    <div class="row" style="font-size:25px;font-weight:bold">
+                        <div class="col-6">
+                            GHẾ
+                            <br />
+                            PHIM:
+                            <br />
+                            PHÒNG CHIẾU
+                            <br />
+                            THỜI GIAN BẮT ĐẦU:
+                            <br />
+                            TỔNG TIỀN:
+                        </div>
+                        <div class="col-6">
+                            @Html.DisplayFor(model => model.ghe_id)
+                            <br />
+                            @Html.DisplayFor(model => model.suat_chieu.phim.ten)
+                            <br />
+                            @Html.DisplayFor(model => model.suat_chieu.phong_chieu_id)
+                            <br />
+                            @Html.DisplayFor(model => model.suat_chieu.gio_bat_dau)
+                            <br />
+                            @Html.DisplayFor(model => model.tong__tien)
+                        </div>
+                    </div>
+                </div>
+            }
+            catch
+            {
+                <p style="color:red">LỖI KHÔNG CÓ VÉ ĐỂ HIỂN THỊ</p>
+            }
+        </div>
+        <div class="card-footer">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    <input type="submit" value="Xác Nhận Hủy Vé" class="btn btn-danger" /> 
+                </div>
+            }
+        </div>
+        </div>
+
+       
+    </div>

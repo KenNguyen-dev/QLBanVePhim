@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "TicketList";
+    Layout = "~/Views/Shared/SharedHomepage.cshtml";
+}
+
+<style>
+    #lsVe{
+        color:white;
+        margin:auto;
+        width:80%;
+    }
+
+    table, th, td {
+        border: 2px solid black;
+    }
+
+    td, th {
+        padding: 15px
+    }
+</style>
+
+<div id="lsVe">
+    <h2>Danh sách vé</h2>
+    <table class="table table-bordered" id="tableVe">
+        <thead>
+            <tr style="background-color:cornflowerblue">
+                <th>Phim</th>
+                <th>Ngày chiếu</th>
+                <th>Giờ bắt đầu</th>
+                <th>Ghế</th>
+                <th>Phòng chiếu</th>
+                <th>Hủy vé</th>
+            </tr>
+
+        </thead>
+
+        <tbody style="background-color:beige;color:black">
+            @{
+                foreach (var veDat in ViewBag.DsVe)
+                {
+                    foreach (var vbct in veDat)
+                    {
+                        <tr>
+                            <td>@vbct.suat_chieu.phim.ten</td>
+                            <td>@vbct.suat_chieu.ngay_chieu.ToString("dd/MM/yyyy")</td>
+                            <td>@vbct.suat_chieu.gio_bat_dau</td>
+                            <td>@vbct.ghe_id</td>
+                            <td>@vbct.suat_chieu.phong_chieu_id</td>
+                            <td>@Html.ActionLink("Hủy Vé", "CancelTicket", new { id = vbct.id }, new { @class = "btn btn-danger", @style = "width:50%" })</td>                    
+                        </tr>
+                    }
+                }
+            }
+
+        </tbody>
+    </table>
+    
+</div>
+
+
+

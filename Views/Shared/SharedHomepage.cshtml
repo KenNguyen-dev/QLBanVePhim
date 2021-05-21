@@ -18,7 +18,8 @@
                     <ul>
                         <li><a href=@Url.Action("Index","Home")>Trang Chủ</a></li>
                         <li><a href=@Url.Action("MovieList","Home")>Phim</a></li>
-                        <li><a href=@Url.Action("LichChieuPhim","Home")>Suất chiếu</a></li>                   
+                        <li><a href=@Url.Action("LichChieuPhim","Home")>Suất chiếu</a></li>
+                        <li><a href=@Url.Action("TicketPrice","Home")>Giá vé</a></li>
                     </ul>
                 </div>
             </nav>
@@ -32,16 +33,16 @@
                     </div>
                     <div id="dangNhap">
                         <span class="fas fa-bell"><a class="link" style="float:right;margin-left:15px;color:black" href=@Url.Action("Login","Home")>Đăng nhập</a></span>
-                        <!--thay thế text đăng nhập-->
                     </div>
-                    <div>
                         @if (Session["UserName"] != null)
                         {
-                            <a class="link" href=@Url.Action("ThanhVien","Home")>
-                                Welcome @Session["UserName"].ToString()
-                           </a>
+                            <div id="nguoiDung">
+                                <span class="fas fa-user"><a class="link" style="float:right;margin-left:15px;color:black" href=@Url.Action("ThanhVien","Home")>Welcome @Session["UserName"].ToString()</a></span>
+                            </div>
+                            <div id="danhSach">
+                                <span class="fas fa-ticket-alt"><a class="link" style="float:right;margin-left:15px;color:black" href=@Url.Action("TicketList","Home")>Danh sách vé</a></span>
+                            </div>
                         }
-                    </div>
                 </nav>
             </nav>
         </section>

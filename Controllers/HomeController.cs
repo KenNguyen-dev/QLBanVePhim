@@ -61,7 +61,13 @@ namespace QLBanVePhim.Controllers
  
         }
 
-        
+        public ActionResult TicketPrice()
+        {
+            return View();
+
+        }
+
+
         public ActionResult Details(string id)
         {
             return View(database.phim.Where(s => s.id == id).FirstOrDefault());
@@ -103,7 +109,7 @@ namespace QLBanVePhim.Controllers
                     tienDinhDangPhim = (int)sc.dinh_dang_phim.phu_thu;
                 }
 
-                veDat.id = Session["Id"].ToString() + "-" + sc.id + "-" + DateTime.Now.ToString("dd/MM/yyyy");
+                veDat.id = Session["Id"].ToString() + "-" + sc.id + "-" + DateTime.Now.Second;
                 veDat.khach_hang_id = Convert.ToInt32(Session["Id"]);
                 veDat.ngay_dat = DateTime.Now.Date;
 
@@ -117,7 +123,7 @@ namespace QLBanVePhim.Controllers
                     ve_dat_chi_tiet veDatChiTiet = new ve_dat_chi_tiet();
                     ghe_ngoi ghe = database.ghe_ngoi.Where(g => g.id == item).FirstOrDefault();
                     ghe.da_chon = true;
-                    veBan.id = sc.id + "/" + ghe.id;
+                    veBan.id = sc.id + "-" + ghe.id;
                     veBan.suat_chieu_id = sc.id;
                     if (DateTime.Today.DayOfWeek == DayOfWeek.Saturday || DateTime.Today.DayOfWeek == DayOfWeek.Sunday)
                     {
@@ -167,8 +173,6 @@ namespace QLBanVePhim.Controllers
             var dsGhe = database.ghe_ngoi.Where(g => g.phong_chieu.id == phongChieu.id).OrderBy(s=>s.vi_tri_day).ToList();
             var suatChieu = database.suat_chieu.Where(s => s.phong_chieu_id == id).ToList();
             
-
-
             ViewBag.RoomNumber = phongChieu.id;
             ViewBag.DsGhe = dsGhe;
             ViewBag.SuatChieu = suatChieu;
@@ -199,6 +203,49 @@ namespace QLBanVePhim.Controllers
         public ActionResult Confirmation()
         {
             return View();
+        }
+
+        public ActionResult TicketList()
+        {
+            List<List<ve_ban>> dsVe = new List<List<ve_ban>>();
+            var khach_hang_id = Convert.ToInt32(Session["Id"]);
+
+            var veDat = database.ve_dat.Where(vd => vd.khach_hang_id == khach_hang_id).ToList();
+            
+            foreach (var vd in veDat)
+            {
+                dsVe.Add(database.ve_ban.Where(vb => vb.ve_dat_chi_tiet.ve_dat_id == vd.id && vb.trang_thai=="Book").ToList());
+            }
+            ViewBag.DsVe = dsVe;
+
+            return View();
+        }
+
+        public ActionResult CancelTicket(string id)
+        {
+            return View(database.ve_ban.Where(s => s.id == id).FirstOrDefault());
+        }
+
+        [HttpPost]
+        public ActionResult CancelTicket(string id, ve_ban veBan,ve_dat_chi_tiet vdct,ghe_ngoi ghe)
+        {
+
+            try
+            {
+                veBan = database.ve_ban.Where(s => s.id == id).FirstOrDefault();
+                vdct = database.ve_dat_chi_tiet.Where(s => s.id == id).FirstOrDefault();
+                ghe = database.ghe_ngoi.Where(g => g.id == veBan.ghe_id).FirstOrDefault();
+
+                ghe.da_chon = false;
+                database.ve_ban.Remove(veBan);
+                database.ve_dat_chi_tiet.Remove(vdct);
+                database.SaveChanges();
+                return RedirectToAction("TicketList");
+            }
+            catch
+            {
+                return Content("Error Delete!");
+            }
         }
 
     }
