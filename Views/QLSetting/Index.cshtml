@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "Quản Lý Settings";
+    Layout = "~/Views/Shared/ViewQLHome.cshtml";
+}
+<script src="~/Scripts/admin/setting.js"></script>
+<div class="settingLeft">
+    <div class="card">
+        <div class="card-body settingCardBody">
+            <a class="btn btn-primary btnNav" href="#DDP">
+                <i class="fas fa-film" style="margin-right:10px"></i>Định Dạng Phim
+            </a>
+            <a class="btn btn-primary btnNav" href="#LP">
+                <i class="fas fa-film" style="margin-right:10px"></i>Loại Phim
+            </a>
+            <a class="btn btn-primary btnNav" href="#LG">
+                <i class="fas fa-couch" style="margin-right:10px"></i>Loại Ghế
+            </a>
+            <a class="btn btn-primary btnNav" href="#GV">
+                <i class="fas fa-ticket-alt" style="margin-right:10px"></i>Giá vé
+            </a>
+        </div>
+    </div>
+</div>
+<div class="settingRight">
+    <div class="card">
+        <div class="card-body settingCardBody">
+            <div id="DDP">
+                @{
+                    Html.RenderAction("Render_DDP", "QLSetting");
+                }
+            </div>
+            <div id="LP">
+                @{
+                    Html.RenderAction("Render_LP", "QLSetting");
+                }
+            </div>
+            <div id="LG">
+                @{
+                    Html.RenderAction("Render_LG", "QLSetting");
+                }
+            </div>
+            <div id="GV">
+                @{
+                    Html.RenderAction("Render_GV", "QLSetting");
+                }
+            </div>
+        </div>
+    </div>
+</div>

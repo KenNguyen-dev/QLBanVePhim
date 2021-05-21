@@ -1,0 +1,121 @@
+﻿@model IEnumerable<QLBanVePhim.Models.loai_phim>
+
+<script>
+    function toggle_edit_lp(id) {
+        $(".toggle-lp-ten-" + id).toggle();
+        $(".toggle-lp-pt-" + id).toggle();
+        $(".toggle-lp-edit-" + id).toggle();
+        $(".toggle-lp-btnEdit-" + id).toggle();
+    }
+    function toggle_delete_lp(id) {
+        $(".toggle-lp-delete-" + id).toggle();
+    }
+    function cancel_lp() {
+        document.getElementById("btnAdd-LP").style.display = "block";
+        document.getElementById("table-LP").deleteRow(0);
+    }
+
+    $(function () {
+        $("#searchLP").keyup(function () {
+            var data = { searchString: $(this).val() };
+            $("#table-LP").load("/QLSetting/Render_LP #table-LP > *", data);
+        });
+    });
+</script>
+
+<script id="form_id_lp" type="text/template">
+    <input class="form-control" type="text" name="idLP" required form="form_add_lp" />
+</script>
+<script id="form_ten_lp" type="text/template">
+    <input class="form-control" type="text" name="tenLP" required form="form_add_lp" />
+</script>
+<script id="form_submit_lp" type="text/template">
+    <button type="submit" class="btn btn-success settingButtonCol" form="form_add_lp"><i class="fas fa-save"></i> Lưu</button>
+</script>
+<script id="form_cancel_lp" type="text/template">
+    <button type="submit" class="btn btn-danger settingButtonCol" onclick="cancel_lp()"><i class="fas fa-undo"></i> Hủy</button>
+</script>
+
+<form action="/QLSetting/Add_LP" method="POST" id="form_add_lp"></form>
+
+<div class="settingTitle">
+    <div class="row">
+        <div class="col-9 settingTitleCol">
+            <i class="fas fa-film" style="margin-right:10px"></i>Loại Phim
+        </div>
+        <div class="col-3">
+            <button id="btnAdd-LP" class="btn btn-success settingButtonCol" onclick="add_NewLP()"><i class="fas fa-plus"></i> Thêm mới</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12" style="margin-top:5px">
+            <input class="form-control" type="text" id="searchLP" placeholder="Search theo @Html.DisplayNameFor(model => model.ten)" />
+        </div>
+    </div>
+</div>
+<table class="table table-hover shadow p-3 mb-5 bg-white rounded">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ten)
+            </th>
+            <th>
+            </th>
+            <th>
+            </th>
+        </tr>
+    </thead>
+    <tbody id="table-LP">
+        @if (Model.Count() == 0)
+        {
+            <tr> <td colspan="5"> Records not found </td></tr>
+        }
+        else
+        {
+            foreach (var item in Model)
+            {
+                @*<tr onclick="window.location.href = '/QLPhim/EditPhim/@Html.DisplayFor(modelItem => item.id)';">*@
+                <tr class="settingTitleCol toggle-lp-delete-@Html.DisplayFor(modelItem => item.id)">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.id)
+                    </td>
+                    <td class="toggle-lp-ten-@Html.DisplayFor(modelItem => item.id)">
+                        @Html.DisplayFor(modelItem => item.ten)
+                    </td>
+                    <td class="toggle-lp-edit-@Html.DisplayFor(modelItem => item.id)">
+                        <button id="btnDelete" class="btn btn-danger settingButtonCol" onclick="toggle_delete_lp('@Html.DisplayFor(modelItem => item.id)')"><i class="fas fa-trash"></i> Xóa</button>
+                    </td>
+                    @using (Html.BeginForm("Update_LP", "QLSetting", FormMethod.Post))
+                    {
+                        <td class="toggle-lp-ten-@Html.DisplayFor(modelItem => item.id)" style="display:none">
+                            <input type="hidden" value="@item.id" name="idLP_edit" required />
+                            <input type="text" value="@item.ten" name="tenLP_edit" class="form-control" required />
+                        </td>
+                        <td class="toggle-lp-edit-@Html.DisplayFor(modelItem => item.id)" style="display:none">
+                            <button type="submit" id="btnSaveEdit" class="btn btn-success settingButtonCol"><i class="fas fa-save"></i> Lưu</button>
+                        </td>
+                    }
+                    <td>
+                        <button class="btn btn-primary settingButtonCol toggle-lp-btnEdit-@Html.DisplayFor(modelItem => item.id)" onclick="toggle_edit_lp('@Html.DisplayFor(modelItem => item.id)')"><i class="fas fa-edit"></i> Sửa</button>
+                        <button class="btn btn-danger settingButtonCol toggle-lp-btnEdit-@Html.DisplayFor(modelItem => item.id)" onclick="toggle_edit_lp('@Html.DisplayFor(modelItem => item.id)')" style="display:none"><i class="fas fa-undo"></i> Hủy</button>
+                    </td>
+                </tr>
+                <tr class="settingTitleCol toggle-lp-delete-@Html.DisplayFor(modelItem => item.id)" style="display:none">
+                    <td colspan="4">
+                        @using (Html.BeginForm("Delete_LP", "QLSetting", FormMethod.Post))
+                        {
+
+                            <span>Bạn có chắc muốn xóa @Html.DisplayFor(modelItem => item.ten)?</span>
+                            <input type="hidden" value="@item.id" name="idLP_delete" />
+                            <button type="submit" class="btn btn-danger" style="margin-left:15px"><i class="fas fa-trash"></i> Xóa</button>
+                            <a class="btn btn-success" onclick="toggle_delete_lp('@Html.DisplayFor(modelItem => item.id)')" style="margin-left:15px"><i class="fas fa-undo"></i> Hủy</a>
+                        }
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
