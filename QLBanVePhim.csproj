@@ -2049,6 +2049,7 @@
     <Content Include="Views\QLSetting\_LoaiPhim.cshtml" />
     <Content Include="Views\QLSetting\_LoaiGhe.cshtml" />
     <Content Include="Views\QLSetting\_GiaVe.cshtml" />
+    <Content Include="Views\Home\LichChieuPhimNgay.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

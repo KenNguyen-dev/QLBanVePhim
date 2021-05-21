@@ -104,7 +104,7 @@ namespace QLBanVePhim.Controllers
                 int tienDinhDangPhim = 0;
                 int tongTien = 0;
 
-                if (sc.dinh_dang_phim_id != "2D")
+                if (sc.dinh_danh_phim_id != "2D")
                 {
                     tienDinhDangPhim = (int)sc.dinh_dang_phim.phu_thu;
                 }
@@ -196,6 +196,10 @@ namespace QLBanVePhim.Controllers
             return View(khachHang);
         }
         public ActionResult LichChieuPhim(string id)
+        {
+            return View(database.suat_chieu.Where(s => s.phim_id == id).FirstOrDefault());
+        }
+        public ActionResult LichChieuPhimNgay(string id)
         {
             return View(database.suat_chieu.Where(s => s.phim_id == id).FirstOrDefault());
         }

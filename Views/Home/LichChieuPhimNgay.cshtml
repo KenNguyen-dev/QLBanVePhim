@@ -1,0 +1,199 @@
+﻿
+@model QLBanVePhim.Models.suat_chieu
+
+@{
+    ViewBag.Title = "Lich Chieu Phim Ngay";
+    Layout = "~/Views/Shared/SharedHomepage.cshtml";
+}
+
+<style>
+    .container-fluid {
+        background-color: #27001f;
+        background-image: linear-gradient(90deg, #27001f 0%, #4c0044 50%, #27001f 100%);
+        height: 400vh;
+        box-sizing: border-box;
+        font-family: :'Times New Roman',sans-serif;
+    }
+
+    .wrapper {
+        display: flex;
+        justify-content:center;
+        align-items: center;
+        width: 100%;
+    }
+
+    .ngaychieuBox {
+        width: 20%;
+        height: 100px;
+        background-color: orange;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .movieWrapper {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        width: 80%;
+    }
+
+    .movieBox {
+        position: relative;
+        width: 90%;
+        height: 250px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin: 40px;
+        background-color: #ed0085;
+        background-image: linear-gradient(225deg, #ed0085 0%, #462a5e 50%, #075186 100%);
+    }
+
+    .imgBox {
+       
+        width: 20%;
+        height: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+        .imgBox img {
+            max-width: 100%;
+            height: 100%;
+        }
+
+    .giochieu {
+        width: 65%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .giochieu span {
+            color: black;
+            font-weight: bold;
+            margin: 15px;
+            background-color: #fecf06;
+            padding: 2px;
+            border: dotted 2px #000000;
+        }
+    .movieInfor{
+            color:white;
+        }
+    .datepicker {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction:column;
+        padding:15px;
+    }
+    .datepicker h2 {
+            color: #fecf06;
+            padding: 10px 15px 10px 15px;
+
+        }
+    [type="date"] {
+        background: #fff url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png) 97% 50% no-repeat;
+    }
+
+    [type="date"]::-webkit-inner-spin-button {
+            display: none;
+        }
+
+    [type="date"]::-webkit-calendar-picker-indicator {
+            opacity: 0;
+        }
+    label {
+        display: block;
+          }
+    input {
+        border: 1px solid #c4c4c4;
+        border-radius: 5px;
+        background-color: #fff;
+        padding: 3px 5px;
+        box-shadow: inset 0 3px 6px rgba(0,0,0,0.1);
+        width: 190px;
+    }
+</style>
+<div class="container-fluid">
+    <div class="datepicker">
+        <h2>CHỌN NGÀY CHIẾU</h2>
+        <input type="date" name="ngaychieu" id="ngaychieu">
+    </div>
+    <div class="wrapper">
+
+        <div class="movieWrapper">
+            <div class="movieBox">
+                <div class="imgBox">
+                    <img src="https://cinestar.com.vn/pictures/Cinestar/03-2021/lm.jpg" />
+                </div>
+                <div class="movieInfor">
+                    <h3>Lật mặt 48h</h3>
+                    <p>Thời lượng: 180 phút</p>
+                </div>
+                <div class="giochieu">
+                    <span>22:30</span>
+                    <span>22:30</span>
+                    <span>22:30</span>
+                    <span>22:30</span>
+                    <span>22:30</span>
+                    <span>22:30</span>
+                    <span>22:30</span>
+                    <span>22:30</span>
+                    <span>22:30</span>
+                    <span>22:30</span>
+                    <span>22:30</span>
+                    <span>22:30</span>
+                    <span>22:30</span>
+                    <span>22:30</span>
+                </div>
+            </div>
+            <div class="movieBox">
+                <div class="imgBox">
+                    <img src="https://cinestar.com.vn/pictures/Cinestar/04-2021/bantay.jpg" />
+                </div>
+                <div class="movieInfor">
+                    <h3>Bàn tay diệt quỷ (C18)</h3>
+                    <p>Thời lượng: 120 phút</p>
+                </div>
+                <div class="giochieu">
+                    <span>22:30</span>
+                    <span>22:30</span>
+                    <span>22:30</span>
+                    <span>22:30</span>
+                    <span>22:30</span>
+                    <span>22:30</span>
+                    <span>22:30</span>
+                    <span>22:30</span>
+                    <span>22:30</span>
+                    <span>22:30</span>
+                    <span>22:30</span>
+                    <span>22:30</span>
+
+                </div>
+            </div>
+            <div class="movieBox">
+                <div class="imgBox">
+                    <img src="https://cinestar.com.vn/pictures/Cinestar/03-2021/bogia1203.jpg" />
+                </div>
+                <div class="movieInfor">
+                    <h3>Bố già (C13)</h3>
+                    <p>Thời lượng: 180 phút</p>
+                </div>
+                <div class="giochieu">
+                    <span>22:30</span>
+                    <span>22:30</span>
+                    <span>22:30</span>
+                    <span>22:30</span>
+                    <span>22:30</span>
+                    <span>22:30</span>
+                    <span>22:30</span>
+                    <span>22:30</span>
+                    <span>22:30</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
