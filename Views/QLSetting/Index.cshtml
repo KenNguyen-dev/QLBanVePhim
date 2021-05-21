@@ -24,22 +24,26 @@
 <div class="settingRight">
     <div class="card">
         <div class="card-body settingCardBody">
-            <a id="DDP"></a>
-            @{
-                Html.RenderAction("Render_DDP", "QLSetting");
-            }
-            <a id="LP"></a>
-            @{
-                Html.RenderAction("Render_LP", "QLSetting");
-            }
-            <a id="LG"></a>
-            @{
-                Html.RenderAction("Render_LG", "QLSetting");
-            }
-            <a id="GV"></a>
-            @{
-                Html.RenderAction("Render_GV", "QLSetting");
-            }
+            <div id="DDP">
+                @{
+                    Html.RenderAction("Render_DDP", "QLSetting");
+                }
+            </div>
+            <div id="LP">
+                @{
+                    Html.RenderAction("Render_LP", "QLSetting");
+                }
+            </div>
+            <div id="LG">
+                @{
+                    Html.RenderAction("Render_LG", "QLSetting");
+                }
+            </div>
+            <div id="GV">
+                @{
+                    Html.RenderAction("Render_GV", "QLSetting");
+                }
+            </div>
         </div>
     </div>
 </div>

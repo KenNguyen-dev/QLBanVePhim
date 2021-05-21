@@ -1,5 +1,4 @@
 ﻿@model IEnumerable<QLBanVePhim.Models.dinh_dang_phim>
-
 <script>
     function toggle_edit_ddp(id) {
         $(".toggle-ddp-ten-" + id).toggle();
@@ -14,6 +13,13 @@
         document.getElementById("btnAdd-DDP").style.display = "block";
         document.getElementById("table-DDP").deleteRow(0);
     }
+
+    $(function () {
+        $("#searchDDP").keyup(function () {
+            var data = { searchString: $(this).val() };
+            $("#table-DDP").load("/QLSetting/Render_DDP #table-DDP > *", data);
+        });
+    });
 </script>
 
 <script id="form_id_ddp" type="text/template">
@@ -43,8 +49,13 @@
             <button id="btnAdd-DDP" class="btn btn-success settingButtonCol" onclick="add_NewDDP()"><i class="fas fa-plus"></i> Thêm mới</button>
         </div>
     </div>
+    <div class="row">
+        <div class="col-12" style="margin-top:5px">
+            <input class="form-control" type="text" id="searchDDP" placeholder="Search theo @Html.DisplayNameFor(model => model.ten)" />
+        </div>
+    </div>
 </div>
-<table class="table table-hover shadow p-3 mb-5 bg-white rounded">
+<table id="list-DDP" class="table table-hover shadow p-3 mb-5 bg-white rounded">
     <thead class="thead-dark">
         <tr>
             <th>
@@ -56,9 +67,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.phu_thu)
             </th>
-            <th>
+            <th colspan="1">
             </th>
-            <th>
+            <th colspan="1">
             </th>
         </tr>
     </thead>
@@ -119,3 +130,5 @@
         }
     </tbody>
 </table>
+
+@Scripts.Render("~/bundles/jquery")

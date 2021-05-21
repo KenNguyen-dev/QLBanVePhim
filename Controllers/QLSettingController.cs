@@ -70,8 +70,18 @@ namespace QLBanVePhim.Controllers
 
         #region Định Dạng Phim
 
-        public ActionResult Render_DDP()
+        public ActionResult Render_DDP(string searchString)
         {
+            var ddp = from m in db.dinh_dang_phim
+                      select m;
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                ddp = ddp.Where(s => s.ten.Contains(searchString));
+            }
+
+            if (Request.IsAjaxRequest())
+                return PartialView("_DinhDangPhim", ddp.ToList());
+
             return PartialView("_DinhDangPhim", db.dinh_dang_phim.ToList());
         }
 
@@ -86,7 +96,7 @@ namespace QLBanVePhim.Controllers
                 ddp.phu_thu = int.Parse(form["phuthuDDP"]);
                 db.dinh_dang_phim.Add(ddp);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return Redirect(Url.Action("Index", "QLSetting") + "#DDP");
             }
             catch (Exception e)
             {
@@ -102,7 +112,7 @@ namespace QLBanVePhim.Controllers
             ddp.phu_thu = int.Parse(form["phuthuDDP_edit"]);
             ddp.ten = form["tenDDP_edit"];
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return Redirect(Url.Action("Index", "QLSetting") + "#DDP");
         }
 
         [HttpPost]
@@ -112,15 +122,24 @@ namespace QLBanVePhim.Controllers
             dinh_dang_phim ddp = db.dinh_dang_phim.Where(item => item.id == id).FirstOrDefault();
             db.Entry(ddp).State = System.Data.Entity.EntityState.Deleted;
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return Redirect(Url.Action("Index", "QLSetting") + "#DDP");
         }
 
         #endregion Định Dạng Phim
 
         #region Loại Phim
 
-        public ActionResult Render_LP()
+        public ActionResult Render_LP(string searchString)
         {
+            var lp = from m in db.loai_phim
+                     select m;
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                lp = lp.Where(s => s.ten.Contains(searchString));
+            }
+
+            if (Request.IsAjaxRequest())
+                return PartialView("_LoaiPhim", lp.ToList());
             return PartialView("_LoaiPhim", db.loai_phim.ToList());
         }
 
@@ -134,7 +153,7 @@ namespace QLBanVePhim.Controllers
                 lp.ten = form["tenLP"];
                 db.loai_phim.Add(lp);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return Redirect(Url.Action("Index", "QLSetting") + "#LP");
             }
             catch (Exception e)
             {
@@ -149,7 +168,7 @@ namespace QLBanVePhim.Controllers
             loai_phim lp = db.loai_phim.Where(item => item.id == id).FirstOrDefault();
             lp.ten = form["tenLP_edit"];
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return Redirect(Url.Action("Index", "QLSetting") + "#LP");
         }
 
         [HttpPost]
@@ -159,7 +178,7 @@ namespace QLBanVePhim.Controllers
             loai_phim lp = db.loai_phim.Where(item => item.id == id).FirstOrDefault();
             db.Entry(lp).State = System.Data.Entity.EntityState.Deleted;
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return Redirect(Url.Action("Index", "QLSetting") + "#LP");
         }
 
         #endregion Loại Phim
@@ -179,7 +198,7 @@ namespace QLBanVePhim.Controllers
             lg.ten_ghe = form["tenLG_edit"];
             lg.phu_thu = int.Parse(form["phuthuLG_edit"]);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return Redirect(Url.Action("Index", "QLSetting") + "#LG");
         }
 
         #endregion Loại Ghế
@@ -199,7 +218,7 @@ namespace QLBanVePhim.Controllers
             gv.ten = form["tenGV_edit"].ToString();
             gv.don_gia = int.Parse(form["dongiaGV_edit"]);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return Redirect(Url.Action("Index", "QLSetting") + "#GV");
         }
 
         #endregion Giá Vé

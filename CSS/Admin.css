@@ -74,3 +74,16 @@ password {
 html {
     scroll-behavior: smooth;
 }
+
+div:target {
+    animation: glow 1s 2 alternate;
+}
+@keyframes glow {
+    from {
+        box-shadow: 0 0 10px -10px #FF767688;
+    }
+
+    to {
+        box-shadow: 0 0 10px 10px #FF767688;
+    }
+}
