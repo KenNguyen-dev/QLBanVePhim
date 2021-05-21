@@ -1,0 +1,83 @@
+﻿@model IEnumerable<QLBanVePhim.Models.gia_ve>
+
+<script>
+    function toggle_edit_gv(id) {
+        $(".toggle-gv-ten-" + id).toggle();
+        $(".toggle-gv-gia-" + id).toggle();
+        $(".toggle-gv-edit-" + id).toggle();
+        $(".toggle-gv-btnEdit-" + id).toggle();
+    }
+</script>
+
+<div class="settingTitle">
+    <div class="row">
+        <div class="col-9 settingTitleCol">
+            <i class="fas fa-ticket-alt" style="margin-right:10px"></i>Giá vé
+        </div>
+        <div class="col-3">
+            <button class="btn btn-secondary settingButtonCol disable"><i class="fas fa-lock"></i> Không thể thêm</button>
+        </div>
+    </div>
+</div>
+<table class="table table-hover shadow p-3 mb-5 bg-white rounded">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ten)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.don_gia)
+            </th>
+            <th>
+            </th>
+            <th>
+            </th>
+        </tr>
+    </thead>
+    <tbody id="table-GV">
+        @if (Model.Count() == 0)
+        {
+            <tr> <td colspan="5"> Records not found </td></tr>
+        }
+        else
+        {
+            foreach (var item in Model)
+            {
+                @*<tr onclick="window.location.href = '/QLPhim/EditPhim/@Html.DisplayFor(modelItem => item.id)';">*@
+                <tr class="settingTitleCol">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.id)
+                    </td>
+                    <td class="toggle-gv-ten-@Html.DisplayFor(modelItem => item.id)">
+                        @Html.DisplayFor(modelItem => item.ten)
+                    </td>
+                    <td class="toggle-gv-gia-@Html.DisplayFor(modelItem => item.id)">
+                        @Html.DisplayFor(modelItem => item.don_gia)
+                    </td>
+                    <td class="toggle-gv-edit-@Html.DisplayFor(modelItem => item.id)">
+                    </td>
+                    @using (Html.BeginForm("Update_GV", "QLSetting", FormMethod.Post))
+                    {
+                        <td class="toggle-gv-ten-@Html.DisplayFor(modelItem => item.id)" style="display:none">
+                            <input type="hidden" value="@item.id" name="idGV_edit" required />
+                            <input type="text" value="@item.ten" name="tenGV_edit" class="form-control" required />
+                        </td>
+                        <td class="toggle-gv-gia-@Html.DisplayFor(modelItem => item.id)" style="display:none">
+                            <input type="number" value="@item.don_gia" name="dongiaGV_edit" class="form-control" required />
+                        </td>
+                        <td class="toggle-gv-edit-@Html.DisplayFor(modelItem => item.id)" style="display:none">
+                            <button type="submit" id="btnSaveEdit" class="btn btn-success settingButtonCol"><i class="fas fa-save"></i> Lưu</button>
+                        </td>
+                    }
+                    <td>
+                        <button class="btn btn-primary settingButtonCol toggle-gv-btnEdit-@Html.DisplayFor(modelItem => item.id)" onclick="toggle_edit_gv('@Html.DisplayFor(modelItem => item.id)')"><i class="fas fa-edit"></i> Sửa</button>
+                        <button class="btn btn-danger settingButtonCol toggle-gv-btnEdit-@Html.DisplayFor(modelItem => item.id)" onclick="toggle_edit_gv('@Html.DisplayFor(modelItem => item.id)')" style="display:none"><i class="fas fa-undo"></i> Hủy</button>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
