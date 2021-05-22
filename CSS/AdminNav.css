@@ -1,0 +1,52 @@
+﻿.navbar-nav > li :hover {
+}
+
+.navbar-nav > .active {
+    background-color: whitesmoke;
+    border-radius: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.navbar-nav :hover {
+    background-color: whitesmoke;
+    border-radius: 5px;
+}
+
+.navbar-nav {
+    background-color: lightgrey;
+    border-radius: 5px;
+    
+}
+nav .navbar-nav li a {
+    color: #343A40 !important;
+}
+
+.navbar-nav > li {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.nav-pills > .nav-item > a.active {
+    background: #7f8081;
+    color: white;
+}
+
+.nav-pills > .nav-item > a {
+    color: #343A40;
+}
+
+
+.welcomeDiv {
+    padding: 5px 5px 5px 15px;
+}
+.welcome {
+    color: white;
+    text-decoration: none;
+    text-align: center;
+}
+
+    .welcome > a {
+        text-decoration: none !important;
+        color: white;
+    }

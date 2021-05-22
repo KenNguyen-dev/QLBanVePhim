@@ -11,15 +11,28 @@ namespace QLBanVePhim.Controllers
     public class QLPhimController : Controller
     {
         private QLBanVePhimEntities db = new QLBanVePhimEntities();
+
+        public bool AuthCheck()
+        {
+            if (Session["Id_Admin"] == null)
+                return false;
+            else
+                return true;
+        }
+
         // GET: QLPhim
 
         public ActionResult QLPhim()
         {
+            if (!AuthCheck())
+                return RedirectToAction("Login", "QLHome");
             return View(db.phim.ToList());
         }
 
         public ActionResult EditPhim(string id)
         {
+            if (!AuthCheck())
+                return RedirectToAction("Login", "QLHome");
             var loaiphimList = db.loai_phim.ToList();
             ViewBag.LoaiPhimList = new SelectList(loaiphimList, "id", "ten");
             return View(db.phim.Where(s => s.id == id).FirstOrDefault());
@@ -28,6 +41,8 @@ namespace QLBanVePhim.Controllers
         [HttpPost]
         public ActionResult EditPhim(string id, phim phim)
         {
+            if (!AuthCheck())
+                return RedirectToAction("Login", "QLHome");
             db.Entry(phim).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("QLPhim");
@@ -36,6 +51,8 @@ namespace QLBanVePhim.Controllers
         [HttpPost]
         public ActionResult DeletePhim(string id, phim phim)
         {
+            if (!AuthCheck())
+                return RedirectToAction("Login", "QLHome");
             try
             {
                 phim = db.phim.Where(item => item.id == id).FirstOrDefault();
@@ -51,6 +68,8 @@ namespace QLBanVePhim.Controllers
 
         public ActionResult AddPhim()
         {
+            if (!AuthCheck())
+                return RedirectToAction("Login", "QLHome");
             var loaiphimList = db.loai_phim.ToList();
             ViewBag.LoaiPhimList = new SelectList(loaiphimList, "id", "ten");
             return View();
@@ -59,6 +78,8 @@ namespace QLBanVePhim.Controllers
         [HttpPost]
         public ActionResult AddPhim(phim _phim)
         {
+            if (!AuthCheck())
+                return RedirectToAction("Login", "QLHome");
             try
             {
                 _phim.da_xoa = false;

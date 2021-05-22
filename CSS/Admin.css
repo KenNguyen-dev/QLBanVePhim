@@ -52,7 +52,7 @@ password {
 .settingLeft {
     float: left;
     top: 0;
-    width:25%;
+    width: 25%;
     position: sticky;
 }
 
@@ -65,12 +65,13 @@ password {
     background-image: none !important;
 }
 
-.btnNav{
-    width:100%;
-    text-align:center;
-    margin-bottom:20px;
-    padding:15px;
+.btnNav {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 15px;
 }
+
 html {
     scroll-behavior: smooth;
 }
@@ -78,6 +79,7 @@ html {
 div:target {
     animation: glow 1s 2 alternate;
 }
+
 @keyframes glow {
     from {
         box-shadow: 0 0 10px -10px #FF767688;
@@ -86,4 +88,42 @@ div:target {
     to {
         box-shadow: 0 0 10px 10px #FF767688;
     }
+}
+
+/* Login */
+.loginBody {
+    min-height: 100%;
+    background: black;
+    background-image: url("/Content/Images/chairLogin.png"), url("/Content/Images/leftCurtain.png"), url("/Content/Images/rightCurtain.png");
+    background-size: 100% auto, auto 70%, auto 70%;
+    background-position: left bottom, left top, right top;
+    background-repeat: no-repeat,no-repeat,no-repeat;
+}
+
+.loginCurtain-Left {
+    float: left;
+    width: 11%;
+    height: auto;
+}
+
+.loginCurtain-Right {
+    float: right;
+    width: 11%;
+    height: auto;
+}
+
+.loginContainer {
+    background: #ededed;
+    min-width: 50%;
+    max-width: 70%;
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    padding: 20px;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #FF7676;
+    transform: translate(-50%, -20%);
+    animation: glow 1s infinite alternate;
 }

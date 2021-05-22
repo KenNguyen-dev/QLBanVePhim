@@ -11,221 +11,85 @@
     <link rel="stylesheet" href="~/Font/fontawesome-free-5.15.2-web/css/all.min.css" />
     <link rel="stylesheet" href="@Url.Content("~/CSS/web.css")" type="text/css" />
     <link rel="stylesheet" href="~/CSS/Admin.css" />
-    <style>
-        .navigation {
-            height: 70px;
-            background: #262626;
-        }
-
-        .brand {
-            position: absolute;
-            padding-left: 20px;
-            float: left;
-            line-height: 70px;
-            text-transform: uppercase;
-            font-size: 1.4em;
-        }
-
-            .brand a, .brand a:visited {
-                color: #fff;
-                text-decoration: none;
-            }
-
-        .nav-container {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .nav-link {
-            display: block;
-            padding: 0;
-            font-size:1rem;
-            padding-left:15px;
-            padding-right:15px;
-        }
-
-        nav {
-            float: right;
-        }
-
-            nav ul {
-                list-style: none;
-                margin: 0;
-                padding: 0;
-            }
-
-                nav ul li {
-                    float: left;
-                    position: relative;
-                }
-
-                    nav ul li a, nav ul li a:visited {
-                        display: block;
-                        padding: 0 20px;
-                        line-height: 70px;
-                        background: #262626;
-                        color: #fff;
-                        text-decoration: none;
-                    }
-
-                        nav ul li a:hover, nav ul li a:visited:hover {
-                            background: #2581dc;
-                            color: #fff;
-                        }
-
-                        nav ul li a:not(:only-child):after, nav ul li a:visited:not(:only-child):after {
-                            padding-left: 4px;
-                            content: ' ▾';
-                        }
-
-                    nav ul li ul li {
-                        min-width: 190px;
-                    }
-
-                        nav ul li ul li a {
-                            padding: 15px;
-                            line-height: 20px;
-                        }
-
-        .nav-dropdown {
-            position: absolute;
-            display: none;
-            z-index: 1;
-            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
-        }
-        /* Mobile navigation */
-        .nav-mobile {
-            display: none;
-            position: absolute;
-            top: 0;
-            right: 0;
-            background: #262626;
-            height: 70px;
-            width: 70px;
-        }
-
-        #nav-toggle {
-            position: absolute;
-            left: 18px;
-            top: 22px;
-            cursor: pointer;
-            padding: 10px 35px 16px 0px;
-        }
-
-            #nav-toggle span, #nav-toggle span:before, #nav-toggle span:after {
-                cursor: pointer;
-                border-radius: 1px;
-                height: 5px;
-                width: 35px;
-                background: #fff;
-                position: absolute;
-                display: block;
-                content: '';
-                transition: all 300ms ease-in-out;
-            }
-
-                #nav-toggle span:before {
-                    top: -10px;
-                }
-
-                #nav-toggle span:after {
-                    bottom: -10px;
-                }
-
-            #nav-toggle.active span {
-                background-color: transparent;
-            }
-
-                #nav-toggle.active span:before, #nav-toggle.active span:after {
-                    top: 0;
-                }
-
-                #nav-toggle.active span:before {
-                    transform: rotate(45deg);
-                }
-
-                #nav-toggle.active span:after {
-                    transform: rotate(-45deg);
-                }
-
-        article {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 10px;
-        }
-
-         @*@media only screen and (max-width: 798px) {
-	 .nav-mobile {
-		 display: block;
-	}
-	 nav {
-		 width: 100%;
-		 padding: 70px 0 15px;
-	}
-	 nav ul {
-		 display: none;
-	}
-	 nav ul li {
-		 float: none;
-	}
-	 nav ul li a {
-		 padding: 15px;
-		 line-height: 20px;
-	}
-	 nav ul li ul li a {
-		 padding-left: 30px;
-	}
-	 .nav-dropdown {
-		 position: static;
-	}
-}
- @media screen and (min-width: 799px) {
-	 .nav-list {
-		 display: block !important;
-	}
-}*@
-    </style>
+    <link rel="stylesheet" href="~/CSS/AdminNav.css" />
 </head>
 <body>
-
-    <section class="navigation">
-        <div class="nav-container">
-            <div class="brand">
-                <a href="/QLHome">Logo</a>
-            </div>
-            <nav>
-                <div class="nav-mobile"><a id="nav-toggle" href="#!"><span></span></a></div>
-                <ul class="nav-list">
-                    <li>
-                        <a class="nav-link" href="/QLHome/QLNV"><i class="fas fa-user"></i> Nhân viên</a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="/QLPhim/QLPhim"><i class="fas fa-film"></i> Phim</a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="/QLHome/QLSuatChieu"><i class="far fa-clock"></i> Suất chiếu</a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="/QLDoAn/QLDoAn"><i class="fas fa-utensils"></i> Đồ ăn</a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="#"><i class="fas fa-plus"></i> Combo</a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="/QLHome/QLPhongChieu"><i class="fas fa-home"></i> Phòng chiếu </a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="/QLHome/QLKH"><i class="fas fa-users"></i> Khách hàng</a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="/QLSetting"><i class="fas fa-cog"></i> Settings</a>
-                    </li>
-                </ul>
-            </nav>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item @Html.IsActive("QLNV", "QLHome") @Html.IsActive("AddNV", "QLHome") @Html.IsActive("EditNV", "QLHome")">
+                    <a class="nav-link" href="/QLHome/QLNV"><i class="fas fa-user"></i> Nhân viên</a>
+                </li>
+                <li class="nav-item @Html.IsActive("Index", "QLSetting")">
+                    <a class="nav-link" href="/QLSetting"><i class="fas fa-cog"></i> Settings</a>
+                </li>
+                <li class="nav-item @Html.IsActive("QLPhim", "QLPhim") @Html.IsActive("AddPhim", "QLHome") @Html.IsActive("EditPhim", "QLHome")">
+                    <a class="nav-link" href="/QLPhim/QLPhim"><i class="fas fa-film"></i> Phim</a>
+                </li>
+                <li class="nav-item @Html.IsActive("QLSuatChieu", "QLHome") @Html.IsActive("EditSuatChieu", "QLHome") @Html.IsActive("AddSuatChieu", "QLHome")">
+                    <a class="nav-link" href="/QLHome/QLSuatChieu"><i class="far fa-clock"></i> Suất chiếu</a>
+                </li>
+                <li class="nav-item @Html.IsActive("QLPhongChieu", "QLHome") @Html.IsActive("AddPhongChieu", "QLHome") @Html.IsActive("EditPhongChieu", "QLHome")">
+                    <a class="nav-link" href="/QLHome/QLPhongChieu"><i class="fas fa-door-closed"></i> Phòng chiếu </a>
+                </li>
+                <li class="nav-item @Html.IsActive("QLKH", "QLHome") @Html.IsActive("AddKH", "QLHome") @Html.IsActive("EditKH", "QLHome")">
+                    <a class="nav-link" href="/QLHome/QLKH"><i class="fas fa-users"></i> Khách hàng</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="fas fa-plus"></i> Combo</a>
+                </li>
+                <li class="nav-item  @Html.IsActive("QLDoAn", "QLDoAn")">
+                    <a class="nav-link" href="/QLDoAn/QLDoAn"><i class="fas fa-utensils"></i> Đồ ăn</a>
+                </li>
+            </ul>
         </div>
-    </section>
+    </nav>
+    <div class="bg-dark welcomeDiv">
+        @if (Session["UserName_Admin"] != null)
+        {
+            <span class="welcome btn btn-dark">
+                <a href="/QLHome" id="PageTop">
+                    <i class="fas fa-home"></i>
+                    Xin chào, @Session["UserName_Admin"]
+                </a>
+            </span>
+            <span class="welcome" style="float:right;">
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#LogOutConfirm">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Đăng Xuất
+                </button>
+                
+            </span>
+        }
+    </div>
     <div class="bodyContent">
         @RenderBody()
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="LogOutConfirm" tabindex="-1" role="dialog" aria-labelledby="LogOutConfirm" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Xác nhận</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Bạn có muốn đăng xuất?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Không</button>
+                    <a class="btn btn-danger" href="/QLHome/LogOut" id="PageTop">
+                        Đăng Xuất
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>
