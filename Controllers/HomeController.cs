@@ -82,7 +82,7 @@ namespace QLBanVePhim.Controllers
                 var suatChieu = database.suat_chieu.ToList().Where(s => s.phim_id == id);
                 ViewBag.SuatChieu = suatChieu;
 
-                return View(database.phim.Where(s => s.id == id).FirstOrDefault());
+                return View();
             }
             return RedirectToAction("Login");
 
@@ -169,6 +169,12 @@ namespace QLBanVePhim.Controllers
         }
         public ActionResult GetRoom(int id,string scId)
         {
+            var veBan = database.ve_ban.Where(v => v.suat_chieu_id == scId).OrderBy(g=>g.ghe_id).ToList();
+            List<string> dsGheDaChon = new List<string>();
+            foreach (var ghe in veBan)
+            {
+                dsGheDaChon.Add(ghe.ghe_id);
+            }
             var phongChieu = database.phong_chieu.Where(p => p.id == id).FirstOrDefault();
             var dsGhe = database.ghe_ngoi.Where(g => g.phong_chieu.id == phongChieu.id).OrderBy(s=>s.vi_tri_day).ToList();
             var suatChieu = database.suat_chieu.Where(s => s.phong_chieu_id == id).ToList();
@@ -177,7 +183,7 @@ namespace QLBanVePhim.Controllers
             ViewBag.DsGhe = dsGhe;
             ViewBag.SuatChieu = suatChieu;
             ViewBag.SuatChieuChon = scId;
-
+            ViewBag.GheDaChon = dsGheDaChon;
 
             return View("OrderTicket");
 
@@ -246,6 +252,12 @@ namespace QLBanVePhim.Controllers
             {
                 return Content("Error Delete!");
             }
+        }
+
+        public ActionResult LogOut()
+        {
+            Session.Abandon(); // it will clear the session at the end of request
+            return RedirectToAction("Index", "Home");
         }
 
     }

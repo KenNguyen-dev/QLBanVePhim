@@ -28,21 +28,29 @@
         <section id="navBarPhu" style="margin-bottom:1px;box-shadow:2px 2px #808080;">
             <nav class="navbar navbardark bg-white">
                 <nav class="navbar-brand">
-                    <div id="dangKy">
-                        <span class="fas fa-gifts"><a class="link" style="float:right;margin-left:15px;color:black" href=@Url.Action("Register","Home")>Đăng ký</a></span>
-                    </div>
-                    <div id="dangNhap">
-                        <span class="fas fa-bell"><a class="link" style="float:right;margin-left:15px;color:black" href=@Url.Action("Login","Home")>Đăng nhập</a></span>
-                    </div>
-                        @if (Session["UserName"] != null)
-                        {
-                            <div id="nguoiDung">
-                                <span class="fas fa-user"><a class="link" style="float:right;margin-left:15px;color:black" href=@Url.Action("ThanhVien","Home")>Welcome @Session["UserName"].ToString()</a></span>
-                            </div>
-                            <div id="danhSach">
-                                <span class="fas fa-ticket-alt"><a class="link" style="float:right;margin-left:15px;color:black" href=@Url.Action("TicketList","Home")>Danh sách vé</a></span>
-                            </div>
-                        }
+
+                    @if (Session["UserName"] != null)
+                    {
+                        <div class="user">
+                            <span class="fas fa-user"><a class="link" style="float:right;margin-left:15px;color:black" href=@Url.Action("ThanhVien","Home")>Welcome @Session["UserName"].ToString()</a></span>
+                        </div>
+                        <div class="user">
+                            <span class="fas fa-ticket-alt"><a class="link" style="float:right;margin-left:15px;color:black" href=@Url.Action("TicketList","Home")>Danh sách vé</a></span>
+                        </div>
+                        <div class="user">
+                            <span class="fas fa-sign-out-alt"><a class="link" style="float:right;margin-left:15px;color:black" href=@Url.Action("LogOut","Home")>Đăng Xuất</a></span>
+                        </div>
+                    }
+                    else
+                    {
+                        <div id="dangKy">
+                            <span class="fas fa-gifts"><a class="link" style="float:right;margin-left:15px;color:black" href=@Url.Action("Register","Home")>Đăng ký</a></span>
+                        </div>
+                        <div id="dangNhap">
+                            <span class="fas fa-bell"><a class="link" style="float:right;margin-left:15px;color:black" href=@Url.Action("Login","Home")>Đăng nhập</a></span>
+                        </div>
+
+                    }
                 </nav>
             </nav>
         </section>

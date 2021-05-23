@@ -1,6 +1,4 @@
-﻿@model QLBanVePhim.Models.phim
-
-@{
+﻿@{
     ViewBag.Title = "OrderTicket";
     Layout = "~/Views/Shared/SharedHomepage.cshtml";
 }
@@ -124,7 +122,7 @@
                                         <td style="padding:5px">
                                             @if (ViewBag.DsGhe[i].loai_ghe_id == "NORMAL")
                                             {
-                                                if (ViewBag.DsGhe[i].da_chon == true)
+                                                if (ViewBag.GheDaChon.Contains((string)ViewBag.DsGhe[i].id))
                                                 {
                                                     <span class="fas fa-couch disabled" id=@ViewBag.DsGhe[i].id style="color:gray" onclick="chooseChair(this.id)" />
                                                 }
@@ -136,9 +134,9 @@
                                             }
                                             else
                                             {
-                                                if (ViewBag.DsGhe[i].da_chon == true)
+                                                if (ViewBag.GheDaChon.Contains((string)ViewBag.DsGhe[i].id))
                                                 {
-                                                    <span class="fas fa-couch disabled" id=@ViewBag.DsGhe[i].id style="color:gray" onclick="chooseChair(this.id)" />
+                                                    <span class="fas fa-couch disabled" id=@ViewBag.DsGhe[i].id style="color:gray" />
                                                 }
                                                 else
                                                 {
@@ -156,8 +154,6 @@
                         }
                     </table>
                 }
-
-
                 <h4>Chú thích</h4>
                 <span class="fas fa-couch" style="color:gray" /> : Đã Đặt
                 <span class="fas fa-couch" style="color:black"/> : Ghế thường
