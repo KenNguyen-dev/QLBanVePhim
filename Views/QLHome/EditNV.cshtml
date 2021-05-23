@@ -91,7 +91,7 @@
                             <h4 class="card-title" id="previews_ten">@Html.DisplayFor(model => model.ho_ten)</h4>
                             <p class="card-subtitle text-muted" id="previews_vaitro">@Html.DisplayFor(model => model.vai_tro.ten)</p><br />
                         </center>
-                        <p class="card-text" id="previews_gioitinh">Giới tính: @Html.DisplayFor(model => model.gioi_tinh)</p>
+                        <p class="card-text" id="previews_gioitinh">Giới tính: @((bool)(bool.Parse(Html.DisplayTextFor(model => model.gioi_tinh).ToString())) ? "Nam":"Nữ")</p>
                         <p class="card-text" id="previews_email">Email: @Html.DisplayFor(model => model.email)</p>
                         <p class="card-text" id="previews_sdt">SĐT: @Html.DisplayFor(model => model.so_dien_thoai)</p>
                         <p class="card-text" id="previews_cmnd">CMND: @Html.DisplayFor(model => model.so_cmnd)</p>

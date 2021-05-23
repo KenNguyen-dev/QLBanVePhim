@@ -200,6 +200,7 @@ namespace QLBanVePhim.Controllers
 
         public ActionResult TicketList()
         {
+            QuanLyClass.TicketCheck();
             List<List<ve_ban>> dsVe = new List<List<ve_ban>>();
             var khach_hang_id = Convert.ToInt32(Session["Id"]);
 
@@ -229,8 +230,8 @@ namespace QLBanVePhim.Controllers
                 ghe = database.ghe_ngoi.Where(g => g.id == veBan.ghe_id).FirstOrDefault();
 
                 ghe.da_chon = false;
-                database.ve_ban.Remove(veBan);
-                database.ve_dat_chi_tiet.Remove(vdct);
+                veBan.trang_thai = "Cancelled";
+                //database.ve_dat_chi_tiet.Remove(vdct);
                 database.SaveChanges();
                 return RedirectToAction("TicketList");
             }

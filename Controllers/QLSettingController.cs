@@ -11,12 +11,21 @@ namespace QLBanVePhim.Controllers
     {
         private QLBanVePhimEntities db = new QLBanVePhimEntities();
 
-        public bool AuthCheck()
+        public bool AuthCheck(string perm)
         {
+            bool check = true;
+
             if (Session["Id_Admin"] == null)
-                return false;
-            else
-                return true;
+                return check = false;
+
+            if (!String.IsNullOrEmpty(perm))
+            {
+                if (!Session["Id_VT_Admin"].Equals(perm))
+                    check = false;
+                if (Session["Id_VT_Admin"].Equals("admin"))
+                    check = true;
+            }
+            return check;
         }
 
         private void InitDataCheck()
@@ -72,8 +81,8 @@ namespace QLBanVePhim.Controllers
         // GET: QLSetting
         public ActionResult Index()
         {
-            if (!AuthCheck())
-                return RedirectToAction("Login", "QLHome");
+            if (!AuthCheck("admin"))
+                return RedirectToAction("Index", "QLHome");
             InitDataCheck();
             return View();
         }
@@ -98,8 +107,8 @@ namespace QLBanVePhim.Controllers
         [HttpPost]
         public ActionResult Add_DDP(FormCollection form)
         {
-            if (!AuthCheck())
-                return RedirectToAction("Login", "QLHome");
+            if (!AuthCheck("admin"))
+                return RedirectToAction("Index", "QLHome");
             try
             {
                 dinh_dang_phim ddp = new dinh_dang_phim();
@@ -119,8 +128,8 @@ namespace QLBanVePhim.Controllers
         [HttpPost]
         public ActionResult Update_DDP(FormCollection form)
         {
-            if (!AuthCheck())
-                return RedirectToAction("Login", "QLHome");
+            if (!AuthCheck("admin"))
+                return RedirectToAction("Index", "QLHome");
             string id = form["idDDP_edit"].ToString();
             dinh_dang_phim ddp = db.dinh_dang_phim.Where(item => item.id == id).FirstOrDefault();
             ddp.phu_thu = int.Parse(form["phuthuDDP_edit"]);
@@ -132,8 +141,8 @@ namespace QLBanVePhim.Controllers
         [HttpPost]
         public ActionResult Delete_DDP(FormCollection form)
         {
-            if (!AuthCheck())
-                return RedirectToAction("Login", "QLHome");
+            if (!AuthCheck("admin"))
+                return RedirectToAction("Index", "QLHome");
             string id = form["idDDP_delete"].ToString();
             dinh_dang_phim ddp = db.dinh_dang_phim.Where(item => item.id == id).FirstOrDefault();
             db.Entry(ddp).State = System.Data.Entity.EntityState.Deleted;
@@ -162,8 +171,8 @@ namespace QLBanVePhim.Controllers
         [HttpPost]
         public ActionResult Add_LP(FormCollection form)
         {
-            if (!AuthCheck())
-                return RedirectToAction("Login", "QLHome");
+            if (!AuthCheck("admin"))
+                return RedirectToAction("Index", "QLHome");
             try
             {
                 loai_phim lp = new loai_phim();
@@ -182,8 +191,8 @@ namespace QLBanVePhim.Controllers
         [HttpPost]
         public ActionResult Update_LP(FormCollection form)
         {
-            if (!AuthCheck())
-                return RedirectToAction("Login", "QLHome");
+            if (!AuthCheck("admin"))
+                return RedirectToAction("Index", "QLHome");
             string id = form["idLP_edit"].ToString();
             loai_phim lp = db.loai_phim.Where(item => item.id == id).FirstOrDefault();
             lp.ten = form["tenLP_edit"];
@@ -194,8 +203,8 @@ namespace QLBanVePhim.Controllers
         [HttpPost]
         public ActionResult Delete_LP(FormCollection form)
         {
-            if (!AuthCheck())
-                return RedirectToAction("Login", "QLHome");
+            if (!AuthCheck("admin"))
+                return RedirectToAction("Index", "QLHome");
             string id = form["idLP_delete"].ToString();
             loai_phim lp = db.loai_phim.Where(item => item.id == id).FirstOrDefault();
             db.Entry(lp).State = System.Data.Entity.EntityState.Deleted;
@@ -215,8 +224,8 @@ namespace QLBanVePhim.Controllers
         [HttpPost]
         public ActionResult Update_LG(FormCollection form)
         {
-            if (!AuthCheck())
-                return RedirectToAction("Login", "QLHome");
+            if (!AuthCheck("admin"))
+                return RedirectToAction("Index", "QLHome");
             string id = form["idLG_edit"].ToString();
             loai_ghe lg = db.loai_ghe.Where(item => item.id == id).FirstOrDefault();
             lg.ten_ghe = form["tenLG_edit"];
@@ -237,8 +246,8 @@ namespace QLBanVePhim.Controllers
         [HttpPost]
         public ActionResult Update_GV(FormCollection form)
         {
-            if (!AuthCheck())
-                return RedirectToAction("Login", "QLHome");
+            if (!AuthCheck("admin"))
+                return RedirectToAction("Index", "QLHome");
             string id = form["idGV_edit"].ToString();
             gia_ve gv = db.gia_ve.Where(item => item.id == id).FirstOrDefault();
             gv.ten = form["tenGV_edit"].ToString();

@@ -6,44 +6,86 @@ using System.Web.Mvc;
 
 namespace QLBanVePhim.Controllers
 {
+    public static class QuanLyClass
+    {
+        public static void TicketCheck()
+        {
+            QLBanVePhimEntities db = new QLBanVePhimEntities();
+            var dsve = db.ve_ban.Where(s => s.trang_thai == "Book").ToList();
+            bool flag = false;
+            foreach (ve_ban ve in dsve)
+            {
+                DateTime ngChieu = (DateTime)ve.suat_chieu.ngay_chieu;
+                TimeSpan gioChieu = (TimeSpan)ve.suat_chieu.gio_bat_dau;
+                if (ngChieu.Date < DateTime.Today)
+                {
+                    flag = true;
+                }
+                else if (ngChieu.Date == DateTime.Today)
+                {
+                    if (DateTime.Now.TimeOfDay >= gioChieu)
+                    {
+                        flag = true;
+                    }
+                }
+
+                if (flag)
+                {
+                    ve.ghe_ngoi.da_chon = false;
+                    ve.trang_thai = "Cancelled";
+                }
+            }
+            db.SaveChanges();
+        }
+    }
+
     public class QLHomeController : Controller
     {
         private QLBanVePhimEntities db = new QLBanVePhimEntities();
 
-        public bool AuthCheck()
+        public bool AuthCheck(string perm)
         {
+            bool check = true;
+
             if (Session["Id_Admin"] == null)
-                return false;
-            else
-                return true;
+                return check = false;
+
+            if (!String.IsNullOrEmpty(perm))
+            {
+                if (!Session["Id_VT_Admin"].Equals(perm))
+                    check = false;
+                if (Session["Id_VT_Admin"].Equals("admin"))
+                    check = true;
+            }
+            return check;
         }
 
         // GET: QLHome
         public ActionResult Index()
         {
-            if (!AuthCheck())
+            if (!AuthCheck(null))
                 return RedirectToAction("Login");
             return View();
         }
 
         public ActionResult QLKH()
         {
-            if (!AuthCheck())
-                return RedirectToAction("Login");
+            if (!AuthCheck("admin"))
+                return RedirectToAction("Index");
             return View(db.khach_hang.ToList());
         }
 
         public ActionResult DetailsKH(int id)
         {
-            if (!AuthCheck())
-                return RedirectToAction("Login");
+            if (!AuthCheck("admin"))
+                return RedirectToAction("Index");
             return View(db.khach_hang.Where(s => s.id == id).FirstOrDefault());
         }
 
         public ActionResult AddKH()
         {
-            if (!AuthCheck())
-                return RedirectToAction("Login");
+            if (!AuthCheck("admin"))
+                return RedirectToAction("Index");
             return View();
         }
 
@@ -51,15 +93,15 @@ namespace QLBanVePhim.Controllers
 
         public ActionResult QLNV()
         {
-            if (!AuthCheck())
-                return RedirectToAction("Login");
+            if (!AuthCheck("admin"))
+                return RedirectToAction("Index");
             return View(db.nguoi_dung.ToList());
         }
 
         public ActionResult AddNV()
         {
-            if (!AuthCheck())
-                return RedirectToAction("Login");
+            if (!AuthCheck("admin"))
+                return RedirectToAction("Index");
             var vaitrolist = db.vai_tro.ToList();
             ViewBag.VaiTroList = new SelectList(vaitrolist, "id", "ten");
             return View();
@@ -68,8 +110,8 @@ namespace QLBanVePhim.Controllers
         [HttpPost]
         public ActionResult AddNV(nguoi_dung _ngdung)
         {
-            if (!AuthCheck())
-                return RedirectToAction("Login");
+            if (!AuthCheck("admin"))
+                return RedirectToAction("Index");
             try
             {
                 _ngdung.dang_lam = true;
@@ -86,8 +128,8 @@ namespace QLBanVePhim.Controllers
 
         public ActionResult EditNV(int id)
         {
-            if (!AuthCheck())
-                return RedirectToAction("Login");
+            if (!AuthCheck("admin"))
+                return RedirectToAction("Index");
             var vaitrolist = db.vai_tro.ToList();
             ViewBag.VaiTroList = new SelectList(vaitrolist, "id", "ten");
             return View(db.nguoi_dung.Where(s => s.id == id).FirstOrDefault());
@@ -96,8 +138,8 @@ namespace QLBanVePhim.Controllers
         [HttpPost]
         public ActionResult EditNV(int id, nguoi_dung _ngdung)
         {
-            if (!AuthCheck())
-                return RedirectToAction("Login");
+            if (!AuthCheck("admin"))
+                return RedirectToAction("Index");
             db.Entry(_ngdung).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("QLNV");
@@ -106,8 +148,8 @@ namespace QLBanVePhim.Controllers
         [HttpPost]
         public ActionResult DeleteNV(int id, nguoi_dung _ngdung)
         {
-            if (!AuthCheck())
-                return RedirectToAction("Login");
+            if (!AuthCheck("admin"))
+                return RedirectToAction("Index");
             try
             {
                 _ngdung = db.nguoi_dung.Where(item => item.id == id).FirstOrDefault();
@@ -127,8 +169,8 @@ namespace QLBanVePhim.Controllers
 
         public ActionResult QLSuatChieu()
         {
-            if (!AuthCheck())
-                return RedirectToAction("Login");
+            if (!AuthCheck("admin"))
+                return RedirectToAction("Index");
             var ddphimList = db.dinh_dang_phim.ToList();
             ViewBag.DDPhimList = new SelectList(ddphimList, "id", "ten");
             return View(db.suat_chieu.ToList());
@@ -136,8 +178,8 @@ namespace QLBanVePhim.Controllers
 
         public ActionResult AddSuatChieu()
         {
-            if (!AuthCheck())
-                return RedirectToAction("Login");
+            if (!AuthCheck("admin"))
+                return RedirectToAction("Index");
             var phimList = db.phim.ToList();
             ViewBag.PhimList = new SelectList(phimList, "id", "ten");
             ViewBag.PhimImgList = new SelectList(phimList, "id", "hinh_anh");
@@ -151,8 +193,8 @@ namespace QLBanVePhim.Controllers
         [HttpPost]
         public ActionResult AddSuatChieu(suat_chieu _suatchieu)
         {
-            if (!AuthCheck())
-                return RedirectToAction("Login");
+            if (!AuthCheck("admin"))
+                return RedirectToAction("Index");
             try
             {
                 phim _phim = new phim();
@@ -172,8 +214,8 @@ namespace QLBanVePhim.Controllers
 
         public ActionResult EditSuatChieu(string id)
         {
-            if (!AuthCheck())
-                return RedirectToAction("Login");
+            if (!AuthCheck("admin"))
+                return RedirectToAction("Index");
             var phimList = db.phim.ToList();
             ViewBag.PhimList = new SelectList(phimList, "id", "ten");
             ViewBag.PhimImgList = new SelectList(phimList, "id", "hinh_anh");
@@ -187,8 +229,8 @@ namespace QLBanVePhim.Controllers
         [HttpPost]
         public ActionResult EditSuatChieu(string id, suat_chieu _suatchieu)
         {
-            if (!AuthCheck())
-                return RedirectToAction("Login");
+            if (!AuthCheck("admin"))
+                return RedirectToAction("Index");
             phim _phim = new phim();
             _phim = db.phim.Where(s => s.id == _suatchieu.phim_id).FirstOrDefault();
             TimeSpan time = (TimeSpan)_suatchieu.gio_bat_dau;
@@ -202,8 +244,8 @@ namespace QLBanVePhim.Controllers
         [HttpPost]
         public ActionResult DeleteSuatChieu(string id, suat_chieu _suatchieu)
         {
-            if (!AuthCheck())
-                return RedirectToAction("Login");
+            if (!AuthCheck("admin"))
+                return RedirectToAction("Index");
             try
             {
                 _suatchieu = db.suat_chieu.Where(item => item.id == id).FirstOrDefault();
@@ -223,23 +265,23 @@ namespace QLBanVePhim.Controllers
 
         public ActionResult QLPhongChieu()
         {
-            if (!AuthCheck())
-                return RedirectToAction("Login");
+            if (!AuthCheck("admin"))
+                return RedirectToAction("Index");
             return View(db.phong_chieu.ToList());
         }
 
         public ActionResult AddPhongChieu()
         {
-            if (!AuthCheck())
-                return RedirectToAction("Login");
+            if (!AuthCheck("admin"))
+                return RedirectToAction("Index");
             return View();
         }
 
         [HttpPost]
         public ActionResult AddPhongChieu(phong_chieu _phong)
         {
-            if (!AuthCheck())
-                return RedirectToAction("Login");
+            if (!AuthCheck("admin"))
+                return RedirectToAction("Index");
             try
             {
                 _phong.so_luong_cot = 10;
@@ -286,16 +328,16 @@ namespace QLBanVePhim.Controllers
 
         public ActionResult EditPhongChieu(int id)
         {
-            if (!AuthCheck())
-                return RedirectToAction("Login");
+            if (!AuthCheck("admin"))
+                return RedirectToAction("Index");
             return View(db.phong_chieu.Where(s => s.id == id).FirstOrDefault());
         }
 
         [HttpPost]
         public ActionResult DeletePhongChieu(int id)
         {
-            if (!AuthCheck())
-                return RedirectToAction("Login");
+            if (!AuthCheck("admin"))
+                return RedirectToAction("Index");
             try
             {
                 phong_chieu phong_Chieu = db.phong_chieu.Where(item => item.id == id).FirstOrDefault();
@@ -320,8 +362,9 @@ namespace QLBanVePhim.Controllers
 
         public ActionResult QLVe()
         {
-            if (!AuthCheck())
-                return RedirectToAction("Login");
+            QuanLyClass.TicketCheck();
+            if (!AuthCheck("nhanvien"))
+                return RedirectToAction("Index");
             ViewBag.TrangThaiList = new SelectList(new List<SelectListItem>{
                  new SelectListItem { Selected = false, Text = "Book", Value = "Book"},
                  new SelectListItem { Selected = false, Text = "Sold", Value = "Sold"},
@@ -330,12 +373,48 @@ namespace QLBanVePhim.Controllers
             return View(db.ve_ban.ToList());
         }
 
+        public ActionResult DetailsVe(string id)
+        {
+            QuanLyClass.TicketCheck();
+            if (!AuthCheck("nhanvien"))
+                return RedirectToAction("Index");
+            return View(db.ve_ban.Where(s => s.id == id).FirstOrDefault());
+        }
+
+        [HttpPost]
+        public ActionResult SoldVe(string id)
+        {
+            if (!AuthCheck("nhanvien"))
+                return RedirectToAction("Index");
+            ve_ban ve = db.ve_ban.Where(s => s.id == id).FirstOrDefault();
+            ve.nhan_vien_id = Convert.ToInt32(Session["ID_Admin"]);
+            ve.ngay_ban = DateTime.Now;
+            ve.trang_thai = "Sold";
+            ve.ghe_ngoi.da_chon = false;
+            db.SaveChanges();
+            return RedirectToAction("QLVe");
+        }
+
+        [HttpPost]
+        public ActionResult CancelVe(string id)
+        {
+            if (!AuthCheck("nhanvien"))
+                return RedirectToAction("Index");
+            ve_ban ve = db.ve_ban.Where(s => s.id == id).FirstOrDefault();
+            ve.nhan_vien_id = Convert.ToInt32(Session["ID_Admin"]);
+            ve.ngay_ban = DateTime.Now;
+            ve.trang_thai = "Cancelled";
+            ve.ghe_ngoi.da_chon = false;
+            db.SaveChanges();
+            return RedirectToAction("QLVe");
+        }
+
         #endregion Vé
 
         public ActionResult QLDoAn()
         {
-            if (!AuthCheck())
-                return RedirectToAction("Login");
+            if (!AuthCheck(null))
+                return RedirectToAction("Index");
             return View();
         }
 
@@ -407,8 +486,9 @@ namespace QLBanVePhim.Controllers
             {
                 Session["Username_Admin"] = null;
                 Session["Id_Admin"] = null;
+                Session["Id_VT_Admin"] = null;
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("Login");
         }
 
         [HttpPost]
@@ -419,6 +499,7 @@ namespace QLBanVePhim.Controllers
             {
                 Session["Username_Admin"] = currentUser.ho_ten.ToString();
                 Session["Id_Admin"] = currentUser.id.ToString();
+                Session["Id_VT_Admin"] = currentUser.vai_tro_id.ToString();
                 return RedirectToAction("Index");
             }
             return RedirectToAction("Login");

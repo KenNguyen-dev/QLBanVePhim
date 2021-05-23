@@ -44,7 +44,7 @@
                                 @Html.DisplayNameFor(model => model.suat_chieu.id)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.gia_ve.ten)
+                                @Html.DisplayNameFor(model => model.tong__tien)
                             </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.ghe_ngoi.id)
@@ -63,7 +63,7 @@
                         {
                             foreach (var item in Model)
                             {
-                                <tr onclick="window.location.href = '/QLPhim/EditPhim/@Html.DisplayFor(modelItem => item.id)';">
+                                <tr onclick="window.location.href = '/QLHome/DetailsVe/@Html.DisplayFor(modelItem => item.id)';">
                                     <td>
                                         @Html.DisplayFor(modelItem => item.id)
                                     </td>
@@ -71,7 +71,7 @@
                                         @Html.DisplayFor(modelItem => item.suat_chieu.id)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.gia_ve.ten)
+                                        @Html.DisplayFor(modelItem => item.tong__tien)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.ghe_ngoi.id)

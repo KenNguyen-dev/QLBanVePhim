@@ -20,33 +20,37 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item @Html.IsActive("QLNV", "QLHome") @Html.IsActive("AddNV", "QLHome") @Html.IsActive("EditNV", "QLHome")">
-                    <a class="nav-link" href="/QLHome/QLNV"><i class="fas fa-user"></i> Nhân viên</a>
-                </li>
-                <li class="nav-item @Html.IsActive("QLPhim", "QLPhim") @Html.IsActive("AddPhim", "QLPhim") @Html.IsActive("EditPhim", "QLPhim")">
-                    <a class="nav-link" href="/QLPhim/QLPhim"><i class="fas fa-film"></i> Phim</a>
-                </li>
-                <li class="nav-item @Html.IsActive("QLSuatChieu", "QLHome") @Html.IsActive("EditSuatChieu", "QLHome") @Html.IsActive("AddSuatChieu", "QLHome")">
-                    <a class="nav-link" href="/QLHome/QLSuatChieu"><i class="far fa-clock"></i> Suất chiếu</a>
-                </li>
-                <li class="nav-item @Html.IsActive("QLPhongChieu", "QLHome") @Html.IsActive("AddPhongChieu", "QLHome") @Html.IsActive("EditPhongChieu", "QLHome")">
-                    <a class="nav-link" href="/QLHome/QLPhongChieu"><i class="fas fa-door-closed"></i> Phòng chiếu </a>
-                </li>
-                <li class="nav-item @Html.IsActive("QLKH", "QLHome") @Html.IsActive("AddKH", "QLHome") @Html.IsActive("EditKH", "QLHome")">
-                    <a class="nav-link" href="/QLHome/QLKH"><i class="fas fa-users"></i> Khách hàng</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fas fa-plus"></i> Combo</a>
-                </li>
-                <li class="nav-item  @Html.IsActive("QLDoAn", "QLDoAn")">
-                    <a class="nav-link" href="/QLDoAn/QLDoAn"><i class="fas fa-utensils"></i> Đồ ăn</a>
-                </li>
                 <li class="nav-item  @Html.IsActive("QLVe", "QLHome")">
                     <a class="nav-link" href="/QLHome/QLVe"><i class="fas fa-ticket-alt"></i> Vé</a>
                 </li>
-                <li class="nav-item @Html.IsActive("Index", "QLSetting")">
-                    <a class="nav-link" href="/QLSetting"><i class="fas fa-cog"></i> Settings</a>
-                </li>
+                @if (Session["Id_VT_Admin"].Equals("admin"))
+                {
+                    <li class="nav-item @Html.IsActive("QLNV", "QLHome") @Html.IsActive("AddNV", "QLHome") @Html.IsActive("EditNV", "QLHome")">
+                        <a class="nav-link" href="/QLHome/QLNV"><i class="fas fa-user"></i> Nhân viên</a>
+                    </li>
+                    <li class="nav-item @Html.IsActive("QLPhim", "QLPhim") @Html.IsActive("AddPhim", "QLPhim") @Html.IsActive("EditPhim", "QLPhim")">
+                        <a class="nav-link" href="/QLPhim/QLPhim"><i class="fas fa-film"></i> Phim</a>
+                    </li>
+                    <li class="nav-item @Html.IsActive("QLSuatChieu", "QLHome") @Html.IsActive("EditSuatChieu", "QLHome") @Html.IsActive("AddSuatChieu", "QLHome")">
+                        <a class="nav-link" href="/QLHome/QLSuatChieu"><i class="far fa-clock"></i> Suất chiếu</a>
+                    </li>
+                    <li class="nav-item @Html.IsActive("QLPhongChieu", "QLHome") @Html.IsActive("AddPhongChieu", "QLHome") @Html.IsActive("EditPhongChieu", "QLHome")">
+                        <a class="nav-link" href="/QLHome/QLPhongChieu"><i class="fas fa-door-closed"></i> Phòng chiếu </a>
+                    </li>
+                    <li class="nav-item @Html.IsActive("QLKH", "QLHome") @Html.IsActive("AddKH", "QLHome") @Html.IsActive("EditKH", "QLHome")">
+                        <a class="nav-link" href="/QLHome/QLKH"><i class="fas fa-users"></i> Khách hàng</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-plus"></i> Combo</a>
+                    </li>
+                    <li class="nav-item  @Html.IsActive("QLDoAn", "QLDoAn")">
+                        <a class="nav-link" href="/QLDoAn/QLDoAn"><i class="fas fa-utensils"></i> Đồ ăn</a>
+                    </li>
+
+                    <li class="nav-item @Html.IsActive("Index", "QLSetting")">
+                        <a class="nav-link" href="/QLSetting"><i class="fas fa-cog"></i> Settings</a>
+                    </li>
+                }
             </ul>
         </div>
     </nav>
@@ -64,7 +68,6 @@
                     <i class="fas fa-sign-out-alt"></i>
                     Đăng Xuất
                 </button>
-                
             </span>
         }
     </div>

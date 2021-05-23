@@ -266,6 +266,7 @@
     <Content Include="CSS\AdminNav.css" />
     <Content Include="CSS\css.css" />
     <Content Include="CSS\Homepage.css" />
+    <Content Include="CSS\Success.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Font\fontawesome-free-5.15.2-web\attribution.js" />
@@ -2056,6 +2057,7 @@
     <Content Include="Views\Home\LichChieuPhimNgay.cshtml" />
     <Content Include="Views\Shared\Login.cshtml" />
     <Content Include="Views\Shared\ViewQLHome.cshtml" />
+    <Content Include="Views\QLHome\DetailsVe.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

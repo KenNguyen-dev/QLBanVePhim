@@ -12,28 +12,37 @@ namespace QLBanVePhim.Controllers
     {
         private QLBanVePhimEntities db = new QLBanVePhimEntities();
 
-        public bool AuthCheck()
+        public bool AuthCheck(string perm)
         {
+            bool check = true;
+
             if (Session["Id_Admin"] == null)
-                return false;
-            else
-                return true;
+                return check = false;
+
+            if (!String.IsNullOrEmpty(perm))
+            {
+                if (!Session["Id_VT_Admin"].Equals(perm))
+                    check = false;
+                if (Session["Id_VT_Admin"].Equals("admin"))
+                    check = true;
+            }
+            return check;
         }
 
         // GET: QLPhim
 
         public ActionResult QLPhim()
         {
-            if (!AuthCheck())
-                return RedirectToAction("Login", "QLHome");
+            if (!AuthCheck("admin"))
+                return RedirectToAction("Index", "QLHome");
             return View(db.phim.ToList());
         }
 
         [HttpPost]
         public ActionResult QLPhim(string tenPhim, string idPhim)
         {
-            if (!AuthCheck())
-                return RedirectToAction("Login", "QLHome");
+            if (!AuthCheck("admin"))
+                return RedirectToAction("Index", "QLHome");
 
             var _phim = db.phim.ToList();
             if (!String.IsNullOrEmpty(tenPhim))
@@ -46,8 +55,8 @@ namespace QLBanVePhim.Controllers
 
         public ActionResult EditPhim(string id)
         {
-            if (!AuthCheck())
-                return RedirectToAction("Login", "QLHome");
+            if (!AuthCheck("admin"))
+                return RedirectToAction("Index", "QLHome");
             var loaiphimList = db.loai_phim.ToList();
             ViewBag.LoaiPhimList = new SelectList(loaiphimList, "id", "ten");
             return View(db.phim.Where(s => s.id == id).FirstOrDefault());
@@ -56,8 +65,8 @@ namespace QLBanVePhim.Controllers
         [HttpPost]
         public ActionResult EditPhim(string id, phim phim)
         {
-            if (!AuthCheck())
-                return RedirectToAction("Login", "QLHome");
+            if (!AuthCheck("admin"))
+                return RedirectToAction("Index", "QLHome");
             db.Entry(phim).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("QLPhim");
@@ -66,8 +75,8 @@ namespace QLBanVePhim.Controllers
         [HttpPost]
         public ActionResult DeletePhim(string id, phim phim)
         {
-            if (!AuthCheck())
-                return RedirectToAction("Login", "QLHome");
+            if (!AuthCheck("admin"))
+                return RedirectToAction("Index", "QLHome");
             try
             {
                 phim = db.phim.Where(item => item.id == id).FirstOrDefault();
@@ -83,8 +92,8 @@ namespace QLBanVePhim.Controllers
 
         public ActionResult AddPhim()
         {
-            if (!AuthCheck())
-                return RedirectToAction("Login", "QLHome");
+            if (!AuthCheck("admin"))
+                return RedirectToAction("Index", "QLHome");
             var loaiphimList = db.loai_phim.ToList();
             ViewBag.LoaiPhimList = new SelectList(loaiphimList, "id", "ten");
             return View();
@@ -93,8 +102,8 @@ namespace QLBanVePhim.Controllers
         [HttpPost]
         public ActionResult AddPhim(phim _phim)
         {
-            if (!AuthCheck())
-                return RedirectToAction("Login", "QLHome");
+            if (!AuthCheck("admin"))
+                return RedirectToAction("Index", "QLHome");
             try
             {
                 _phim.da_xoa = false;
