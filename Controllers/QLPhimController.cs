@@ -29,6 +29,21 @@ namespace QLBanVePhim.Controllers
             return View(db.phim.ToList());
         }
 
+        [HttpPost]
+        public ActionResult QLPhim(string tenPhim, string idPhim)
+        {
+            if (!AuthCheck())
+                return RedirectToAction("Login", "QLHome");
+
+            var _phim = db.phim.ToList();
+            if (!String.IsNullOrEmpty(tenPhim))
+                _phim = _phim.Where(s => s.ten.Contains(tenPhim)).ToList();
+            if (!String.IsNullOrEmpty(idPhim))
+                _phim = _phim.Where(s => s.id.Contains(idPhim)).ToList();
+
+            return View(_phim);
+        }
+
         public ActionResult EditPhim(string id)
         {
             if (!AuthCheck())

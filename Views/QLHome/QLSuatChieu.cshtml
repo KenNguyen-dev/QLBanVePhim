@@ -1,109 +1,100 @@
 ﻿@model IEnumerable<QLBanVePhim.Models.suat_chieu>
-    @{
-    ViewBag.Title = "QLSuatChieu";
+@{
+    ViewBag.Title = "Quản lý suất chiếu";
     Layout = "~/Views/Shared/ViewQLHome.cshtml";
-    }
+}
 
-    <div class="left">
-        <div class="card">
-            <div class="card-body">
-                <center><h3>Tra cứu suất chiếu</h3></center>
-                <form style="padding-top:20px">
-                    <div class="custom-control custom-checkbox mb-3">
-                        <input type="checkbox" class="custom-control-input" id="customControlValidation1" checked>
-                        <label class="custom-control-label" for="customControlValidation1">Ngày chiếu</label>
-                        <input id="datepicker" />
-                    </div>
-                    <div class="custom-control custom-checkbox mb-3">
-                        <input type="checkbox" class="custom-control-input" id="customControlValidation2">
-                        <label class="custom-control-label" for="customControlValidation2">Tên phim</label>
-                        <select class="form-control" id="exampleFormControlSelect1">
-                            <option>Bố già</option>
-                            <option>Lật mặt</option>
-                            <option>Baymax</option>
-                        </select>
-                    </div>
-                    <div class="custom-control custom-checkbox mb-3">
-                        <input type="checkbox" class="custom-control-input" id="customControlValidation3">
-                        <label class="custom-control-label" for="customControlValidation3">Tình trạng</label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                            <label class="form-check-label" for="exampleRadios1">
-                                Đang chiếu
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-                            <label class="form-check-label" for="exampleRadios2">
-                                Sắp chiếu
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option2">
-                            <label class="form-check-label" for="exampleRadios3">
-                                Đã chiếu
-                            </label>
-                        </div>
-                    </div>
-                </form>
-                <input type="button" class="btn btn-success" onclick="location.href='/QLHome/AddSuatChieu';" value="Thêm Suất chiếu" />
-            </div>
+<div class="settingLeft">
+    <div class="card">
+        <div class="card-body settingCardBody stickyCard">
+            <center><h4><i class="fas fa-search" style="margin-right:10px"></i>Search</h4></center>
+            @using (Html.BeginForm())
+            {
+                <div class="formSearchElement">
+                    @Html.DisplayNameFor(model => model.id)
+                    <input class="form-control" type="text" name="idSC">
+                </div>
+                <div class="formSearchElement">
+                    @Html.DisplayNameFor(model => model.phim.ten)
+                    <input class="form-control" type="text" name="tenPhimSC">
+                </div>
+                <div class="formSearchElement">
+                    @Html.DisplayNameFor(model => model.dinh_dang_phim.ten)
+                    @Html.DropDownList("ddphimSC", ViewBag.DDPhimList as SelectList, "----Chọn----", new { @class = "form-control" })
+                </div>
+                <div class="formSearchElement">
+                    @Html.DisplayNameFor(model => model.phong_chieu_id)
+                    <input class="form-control" type="text" name="phongSC">
+                </div>
+                <div class="formSearchElement">
+                    <center>
+                        <button class="btn btn-primary" type="submit"><i class="fas fa-search" style="margin-right:10px"></i>Search</button>
+                        <button class="btn btn-info" type="reset"><i class="fas fa-undo" style="margin-right:10px"></i>Reset</button>
+                    </center>
+                </div>
+
+            }
+            <hr />
+            <center><h4><i class="fas fa-tools" style="margin-right:10px"></i>Tools</h4></center>
+            <center>
+                <a href="/QLHome/AddSuatChieu" class="btn btn-success"><i class="fas fa-plus" style="margin-right:10px"></i>Thêm Phim</a>
+            </center>
         </div>
     </div>
-
-    <div class="right">
-        <div class="card">
-            <div class="card-body" style="height:600px">
-                <div class="container">
-                    <table class="table table-hover shadow p-3 mb-5 bg-white rounded">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th>@Html.DisplayNameFor(model => model.id)</th>
-                                <th>@Html.DisplayNameFor(model => model.phim_id)</th>
-                                <th>@Html.DisplayNameFor(model => model.gio_bat_dau)</th>
-                                <th>@Html.DisplayNameFor(model => model.gio_ket_thuc)</th>
-                                <th>@Html.DisplayNameFor(model => model.ngay_chieu)</th>
-                                <th>@Html.DisplayNameFor(model => model.phong_chieu_id)</th>
-                                <th>@Html.DisplayNameFor(model => model.dinh_dang_phim_id)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @if (Model.Count() == 0)
-                            {
+</div>
+<div class="settingRight">
+    <div class="card">
+        <div class="card-body settingCardBody">
+            <div class="container">
+                <table class="table table-hover shadow p-3 mb-5 bg-white rounded">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.id)</th>
+                            <th>@Html.DisplayNameFor(model => model.phim.ten)</th>
+                            <th>@Html.DisplayNameFor(model => model.gio_bat_dau)</th>
+                            <th>@Html.DisplayNameFor(model => model.gio_ket_thuc)</th>
+                            <th>@Html.DisplayNameFor(model => model.ngay_chieu)</th>
+                            <th>Phòng Chiếu</th>
+                            <th>@Html.DisplayNameFor(model => model.dinh_dang_phim.ten)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.Count() == 0)
+                        {
                             <tr> <td colspan="4"> Records not found </td></tr>
-                            }
-                            else
-                            {
+                        }
+                        else
+                        {
                             foreach (var item in Model)
                             {
-                            <tr onclick="window.location.href = '/QLHome/EditSuatChieu/@Html.DisplayFor(modelItem => item.id)';">
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.id)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.phim_id)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.gio_bat_dau)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.gio_ket_thuc)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.ngay_chieu)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.phong_chieu_id)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.dinh_dang_phim_id)
-                                </td>
-                            </tr>
+                                <tr onclick="window.location.href = '/QLHome/EditSuatChieu/@Html.DisplayFor(modelItem => item.id)';">
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.id)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.phim.ten)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.gio_bat_dau)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.gio_ket_thuc)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ngay_chieu)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.phong_chieu.id)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.dinh_dang_phim.ten)
+                                    </td>
+                                </tr>
                             }
-                            }
-                        </tbody>
-                    </table>
-                </div>
+                        }
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
+</div>

@@ -1,49 +1,48 @@
 ﻿@model IEnumerable<QLBanVePhim.Models.phim>
 @{
-    ViewBag.Title = "QLPhim";
+    ViewBag.Title = "Quản lý Phim";
     Layout = "~/Views/Shared/ViewQLHome.cshtml";
 }
-
-<div class="left">
+<div class="settingLeft">
     <div class="card">
-        <div class="card-body">
-            <Center><h3>Tra cứu phim</h3></Center>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                <label class="form-check-label" for="flexCheckDefault">
-                    Tên phim
-                </label>
-                <div class="input-group mb-3">
-                    <span class="input-group-text">ID</span>
-                    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+        <div class="card-body settingCardBody stickyCard">
+            <center><h4><i class="fas fa-search" style="margin-right:10px"></i>Search</h4></center>
+            @using (Html.BeginForm())
+            {
+                <div class="formSearchElement">
+                    @Html.DisplayNameFor(model => model.id)
+                    <input class="form-control" type="text" name="idPhim">
                 </div>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                <label class="form-check-label" for="flexCheckDefault">
-                    Ngày công chiếu
-                </label>
-                <div class="input-group mb-3">
-                    <span class="input-group-text">Tên</span>
-                    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                <div class="formSearchElement">
+                    @Html.DisplayNameFor(model => model.ten)
+                    <input class="form-control" type="text" name="tenPhim">
                 </div>
-            </div>
-            <br>
-            <div>
-                <center>
-                    <input type="button" class="btn btn-success" onclick="location.href='/QLPhim/AddPhim';" value="Thêm phim" />
-                </center>
-            </div>
+                <div class="formSearchElement">
+                    <center>
+                        <button class="btn btn-primary" type="submit"><i class="fas fa-search" style="margin-right:10px"></i>Search</button>
+                        <button class="btn btn-info" type="reset"><i class="fas fa-undo" style="margin-right:10px"></i>Reset</button>
+                    </center>
+                </div>
+
+            }
+            <hr />
+            <center><h4><i class="fas fa-tools" style="margin-right:10px"></i>Tools</h4></center>
+            <center>
+                <a href="/QLPhim/AddPhim" class="btn btn-success"><i class="fas fa-plus" style="margin-right:10px"></i>Thêm Phim</a>
+            </center>
         </div>
     </div>
 </div>
-<div class="right">
+<div class="settingRight">
     <div class="card">
-        <div class="card-body">
+        <div class="card-body settingCardBody">
             <div class="container">
                 <table class="table table-hover shadow p-3 mb-5 bg-white rounded">
                     <thead class="thead-dark">
                         <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.id)
+                            </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.ten)
                             </th>
@@ -65,6 +64,9 @@
                             foreach (var item in Model)
                             {
                                 <tr onclick="window.location.href = '/QLPhim/EditPhim/@Html.DisplayFor(modelItem => item.id)';">
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.id)
+                                    </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.ten)
                                     </td>

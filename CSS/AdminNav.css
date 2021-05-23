@@ -35,7 +35,9 @@ nav .navbar-nav li a {
 .nav-pills > .nav-item > a {
     color: #343A40;
 }
+nav{
 
+}
 
 .welcomeDiv {
     padding: 5px 5px 5px 15px;

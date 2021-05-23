@@ -18,6 +18,10 @@
 
 .previewCardContainer {
     position: sticky;
+    top: auto;
+}
+.stickyCard {
+    position: sticky;
     top: 0;
 }
 
@@ -126,4 +130,10 @@ div:target {
     border-color: #FF7676;
     transform: translate(-50%, -20%);
     animation: glow 1s infinite alternate;
+}
+
+/* Linh tinh */
+.formSearchElement{
+    padding:5px;
+    margin:5px;
 }

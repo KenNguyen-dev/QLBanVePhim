@@ -1,7 +1,6 @@
 ﻿using QLBanVePhim.Models;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -130,6 +129,8 @@ namespace QLBanVePhim.Controllers
         {
             if (!AuthCheck())
                 return RedirectToAction("Login");
+            var ddphimList = db.dinh_dang_phim.ToList();
+            ViewBag.DDPhimList = new SelectList(ddphimList, "id", "ten");
             return View(db.suat_chieu.ToList());
         }
 
@@ -154,6 +155,11 @@ namespace QLBanVePhim.Controllers
                 return RedirectToAction("Login");
             try
             {
+                phim _phim = new phim();
+                _phim = db.phim.Where(s => s.id == _suatchieu.phim_id).FirstOrDefault();
+                TimeSpan time = (TimeSpan)_suatchieu.gio_bat_dau;
+                TimeSpan thoiLuong = TimeSpan.FromMinutes(Convert.ToDouble(_phim.thoi_luong));
+                _suatchieu.gio_ket_thuc = time.Add(thoiLuong);
                 db.suat_chieu.Add(_suatchieu);
                 db.SaveChanges();
                 return RedirectToAction("QLSuatChieu");
@@ -183,6 +189,11 @@ namespace QLBanVePhim.Controllers
         {
             if (!AuthCheck())
                 return RedirectToAction("Login");
+            phim _phim = new phim();
+            _phim = db.phim.Where(s => s.id == _suatchieu.phim_id).FirstOrDefault();
+            TimeSpan time = (TimeSpan)_suatchieu.gio_bat_dau;
+            TimeSpan thoiLuong = TimeSpan.FromMinutes(Convert.ToDouble(_phim.thoi_luong));
+            _suatchieu.gio_ket_thuc = time.Add(thoiLuong);
             db.Entry(_suatchieu).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("QLSuatChieu");
@@ -305,12 +316,21 @@ namespace QLBanVePhim.Controllers
 
         #endregion Phòng chiếu
 
+        #region Vé
+
         public ActionResult QLVe()
         {
             if (!AuthCheck())
                 return RedirectToAction("Login");
-            return View();
+            ViewBag.TrangThaiList = new SelectList(new List<SelectListItem>{
+                 new SelectListItem { Selected = false, Text = "Book", Value = "Book"},
+                 new SelectListItem { Selected = false, Text = "Sold", Value = "Sold"},
+                 new SelectListItem { Selected = false, Text = "Cancelled", Value = "Cancelled"},
+            }, "Value", "Text");
+            return View(db.ve_ban.ToList());
         }
+
+        #endregion Vé
 
         public ActionResult QLDoAn()
         {
