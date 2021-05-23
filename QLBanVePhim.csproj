@@ -260,11 +260,16 @@
     <Content Include="Content\CINESTAR_files\share-combo-2.png" />
     <Content Include="Content\CINESTAR_files\tom-jerry-quay-tung-new-york-684.jpg" />
     <Content Include="Content\CINESTAR_files\zalopay.png" />
+    <Content Include="Content\Images\chairLogin.png" />
     <Content Include="Content\Images\default-thumbnail.jpg" />
     <Content Include="Content\Images\huongDan.PNG" />
+    <Content Include="Content\Images\leftCurtain.png" />
+    <Content Include="Content\Images\rightCurtain.png" />
     <Content Include="Content\videos\Night Lantern Anime Wallpaper.mp4" />
+    <Content Include="CSS\AdminNav.css" />
     <Content Include="CSS\css.css" />
     <Content Include="CSS\Homepage.css" />
+    <Content Include="CSS\Success.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Font\fontawesome-free-5.15.2-web\attribution.js" />
@@ -2026,7 +2031,7 @@
     <Content Include="Views\QLHome\AddNV.cshtml" />
     <Content Include="Views\Home\MovieList.cshtml" />
     <Content Include="Views\Home\Details.cshtml" />
-    <Content Include="Views\Shared\ViewQLHome.cshtml" />
+    <Content Include="Views\Shared\ViewQLHomeLegacy.cshtml" />
     <Content Include="Views\QLPhim\AddPhim.cshtml" />
     <Content Include="Views\QLPhim\QLPhim.cshtml" />
     <Content Include="Views\Home\ThanhVien.cshtml" />
@@ -2052,6 +2057,10 @@
     <Content Include="Views\QLSetting\_LoaiPhim.cshtml" />
     <Content Include="Views\QLSetting\_LoaiGhe.cshtml" />
     <Content Include="Views\QLSetting\_GiaVe.cshtml" />
+    <Content Include="Views\Home\LichChieuPhimNgay.cshtml" />
+    <Content Include="Views\Shared\Login.cshtml" />
+    <Content Include="Views\Shared\ViewQLHome.cshtml" />
+    <Content Include="Views\QLHome\DetailsVe.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

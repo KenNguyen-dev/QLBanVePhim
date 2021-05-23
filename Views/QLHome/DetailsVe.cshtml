@@ -1,0 +1,137 @@
+﻿@model QLBanVePhim.Models.ve_ban
+
+@{
+    ViewBag.Title = "Chi Tiết Vé";
+    Layout = "~/Views/Shared/ViewQLHome.cshtml";
+}
+
+<div class="container bodyContainer">
+    <div class="card previewCardContainer">
+        <div class="card-body previewCard">
+            <div class="container">
+                <center>
+                    <h4 class="card-title">
+                        <i class="fas fa-ticket-alt"></i> @Html.DisplayFor(model => model.id)
+                    </h4>
+                </center>
+
+                <div class="container">
+                    <div class="row" style="margin-top:15px;">
+                        <div class="col">
+                            <p class="card-text"><b>@Html.DisplayNameFor(model => model.trang_thai):</b> @Html.DisplayFor(model => model.trang_thai)</p>
+                        </div>
+                        @if (Html.DisplayFor(model => model.trang_thai).ToString() == "Cancelled")
+                        {
+                            <div class="col">
+                                <p class="card-text"><b><font color="red">Vé đã bị hủy</font></b></p>
+                            </div>
+                        }
+                    </div>
+                    @if (Html.DisplayFor(model => model.trang_thai).ToString() == "Sold")
+                    {
+                        <div class="row" style="margin-top:15px;">
+                            <div class="col-6">
+                                <p class="card-text"><b>Được Bán Bởi:</b> @Html.DisplayFor(model => model.nguoi_dung.ho_ten)</p>
+                            </div>
+                            <div class="col-6">
+                                <p class="card-text"><b>@Html.DisplayNameFor(model => model.ngay_ban):</b> @Html.DisplayFor(model => model.ngay_ban)</p>
+                            </div>
+                        </div>
+                    }
+                    <div class="row" style="margin-top:15px;">
+                        <div class="col-4">
+                            <p class="card-text"><b>@Html.DisplayNameFor(model => model.ve_dat_chi_tiet.ve_dat.khach_hang.ho_ten):</b> @Html.DisplayFor(model => model.ve_dat_chi_tiet.ve_dat.khach_hang.ho_ten)</p>
+                        </div>
+                        <div class="col-4">
+                            <p class="card-text"><b>@Html.DisplayNameFor(model => model.ve_dat_chi_tiet.ve_dat.khach_hang.so_dien_thoai):</b> @Html.DisplayFor(model => model.ve_dat_chi_tiet.ve_dat.khach_hang.so_dien_thoai)</p>
+                        </div>
+                        <div class="col-4">
+                            <p class="card-text"><b>@Html.DisplayNameFor(model => model.ve_dat_chi_tiet.ve_dat.khach_hang.so_cmnd):</b> @Html.DisplayFor(model => model.ve_dat_chi_tiet.ve_dat.khach_hang.so_cmnd)</p>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col-6">
+                            <p><i class="fas fa-couch"></i> <b>ID Ghế ngồi:</b> @Html.DisplayFor(model => model.ghe_ngoi.id) (@Html.DisplayFor(model => model.ghe_ngoi.loai_ghe.ten_ghe))</p>
+                            <p><i class="fas fa-map-marker-alt"></i> <b>Dãy:</b> @Html.DisplayFor(model => model.ghe_ngoi.vi_tri_day), Cột: @Html.DisplayFor(model => model.ghe_ngoi.vi_tri_cot)</p>
+                            <br />
+                            <p><i class="fas fa-film"></i> <b>Phim:</b> @Html.DisplayFor(model => model.suat_chieu.phim.ten) (@Html.DisplayFor(model => model.suat_chieu.phim.gioi_han_tuoi)+)</p>
+                            <p><i class="fas fa-clock"></i> <b>Suất chiếu:</b> @Html.DisplayFor(model => model.suat_chieu_id)</p>
+                            <p><i class="fas fa-calendar-day"></i> <b>Ngày chiếu:</b> @Html.DisplayFor(model => model.suat_chieu.ngay_chieu) </p>
+                            <p><i class="fas fa-clock"></i> <b>Giờ chiếu:</b> @Html.DisplayFor(model => model.suat_chieu.gio_bat_dau) - @Html.DisplayFor(model => model.suat_chieu.gio_ket_thuc) (@Html.DisplayFor(model => model.suat_chieu.phim.thoi_luong) Phút)</p>
+                            <p><i class="fas fa-door-closed"></i> <b>Phòng chiếu:</b> @Html.DisplayFor(model => model.suat_chieu.phong_chieu.id)</p>
+                            <p><i class="fas fa-film"></i> <b>Định dạng phim:</b> @Html.DisplayFor(model => model.suat_chieu.dinh_dang_phim.ten)</p>
+                        </div>
+                        <div class="col-6">
+                            <div style="float:right;">
+                                <p class="card-text"><i class="fas fa-chevron-right"></i> <b>Giá vé:</b> <font color="#00800">@Html.DisplayFor(model => model.gia_ve.don_gia) VND</font> (@Html.DisplayFor(model => model.gia_ve.id))</p>
+                                <p><i class="fas fa-chevron-right"></i> <b>Phụ thu Ghế:</b> <font color="#00800">+@Html.DisplayFor(model => model.ghe_ngoi.loai_ghe.phu_thu) VND</font></p>
+                                <p><i class="fas fa-chevron-right"></i> <b>Phụ thu Định dạng phim:</b> <font color="#00800">+@Html.DisplayFor(model => model.suat_chieu.dinh_dang_phim.phu_thu) VND</font></p>
+                                <p class="card-text"><i class="fas fa-dollar-sign"></i> <b>Thành tiền:</b> <font color="#00800">@Html.DisplayFor(model => model.tong__tien) VND</font></p>
+                                @if (Html.DisplayFor(model => model.trang_thai).ToString() == "Book")
+                                {
+                                    <p>
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#soldModal">
+                                            Bán Vé
+                                        </button>
+                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#cancelModal">
+                                            Hủy Vé
+                                        </button>
+                                    </p>
+                                }
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="soldModal" tabindex="-1" role="dialog" aria-labelledby="soldModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="soldModal">Xác nhận</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Bán vé này?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Không</button>
+                <form action="/QLHome/SoldVe/@Html.DisplayFor(model => model.id)" method="post">
+                    <input type="submit" class="btn btn-danger" value="Có" />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="cancelModal" tabindex="-1" role="dialog" aria-labelledby="cancelModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="cancelModal">Xác nhận</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Hủy vé này?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Không</button>
+                <form action="/QLHome/CancelVe/@Html.DisplayFor(model => model.id)" method="post">
+                    <input type="submit" class="btn btn-danger" value="Có" />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

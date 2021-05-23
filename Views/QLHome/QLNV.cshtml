@@ -1,44 +1,50 @@
 ﻿@model IEnumerable<QLBanVePhim.Models.nguoi_dung>
 @{
-    ViewBag.Title = "QL Nhân Viên";
+    ViewBag.Title = "Quản lý Nhân Viên";
     Layout = "~/Views/Shared/ViewQLHome.cshtml";
 }
-<div class="left">
+
+<div class="settingLeft">
     <div class="card">
-        <div class="card-body">
-            <center><h3>Tra cứu nhân viên</h3></center>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                <label class="form-check-label" for="flexCheckDefault">
-                    Mã nhân viên
-                </label>
-                <div class="input-group mb-3">
-                    <span class="input-group-text">ID</span>
-                    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+        <div class="card-body settingCardBody stickyCard">
+            <center><h4><i class="fas fa-search" style="margin-right:10px"></i>Search</h4></center>
+            @using (Html.BeginForm())
+            {
+                <div class="formSearchElement">
+                    @Html.DisplayNameFor(model => model.id)
+                    <input class="form-control" type="text" name="idNV">
                 </div>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                <label class="form-check-label" for="flexCheckDefault">
-                    Tên nhân viên
-                </label>
-                <div class="input-group mb-3">
-                    <span class="input-group-text">Tên</span>
-                    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                <div class="formSearchElement">
+                    @Html.DisplayNameFor(model => model.ho_ten)
+                    <input class="form-control" type="text" name="tenNV">
                 </div>
-            </div>
-            <br />
-            <div>
-                <center>
-                    <input type="button" class="btn btn-success" onclick="location.href='/QLHome/AddNV';" value="Thêm nhân viên" />
-                </center>
-            </div>
+                <div class="formSearchElement">
+                    @Html.DisplayNameFor(model => model.so_dien_thoai)
+                    <input class="form-control" type="text" name="sdtNV">
+                </div>
+                <div class="formSearchElement">
+                    @Html.DisplayNameFor(model => model.so_cmnd)
+                    <input class="form-control" type="text" name="cmndNV">
+                </div>
+                <div class="formSearchElement">
+                    <center>
+                        <button class="btn btn-primary" type="submit"><i class="fas fa-search" style="margin-right:10px"></i>Search</button>
+                        <button class="btn btn-info" type="reset"><i class="fas fa-undo" style="margin-right:10px"></i>Reset</button>
+                    </center>
+                </div>
+
+            }
+            <hr />
+            <center><h4><i class="fas fa-tools" style="margin-right:10px"></i>Tools</h4></center>
+            <center>
+                <a href="/QLHome/AddNV" class="btn btn-success"><i class="fas fa-plus" style="margin-right:10px"></i>Thêm Nhân Viên</a>
+            </center>
         </div>
     </div>
 </div>
-<div class="right">
+<div class="settingRight">
     <div class="card">
-        <div class="card-body">
+        <div class="card-body settingCardBody">
             <div class="container">
                 <table class="table table-hover shadow p-3 mb-5 bg-white rounded">
                     <thead class="thead-dark">

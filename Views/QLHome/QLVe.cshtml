@@ -1,98 +1,90 @@
-﻿
+﻿@model IEnumerable<QLBanVePhim.Models.ve_ban>
 @{
-    ViewBag.Title = "QLVe";
+    ViewBag.Title = "Quản lý Vé";
     Layout = "~/Views/Shared/ViewQLHome.cshtml";
 }
 
-<style>
-    .left {
-        width: 25%;
-        font-size: 1.5rem;
-    }
-
-    .card {
-        height: 600px;
-        margin-right: 5px;
-    }
-
-    .custom-control-input {
-        margin-top: 30px;
-    }
-
-    .card-body {
-        justify-content: center
-    }
-
-    .table {
-        text-align: center;
-    }
-
-    .modalItem {
-        display: flex;
-        justify-content: space-between;
-    }
-
-    .form-control1 {
-        width: 20%;
-        height: 30px;
-        font-size: 12px;
-    }
-</style>
-<div class="left">
+<div class="settingLeft">
     <div class="card">
-        <div class="card-body">
-            <h3 style="text-align:center">Tra cứu vé</h3>
-            <form style="padding-top:20px">
-                <div class="custom-control custom-checkbox mb-3">
-                    <input type="checkbox" class="custom-control-input" id="customControlValidation1" checked>
-                    <label class="custom-control-label" for="customControlValidation1">Mã vé</label>
-                    <input id="datepicker" />
+        <div class="card-body settingCardBody stickyCard">
+            <center><h4><i class="fas fa-search" style="margin-right:10px"></i>Search</h4></center>
+            @using (Html.BeginForm())
+            {
+                <div class="formSearchElement">
+                    @Html.DisplayNameFor(model => model.id)
+                    <input class="form-control" type="text" name="idVe">
+                </div>
+                <div class="formSearchElement">
+                    @Html.DisplayNameFor(model => model.trang_thai)
+                    @Html.DropDownList("trangthaiVe", ViewBag.TrangThaiList as SelectList, "----Chọn----", new { @class = "form-control" })
                 </div>
 
+                <div class="formSearchElement">
+                    <center>
+                        <button class="btn btn-primary" type="submit"><i class="fas fa-search" style="margin-right:10px"></i>Search</button>
+                        <button class="btn btn-info" type="reset"><i class="fas fa-undo" style="margin-right:10px"></i>Reset</button>
+                    </center>
+                </div>
 
-            </form>
-            <button type="button" class="btn btn-success" onclick="location.href='/QLHome/AddPhongChieu'" data-toggle="modal" data-target="#exampleModal">
-                Thêm vé
-            </button>
-            <button type="button" class="btn btn-success" onclick="location.href='/QLHome/EditPhongChieu'" data-toggle="modal" data-target="#exampleModal">
-                Cập nhật vé
-            </button>
-
+            }
         </div>
     </div>
 </div>
-<div class="right">
+<div class="settingRight">
     <div class="card">
-        <div class="card-body" style="height:600px">
+        <div class="card-body settingCardBody">
             <div class="container">
                 <table class="table table-hover shadow p-3 mb-5 bg-white rounded">
                     <thead class="thead-dark">
                         <tr>
-                            <th>STT</th>
-                            <th>Mã vé</th>
-                            <th>Mã suất chiếu</th>
-                            <th>Vị trí ghế </th>
-                            <th>Ngày bán </th>
-                            <th>Giá vé</th>
-                            <th>Nhân viên bán</th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.id)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.suat_chieu.id)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.tong__tien)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ghe_ngoi.id)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.trang_thai)
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>TK01</td>
-                            <td>?????????</td>
-                            <td>A01</td>
-                            <td>02/05/2021</td>
-                            <td>79000 vnđ</td>
-                            <td>Lê Trí Kiệt</td>
-                        </tr>
+                        @if (Model.Count() == 0)
+                        {
+                            <tr> <td colspan="5"> Records not found </td></tr>
+                        }
+                        else
+                        {
+                            foreach (var item in Model)
+                            {
+                                <tr onclick="window.location.href = '/QLHome/DetailsVe/@Html.DisplayFor(modelItem => item.id)';">
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.id)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.suat_chieu.id)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tong__tien)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ghe_ngoi.id)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.trang_thai)
+                                    </td>
+                                </tr>
+                            }
+                        }
                     </tbody>
                 </table>
-
             </div>
         </div>
     </div>
 </div>
-
-
