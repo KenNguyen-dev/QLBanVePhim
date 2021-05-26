@@ -67,12 +67,33 @@ namespace QLBanVePhim.Controllers
                 return RedirectToAction("Login");
             return View();
         }
-
-        public ActionResult QLKH()
+        #region Khách Hàng
+        public ActionResult QLKH(string idKH, string tenKH, string sdtKH, string cmndKH)
         {
             if (!AuthCheck("admin"))
                 return RedirectToAction("Index");
-            return View(db.khach_hang.ToList());
+            else
+            {
+                var khs = from kh in db.khach_hang
+                          select kh;
+                if (!String.IsNullOrEmpty(idKH))
+                {
+                    khs = khs.Where(nv => nv.id.ToString().Contains(idKH));
+                }
+                if (!String.IsNullOrEmpty(tenKH))
+                {
+                    khs = khs.Where(nv => nv.ho_ten.ToLower().Contains(tenKH.ToLower()));
+                }
+                if (!String.IsNullOrEmpty(sdtKH))
+                {
+                    khs = khs.Where(nv => nv.so_dien_thoai.Contains(sdtKH));
+                }
+                if (!String.IsNullOrEmpty(cmndKH))
+                {
+                    khs = khs.Where(nv => nv.so_cmnd.Contains(cmndKH));
+                }
+                return View(khs);
+            }
         }
 
         public ActionResult DetailsKH(int id)
@@ -88,14 +109,36 @@ namespace QLBanVePhim.Controllers
                 return RedirectToAction("Index");
             return View();
         }
+        #endregion
 
         #region Nhân Viên
 
-        public ActionResult QLNV()
+        public ActionResult QLNV(string searchId, string searchName, string searchSDT, string searchCMND)
         {
             if (!AuthCheck("admin"))
                 return RedirectToAction("Index");
-            return View(db.nguoi_dung.ToList());
+            else
+            {
+                var nvs = from nv in db.nguoi_dung
+                          select nv;
+                if(!String.IsNullOrEmpty(searchId))
+                {
+                    nvs = nvs.Where(nv => nv.id.ToString().Contains(searchId));
+                }
+                if (!String.IsNullOrEmpty(searchName))
+                {
+                    nvs = nvs.Where(nv => nv.ho_ten.ToLower().Contains(searchName.ToLower()));
+                }
+                if (!String.IsNullOrEmpty(searchSDT))
+                {
+                    nvs = nvs.Where(nv => nv.so_dien_thoai.Contains(searchSDT));
+                }
+                if (!String.IsNullOrEmpty(searchCMND))
+                {
+                    nvs = nvs.Where(nv => nv.so_cmnd.Contains(searchCMND));
+                }
+                return View(nvs);
+            }
         }
 
         public ActionResult AddNV()
@@ -167,13 +210,34 @@ namespace QLBanVePhim.Controllers
 
         #region Suất chiếu
 
-        public ActionResult QLSuatChieu()
+        public ActionResult QLSuatChieu(string idSC, string tenPhimSC, string ddphimSC, string phongSC)
         {
             if (!AuthCheck("admin"))
                 return RedirectToAction("Index");
-            var ddphimList = db.dinh_dang_phim.ToList();
-            ViewBag.DDPhimList = new SelectList(ddphimList, "id", "ten");
-            return View(db.suat_chieu.ToList());
+            else
+            {
+                var scs = from sc in db.suat_chieu
+                          select sc;
+                if (!String.IsNullOrEmpty(idSC))
+                {
+                    scs = scs.Where(sc => sc.id.ToString().Contains(idSC));
+                }
+                if (!String.IsNullOrEmpty(tenPhimSC))
+                {
+                    scs = scs.Where(sc => sc.phim.ten.ToLower().Contains(tenPhimSC.ToLower()));
+                }
+                if (!String.IsNullOrEmpty(ddphimSC))
+                {
+                    scs = scs.Where(sc => sc.dinh_dang_phim.ten == ddphimSC);
+                }
+                if (!String.IsNullOrEmpty(phongSC))
+                {
+                    scs = scs.Where(sc => sc.phong_chieu_id.ToString().Contains(idSC));
+                }
+                var ddphimList = db.dinh_dang_phim.ToList();
+                ViewBag.DDPhimList = new SelectList(ddphimList, "id", "ten");
+                return View(scs);
+            }
         }
 
         public ActionResult AddSuatChieu()
@@ -263,11 +327,20 @@ namespace QLBanVePhim.Controllers
 
         #region Phòng chiếu
 
-        public ActionResult QLPhongChieu()
+        public ActionResult QLPhongChieu(string idPhong)
         {
             if (!AuthCheck("admin"))
                 return RedirectToAction("Index");
-            return View(db.phong_chieu.ToList());
+            else
+            {
+                var phongs = from phong in db.phong_chieu
+                          select phong;
+                if (!String.IsNullOrEmpty(idPhong))
+                {
+                    phongs = phongs.Where(phong => phong.id.ToString().Contains(idPhong));
+                }
+                return View(phongs);
+            }
         }
 
         public ActionResult AddPhongChieu()
@@ -360,17 +433,30 @@ namespace QLBanVePhim.Controllers
 
         #region Vé
 
-        public ActionResult QLVe()
+        public ActionResult QLVe(string idVe, string trangthaiVe)
         {
             QuanLyClass.TicketCheck();
             if (!AuthCheck("nhanvien"))
                 return RedirectToAction("Index");
-            ViewBag.TrangThaiList = new SelectList(new List<SelectListItem>{
-                 new SelectListItem { Selected = false, Text = "Book", Value = "Book"},
-                 new SelectListItem { Selected = false, Text = "Sold", Value = "Sold"},
-                 new SelectListItem { Selected = false, Text = "Cancelled", Value = "Cancelled"},
-            }, "Value", "Text");
-            return View(db.ve_ban.ToList());
+            else
+            {
+                var ves = from ve in db.ve_ban
+                          select ve;
+                if (!String.IsNullOrEmpty(idVe))
+                {
+                    ves = ves.Where(ve => ve.id.ToString().Contains(idVe));
+                }
+                if (!String.IsNullOrEmpty(trangthaiVe))
+                {
+                    ves = ves.Where(ve => ve.trang_thai == trangthaiVe);
+                }
+                ViewBag.TrangThaiList = new SelectList(new List<SelectListItem>{
+                     new SelectListItem { Selected = false, Text = "Book", Value = "Book"},
+                     new SelectListItem { Selected = false, Text = "Sold", Value = "Sold"},
+                     new SelectListItem { Selected = false, Text = "Cancelled", Value = "Cancelled"},
+                }, "Value", "Text");
+                return View(ves);
+            }
         }
 
         public ActionResult DetailsVe(string id)
