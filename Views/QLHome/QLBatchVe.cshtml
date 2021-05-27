@@ -1,9 +1,9 @@
 ﻿@using QLBanVePhim.Models
 @using PagedList.Mvc;
-@model PagedList.PagedList<ve_ban>
+@model PagedList.PagedList<ve_dat>
 
 @{
-    ViewBag.Title = "Quản lý Vé";
+    ViewBag.Title = "Quản lý Lô Vé";
     Layout = "~/Views/Shared/ViewQLHome.cshtml";
 }
 
@@ -11,29 +11,23 @@
     <div class="card">
         <div class="card-body settingCardBody stickyCard">
             <center><h4><i class="fas fa-search" style="margin-right:10px"></i>Search</h4></center>
-            @using (Html.BeginForm("QLVe", "QLHome", FormMethod.Get))
+            @using (Html.BeginForm("QLBatchVe", "QLHome", FormMethod.Get))
             {
                 <div class="formSearchElement">
                     @Html.DisplayNameFor(model => model.FirstOrDefault().id)
                     <input class="form-control" type="text" name="idVe" id="idVe">
                 </div>
                 <div class="formSearchElement">
-                    @Html.DisplayNameFor(model => model.FirstOrDefault().trang_thai)
-                    @Html.DropDownList("trangthaiVe", ViewBag.TrangThaiList as SelectList, "----Chọn----", new { @class = "form-control" })
-                </div>
-
-                <div class="formSearchElement">
                     <center>
                         <button class="btn btn-primary" type="submit"><i class="fas fa-search" style="margin-right:10px"></i>Search</button>
                         <button class="btn btn-info" type="reset"><i class="fas fa-undo" style="margin-right:10px"></i>Reset</button>
                     </center>
                 </div>
-
             }
             <hr />
             <center><h4><i class="fas fa-tools" style="margin-right:10px"></i>Tools</h4></center>
             <center>
-                <a href="/QLHome/QLBatchVe" class="btn btn-success"><i class="fas fa-ticket-alt" style="margin-right:10px"></i>Quản Lý Lô Vé</a>
+                <a href="/QLHome/QLVe" class="btn btn-success"><i class="fas fa-ticket-alt" style="margin-right:10px"></i>Quản Lý Vé</a>
             </center>
         </div>
     </div>
@@ -46,8 +40,8 @@
                     <div class="row" style="margin-bottom:-15px !important">
                         <div class="col-6 pageTitle">
                             <span style="vertical-align: middle;">
-                                @Html.PagedListPager(Model, page => Url.Action("QLVe",
-                                        new { page = page, idVe = ViewBag.CurrId, trangthaiVe = ViewBag.CurrTT }),
+                                @Html.PagedListPager(Model, page => Url.Action("QLBatchVe",
+                                        new { page = page, idVe = ViewBag.CurrId }),
                                         new PagedListRenderOptions
                                         {
                                             LiElementClasses = new string[] { "page-item" },
@@ -63,8 +57,8 @@
                         </div>
                         <div class="col-6">
                             <div style="float:right;">
-                                @Html.PagedListPager(Model, page => Url.Action("QLVe",
-                                    new { page = page, idVe = ViewBag.CurrId, trangthaiVe = ViewBag.CurrTT }),
+                                @Html.PagedListPager(Model, page => Url.Action("QLBatchVe",
+                                    new { page = page, idVe = ViewBag.CurrId }),
                                     new PagedListRenderOptions
                                     {
                                         LiElementClasses = new string[] { "page-item" },
@@ -86,16 +80,10 @@
                                 @Html.DisplayNameFor(model => model.FirstOrDefault().id)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.FirstOrDefault().suat_chieu.id)
+                                @Html.DisplayNameFor(model => model.FirstOrDefault().khach_hang.ho_ten)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.FirstOrDefault().tong__tien)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.FirstOrDefault().ghe_ngoi.id)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.FirstOrDefault().trang_thai)
+                                @Html.DisplayNameFor(model => model.FirstOrDefault().khach_hang.so_dien_thoai)
                             </th>
                         </tr>
                     </thead>
@@ -108,25 +96,15 @@
                         {
                             foreach (var item in Model)
                             {
-                                string color = "";
-                                if (item.trang_thai == "Sold") { color = "#A2FFA1"; }
-                                if (item.trang_thai == "Cancelled") { color = "#FFA9A9"; }
-
-                                <tr bgcolor="@color" onclick="window.location.href = '/QLHome/DetailsVe/@Html.DisplayFor(modelItem => item.id)';">
+                                <tr onclick="window.location.href = '/QLHome/DetailsBatchVe/@Html.DisplayFor(modelItem => item.id)';">
                                     <td>
                                         @Html.DisplayFor(modelItem => item.id)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.suat_chieu.id)
+                                        @Html.DisplayFor(modelItem => item.khach_hang.ho_ten)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.tong__tien)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.ghe_ngoi.id)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.trang_thai)
+                                        @Html.DisplayFor(modelItem => item.khach_hang.so_dien_thoai)
                                     </td>
                                 </tr>
                             }

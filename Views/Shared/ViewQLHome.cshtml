@@ -4,6 +4,7 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/bootstrap.css" />
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
     <script src="~/Scripts/jquery-3.4.1.slim.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
@@ -40,12 +41,12 @@
                     <li class="nav-item @Html.IsActive("QLKH", "QLHome") @Html.IsActive("AddKH", "QLHome") @Html.IsActive("EditKH", "QLHome")">
                         <a class="nav-link" href="/QLHome/QLKH"><i class="fas fa-users"></i> Khách hàng</a>
                     </li>
-                    <li class="nav-item">
+                    @*<li class="nav-item">
                         <a class="nav-link" href="#"><i class="fas fa-plus"></i> Combo</a>
                     </li>
                     <li class="nav-item  @Html.IsActive("QLDoAn", "QLDoAn")">
                         <a class="nav-link" href="/QLDoAn/QLDoAn"><i class="fas fa-utensils"></i> Đồ ăn</a>
-                    </li>
+                    </li>*@
 
                     <li class="nav-item @Html.IsActive("Index", "QLSetting")">
                         <a class="nav-link" href="/QLSetting"><i class="fas fa-cog"></i> Settings</a>
@@ -62,6 +63,12 @@
                     <i class="fas fa-home"></i>
                     Xin chào, @Session["UserName_Admin"]
                 </a>
+            </span>
+            <span class="welcome">
+                <button class="btn btn-light" onclick="location.href = document.referrer;">
+                    <i class="fas fa-chevron-left"></i>
+                    Quay Về
+                </button>
             </span>
             <span class="welcome" style="float:right;">
                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#LogOutConfirm">

@@ -9,7 +9,7 @@
 {
     <div class="container bodyContainer">
         <div class="row">
-            <div class="col-sm">
+            <div class="col-xl-4">
                 <p><center>Sửa Phòng Chiếu</center></p> <hr />
                 @Html.AntiForgeryToken()
                 <div class="form-horizontal">
@@ -23,10 +23,10 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm">
+            <div class="col-xl-8">
                 <p><center>Preview</center></p> <hr />
                 <center>
-                    <div class="card previewCardContainer">
+                    <div class="card previewCardContainer" style="min-height:450px !important;">
                         <div class="card-body previewCardNoBreak">
                             <h4 class="card-title" id="previews_id">ID @Html.DisplayFor(model => model.id)</h4>
                             <p class="card-subtitle text-muted">10 dãy, 10 cột</p>
@@ -46,11 +46,13 @@
                                                     }
                                                     else if ((i >= 3 && i <= 7) && (j >= 4 && j <= 7))
                                                     {
-                                                        <font color="yellow">■</font>
+                                                <font color="#A52A2A">
+                                                    <i class="fas fa-couch"></i>
+                                                </font>
                                                     }
                                                     else
                                                     {
-                                                        @:■
+                                            <i class="fas fa-couch"></i>
                                                     }
                                                 }
                                                 else if (i != 0)

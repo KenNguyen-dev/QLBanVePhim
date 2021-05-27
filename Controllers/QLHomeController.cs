@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using PagedList;
+using PagedList.Mvc;
 
 namespace QLBanVePhim.Controllers
 {
@@ -42,6 +44,7 @@ namespace QLBanVePhim.Controllers
     public class QLHomeController : Controller
     {
         private QLBanVePhimEntities db = new QLBanVePhimEntities();
+        private int pageSize = 6;
 
         public bool AuthCheck(string perm)
         {
@@ -67,7 +70,9 @@ namespace QLBanVePhim.Controllers
                 return RedirectToAction("Login");
             return View();
         }
+
         #region Khách Hàng
+
         public ActionResult QLKH(string idKH, string tenKH, string sdtKH, string cmndKH)
         {
             if (!AuthCheck("admin"))
@@ -109,7 +114,8 @@ namespace QLBanVePhim.Controllers
                 return RedirectToAction("Index");
             return View();
         }
-        #endregion
+
+        #endregion Khách Hàng
 
         #region Nhân Viên
 
@@ -121,7 +127,7 @@ namespace QLBanVePhim.Controllers
             {
                 var nvs = from nv in db.nguoi_dung
                           select nv;
-                if(!String.IsNullOrEmpty(searchId))
+                if (!String.IsNullOrEmpty(searchId))
                 {
                     nvs = nvs.Where(nv => nv.id.ToString().Contains(searchId));
                 }
@@ -334,7 +340,7 @@ namespace QLBanVePhim.Controllers
             else
             {
                 var phongs = from phong in db.phong_chieu
-                          select phong;
+                             select phong;
                 if (!String.IsNullOrEmpty(idPhong))
                 {
                     phongs = phongs.Where(phong => phong.id.ToString().Contains(idPhong));
@@ -433,13 +439,14 @@ namespace QLBanVePhim.Controllers
 
         #region Vé
 
-        public ActionResult QLVe(string idVe, string trangthaiVe)
+        public ActionResult QLVe(string idVe, string trangthaiVe, int? page)
         {
             QuanLyClass.TicketCheck();
             if (!AuthCheck("nhanvien"))
                 return RedirectToAction("Index");
             else
             {
+                int pageNum = (page ?? 1);
                 var ves = from ve in db.ve_ban
                           select ve;
                 if (!String.IsNullOrEmpty(idVe))
@@ -455,7 +462,10 @@ namespace QLBanVePhim.Controllers
                      new SelectListItem { Selected = false, Text = "Sold", Value = "Sold"},
                      new SelectListItem { Selected = false, Text = "Cancelled", Value = "Cancelled"},
                 }, "Value", "Text");
-                return View(ves);
+                ViewBag.CurrTT = trangthaiVe;
+                ViewBag.CurrId = idVe;
+                var listVe = ves.ToList();
+                return View(listVe.ToPagedList(pageNum, pageSize));
             }
         }
 
@@ -496,6 +506,92 @@ namespace QLBanVePhim.Controllers
         }
 
         #endregion Vé
+
+        #region Batch Vé
+
+        public ActionResult QLBatchVe(string idVe, int? page)
+        {
+            QuanLyClass.TicketCheck();
+            if (!AuthCheck("nhanvien"))
+                return RedirectToAction("Index");
+            else
+            {
+                int pageNum = (page ?? 1);
+                var ves = from ve in db.ve_dat
+                          join vedat in db.ve_dat_chi_tiet on ve.id equals vedat.ve_dat_id
+                          join veban in db.ve_ban on vedat.id equals veban.id
+                          where veban.trang_thai == "Book"
+                          select ve;
+                if (!String.IsNullOrEmpty(idVe))
+                {
+                    ves = ves.Where(ve => ve.id.ToString().Contains(idVe));
+                }
+                var listVe = ves.ToList().Distinct();
+                ViewBag.CurrId = idVe;
+                return View(listVe.ToPagedList(pageNum, pageSize));
+            }
+        }
+
+        public ActionResult DetailsBatchVe(string id)
+        {
+            QuanLyClass.TicketCheck();
+            if (!AuthCheck("nhanvien"))
+                return RedirectToAction("Index");
+            var ves = from ve in db.ve_dat
+                      join vedat in db.ve_dat_chi_tiet on ve.id equals vedat.ve_dat_id
+                      join veban in db.ve_ban on vedat.id equals veban.id
+                      where ve.id == id && veban.trang_thai == "Book"
+                      select veban;
+            ViewBag.BatchId = id;
+            return View(ves.ToList());
+        }
+
+        [HttpPost]
+        public ActionResult SoldBatchVe(string id)
+        {
+            if (!AuthCheck("nhanvien"))
+                return RedirectToAction("Index");
+
+            var ves = from vd in db.ve_dat
+                      join vedat in db.ve_dat_chi_tiet on vd.id equals vedat.ve_dat_id
+                      join veban in db.ve_ban on vedat.id equals veban.id
+                      where vd.id == id && veban.trang_thai == "Book"
+                      select veban;
+            var listVe = ves.ToList();
+            foreach (var ve in listVe)
+            {
+                ve.nhan_vien_id = Convert.ToInt32(Session["ID_Admin"]);
+                ve.ngay_ban = DateTime.Now;
+                ve.trang_thai = "Sold";
+                ve.ghe_ngoi.da_chon = false;
+            }
+            db.SaveChanges();
+            return RedirectToAction("QLVe");
+        }
+
+        [HttpPost]
+        public ActionResult CancelBatchVe(string id)
+        {
+            if (!AuthCheck("nhanvien"))
+                return RedirectToAction("Index");
+            var ves = from vd in db.ve_dat
+                      join vedat in db.ve_dat_chi_tiet on vd.id equals vedat.ve_dat_id
+                      join veban in db.ve_ban on vedat.id equals veban.id
+                      where vd.id == id && veban.trang_thai == "Book"
+                      select veban;
+            var listVe = ves.ToList();
+            foreach (var ve in listVe)
+            {
+                ve.nhan_vien_id = Convert.ToInt32(Session["ID_Admin"]);
+                ve.ngay_ban = DateTime.Now;
+                ve.trang_thai = "Cancelled";
+                ve.ghe_ngoi.da_chon = false;
+            }
+            db.SaveChanges();
+            return RedirectToAction("QLVe");
+        }
+
+        #endregion Batch Vé
 
         public ActionResult QLDoAn()
         {
