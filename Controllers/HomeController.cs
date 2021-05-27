@@ -101,7 +101,11 @@ namespace QLBanVePhim.Controllers
                     tienDinhDangPhim = (int)sc.dinh_dang_phim.phu_thu;
                 }
 
-                veDat.id = Session["Id"].ToString() + "-" + sc.id + "-" + DateTime.Now.Second;
+                Random random = new Random();
+                string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+                string randomChar = new string(Enumerable.Repeat(chars, 3).Select(s => s[random.Next(s.Length)]).ToArray());
+
+                veDat.id = Session["Id"].ToString() + "-" + sc.id + "-" + DateTime.Now.Second + randomChar;
                 veDat.khach_hang_id = Convert.ToInt32(Session["Id"]);
                 veDat.ngay_dat = DateTime.Now.Date;
 
@@ -159,7 +163,7 @@ namespace QLBanVePhim.Controllers
 
         public ActionResult GetRoom(int id, string scId)
         {
-            var veBan = database.ve_ban.Where(v => v.suat_chieu_id == scId).OrderBy(g=>g.ghe_id).ToList();
+            var veBan = database.ve_ban.Where(v => v.suat_chieu_id == scId).OrderBy(g => g.ghe_id).ToList();
             List<string> dsGheDaChon = new List<string>();
             foreach (var ghe in veBan)
             {
@@ -253,6 +257,5 @@ namespace QLBanVePhim.Controllers
             Session.Abandon(); // it will clear the session at the end of request
             return RedirectToAction("Index", "Home");
         }
-
     }
 }
