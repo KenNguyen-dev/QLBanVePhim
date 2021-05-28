@@ -20,7 +20,7 @@
 
     #chiTiet {
         text-align: left;
-        line-height: 20px;
+        line-height: 25px;
         font-size: 25px;
         font-family: Arial
     }
@@ -32,11 +32,11 @@
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-3">
-                <img src=@Html.DisplayFor(model=>model.hinh_anh) id="hinhAnh"/>
+            <div class="col-sm-4">
+                <img src=@Html.DisplayFor(model=>model.hinh_anh) id="hinhAnh" />
             </div>
 
-            <div class="col-sm-9" id="chiTiet">
+            <div class="col-sm-8" id="chiTiet">
                 <h1>@Html.DisplayFor(model => model.ten)</h1>
                 <hr />
                 <p><strong>Nhà sản xuất :</strong> @Html.DisplayFor(model => model.nha_san_xuat)</p>
@@ -47,12 +47,17 @@
                 <p><strong>Ngôn ngữ : </strong>@Html.DisplayFor(model => model.ngon_ngu)</p>
                 <p><strong>Rated: @Html.DisplayFor(model => model.gioi_han_tuoi)</strong></p>
                 <p><strong>Tóm tắt:</strong> </p>
-                <text>
+                <p>
                     @Html.DisplayFor(model => model.tom_tat)
-                </text>
+                </p>
                 <br />
-                <button class="btn btn-success">Mua vé</button>
+                <h1><strong>*TRAILER*</strong></h1>
             </div>
         </div>
+        <div class="row">
+            @Html.Raw(Model.trailer)
+        </div>
+        
+
     </div>
 </div>
