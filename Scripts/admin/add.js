@@ -116,6 +116,10 @@ function onInput_Phim(type) {
             var val = document.getElementById("ngon_ngu").value;
             document.getElementById("previews_ngonngu").innerHTML = "Ngôn ngữ: " + val;
             break;
+        case "trailer":
+            var val = document.getElementById("trailer").value;
+            document.getElementById("previews_trailer").innerHTML = "Trailer: " + val;
+            break;
         case "dv":
             var val = document.getElementById("dien_vien").value;
             document.getElementById("previews_dv").innerHTML = "Diễn viên chính: " + val;
@@ -133,8 +137,9 @@ function onInput_Phim(type) {
             document.getElementById("previews_tt").innerHTML = "Tóm tắt: " + val;
             break;
         case "trth":
-            var val = document.getElementById("trang_thai").value;
-            document.getElementById("previews_trth").innerHTML = "Trạng thái: " + val;
+            var trthVal = document.getElementById("trang_thai");
+            var trth = trthVal.options[trthVal.selectedIndex].text;
+            document.getElementById("previews_trth").innerHTML = "Trạng thái: " + trth;
             break;
         default:
             break;

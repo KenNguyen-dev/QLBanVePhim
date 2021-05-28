@@ -1,4 +1,7 @@
-﻿@model IEnumerable<QLBanVePhim.Models.phong_chieu>
+﻿@using QLBanVePhim.Models
+@using PagedList.Mvc;
+@model PagedList.PagedList<phong_chieu>
+
 @{
     ViewBag.Title = "Quản lý Phòng Chiếu";
     Layout = "~/Views/Shared/ViewQLHome.cshtml";
@@ -8,10 +11,10 @@
     <div class="card">
         <div class="card-body settingCardBody stickyCard">
             <center><h4><i class="fas fa-search" style="margin-right:10px"></i>Search</h4></center>
-            @using (Html.BeginForm())
+            @using (Html.BeginForm("QLPhongChieu", "QLHome", FormMethod.Get))
             {
                 <div class="formSearchElement">
-                    @Html.DisplayNameFor(model => model.id)
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().id)
                     <input class="form-control" type="text" name="idPhong">
                 </div>
                 <div class="formSearchElement">
@@ -34,12 +37,52 @@
     <div class="card">
         <div class="card-body settingCardBody">
             <div class="container">
+                @if (Model.PageCount > 1)
+                {
+                    <div class="PagingTitle">
+                        <div class="row" style="margin-bottom:-15px !important">
+                            <div class="col-6 pageTitle">
+                                <span style="vertical-align: middle;">
+                                    @Html.PagedListPager(Model, page => Url.Action("QLPhongChieu",
+                                            new { page = page, idPhong = ViewBag.CurrId }),
+                                            new PagedListRenderOptions
+                                            {
+                                                LiElementClasses = new string[] { "page-item" },
+                                                DisplayLinkToIndividualPages = false,
+                                                DisplayPageCountAndCurrentLocation = true,
+                                                DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+                                                DisplayLinkToLastPage = PagedListDisplayMode.Always,
+                                                DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+                                                DisplayLinkToNextPage = PagedListDisplayMode.Always,
+                                                PageCountAndCurrentLocationFormat = "Trang {0}/{1}"
+                                            })
+                                </span>
+                            </div>
+                            <div class="col-6">
+                                <div style="float:right;">
+                                    @Html.PagedListPager(Model, page => Url.Action("QLPhongChieu",
+                                        new { page = page, idPhong = ViewBag.CurrId }),
+                                        new PagedListRenderOptions
+                                        {
+                                            LiElementClasses = new string[] { "page-item" },
+                                            DisplayLinkToFirstPage = PagedListDisplayMode.Never,
+                                            DisplayLinkToLastPage = PagedListDisplayMode.Never,
+                                            DisplayLinkToPreviousPage = PagedListDisplayMode.Never,
+                                            DisplayLinkToNextPage = PagedListDisplayMode.Never,
+                                            DisplayEllipsesWhenNotShowingAllPageNumbers = false,
+                                            MaximumPageNumbersToDisplay = 5
+                                        })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
                 <table class="table table-hover shadow p-3 mb-5 bg-white rounded">
                     <thead class="thead-dark">
                         <tr>
-                            <th>@Html.DisplayNameFor(model => model.id)</th>
-                            <th>@Html.DisplayNameFor(model => model.so_luong_cot)</th>
-                            <th>@Html.DisplayNameFor(model => model.so_luong_day)</th>
+                            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().id)</th>
+                            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().so_luong_cot)</th>
+                            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().so_luong_day)</th>
                         </tr>
                     </thead>
                     <tbody>

@@ -4,6 +4,8 @@ using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
+using PagedList.Mvc;
 using QLBanVePhim.Models;
 
 namespace QLBanVePhim.Controllers
@@ -11,6 +13,7 @@ namespace QLBanVePhim.Controllers
     public class QLPhimController : Controller
     {
         private QLBanVePhimEntities db = new QLBanVePhimEntities();
+        private int pageSize = 6;
 
         public bool AuthCheck(string perm)
         {
@@ -31,25 +34,27 @@ namespace QLBanVePhim.Controllers
 
         // GET: QLPhim
 
-        public ActionResult QLPhim()
-        {
-            if (!AuthCheck("admin"))
-                return RedirectToAction("Index", "QLHome");
-            return View(db.phim.ToList());
-        }
-        [HttpPost]
-        public ActionResult QLPhim(string tenPhim, string idPhim)
+        public ActionResult QLPhim(string tenPhim, string trangthaiPhim, int? page)
         {
             if (!AuthCheck("admin"))
                 return RedirectToAction("Index", "QLHome");
             var _phim = db.phim.ToList();
             if (!String.IsNullOrEmpty(tenPhim))
                 _phim = _phim.Where(s => s.ten.ToLower().Contains(tenPhim.ToLower())).ToList();
-            if (!String.IsNullOrEmpty(idPhim))
-                _phim = _phim.Where(s => s.id.Contains(idPhim)).ToList();
-            return View(_phim);
+            if (!String.IsNullOrEmpty(trangthaiPhim))
+            {
+                _phim = _phim.Where(s => s.trang_thai == trangthaiPhim).ToList();
+            }
+            ViewBag.CurrTen = tenPhim;
+            ViewBag.CurrTT = trangthaiPhim;
+            ViewBag.TrangThaiList = new SelectList(new List<SelectListItem>{
+                     new SelectListItem { Selected = false, Text = "Chưa Chiếu", Value = "Chưa Chiếu"},
+                     new SelectListItem { Selected = false, Text = "Đang Chiếu", Value = "Đang Chiếu"},
+                     new SelectListItem { Selected = false, Text = "Ngưng Chiếu", Value = "Ngưng Chiếu"},
+                }, "Value", "Text");
+            int pageNum = (page ?? 1);
+            return View(_phim.ToPagedList(pageNum, pageSize));
         }
-
 
         public ActionResult EditPhim(string id)
         {
@@ -57,6 +62,11 @@ namespace QLBanVePhim.Controllers
                 return RedirectToAction("Index", "QLHome");
             var loaiphimList = db.loai_phim.ToList();
             ViewBag.LoaiPhimList = new SelectList(loaiphimList, "id", "ten");
+            ViewBag.TrangThaiList = new SelectList(new List<SelectListItem>{
+                     new SelectListItem { Selected = false, Text = "Chưa Chiếu", Value = "Chưa Chiếu"},
+                     new SelectListItem { Selected = false, Text = "Đang Chiếu", Value = "Đang Chiếu"},
+                     new SelectListItem { Selected = false, Text = "Ngưng Chiếu", Value = "Ngưng Chiếu"},
+                }, "Value", "Text");
             return View(db.phim.Where(s => s.id == id).FirstOrDefault());
         }
 
@@ -93,6 +103,11 @@ namespace QLBanVePhim.Controllers
             if (!AuthCheck("admin"))
                 return RedirectToAction("Index", "QLHome");
             var loaiphimList = db.loai_phim.ToList();
+            ViewBag.TrangThaiList = new SelectList(new List<SelectListItem>{
+                     new SelectListItem { Selected = false, Text = "Chưa Chiếu", Value = "Chưa Chiếu"},
+                     new SelectListItem { Selected = false, Text = "Đang Chiếu", Value = "Đang Chiếu"},
+                     new SelectListItem { Selected = false, Text = "Ngưng Chiếu", Value = "Ngưng Chiếu"},
+                }, "Value", "Text");
             ViewBag.LoaiPhimList = new SelectList(loaiphimList, "id", "ten");
             return View();
         }

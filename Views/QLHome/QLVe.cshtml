@@ -42,6 +42,7 @@
     <div class="card">
         <div class="card-body settingCardBody">
             <div class="container">
+                @if(Model.PageCount > 1) {
                 <div class="PagingTitle">
                     <div class="row" style="margin-bottom:-15px !important">
                         <div class="col-6 pageTitle">
@@ -79,6 +80,7 @@
                         </div>
                     </div>
                 </div>
+                }
                 <table class="table table-hover shadow p-3 mb-5 bg-white rounded">
                     <thead class="thead-dark">
                         <tr>

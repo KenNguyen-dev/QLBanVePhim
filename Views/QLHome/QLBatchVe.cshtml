@@ -36,84 +36,87 @@
     <div class="card">
         <div class="card-body settingCardBody">
             <div class="container">
-                <div class="PagingTitle">
-                    <div class="row" style="margin-bottom:-15px !important">
-                        <div class="col-6 pageTitle">
-                            <span style="vertical-align: middle;">
-                                @Html.PagedListPager(Model, page => Url.Action("QLBatchVe",
-                                        new { page = page, idVe = ViewBag.CurrId }),
-                                        new PagedListRenderOptions
-                                        {
-                                            LiElementClasses = new string[] { "page-item" },
-                                            DisplayLinkToIndividualPages = false,
-                                            DisplayPageCountAndCurrentLocation = true,
-                                            DisplayLinkToFirstPage = PagedListDisplayMode.Always,
-                                            DisplayLinkToLastPage = PagedListDisplayMode.Always,
-                                            DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
-                                            DisplayLinkToNextPage = PagedListDisplayMode.Always,
-                                            PageCountAndCurrentLocationFormat = "Trang {0}/{1}"
-                                        })
-                            </span>
-                        </div>
-                        <div class="col-6">
-                            <div style="float:right;">
-                                @Html.PagedListPager(Model, page => Url.Action("QLBatchVe",
-                                    new { page = page, idVe = ViewBag.CurrId }),
-                                    new PagedListRenderOptions
-                                    {
-                                        LiElementClasses = new string[] { "page-item" },
-                                        DisplayLinkToFirstPage = PagedListDisplayMode.Never,
-                                        DisplayLinkToLastPage = PagedListDisplayMode.Never,
-                                        DisplayLinkToPreviousPage = PagedListDisplayMode.Never,
-                                        DisplayLinkToNextPage = PagedListDisplayMode.Never,
-                                        DisplayEllipsesWhenNotShowingAllPageNumbers = false,
-                                        MaximumPageNumbersToDisplay = 5
-                                    })
+                @if (Model.PageCount > 1)
+                {
+                    <div class="PagingTitle">
+                        <div class="row" style="margin-bottom:-15px !important">
+                            <div class="col-6 pageTitle">
+                                <span style="vertical-align: middle;">
+                                    @Html.PagedListPager(Model, page => Url.Action("QLBatchVe",
+                                 new { page = page, idVe = ViewBag.CurrId }),
+                                 new PagedListRenderOptions
+                                 {
+                                     LiElementClasses = new string[] { "page-item" },
+                                     DisplayLinkToIndividualPages = false,
+                                     DisplayPageCountAndCurrentLocation = true,
+                                     DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+                                     DisplayLinkToLastPage = PagedListDisplayMode.Always,
+                                     DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+                                     DisplayLinkToNextPage = PagedListDisplayMode.Always,
+                                     PageCountAndCurrentLocationFormat = "Trang {0}/{1}"
+                                 })
+                                </span>
+                            </div>
+                            <div class="col-6">
+                                <div style="float:right;">
+                                    @Html.PagedListPager(Model, page => Url.Action("QLBatchVe",
+                             new { page = page, idVe = ViewBag.CurrId }),
+                             new PagedListRenderOptions
+                             {
+                                 LiElementClasses = new string[] { "page-item" },
+                                 DisplayLinkToFirstPage = PagedListDisplayMode.Never,
+                                 DisplayLinkToLastPage = PagedListDisplayMode.Never,
+                                 DisplayLinkToPreviousPage = PagedListDisplayMode.Never,
+                                 DisplayLinkToNextPage = PagedListDisplayMode.Never,
+                                 DisplayEllipsesWhenNotShowingAllPageNumbers = false,
+                                 MaximumPageNumbersToDisplay = 5
+                             })
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <table class="table table-hover shadow p-3 mb-5 bg-white rounded">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th>
-                                @Html.DisplayNameFor(model => model.FirstOrDefault().id)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.FirstOrDefault().khach_hang.ho_ten)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.FirstOrDefault().khach_hang.so_dien_thoai)
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @if (Model.Count() == 0)
-                        {
-                            <tr> <td colspan="5"> Records not found </td></tr>
-                        }
-                        else
-                        {
-                            foreach (var item in Model)
+                }
+                    <table class="table table-hover shadow p-3 mb-5 bg-white rounded">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.FirstOrDefault().id)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.FirstOrDefault().khach_hang.ho_ten)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.FirstOrDefault().khach_hang.so_dien_thoai)
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.Count() == 0)
                             {
-                                <tr onclick="window.location.href = '/QLHome/DetailsBatchVe/@Html.DisplayFor(modelItem => item.id)';">
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.id)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.khach_hang.ho_ten)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.khach_hang.so_dien_thoai)
-                                    </td>
-                                </tr>
+                                <tr> <td colspan="5"> Records not found </td></tr>
                             }
-                        }
-                    </tbody>
-                </table>
-                <div>
+                            else
+                            {
+                                foreach (var item in Model)
+                                {
+                                    <tr onclick="window.location.href = '/QLHome/DetailsBatchVe/@Html.DisplayFor(modelItem => item.id)';">
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.id)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.khach_hang.ho_ten)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.khach_hang.so_dien_thoai)
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                    <div>
+                    </div>
                 </div>
-            </div>
         </div>
     </div>
 </div>

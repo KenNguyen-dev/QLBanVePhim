@@ -73,7 +73,7 @@ namespace QLBanVePhim.Controllers
 
         #region Khách Hàng
 
-        public ActionResult QLKH(string idKH, string tenKH, string sdtKH, string cmndKH)
+        public ActionResult QLKH(string tenKH, string sdtKH, string cmndKH, int? page)
         {
             if (!AuthCheck("admin"))
                 return RedirectToAction("Index");
@@ -81,10 +81,6 @@ namespace QLBanVePhim.Controllers
             {
                 var khs = from kh in db.khach_hang
                           select kh;
-                if (!String.IsNullOrEmpty(idKH))
-                {
-                    khs = khs.Where(nv => nv.id.ToString().Contains(idKH));
-                }
                 if (!String.IsNullOrEmpty(tenKH))
                 {
                     khs = khs.Where(nv => nv.ho_ten.ToLower().Contains(tenKH.ToLower()));
@@ -97,7 +93,12 @@ namespace QLBanVePhim.Controllers
                 {
                     khs = khs.Where(nv => nv.so_cmnd.Contains(cmndKH));
                 }
-                return View(khs);
+                ViewBag.CurrTen = tenKH;
+                ViewBag.CurrSDT = sdtKH;
+                ViewBag.CurrCMND = cmndKH;
+                var list = khs.ToList();
+                int pageNum = (page ?? 1);
+                return View(list.ToPagedList(pageNum, pageSize));
             }
         }
 
@@ -119,7 +120,7 @@ namespace QLBanVePhim.Controllers
 
         #region Nhân Viên
 
-        public ActionResult QLNV(string searchId, string searchName, string searchSDT, string searchCMND)
+        public ActionResult QLNV(string searchName, string searchSDT, string searchCMND, int? page)
         {
             if (!AuthCheck("admin"))
                 return RedirectToAction("Index");
@@ -127,10 +128,6 @@ namespace QLBanVePhim.Controllers
             {
                 var nvs = from nv in db.nguoi_dung
                           select nv;
-                if (!String.IsNullOrEmpty(searchId))
-                {
-                    nvs = nvs.Where(nv => nv.id.ToString().Contains(searchId));
-                }
                 if (!String.IsNullOrEmpty(searchName))
                 {
                     nvs = nvs.Where(nv => nv.ho_ten.ToLower().Contains(searchName.ToLower()));
@@ -143,7 +140,12 @@ namespace QLBanVePhim.Controllers
                 {
                     nvs = nvs.Where(nv => nv.so_cmnd.Contains(searchCMND));
                 }
-                return View(nvs);
+                ViewBag.CurrTen = searchName;
+                ViewBag.CurrSDT = searchSDT;
+                ViewBag.CurrCMND = searchCMND;
+                var list = nvs.ToList();
+                int pageNum = (page ?? 1);
+                return View(list.ToPagedList(pageNum, pageSize));
             }
         }
 
@@ -216,7 +218,7 @@ namespace QLBanVePhim.Controllers
 
         #region Suất chiếu
 
-        public ActionResult QLSuatChieu(string idSC, string tenPhimSC, string ddphimSC, string phongSC)
+        public ActionResult QLSuatChieu(string idSC, string tenPhimSC, string ddphimSC, string phongSC, int? page)
         {
             if (!AuthCheck("admin"))
                 return RedirectToAction("Index");
@@ -242,7 +244,14 @@ namespace QLBanVePhim.Controllers
                 }
                 var ddphimList = db.dinh_dang_phim.ToList();
                 ViewBag.DDPhimList = new SelectList(ddphimList, "id", "ten");
-                return View(scs);
+
+                ViewBag.CurrId = idSC;
+                ViewBag.CurrTenP = tenPhimSC;
+                ViewBag.CurrDDP = ddphimSC;
+                ViewBag.CurrPC = phongSC;
+                var list = scs.ToList();
+                int pageNum = (page ?? 1);
+                return View(list.ToPagedList(pageNum, pageSize));
             }
         }
 
@@ -333,7 +342,7 @@ namespace QLBanVePhim.Controllers
 
         #region Phòng chiếu
 
-        public ActionResult QLPhongChieu(string idPhong)
+        public ActionResult QLPhongChieu(string idPhong, int? page)
         {
             if (!AuthCheck("admin"))
                 return RedirectToAction("Index");
@@ -345,7 +354,10 @@ namespace QLBanVePhim.Controllers
                 {
                     phongs = phongs.Where(phong => phong.id.ToString().Contains(idPhong));
                 }
-                return View(phongs);
+                ViewBag.CurrId = idPhong;
+                var list = phongs.ToList();
+                int pageNum = (page ?? 1);
+                return View(list.ToPagedList(pageNum, pageSize));
             }
         }
 
@@ -446,7 +458,6 @@ namespace QLBanVePhim.Controllers
                 return RedirectToAction("Index");
             else
             {
-                int pageNum = (page ?? 1);
                 var ves = from ve in db.ve_ban
                           select ve;
                 if (!String.IsNullOrEmpty(idVe))
@@ -465,6 +476,7 @@ namespace QLBanVePhim.Controllers
                 ViewBag.CurrTT = trangthaiVe;
                 ViewBag.CurrId = idVe;
                 var listVe = ves.ToList();
+                int pageNum = (page ?? 1);
                 return View(listVe.ToPagedList(pageNum, pageSize));
             }
         }

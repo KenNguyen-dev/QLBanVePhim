@@ -1,4 +1,7 @@
-﻿@model IEnumerable<QLBanVePhim.Models.phim>
+﻿@using QLBanVePhim.Models
+@using PagedList.Mvc;
+@model PagedList.PagedList<phim>
+
 @{
     ViewBag.Title = "Quản lý Phim";
     Layout = "~/Views/Shared/ViewQLHome.cshtml";
@@ -7,15 +10,15 @@
     <div class="card">
         <div class="card-body settingCardBody stickyCard">
             <center><h4><i class="fas fa-search" style="margin-right:10px"></i>Search</h4></center>
-            @using (Html.BeginForm())
+            @using (Html.BeginForm("QLPhim", "QLPhim", FormMethod.Get))
             {
                 <div class="formSearchElement">
-                    @Html.DisplayNameFor(model => model.id)
-                    <input class="form-control" type="text" name="idPhim">
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().ten)
+                    <input class="form-control" type="text" name="tenPhim">
                 </div>
                 <div class="formSearchElement">
-                    @Html.DisplayNameFor(model => model.ten)
-                    <input class="form-control" type="text" name="tenPhim">
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().trang_thai)
+                    @Html.DropDownList("trangthaiPhim", ViewBag.TrangThaiList as SelectList, "----Chọn----", new { @class = "form-control" })
                 </div>
                 <div class="formSearchElement">
                     <center>
@@ -37,20 +40,61 @@
     <div class="card">
         <div class="card-body settingCardBody">
             <div class="container">
+                @if (Model.PageCount > 1)
+                {
+                    <div class="PagingTitle">
+                        <div class="row" style="margin-bottom:-15px !important">
+                            <div class="col-6 pageTitle">
+                                <span style="vertical-align: middle;">
+                                    @Html.PagedListPager(Model, page => Url.Action("QLPhim",
+                                            new { page = page, tenPhim = ViewBag.CurrTen, trangthaiPhim = ViewBag.CurrTT }),
+                                            new PagedListRenderOptions
+                                            {
+                                                LiElementClasses = new string[] { "page-item" },
+                                                DisplayLinkToIndividualPages = false,
+                                                DisplayPageCountAndCurrentLocation = true,
+                                                DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+                                                DisplayLinkToLastPage = PagedListDisplayMode.Always,
+                                                DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+                                                DisplayLinkToNextPage = PagedListDisplayMode.Always,
+                                                PageCountAndCurrentLocationFormat = "Trang {0}/{1}"
+                                            })
+                                </span>
+                            </div>
+                            <div class="col-6">
+                                <div style="float:right;">
+                                    @Html.PagedListPager(Model, page => Url.Action("QLPhim",
+                                        new { page = page, tenPhim = ViewBag.CurrTen, trangthaiPhim = ViewBag.CurrTT }),
+                                        new PagedListRenderOptions
+                                        {
+                                            LiElementClasses = new string[] { "page-item" },
+                                            DisplayLinkToFirstPage = PagedListDisplayMode.Never,
+                                            DisplayLinkToLastPage = PagedListDisplayMode.Never,
+                                            DisplayLinkToPreviousPage = PagedListDisplayMode.Never,
+                                            DisplayLinkToNextPage = PagedListDisplayMode.Never,
+                                            DisplayEllipsesWhenNotShowingAllPageNumbers = false,
+                                            MaximumPageNumbersToDisplay = 5
+                                        })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
                 <table class="table table-hover shadow p-3 mb-5 bg-white rounded">
                     <thead class="thead-dark">
                         <tr>
                             <th>
-                                @Html.DisplayNameFor(model => model.id)
+                                @Html.DisplayNameFor(model => model.FirstOrDefault().ten)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.ten)
+                                @Html.DisplayNameFor(model => model.FirstOrDefault().thoi_luong)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.thoi_luong)
+                                @Html.DisplayNameFor(model => model.FirstOrDefault().ngay_cong_chieu)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.ngay_cong_chieu)
+                                @Html.DisplayNameFor(model => model.FirstOrDefault().trang_thai)
                             </th>
                         </tr>
                     </thead>
@@ -65,9 +109,6 @@
                             {
                                 <tr onclick="window.location.href = '/QLPhim/EditPhim/@Html.DisplayFor(modelItem => item.id)';">
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.id)
-                                    </td>
-                                    <td>
                                         @Html.DisplayFor(modelItem => item.ten)
                                     </td>
                                     <td>
@@ -75,6 +116,9 @@
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.ngay_cong_chieu)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.trang_thai)
                                     </td>
                                 </tr>
                             }
