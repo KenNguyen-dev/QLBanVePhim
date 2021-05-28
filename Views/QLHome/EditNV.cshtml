@@ -47,7 +47,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.mat_khau, htmlAttributes: new { @class = "control-label" })
                         <div>
-                            @Html.EditorFor(model => model.mat_khau, new { htmlAttributes = new { @type = "password", @class = "form-control", @onInput = "onInput_NV('mk')" } })
+                            @Html.EditorFor(model => model.mat_khau, new { htmlAttributes = new { @value = @Html.DisplayFor(model => model.mat_khau), @type = "password", @class = "form-control", @onInput = "onInput_NV('mk')" } })
                             @Html.ValidationMessageFor(model => model.mat_khau, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -91,11 +91,12 @@
                             <h4 class="card-title" id="previews_ten">@Html.DisplayFor(model => model.ho_ten)</h4>
                             <p class="card-subtitle text-muted" id="previews_vaitro">@Html.DisplayFor(model => model.vai_tro.ten)</p><br />
                         </center>
-                        <p class="card-text" id="previews_gioitinh">Giới tính: @Html.DisplayFor(model => model.gioi_tinh)</p>
+                        <p class="card-text" id="previews_gioitinh">Giới tính: @((bool)(bool.Parse(Html.DisplayTextFor(model => model.gioi_tinh).ToString())) ? "Nam":"Nữ")</p>
                         <p class="card-text" id="previews_email">Email: @Html.DisplayFor(model => model.email)</p>
                         <p class="card-text" id="previews_sdt">SĐT: @Html.DisplayFor(model => model.so_dien_thoai)</p>
                         <p class="card-text" id="previews_cmnd">CMND: @Html.DisplayFor(model => model.so_cmnd)</p>
                         <p class="card-text" id="previews_diachi">Địa chỉ: @Html.DisplayFor(model => model.dia_chi)</p>
+                        <p class="card-text">Ngày vào làm: @Html.DisplayFor(model => model.ngay_vao_lam).ToString()</p>
                         <p class="card-text" id="previews_mk">Mật khẩu: <password>@Html.DisplayFor(model => model.mat_khau)</password></p>
                     </div>
 

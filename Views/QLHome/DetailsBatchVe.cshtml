@@ -1,0 +1,151 @@
+﻿@model IEnumerable<QLBanVePhim.Models.ve_ban>
+
+@{
+    ViewBag.Title = "Chi Tiết Lô Vé";
+    Layout = "~/Views/Shared/ViewQLHome.cshtml";
+}
+
+<div class="container bodyContainer">
+    <div class="card previewCardContainer">
+        <div class="card-body previewCard">
+            <div class="container">
+                <center>
+                    <h4 class="card-title">
+                        <i class="fas fa-ticket-alt"></i> @ViewBag.BatchId
+                    </h4>
+                </center>
+
+                <div class="container">
+                    <div class="row" style="margin-top:15px;">
+                        <div class="col-4">
+                            <p class="card-text">
+                                <b>@Html.DisplayNameFor(model => model.ve_dat_chi_tiet.ve_dat.khach_hang.ho_ten):</b>
+                                @Html.DisplayFor(model => model.FirstOrDefault().ve_dat_chi_tiet.ve_dat.khach_hang.ho_ten)
+                            </p>
+                        </div>
+                        <div class="col-4">
+                            <p class="card-text">
+                                <b>@Html.DisplayNameFor(model => model.ve_dat_chi_tiet.ve_dat.khach_hang.so_dien_thoai):</b>
+                                @Html.DisplayFor(model => model.FirstOrDefault().ve_dat_chi_tiet.ve_dat.khach_hang.so_dien_thoai)
+                            </p>
+                        </div>
+                        <div class="col-4">
+                            <p class="card-text">
+                                <b>@Html.DisplayNameFor(model => model.ve_dat_chi_tiet.ve_dat.khach_hang.so_cmnd):</b>
+                                @Html.DisplayFor(model => model.FirstOrDefault().ve_dat_chi_tiet.ve_dat.khach_hang.so_cmnd)
+                            </p>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col">
+                            <p><i class="fas fa-film"></i> <b>Phim:</b> @Html.DisplayFor(model => model.FirstOrDefault().suat_chieu.phim.ten) (@Html.DisplayFor(model => model.FirstOrDefault().suat_chieu.phim.gioi_han_tuoi)+)</p>
+                            <p><i class="fas fa-clock"></i> <b>Suất chiếu:</b> @Html.DisplayFor(model => model.FirstOrDefault().suat_chieu_id)</p>
+                            <p><i class="fas fa-calendar-day"></i> <b>Ngày chiếu:</b> @Html.DisplayFor(model => model.FirstOrDefault().suat_chieu.ngay_chieu) </p>
+                            <p><i class="fas fa-clock"></i> <b>Giờ chiếu:</b> @Html.DisplayFor(model => model.FirstOrDefault().suat_chieu.gio_bat_dau) - @Html.DisplayFor(model => model.FirstOrDefault().suat_chieu.gio_ket_thuc) (@Html.DisplayFor(model => model.FirstOrDefault().suat_chieu.phim.thoi_luong) Phút)</p>
+                            <p><i class="fas fa-door-closed"></i> <b>Phòng chiếu:</b> @Html.DisplayFor(model => model.FirstOrDefault().suat_chieu.phong_chieu.id)</p>
+                            <p><i class="fas fa-film"></i> <b>Định dạng phim:</b> @Html.DisplayFor(model => model.FirstOrDefault().suat_chieu.dinh_dang_phim.ten)</p>
+                            <hr />
+                            <center>
+                                <p><b><i class="fas fa-ticket-alt"></i> Danh Sách Vé</b></p>
+                                @if (Model.Count() == 0)
+                                {
+                                    <p>Records not found</p>
+                                }
+                                else
+                                {
+                                    foreach (var item in Model)
+                                    {
+                                        <p>
+                                            <button class="btn btn-outline-dark" onclick="window.open('/QLHome/DetailsVe/@Html.DisplayFor(modelItem => item.id)','_blank')">
+                                                <i class="fas fa-ticket-alt"></i> @Html.DisplayFor(modelItem => item.id) (Ghế @Html.DisplayFor(modelItem => item.ghe_ngoi.loai_ghe.ten_ghe))
+                                            </button>
+                                        </p>
+                                    }
+                                }
+                            </center>
+                        </div>
+                        <div class="col">
+                            <div style="float:right;">
+                                @if (Model.Count() == 0)
+                                {
+                                    <p>Records not found</p>
+                                }
+                                else
+                                {
+                                    int tongTien = 0;
+                                    foreach (var item in Model)
+                                    {
+                                        <p class="card-text">
+                                            <i class="fas fa-chevron-right"></i> <b>Giá vé @Html.DisplayFor(modelItem => item.id):</b> <font color="#00800">+@Html.DisplayFor(modelItem => item.tong__tien) VND</font>
+                                        </p>
+                                        tongTien += int.Parse(@Html.DisplayFor(modelItem => item.tong__tien).ToString());
+                                    }
+                                    <i class="fas fa-dollar-sign"></i> <b>Thành Tiền:</b> <font color="#00800">@tongTien VND</font>
+                                    <br /><br />
+                                    <center>
+                                        <p>
+                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#soldModal">
+                                                Bán Lô Vé
+                                            </button>
+                                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#cancelModal">
+                                                Hủy Lô Vé
+                                            </button>
+                                        </p>
+                                    </center>
+
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="soldModal" tabindex="-1" role="dialog" aria-labelledby="soldModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="soldModal">Xác nhận</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Bán lô vé này?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Không</button>
+                <form action="/QLHome/SoldBatchVe/@ViewBag.BatchId" method="post">
+                    <input type="submit" class="btn btn-danger" value="Có" />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="cancelModal" tabindex="-1" role="dialog" aria-labelledby="cancelModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="cancelModal">Xác nhận</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Hủy lô vé này?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Không</button>
+                <form action="/QLHome/CancelBatchVe/@ViewBag.BatchId" method="post">
+                    <input type="submit" class="btn btn-danger" value="Có" />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
