@@ -87,6 +87,9 @@ namespace QLBanVePhim.Controllers
         {
             try
             {
+                Random random = new Random();
+                string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm";
+
                 //Session["Id"] = 1;
                 //Dòng trên chỉ để test code
                 suat_chieu sc = database.suat_chieu.Where(s => s.id == suatChieu).FirstOrDefault();
@@ -101,8 +104,6 @@ namespace QLBanVePhim.Controllers
                     tienDinhDangPhim = (int)sc.dinh_dang_phim.phu_thu;
                 }
 
-                Random random = new Random();
-                string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
                 string randomChar = new string(Enumerable.Repeat(chars, 3).Select(s => s[random.Next(s.Length)]).ToArray());
 
                 veDat.id = Session["Id"].ToString() + "-" + sc.id + "-" + DateTime.Now.Second + randomChar;
@@ -111,6 +112,7 @@ namespace QLBanVePhim.Controllers
 
                 database.ve_dat.Add(veDat);
                 database.SaveChanges();
+                string randomChr = new string(Enumerable.Repeat(chars, 3).Select(s => s[random.Next(s.Length)]).ToArray());
 
                 foreach (var item in listGhe)
                 {
@@ -118,7 +120,7 @@ namespace QLBanVePhim.Controllers
                     ve_dat_chi_tiet veDatChiTiet = new ve_dat_chi_tiet();
                     ghe_ngoi ghe = database.ghe_ngoi.Where(g => g.id == item).FirstOrDefault();
                     ghe.da_chon = true;
-                    veBan.id = sc.id + "-" + ghe.id;
+                    veBan.id = sc.id + "-" + ghe.id + "-" + randomChr;
                     veBan.suat_chieu_id = sc.id;
                     if (DateTime.Today.DayOfWeek == DayOfWeek.Saturday || DateTime.Today.DayOfWeek == DayOfWeek.Sunday)
                     {
@@ -167,7 +169,10 @@ namespace QLBanVePhim.Controllers
             List<string> dsGheDaChon = new List<string>();
             foreach (var ghe in veBan)
             {
-                dsGheDaChon.Add(ghe.ghe_id);
+                if (ghe.trang_thai != "Cancelled")
+                {
+                    dsGheDaChon.Add(ghe.ghe_id);
+                }
             }
             var phongChieu = database.phong_chieu.Where(p => p.id == id).FirstOrDefault();
             var dsGhe = database.ghe_ngoi.Where(g => g.phong_chieu.id == phongChieu.id).OrderBy(s => s.vi_tri_day).ToList();

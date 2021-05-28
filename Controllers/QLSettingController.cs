@@ -28,62 +28,12 @@ namespace QLBanVePhim.Controllers
             return check;
         }
 
-        private void InitDataCheck()
-        {
-            var list_GiaVe = db.gia_ve.ToList();
-            var list_LoaiGhe = db.loai_ghe.ToList();
-
-            if (list_GiaVe.Count() == 0) InitDataGenerator("GiaVe");
-            if (list_LoaiGhe.Count() == 0) InitDataGenerator("LoaiGhe");
-        }
-
-        private void InitDataGenerator(string type)
-        {
-            switch (type)
-            {
-                case "GiaVe":
-                    gia_ve gv = new gia_ve();
-                    gv.id = "WEEKDAY";
-                    gv.ten = "Ngay Thuong";
-                    gv.don_gia = 50000;
-                    db.gia_ve.Add(gv);
-
-                    gia_ve gv2 = new gia_ve();
-                    gv2.id = "WEEKEND";
-                    gv2.ten = "Cuoi Tuan";
-                    gv2.don_gia = 70000;
-                    db.gia_ve.Add(gv2);
-
-                    db.SaveChanges();
-                    break;
-
-                case "LoaiGhe":
-                    loai_ghe lg = new loai_ghe();
-                    lg.id = "NORMAL";
-                    lg.ten_ghe = "Normal";
-                    lg.phu_thu = 0;
-                    db.loai_ghe.Add(lg);
-
-                    loai_ghe lg2 = new loai_ghe();
-                    lg2.id = "VIP";
-                    lg2.ten_ghe = "VIP";
-                    lg2.phu_thu = 0;
-                    db.loai_ghe.Add(lg2);
-
-                    db.SaveChanges();
-                    break;
-
-                default:
-                    break;
-            }
-        }
-
         // GET: QLSetting
         public ActionResult Index()
         {
             if (!AuthCheck("admin"))
                 return RedirectToAction("Index", "QLHome");
-            InitDataCheck();
+
             return View();
         }
 
