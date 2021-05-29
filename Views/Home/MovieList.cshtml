@@ -9,24 +9,22 @@
 <hr />
 
 <style>
-    .card{
-        width:300px;
-        margin:20px;
-        padding:10px;
-        background-color:antiquewhite;
+    .card {
+        width: 300px;
+        margin: 20px;
+        padding: 10px;
+        background-color: antiquewhite;
     }
 
-    #movieList{
-        margin:auto;
-        width:80%;
-        display:block;
+    #movieList {
+        margin: auto;
+        width: 80%;
+        display: block;
     }
-
 </style>
 
 <div class="container-fluid" id="movieList">
-    <div class="cardList" style="display:flex">
-
+    <div class="cardList" style="display:flex;flex-wrap: wrap;">
         @foreach (var item in Model)
         {
             if (item.da_xoa == false || item.da_xoa == null)
@@ -42,11 +40,9 @@
                             @Html.ActionLink("Xem Thêm", "Details", new { id = item.id }, new { @class = "btn btn-info", @style = "width:50%" })
                             @Html.ActionLink("Đặt vé", "OrderTicket", new { id = item.id }, new { @class = "btn btn-info", @style = "width:50%" })
                         </div>
-
                     </div>
                 </div>
             }
-
         }
     </div>
 </div>

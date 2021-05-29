@@ -447,7 +447,7 @@ namespace QLBanVePhim.Controllers
                         ghe.vi_tri_cot = col[j - 1];
                         ghe.id = ghe.phong_chieu_id + "_" + ghe.vi_tri_day + ghe.vi_tri_cot;
                         ghe.loai_ghe_id = "NORMAL";
-                        if ((i >= 2 && i <= 6) && (j >= 3 && j <= 6))
+                        if ((i >= 3 && i <= 7) && (j >= 4 && j <= 7))
                         {
                             ghe.loai_ghe_id = "VIP";
                         }

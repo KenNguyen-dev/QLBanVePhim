@@ -131,7 +131,7 @@
                         <p class="card-text" id="previews_nsx">Nhà sản xuất: @Html.DisplayFor(model => model.nha_san_xuat)</p>
                         <p class="card-text" id="previews_tt">Tóm tắt: @Html.DisplayFor(model => model.tom_tat)</p>
                         <p class="card-text" id="previews_trth">Trạng thái: @Html.DisplayFor(model => model.trang_thai)</p>
-                        <p class="card-text" id="previews_trailer">Trailer: @Html.DisplayFor(model => model.trailer)</p>
+                        <p class="card-text" id="previews_trailer">Trailer: @(new HtmlString(Model.trailer))</p>
                     </div>
                     <div class="form-group" style="padding-top:10px">
                         <center>
