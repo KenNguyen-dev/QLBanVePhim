@@ -293,7 +293,7 @@ namespace QLBanVePhim.Controllers
                 }
                 if (!String.IsNullOrEmpty(phongSC))
                 {
-                    scs = scs.Where(sc => sc.phong_chieu_id.ToString().Contains(idSC));
+                    scs = scs.Where(sc => sc.phong_chieu_id.ToString().Contains(phongSC));
                 }
                 var ddphimList = db.dinh_dang_phim.ToList();
                 ViewBag.DDPhimList = new SelectList(ddphimList, "id", "ten");
