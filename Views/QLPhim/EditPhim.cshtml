@@ -98,7 +98,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.tom_tat, htmlAttributes: new { @class = "control-label" })
                     <div>
-                        @Html.EditorFor(model => model.tom_tat, new { htmlAttributes = new { @class = "form-control", @onInput = "onInput_Phim('tt')" } })
+                        @Html.TextAreaFor(model => model.tom_tat, new { @class = "form-control", @onInput = "onInput_Phim('tt')" })
                         @Html.ValidationMessageFor(model => model.tom_tat, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -129,7 +129,7 @@
                         <p class="card-text" id="previews_dv">Diễn viên chính: @Html.DisplayFor(model => model.dien_vien)</p>
                         <p class="card-text" id="previews_quocgia">Quốc gia: @Html.DisplayFor(model => model.quoc_gia)</p>
                         <p class="card-text" id="previews_nsx">Nhà sản xuất: @Html.DisplayFor(model => model.nha_san_xuat)</p>
-                        <p class="card-text" id="previews_tt">Tóm tắt: @Html.DisplayFor(model => model.tom_tat)</p>
+                        <p class="card-text" style="word-wrap: break-word;" id="previews_tt">Tóm tắt: @Html.DisplayFor(model => model.tom_tat)</p>
                         <p class="card-text" id="previews_trth">Trạng thái: @Html.DisplayFor(model => model.trang_thai)</p>
                         <p class="card-text" id="previews_trailer">Trailer: @(new HtmlString(Model.trailer))</p>
                     </div>

@@ -1,0 +1,121 @@
+﻿@using QLBanVePhim.Models
+@using PagedList.Mvc;
+@model PagedList.PagedList<do_an>
+
+@{
+    ViewBag.Title = "Quản lý Đồ Ăn";
+    Layout = "~/Views/Shared/ViewQLHome.cshtml";
+}
+<script src="~/Scripts/admin/setting.js"></script>
+<div class="settingLeft">
+    <div class="card">
+        <div class="card-body settingCardBody">
+            <center><h4><i class="fas fa-search" style="margin-right:10px"></i>Search</h4></center>
+            @using (Html.BeginForm("Index", "QLDoAn", FormMethod.Get))
+            {
+                <div class="formSearchElement">
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().ten)
+                    <input class="form-control" type="text" name="tenPhim">
+                </div>
+                <div class="formSearchElement">
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().loai_do_an.ten)
+                    @Html.DropDownList("loaiDoAn", ViewBag.LoaiDoAn as SelectList, "----Chọn----", new { @class = "form-control" })
+                </div>
+                <div class="formSearchElement">
+                    <center>
+                        <button class="btn btn-primary" type="submit"><i class="fas fa-search" style="margin-right:10px"></i>Search</button>
+                        <button class="btn btn-info" type="reset"><i class="fas fa-undo" style="margin-right:10px"></i>Reset</button>
+                    </center>
+                </div>
+
+            }
+            <hr />
+            <center><h4><i class="fas fa-tools" style="margin-right:10px"></i>Tools</h4></center>
+            <center>
+                <a href="/QLDoAn/AddDoAn" style="margin-top:5px;" class="col btn btn-success"><i class="fas fa-plus" style="margin-right:10px"></i>Thêm Đồ Ăn</a>
+                <a href="/QLDoAn/HoaDon" style="margin-top:5px;" class="col btn btn-primary"><i class="fas fa-receipt" style="margin-right:10px"></i>Hóa Đơn</a>
+            </center>
+        </div>
+    </div>
+</div>
+<div class="settingRight">
+    <div class="card">
+        <div class="card-body settingCardBody">
+            <div class="container">
+                @if (Model.PageCount > 1)
+                {
+                    <div class="PagingTitle">
+                        <div class="row" style="margin-bottom:-15px !important">
+                            <div class="col-6 pageTitle">
+                                <span style="vertical-align: middle;">
+                                    @Html.PagedListPager(Model, page => Url.Action("Index",
+                                            new { page = page, tenDA = ViewBag.CurrTen, loaiDA = ViewBag.CurrLF }),
+                                            new PagedListRenderOptions
+                                            {
+                                                LiElementClasses = new string[] { "page-item" },
+                                                DisplayLinkToIndividualPages = false,
+                                                DisplayPageCountAndCurrentLocation = true,
+                                                DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+                                                DisplayLinkToLastPage = PagedListDisplayMode.Always,
+                                                DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+                                                DisplayLinkToNextPage = PagedListDisplayMode.Always,
+                                                PageCountAndCurrentLocationFormat = "Trang {0}/{1}"
+                                            })
+                                </span>
+                            </div>
+                            <div class="col-6">
+                                <div style="float:right;">
+                                    @Html.PagedListPager(Model, page => Url.Action("Index",
+                                        new { page = page, tenDA = ViewBag.CurrTen, loaiDA = ViewBag.CurrLF }),
+                                        new PagedListRenderOptions
+                                        {
+                                            LiElementClasses = new string[] { "page-item" },
+                                            DisplayLinkToFirstPage = PagedListDisplayMode.Never,
+                                            DisplayLinkToLastPage = PagedListDisplayMode.Never,
+                                            DisplayLinkToPreviousPage = PagedListDisplayMode.Never,
+                                            DisplayLinkToNextPage = PagedListDisplayMode.Never,
+                                            DisplayEllipsesWhenNotShowingAllPageNumbers = false,
+                                            MaximumPageNumbersToDisplay = 5
+                                        })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                <table class="table table-hover shadow p-3 mb-5 bg-white rounded">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.FirstOrDefault().ten)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.FirstOrDefault().loai_do_an.ten)
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.Count() == 0)
+                        {
+                            <tr> <td colspan="5"> Records not found </td></tr>
+                        }
+                        else
+                        {
+                            foreach (var item in Model)
+                            {
+                                <tr onclick="window.location.href = '/QLDoAn/EditDoAn/@Html.DisplayFor(modelItem => item.id)';">
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ten)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.loai_do_an.ten)
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

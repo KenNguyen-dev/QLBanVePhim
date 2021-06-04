@@ -1,0 +1,85 @@
+﻿@model QLBanVePhim.Models.do_an_chi_tiet
+@{
+    ViewBag.Title = "Thêm Đồ Ăn";
+    Layout = "~/Views/Shared/ViewQLHome.cshtml";
+}
+<script src="~/Scripts/admin/add.js"></script>
+@using (Html.BeginForm())
+{
+    <div class="container bodyContainer">
+        <div class="row">
+            <div class="col-sm">
+                <p><center>Thêm Đồ Ăn</center></p> <hr />
+                @Html.AntiForgeryToken()
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.do_an.id, htmlAttributes: new { @class = "control-label" })
+                        <div>
+                            @Html.EditorFor(model => model.do_an.id, new { htmlAttributes = new { @class = "form-control", @onInput = "onInput_DoAn('id')" } })
+                            @Html.ValidationMessageFor(model => model.do_an.id, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.do_an.ten, htmlAttributes: new { @class = "control-label" })
+                        <div>
+                            @Html.EditorFor(model => model.do_an.ten, new { htmlAttributes = new { @class = "form-control", @onInput = "onInput_DoAn('ten')" } })
+                            @Html.ValidationMessageFor(model => model.do_an.ten, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.do_an.hinh_anh, htmlAttributes: new { @class = "control-label" })
+                        <div>
+                            @Html.EditorFor(model => model.do_an.hinh_anh, new { htmlAttributes = new { @class = "form-control", @onInput = "onInput_DoAn('hinh')" } })
+                            @Html.ValidationMessageFor(model => model.do_an.hinh_anh, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.don_gia, htmlAttributes: new { @class = "control-label" })
+                        <div>
+                            @Html.EditorFor(model => model.don_gia, new { htmlAttributes = new { @class = "form-control", @onInput = "onInput_DoAn('gia')" } })
+                            @Html.ValidationMessageFor(model => model.don_gia, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.do_an.loai_do_an.ten, htmlAttributes: new { @class = "control-label" })
+                        <div>
+                            @Html.DropDownListFor(model => model.do_an.loai_do_an_id, ViewBag.LoaiDoAn as SelectList, "---- Chọn ----", new { @class = "form-control", @onchange = "onInput_DoAn('loai')" })
+                            @Html.ValidationMessageFor(model => model.do_an.loai_do_an_id, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.kich_co_do_an.ten, htmlAttributes: new { @class = "control-label" })
+                        <div>
+                            @Html.DropDownListFor(model => model.kich_co_do_an_id, ViewBag.Size as SelectList, "---- Chọn ----", new { @class = "form-control", @onchange = "onInput_DoAn('size')" })
+                            @Html.ValidationMessageFor(model => model.kich_co_do_an_id, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm">
+                <p><center>Preview</center></p> <hr />
+                <div class="card previewCardContainer">
+                    <div class="card-body previewCard">
+                        <center>
+                            <img id="previews_hinh" onerror="errorImg()" style="max-height:250px; max-width:300px; width:auto;" />
+                            <h4 class="card-title" id="previews_ten">Tên Đồ Ăn</h4>
+                            <p class="card-subtitle text-muted" id="previews_id">ID</p><br />
+                        </center>
+                        <p class="card-text" id="previews_gia"></p>
+                        <p class="card-text" id="previews_loai"></p>
+                        <p class="card-text" id="previews_size"></p>
+                    </div>
+                    <div class="form-group" style="padding-top:10px">
+                        <center>
+                            <input type="submit" value="Thêm Đồ Ăn" class="btn btn-primary" />
+                        </center>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+@Scripts.Render("~/bundles/jqueryval")

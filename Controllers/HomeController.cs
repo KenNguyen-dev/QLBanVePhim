@@ -112,7 +112,7 @@ namespace QLBanVePhim.Controllers
 
                 database.ve_dat.Add(veDat);
                 database.SaveChanges();
-                string randomChr = new string(Enumerable.Repeat(chars, 3).Select(s => s[random.Next(s.Length)]).ToArray());
+                string randomChr = new string(Enumerable.Repeat(chars, 5).Select(s => s[random.Next(s.Length)]).ToArray());
 
                 foreach (var item in listGhe)
                 {
@@ -176,7 +176,8 @@ namespace QLBanVePhim.Controllers
             }
             var phongChieu = database.phong_chieu.Where(p => p.id == id).FirstOrDefault();
             var dsGhe = database.ghe_ngoi.Where(g => g.phong_chieu.id == phongChieu.id).OrderBy(s => s.vi_tri_day).ToList();
-            var suatChieu = database.suat_chieu.Where(s => s.phong_chieu_id == id).ToList();
+            var scHT = database.suat_chieu.Where(s => s.id == scId).FirstOrDefault();
+            var suatChieu = database.suat_chieu.Where(s => s.phong_chieu_id == id && s.phim_id == scHT.phim_id).ToList();
 
             ViewBag.RoomNumber = phongChieu.id;
             ViewBag.DsGhe = dsGhe;

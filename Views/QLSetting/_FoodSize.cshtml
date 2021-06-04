@@ -1,0 +1,72 @@
+﻿@model IEnumerable<QLBanVePhim.Models.kich_co_do_an>
+
+<script>
+    function toggle_edit_fs(id) {
+        $(".toggle-fs-ten-" + id).toggle();
+        $(".toggle-fs-edit-" + id).toggle();
+        $(".toggle-fs-btnEdit-" + id).toggle();
+    }
+</script>
+
+<div class="settingTitle">
+    <div class="row">
+        <div class="col-9 settingTitleCol">
+            <i class="fas fa-utensils" style="margin-right:10px"></i>Kích Cỡ Đồ Ăn
+        </div>
+        <div class="col-3">
+            <button class="btn btn-secondary settingButtonCol disable"><i class="fas fa-lock"></i> Không thể thêm</button>
+        </div>
+    </div>
+</div>
+<table class="table table-hover shadow p-3 mb-5 bg-white rounded">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ten)
+            </th>
+            <th>
+            </th>
+            <th>
+            </th>
+        </tr>
+    </thead>
+    <tbody id="table-FS">
+        @if (Model.Count() == 0)
+        {
+            <tr> <td colspan="4"> Records not found </td></tr>
+        }
+        else
+        {
+            foreach (var item in Model)
+            {
+                <tr class="settingTitleCol">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.id)
+                    </td>
+                    <td class="toggle-fs-ten-@Html.DisplayFor(modelItem => item.id)">
+                        @Html.DisplayFor(modelItem => item.ten)
+                    </td>
+                    <td class="toggle-fs-edit-@Html.DisplayFor(modelItem => item.id)">
+                    </td>
+                    @using (Html.BeginForm("Update_FS", "QLSetting", FormMethod.Post))
+                    {
+                        <td class="toggle-fs-ten-@Html.DisplayFor(modelItem => item.id)" style="display:none">
+                            <input type="hidden" value="@item.id" name="idFS_edit" required />
+                            <input type="text" value="@item.ten" name="tenFS_edit" class="form-control" required />
+                        </td>
+                        <td class="toggle-fs-edit-@Html.DisplayFor(modelItem => item.id)" style="display:none">
+                            <button type="submit" id="btnSaveEdit" class="btn btn-success settingButtonCol"><i class="fas fa-save"></i> Lưu</button>
+                        </td>
+                    }
+                    <td>
+                        <button class="btn btn-primary settingButtonCol toggle-fs-btnEdit-@Html.DisplayFor(modelItem => item.id)" onclick="toggle_edit_fs('@Html.DisplayFor(modelItem => item.id)')"><i class="fas fa-edit"></i> Sửa</button>
+                        <button class="btn btn-danger settingButtonCol toggle-fs-btnEdit-@Html.DisplayFor(modelItem => item.id)" onclick="toggle_edit_fs('@Html.DisplayFor(modelItem => item.id)')" style="display:none"><i class="fas fa-undo"></i> Hủy</button>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

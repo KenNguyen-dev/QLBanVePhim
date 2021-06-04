@@ -1,0 +1,61 @@
+﻿@model IEnumerable<QLBanVePhim.Models.hoa_don_chi_tiet>
+
+<script>
+    function onInput_SL(id) {
+        var dg = document.getElementById("DonGia-"+ id).value;
+        var sl = document.getElementById("SoLuong-" + id).value;
+        if (parseInt(sl) < 1) {
+            document.getElementById("SoLuong-" + id).value = 1;
+            sl = 1;
+        }
+        if (parseInt(sl) > 99) {
+            document.getElementById("SoLuong-" + id).value = 99;
+            sl = 99;
+        }
+        document.getElementById("total-" + id).innerHTML = parseInt(sl) * parseInt(dg) + "";
+        document.getElementById("error-" + id).innerHTML = "<br />Chưa lưu, hãy ấn Lưu để lưu giá";
+    }
+</script>
+
+@if (Model.Count() == 0)
+{
+    <p>Chưa có đồ ăn trong hóa đơn</p>
+}
+else
+{
+    <div>
+        @foreach (var item in Model)
+        {
+            using (Html.BeginForm("UpdateHDCT", "QLDoAn", FormMethod.Post, new { id = "form_" + @item.id }))
+            {
+                <div class="container">
+                    <div class="row" style="margin-top:5px;">
+                        <p>
+                            <i class="fas fa-utensils"></i> <b>@item.do_an_chi_tiet.do_an.loai_do_an.ten:</b> @item.do_an_chi_tiet.do_an.ten (@item.do_an_chi_tiet.kich_co_do_an.ten) - @item.do_an_chi_tiet.don_gia VND
+                        </p>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Số Lượng</span>
+                            </div>
+                            <input type="hidden" name="idHDCT" value="@item.id" />
+                            <input type="hidden" id="DonGia-@item.id" value="@item.do_an_chi_tiet.don_gia" />
+                            <input required type="number" name="SoLuong" id="SoLuong-@item.id" value="@item.so_luong" class="form-control" form="form_@item.id" oninput="onInput_SL('@item.id');" />
+                            <div class="input-group-append">
+                                <input class="btn btn-success" type="submit" value="Lưu" form="form_@item.id" />
+                                <a href="/QLDoAn/DeleteHDCT/@item.id" class="btn btn-danger">
+                                    Xóa
+                                </a>
+                            </div>
+                        </div>
+                        <p>
+                            <i class="fas fa-dollar-sign"></i> <b>Tổng Tiền:</b> <span id="total-@item.id">@item.tong_tien</span> VND
+
+                            <span class="text-danger" id="error-@item.id"></span>
+                        </p>
+                    </div>
+                </div>
+            }
+            <hr />
+        }
+    </div>
+}

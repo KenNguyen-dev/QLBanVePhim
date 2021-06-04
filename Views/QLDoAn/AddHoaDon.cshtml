@@ -1,0 +1,85 @@
+﻿@model QLBanVePhim.Models.hoa_don
+@{
+    ViewBag.Title = "Tạo Hóa Đơn";
+    Layout = "~/Views/Shared/ViewQLHome.cshtml";
+}
+<script src="~/Scripts/admin/add.js"></script>
+@Html.AntiForgeryToken()
+
+<div class="container bodyContainer">
+    <div class="card previewCardContainer">
+        <div class="card-body previewCard">
+            <div class="container">
+                <center>
+                    <h4 class="card-title">
+                        <i class="fas fa-receipt"></i> @Html.DisplayFor(model => model.id)
+                    </h4>
+                </center>
+                <div class="row" style="margin-top:15px;">
+                    <div class="col">
+                        <center>
+                            <p class="card-text"><i class="fas fa-user"></i> <b>Được Bán Bởi:</b> @Html.DisplayFor(model => model.nguoi_dung.ho_ten)</p>
+                        </center>
+                            
+                    </div>
+                    <div class="col">
+                        <center>
+                            <p class="card-text"><i class="fas fa-calendar"></i> <b>@Html.DisplayNameFor(model => model.ngay_ban):</b> @Html.DisplayFor(model => model.ngay_ban)</p>
+                            </center>
+</div>
+                </div>
+                <div class="row" style="margin-top:15px;">
+                    <div class="col">
+                        <center>
+                            <i class="fas fa-dollar-sign"></i> <b>Tổng Tiền: </b> @ViewBag.TongTien VND
+                        </center>
+                    </div>
+                </div>
+                <hr />
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-7">
+                            @{
+                                Html.RenderAction("Render_HDCT", "QLDoAn", new { id = ViewBag.ID });
+                            }
+                        </div>
+                        <div class="col-lg-5">
+                            @{
+                                Html.RenderAction("Render_HDAdd", "QLDoAn", new { id = ViewBag.ID });
+                            }
+                            <br />
+                            <hr />
+                            <br />
+                            <button type="button" class="col btn btn-danger" style="margin-top:5px;" data-toggle="modal" data-target="#deleteModal">
+                                <i class="fas fa-trash-alt"></i> Hủy Hóa Đơn
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Xác nhận</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Bạn có chắc muốn xóa?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Không</button>
+                <form action="/QLDoAn/HuyHoaDon/@Html.DisplayFor(model => model.id)" method="post">
+                    <input type="submit" class="btn btn-danger" value="Xóa" />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@Scripts.Render("~/bundles/jqueryval")

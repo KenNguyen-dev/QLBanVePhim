@@ -207,5 +207,88 @@ namespace QLBanVePhim.Controllers
         }
 
         #endregion Giá Vé
+
+        #region Kích Cỡ Đồ Ăn
+
+        public ActionResult Render_FS()
+        {
+            return PartialView("_FoodSize", db.kich_co_do_an.ToList());
+        }
+
+        [HttpPost]
+        public ActionResult Update_FS(FormCollection form)
+        {
+            if (!AuthCheck("admin"))
+                return RedirectToAction("Index", "QLHome");
+            string id = form["idFS_edit"].ToString();
+            kich_co_do_an fs = db.kich_co_do_an.Where(item => item.id == id).FirstOrDefault();
+            fs.ten = form["tenFS_edit"].ToString();
+            db.SaveChanges();
+            return Redirect(Url.Action("Index", "QLSetting") + "#FS");
+        }
+
+        #endregion Kích Cỡ Đồ Ăn
+
+        #region Loại Đồ Ăn
+
+        public ActionResult Render_LF(string searchString)
+        {
+            var lf = from m in db.loai_do_an
+                     select m;
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                lf = lf.Where(s => s.ten.Contains(searchString));
+            }
+
+            if (Request.IsAjaxRequest())
+                return PartialView("_LoaiFood", lf.ToList());
+            return PartialView("_LoaiFood", db.loai_do_an.ToList());
+        }
+
+        [HttpPost]
+        public ActionResult Add_LF(FormCollection form)
+        {
+            if (!AuthCheck("admin"))
+                return RedirectToAction("Index", "QLHome");
+            try
+            {
+                loai_do_an lf = new loai_do_an();
+                lf.id = form["idLF"];
+                lf.ten = form["tenLF"];
+                db.loai_do_an.Add(lf);
+                db.SaveChanges();
+                return Redirect(Url.Action("Index", "QLSetting") + "#LF");
+            }
+            catch (Exception e)
+            {
+                return Content(e.ToString());
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Update_LF(FormCollection form)
+        {
+            if (!AuthCheck("admin"))
+                return RedirectToAction("Index", "QLHome");
+            string id = form["idLF_edit"].ToString();
+            loai_do_an lf = db.loai_do_an.Where(item => item.id == id).FirstOrDefault();
+            lf.ten = form["tenLF_edit"];
+            db.SaveChanges();
+            return Redirect(Url.Action("Index", "QLSetting") + "#LF");
+        }
+
+        [HttpPost]
+        public ActionResult Delete_LF(FormCollection form)
+        {
+            if (!AuthCheck("admin"))
+                return RedirectToAction("Index", "QLHome");
+            string id = form["idLF_delete"].ToString();
+            loai_do_an lf = db.loai_do_an.Where(item => item.id == id).FirstOrDefault();
+            db.Entry(lf).State = System.Data.Entity.EntityState.Deleted;
+            db.SaveChanges();
+            return Redirect(Url.Action("Index", "QLSetting") + "#LF");
+        }
+
+        #endregion Loại Đồ Ăn
     }
 }

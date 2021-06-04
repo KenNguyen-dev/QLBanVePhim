@@ -24,6 +24,9 @@
                 <li class="nav-item  @Html.IsActive("QLVe", "QLHome")">
                     <a class="nav-link" href="/QLHome/QLVe"><i class="fas fa-ticket-alt"></i> Vé</a>
                 </li>
+                <li class="nav-item @Html.IsActive("HoaDon", "QLDoAn") @Html.IsActive("AddHoaDon", "QLDoAn") @Html.IsActive("AddDoAn", "QLDoAn") @Html.IsActive("EditDoAn", "QLDoAn") @Html.IsActive("Index", "QLDoAn")">
+                    <a class="nav-link" href="/QLDoAn"><i class="fas fa-utensils"></i> Đồ ăn</a>
+                </li>
                 @if (Session["Id_VT_Admin"].Equals("admin"))
                 {
                     <li class="nav-item @Html.IsActive("QLNV", "QLHome") @Html.IsActive("AddNV", "QLHome") @Html.IsActive("EditNV", "QLHome")">
@@ -42,12 +45,8 @@
                         <a class="nav-link" href="/QLHome/QLKH"><i class="fas fa-users"></i> Khách hàng</a>
                     </li>
                     @*<li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fas fa-plus"></i> Combo</a>
-                    </li>
-                    <li class="nav-item  @Html.IsActive("QLDoAn", "QLDoAn")">
-                        <a class="nav-link" href="/QLDoAn/QLDoAn"><i class="fas fa-utensils"></i> Đồ ăn</a>
-                    </li>*@
-
+                <a class="nav-link" href="#"><i class="fas fa-plus"></i> Combo</a>
+            </li>*@
                     <li class="nav-item @Html.IsActive("Index", "QLSetting")">
                         <a class="nav-link" href="/QLSetting"><i class="fas fa-cog"></i> Settings</a>
                     </li>

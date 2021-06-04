@@ -1,0 +1,44 @@
+﻿@model IEnumerable<QLBanVePhim.Models.do_an_chi_tiet>
+
+<script>
+    function onInput_PriceSize(id) {
+        document.getElementById("error-" + id).innerHTML = "Chưa lưu, hãy ấn Lưu để lưu giá";
+    }
+</script>
+
+@if (Model.Count() == 0)
+{
+    <p>Chưa có size nào</p>
+}
+else
+{
+    <div>
+        @foreach (var item in Model)
+        {
+            if (Session["Id_VT_Admin"].Equals("admin"))
+            {
+                using (Html.BeginForm("UpdateGia", "QLDoAn", FormMethod.Post, new { id = "form_" + @item.id }))
+                {<div class="container">
+                        <div class="row" style="margin-top:5px;">
+                            <p>
+                                <i class="fas fa-dollar-sign"></i> Giá Size @item.kich_co_do_an.ten:
+                            </p>
+                            <div class="input-group mb-3">
+                                <input type="hidden" name="idDACT" value="@item.id" />
+                                <input required type="number" name="DonGia" value="@item.don_gia" class="form-control" form="form_@item.id" oninput="onInput_PriceSize('@item.id');" />
+                                <div class="input-group-append">
+                                    <input class="btn btn-success" type="submit" value="Lưu" form="form_@item.id" />
+                                </div>
+                            </div>
+                            <p class="text-danger" id="error-@item.id"></p>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <p><i class="fas fa-dollar-sign"></i> <b>Giá Size @item.kich_co_do_an.ten:</b> @item.don_gia VND</p>
+            }
+        }
+    </div>
+}

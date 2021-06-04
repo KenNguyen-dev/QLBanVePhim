@@ -35,3 +35,21 @@ function add_NewLP() {
     cell2.innerHTML = document.getElementById("form_submit_lp").innerHTML;
     cell3.innerHTML = document.getElementById("form_cancel_lp").innerHTML;
 }
+
+function add_NewLF() {
+    document.getElementById("btnAdd-LF").style.display = "none";
+
+    var table = document.getElementById("table-LF");
+
+    var row = table.insertRow(0);
+
+    var cell0 = row.insertCell(0);
+    var cell1 = row.insertCell(1);
+    var cell2 = row.insertCell(2);
+    var cell3 = row.insertCell(3);
+
+    cell0.innerHTML = document.getElementById("form_id_lf").innerHTML;
+    cell1.innerHTML = document.getElementById("form_ten_lf").innerHTML;
+    cell2.innerHTML = document.getElementById("form_submit_lf").innerHTML;
+    cell3.innerHTML = document.getElementById("form_cancel_lf").innerHTML;
+}

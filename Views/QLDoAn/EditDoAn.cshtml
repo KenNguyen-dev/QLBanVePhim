@@ -1,0 +1,110 @@
+﻿@model QLBanVePhim.Models.do_an
+@{
+    ViewBag.Title = "Chi Tiết Đồ Ăn";
+    Layout = "~/Views/Shared/ViewQLHome.cshtml";
+}
+<script src="~/Scripts/admin/add.js"></script>
+@Html.AntiForgeryToken()
+
+<div class="container bodyContainer">
+    <div class="card previewCardContainer">
+        <div class="card-body previewCard">
+            <div class="container">
+                <center>
+                    <h4 class="card-title">
+                        <i class="fas fa-utensils"></i> <span id="previews_ten">@Html.DisplayFor(model => model.ten)</span>
+                    </h4>
+                </center>
+                <hr />
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <img id="previews_hinh" class="img-fluid" src="@Html.DisplayFor(model => model.hinh_anh)" />
+                        </div>
+                        @if (Session["Id_VT_Admin"].Equals("admin"))
+                        {
+                            <div class="col-lg">
+                                @using (Html.BeginForm("EditDoAn", "QLDoAn", FormMethod.Post, new { id = "DoAn" }))
+                                {
+                                    <div class="form-horizontal">
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                        <div class="form-group">
+                                            <i class="fas fa-utensils"></i> @Html.LabelFor(model => model.ten, htmlAttributes: new { @class = "control-label" })
+                                            <div>
+                                                @Html.EditorFor(model => model.ten, new { htmlAttributes = new { @class = "form-control", @onInput = "onInput_DoAn2('ten')" } })
+                                                @Html.ValidationMessageFor(model => model.ten, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <i class="fas fa-image"></i> @Html.LabelFor(model => model.hinh_anh, htmlAttributes: new { @class = "control-label" })
+                                            <div>
+                                                @Html.EditorFor(model => model.hinh_anh, new { htmlAttributes = new { @class = "form-control", @onInput = "onInput_DoAn2('hinh')" } })
+                                                @Html.ValidationMessageFor(model => model.hinh_anh, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <i class="fas fa-utensils"></i> @Html.LabelFor(model => model.loai_do_an.ten, htmlAttributes: new { @class = "control-label" })
+                                            <div>
+                                                @Html.DropDownListFor(model => model.loai_do_an_id, ViewBag.LoaiDoAn as SelectList, "---- Chọn ----", new { @class = "form-control", @onchange = "onInput_DoAn2('loai')" })
+                                                @Html.ValidationMessageFor(model => model.loai_do_an_id, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                @{
+                                    Html.RenderAction("Render_ChiTietList", "QLDoAn", new { id = ViewBag.ID });
+                                }
+                            </div>
+                            <div class="col-lg-3">
+                                @{
+                                    Html.RenderAction("Render_SizeList", "QLDoAn", new { id = ViewBag.ID });
+                                }
+                                <br />
+                                <hr />
+                                <br />
+                                <button type="submit" disabled="disabled" id="submitBtn" class="col btn btn-success" form="DoAn">
+                                    <i class="fas fa-save"></i> Update
+                                </button>
+                                <button type="button" class="col btn btn-danger" style="margin-top:5px;" data-toggle="modal" data-target="#deleteModal">
+                                    <i class="fas fa-trash-alt"></i> Delete
+                                </button>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="col-lg">
+                                <p><i class="fas fa-utensils"></i> <b>@Html.DisplayNameFor(model => model.loai_do_an.ten):</b>  @Html.DisplayFor(model => model.loai_do_an.ten)</p>
+                                @{
+                                    Html.RenderAction("Render_ChiTietList", "QLDoAn", new { id = ViewBag.ID });
+                                }
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Xác nhận</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Bạn có chắc muốn xóa?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Không</button>
+                <form action="/QLDoAn/DeleteDoAn/@Html.DisplayFor(model => model.id)" method="post">
+                    <input type="submit" class="btn btn-danger" value="Xóa" />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@Scripts.Render("~/bundles/jqueryval")

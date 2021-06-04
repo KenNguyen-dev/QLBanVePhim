@@ -9,6 +9,7 @@ using PagedList.Mvc;
 namespace QLBanVePhim.Controllers
 {
     #region StaticClass
+
     public static class QuanLyClass
     {
         public static void TicketCheck()
@@ -46,9 +47,11 @@ namespace QLBanVePhim.Controllers
             QLBanVePhimEntities db = new QLBanVePhimEntities();
             var list_GiaVe = db.gia_ve.ToList();
             var list_LoaiGhe = db.loai_ghe.ToList();
+            var list_FoodSize = db.kich_co_do_an.ToList();
 
             if (list_GiaVe.Count() == 0) InitDataGenerator("GiaVe");
             if (list_LoaiGhe.Count() == 0) InitDataGenerator("LoaiGhe");
+            if (list_FoodSize.Count() == 0) InitDataGenerator("FoodSize");
         }
 
         private static void InitDataGenerator(string type)
@@ -88,12 +91,39 @@ namespace QLBanVePhim.Controllers
                     db.SaveChanges();
                     break;
 
+                case "FoodSize":
+                    kich_co_do_an fs = new kich_co_do_an
+                    {
+                        id = "S",
+                        ten = "Nhỏ"
+                    };
+                    db.kich_co_do_an.Add(fs);
+
+                    kich_co_do_an fs2 = new kich_co_do_an
+                    {
+                        id = "M",
+                        ten = "Vừa"
+                    };
+                    db.kich_co_do_an.Add(fs2);
+
+                    kich_co_do_an fs3 = new kich_co_do_an
+                    {
+                        id = "L",
+                        ten = "Lớn"
+                    };
+                    db.kich_co_do_an.Add(fs3);
+
+                    db.SaveChanges();
+                    break;
+
                 default:
                     break;
             }
         }
     }
-    #endregion
+
+    #endregion StaticClass
+
     public class QLHomeController : Controller
     {
         private QLBanVePhimEntities db = new QLBanVePhimEntities();
@@ -657,13 +687,6 @@ namespace QLBanVePhim.Controllers
         }
 
         #endregion Batch Vé
-
-        public ActionResult QLDoAn()
-        {
-            if (!AuthCheck(null))
-                return RedirectToAction("Index");
-            return View();
-        }
 
         #region Login
 

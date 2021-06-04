@@ -150,3 +150,82 @@ function errorImg() {
     var link = "/Content/Images/default-thumbnail.jpg";
     document.getElementById("previews_image").src = link;
 }
+
+function onInput_DoAn(type) {
+    switch (type) {
+        case "id":
+            var val = document.getElementById("do_an_id").value;
+            document.getElementById("previews_id").innerHTML = "ID:" + val;
+            break;
+        case "ten":
+            var val = document.getElementById("do_an_ten").value;
+            document.getElementById("previews_ten").innerHTML = "" + val;
+            break;
+        case "gia":
+            var val = document.getElementById("don_gia").value;
+            document.getElementById("previews_gia").innerHTML = "Đơn Giá: " + val + " VND";
+            break;
+        case "hinh":
+            var val = document.getElementById("do_an_hinh_anh").value;
+            document.getElementById("previews_hinh").src = val;
+            break;
+        case "loai":
+            var Val = document.getElementById("do_an_loai_do_an_id");
+            var v = Val.options[Val.selectedIndex].text;
+            document.getElementById("previews_loai").innerHTML = "Loại Đồ Ăn: " + v;
+            break;
+        case "size":
+            var Val = document.getElementById("kich_co_do_an_id");
+            var v = Val.options[Val.selectedIndex].text;
+            document.getElementById("previews_size").innerHTML = "Kích Cỡ Đồ Ăn: " + v;
+            break;
+        default:
+            break;
+    }
+}
+function onInput_DoAn2(type) {
+    switch (type) {
+        case "ten":
+            var val = document.getElementById("ten").value;
+            document.getElementById("previews_ten").innerHTML = "" + val;
+            document.getElementById("submitBtn").disabled = false;
+            break;
+        case "hinh":
+            var val = document.getElementById("hinh_anh").value;
+            document.getElementById("previews_hinh").src = val;
+            document.getElementById("submitBtn").disabled = false;
+            break;
+        case "loai":
+            document.getElementById("submitBtn").disabled = false;
+            break;
+        default:
+            break;
+    }
+}
+
+function onInput_HoaDon(type) {
+    switch (type) {
+        case "da":
+            var daVal = document.getElementById("do_an_chi_tiet_id");
+            var price = document.getElementById("price").options[daVal.selectedIndex].text;
+            var sl = document.getElementById("so_luong").value;
+            document.getElementById("tongtien").innerHTML = parseInt(price) * parseInt(sl);
+            break;
+        case "sl":
+            var daVal = document.getElementById("do_an_chi_tiet_id");
+            var price = document.getElementById("price").options[daVal.selectedIndex].text;
+            var sl = document.getElementById("so_luong").value;
+            if (parseInt(sl) < 1) {
+                document.getElementById("so_luong").value = 1;
+                sl = 1;
+            }
+            if (parseInt(sl) > 99) {
+                document.getElementById("so_luong").value = 99;
+                sl = 99;
+            }
+            document.getElementById("tongtien").innerHTML = parseInt(price) * parseInt(sl);
+            break;
+        default:
+            break;
+    }
+}
