@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "Thống Kê";
+    Layout = "~/Views/Shared/ViewQLHome.cshtml";
+}
+<div class="settingLeft">
+    <div class="card">
+        <div class="card-body settingCardBody">
+            <a class="btn btn-primary btnNav" href="#OV">
+                <i class="fas fa-chart-line" style="margin-right:10px"></i> Tổng Quan
+            </a>
+            <a class="btn btn-primary btnNav" href="#Phim">
+                <i class="fas fa-film" style="margin-right:10px"></i> Phim
+            </a>
+            <a class="btn btn-primary btnNav" href="#Food">
+                <i class="fas fa-concierge-bell" style="margin-right:10px"></i> Đồ Ăn
+            </a>
+        </div>
+    </div>
+</div>
+<div class="settingRight">
+    <div class="card">
+        <div class="card-body settingCardBody">
+            <div id="OV">
+                @{
+                    Html.RenderAction("Render_Overview", "QLThongKe");
+                }
+            </div>
+            <div id="Phim" style="margin-top:20px">
+                @{
+                    Html.RenderAction("Render_Phim", "QLThongKe");
+                }
+            </div>
+            <div id="Food" style="margin-top:20px">
+                @{
+                    Html.RenderAction("Render_Food", "QLThongKe");
+                }
+            </div>
+            <br /><br />
+        </div>
+    </div>
+</div>

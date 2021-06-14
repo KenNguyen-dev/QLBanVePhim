@@ -22,7 +22,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        @Html.LabelFor(model => model.vai_tro_id, "vai_tro_id", htmlAttributes: new { @class = "control-label" })
+                        @Html.LabelFor(model => model.vai_tro.ten, htmlAttributes: new { @class = "control-label" })
                         <div>
                             @Html.DropDownListFor(model => model.vai_tro_id, ViewBag.VaiTroList as SelectList, "Vai Trò", new { @class = "form-control", @onchange = "onInput_NV('vt')" })
                         </div>

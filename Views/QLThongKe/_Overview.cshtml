@@ -1,0 +1,95 @@
+﻿@model IEnumerable<QLBanVePhim.Models.ve_ban>
+
+@{
+    int total_book = 0, sl_book = 0;
+    int total_sold = 0, sl_sold = 0;
+    int total_cancel = 0, sl_cancel = 0;
+}
+@foreach (var item in Model)
+{
+    if (item.trang_thai == "Cancelled")
+    {
+        total_cancel += (int)item.tong__tien;
+        sl_cancel++;
+    }
+    else if (item.trang_thai == "Book")
+    {
+        total_book += (int)item.tong__tien;
+        sl_book++;
+    }
+    else if (item.trang_thai == "Sold")
+    {
+        total_sold += (int)item.tong__tien;
+        sl_sold++;
+    }
+}
+
+<div style="padding-top:15px;margin-bottom:15px">
+    <center>
+        <h2><i class="fas fa-chart-line" style="margin-right:10px"></i> Tổng Quan</h2>
+    </center>
+</div>
+
+<div class="card card-norm">
+    <div class="card-header">
+        <center>
+            <i class="fas fa-coins" style="margin-right:10px"></i>Tổng Doanh Thu: <b><font color="green">@String.Format("{0:n0}", total_sold + ViewBag.FoodTotal)</font></b> VND
+        </center>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <div class="card-body">
+                <center>
+                    <p><b><i class="fas fa-minus" style="margin-right:10px"></i>Vé Đã Đặt</b></p>
+                </center>
+                <p><i class="fas fa-ticket-alt" style="margin-right:10px"></i><b>@sl_book</b> Vé</p>
+                <p>
+                    <i class="fas fa-coins" style="margin-right:10px"></i>Tổng: <b><font color="green">@String.Format("{0:n0}", total_book)</font></b> VND
+                </p>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card-body">
+                <center>
+                    <p><b><i class="fas fa-check" style="margin-right:10px"></i>Vé Đã Bán</b></p>
+                </center>
+                <p><i class="fas fa-ticket-alt" style="margin-right:10px"></i><b>@sl_sold</b> Vé</p>
+                <p>
+                    <i class="fas fa-coins" style="margin-right:10px"></i>Tổng: <b><font color="green">@String.Format("{0:n0}", total_sold)</font></b> VND
+                </p>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card-body">
+                <center>
+                    <p><b><i class="fas fa-times" style="margin-right:10px"></i>Vé Đã Hủy</b></p>
+                </center>
+                <p><i class="fas fa-ticket-alt" style="margin-right:10px"></i><b>@sl_cancel</b> Vé</p>
+                <p>
+                    <i class="fas fa-coins" style="margin-right:10px"></i>Tổng: <b><font color="red">@String.Format("{0:n0}", total_cancel)</font></b> VND
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+            <div class="card-body">
+                <center>
+                    <p><b><i class="fas fa-utensils" style="margin-right:10px"></i>Đồ Ăn</b></p>
+                </center>
+                <p><i class="fas fa-receipt" style="margin-right:10px"></i>Đã tạo <b>@ViewBag.FoodCount</b> Hóa Đơn</p>
+                <p><i class="fas fa-utensils" style="margin-right:10px"></i>Đã bán <b>@ViewBag.FoodNumber</b> Đồ Ăn</p>
+                <p>
+                    <i class="fas fa-coins" style="margin-right:10px"></i>Tổng: <b><font color="green">@String.Format("{0:n0}", ViewBag.FoodTotal)</font></b> VND
+                </p>
+            </div>
+        </div>
+        <div class="col-4"></div>
+    </div>
+    <div class="card-footer">
+        <center>
+            <i class="fas fa-coins" style="margin-right:10px"></i>Dự Tính Doanh Thu: <b><font color="green">@String.Format("{0:n0}", total_sold + total_book + ViewBag.FoodTotal)</font></b> VND (<b>+@String.Format("{0:n0}", total_book)</b> VND)
+        </center>
+    </div>
+</div>

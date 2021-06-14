@@ -31,21 +31,21 @@ namespace QLBanVePhim.Controllers
             return check;
         }
 
-        public ActionResult Index(string tenDA, string loaiDA, int? page)
+        public ActionResult Index(string tenDA, string loaiDoAn, int? page)
         {
             if (!AuthCheck("nhanvien"))
                 return RedirectToAction("Index", "QLHome");
             var _doAn = db.do_an.ToList();
             if (!String.IsNullOrEmpty(tenDA))
                 _doAn = db.do_an.Where(s => s.ten.ToLower().Contains(tenDA.ToLower())).ToList();
-            if (!String.IsNullOrEmpty(loaiDA))
+            if (!String.IsNullOrEmpty(loaiDoAn))
             {
-                _doAn = db.do_an.Where(s => s.loai_do_an_id == loaiDA).ToList();
+                _doAn = db.do_an.Where(s => s.loai_do_an_id == loaiDoAn).ToList();
             }
-            var loaiDoAn = db.loai_do_an.ToList();
-            ViewBag.LoaiDoAn = new SelectList(loaiDoAn, "id", "ten");
+            var loaiDA = db.loai_do_an.ToList();
+            ViewBag.LoaiDoAn = new SelectList(loaiDA, "id", "ten");
             ViewBag.CurrTen = tenDA;
-            ViewBag.CurrLF = loaiDA;
+            ViewBag.CurrLF = loaiDoAn;
             int pageNum = (page ?? 1);
             return View(_doAn.ToPagedList(pageNum, pageSize));
         }
@@ -345,7 +345,12 @@ namespace QLBanVePhim.Controllers
                 return RedirectToAction("Index", "QLDoAn");
             try
             {
+                var hdct = db.hoa_don_chi_tiet.Where(i => i.hoa_don_id == id).ToList();
                 hoa_don _hd = db.hoa_don.Where(item => item.id == id).FirstOrDefault();
+                foreach (var item in hdct)
+                {
+                    db.Entry(item).State = System.Data.Entity.EntityState.Deleted;
+                }
                 db.Entry(_hd).State = System.Data.Entity.EntityState.Deleted;
                 db.SaveChanges();
                 return RedirectToAction("HoaDon");

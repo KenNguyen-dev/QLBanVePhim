@@ -44,9 +44,9 @@
                     <li class="nav-item @Html.IsActive("QLKH", "QLHome") @Html.IsActive("AddKH", "QLHome") @Html.IsActive("EditKH", "QLHome")">
                         <a class="nav-link" href="/QLHome/QLKH"><i class="fas fa-users"></i> Khách hàng</a>
                     </li>
-                    @*<li class="nav-item">
-                <a class="nav-link" href="#"><i class="fas fa-plus"></i> Combo</a>
-            </li>*@
+                    <li class="nav-item @Html.IsActive("Index", "QLThongKe")">
+                        <a class="nav-link" href="/QLThongKe"><i class="fas fa-chart-bar"></i> Thống Kê</a>
+                    </li>
                     <li class="nav-item @Html.IsActive("Index", "QLSetting")">
                         <a class="nav-link" href="/QLSetting"><i class="fas fa-cog"></i> Settings</a>
                     </li>

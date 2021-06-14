@@ -1,0 +1,52 @@
+﻿@using QLBanVePhim.Models
+
+@{
+    int rank = 1;
+    string color = "";
+}
+
+<div style="padding-top:15px;margin-bottom:15px">
+    <center>
+        <h2><i class="fas fa-concierge-bell" style="margin-right:10px"></i> Đồ Ăn</h2>
+    </center>
+</div>
+
+<div class="card card-norm">
+    @if (ViewBag.ReturnCount == 0)
+    {
+        <div class="card-header">
+            <center>
+                Chưa Có Dữ Liệu
+            </center>
+        </div>
+    }
+    else
+    {
+        <div class="row row-cols-3">
+            @foreach (var item in (IEnumerable<TKFood>)ViewBag.ListFood)
+            {
+                if (rank == 1) { color = "#FFF98F"; }
+                else if (rank == 2) { color = "#F6F6F6"; }
+                else if (rank == 3) { color = "#F9D8B1"; }
+                else { color = ""; }
+                <div class="col-4" style="background-color:@color">
+                    <div class="card-body">
+                        <center>
+                            <p>
+                                <h5><b><i class="fas fa-utensils" style="margin-right:10px"></i> @item.ten</b></h5>
+                            </p>
+
+                            <p><i class="fas fa-chart-bar" style="margin-right:10px"></i> Hạng <b>@rank</b></p>
+                        </center>
+                        <p><i class="fas fa-receipt" style="margin-right:10px"></i> Đã bán <b>@item.sl</b></p>
+                        <p>
+                            <i class="fas fa-coins" style="margin-right:10px"></i>
+                            Doanh Thu: <b><font color="green">@String.Format("{0:n0}", item.tong)</font></b> VND
+                        </p>
+                    </div>
+                </div>
+                rank++;
+            }
+        </div>
+    }
+</div>

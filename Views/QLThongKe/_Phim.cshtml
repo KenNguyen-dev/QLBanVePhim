@@ -1,0 +1,75 @@
+﻿@using QLBanVePhim.Models
+
+@{
+    int rank = 1;
+    string color = "";
+}
+<style>
+    .row{
+        padding:0px !important;
+        margin:0px!important;
+    }
+</style>
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip({
+            animated: 'fade',
+            placement: 'top',
+            html: true
+        })
+    })
+</script>
+
+<div style="padding-top:15px;margin-bottom:15px">
+    <center>
+        <h2><i class="fas fa-film" style="margin-right:10px"></i> Phim</h2>
+    </center>
+</div>
+
+<div class="card card-norm">
+    @if (ViewBag.ReturnCount == 0)
+    {
+        <div class="card-header">
+            <center>
+                Chưa Có Dữ Liệu
+            </center>
+        </div>
+    }
+    else
+    {
+        <div class="row row-cols-3">
+            @foreach (var item in (IEnumerable<TKPhim>)ViewBag.ListPhim)
+            {
+                if (rank == 1) { color = "#FFF98F"; }
+                else if (rank == 2) { color = "#F6F6F6"; }
+                else if (rank == 3) { color = "#F9D8B1"; }
+                else { color = ""; }
+
+                <div class="col-4" style="background-color:@color">
+                    <div class="card-body">
+                        <center>
+                            <p>
+                                <a data-toggle="tooltip" title="<img class='img-fluid' src='@item.link' />">
+                                    <h5><b><i class="fas fa-film" style="margin-right:10px"></i> @item.ten</b></h5>
+                                </a>
+                            </p>
+
+                            <p><i class="fas fa-chart-bar" style="margin-right:10px"></i> Hạng <b>@rank</b></p>
+                        </center>
+                        <p><i class="fas fa-ticket-alt" style="margin-right:10px"></i> Đã bán <b>@item.sl_sold</b> Vé</p>
+                        <p><i class="fas fa-ticket-alt" style="margin-right:10px"></i> <b>@item.sl_book</b> Vé đang được đặt </p>
+                        <p>
+                            <i class="fas fa-coins" style="margin-right:10px"></i>
+                            Doanh Thu: <b><font color="green">@String.Format("{0:n0}", item.total)</font></b> VND
+                        </p>
+                        <p>
+                            <i class="fas fa-coins" style="margin-right:10px"></i>
+                            Dự Tính Doanh thu: <b><font color="green">@String.Format("{0:n0}", item.total + item.book)</font></b> VND (<b>+@String.Format("{0:n0}", item.book)</b> VND)
+                        </p>
+                    </div>
+                </div>
+                rank++;
+            }
+        </div>
+    }
+</div>

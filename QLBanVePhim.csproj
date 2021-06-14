@@ -139,6 +139,7 @@
     <Compile Include="Controllers\QLHomeController.cs" />
     <Compile Include="Controllers\QLPhimController.cs" />
     <Compile Include="Controllers\QLSettingController.cs" />
+    <Compile Include="Controllers\QLThongKeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -211,6 +212,8 @@
     <Compile Include="Models\suat_chieu.cs">
       <DependentUpon>QLBanVePhim.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TKFood.cs" />
+    <Compile Include="Models\TKPhim.cs" />
     <Compile Include="Models\vai_tro.cs">
       <DependentUpon>QLBanVePhim.tt</DependentUpon>
     </Compile>
@@ -2078,6 +2081,10 @@
     <Content Include="Views\QLDoAn\AddHoaDon.cshtml" />
     <Content Include="Views\QLDoAn\_HDAdd.cshtml" />
     <Content Include="Views\QLDoAn\_HDCT.cshtml" />
+    <Content Include="Views\QLThongKe\Index.cshtml" />
+    <Content Include="Views\QLThongKe\_Overview.cshtml" />
+    <Content Include="Views\QLThongKe\_Phim.cshtml" />
+    <Content Include="Views\QLThongKe\_Food.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

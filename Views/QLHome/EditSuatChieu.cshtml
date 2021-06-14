@@ -38,7 +38,7 @@
                     </div>
 
                     <div class="form-group">
-                        @Html.LabelFor(model => model.phim_id, "phim_id", htmlAttributes: new { @class = "control-label" })
+                        @Html.LabelFor(model => model.phim.ten, htmlAttributes: new { @class = "control-label" })
                         <div>
                             @Html.DropDownListFor(model => model.phim_id, ViewBag.PhimList as SelectList, "Phim", new { @class = "form-control", @onchange = "onInput_SuatChieu('phim')" })
                         </div>
@@ -47,13 +47,13 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        @Html.LabelFor(model => model.dinh_dang_phim_id, "dinh_dang_phim_id", htmlAttributes: new { @class = "control-label" })
+                        @Html.LabelFor(model => model.dinh_dang_phim.ten, htmlAttributes: new { @class = "control-label" })
                         <div>
                             @Html.DropDownListFor(model => model.dinh_dang_phim_id, ViewBag.DDPhimList as SelectList, "Định Dạng Phim", new { @class = "form-control", @onchange = "onInput_SuatChieu('dinhdang')" })
                         </div>
                     </div>
                     <div class="form-group">
-                        @Html.LabelFor(model => model.phong_chieu_id, "phong_chieu_id", htmlAttributes: new { @class = "control-label" })
+                        @Html.LabelFor(model => model.phong_chieu_id, htmlAttributes: new { @class = "control-label" })
                         <div>
                             @Html.DropDownListFor(model => model.phong_chieu_id, ViewBag.PhongChieuList as SelectList, "Phòng Chiếu", new { @class = "form-control", @onchange = "onInput_SuatChieu('phong')" })
                         </div>
