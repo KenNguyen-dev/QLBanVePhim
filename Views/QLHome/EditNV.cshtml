@@ -12,75 +12,76 @@
             <div class="col-sm">
                 <p><center>Sửa Nhân Viên</center></p> <hr />
                 @Html.AntiForgeryToken()
-                <div class="form-horizontal">
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.ho_ten, htmlAttributes: new { @class = "control-label" })
-                        <div>
-                            @Html.EditorFor(model => model.ho_ten, new { htmlAttributes = new { @class = "form-control", @onInput = "onInput_NV('ten')" } })
-                            @Html.ValidationMessageFor(model => model.ho_ten, "", new { @class = "text-danger" })
-                        </div>
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ho_ten, htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.EditorFor(model => model.ho_ten, new { htmlAttributes = new { @class = "form-control", @onInput = "onInput_NV('ten')" } })
+                        @Html.ValidationMessageFor(model => model.ho_ten, "", new { @class = "text-danger" })
                     </div>
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.vai_tro.ten, htmlAttributes: new { @class = "control-label" })
-                        <div>
-                            @Html.DropDownListFor(model => model.vai_tro_id, ViewBag.VaiTroList as SelectList, "Vai Trò", new { @class = "form-control", @onchange = "onInput_NV('vt')" })
-                        </div>
+                </div>
+                @Html.EditorFor(model => model.ngay_vao_lam, new { htmlAttributes = new { @class = "form-control", @Value = (Model.ngay_vao_lam.HasValue ? Model.ngay_vao_lam.Value.ToString("yyyy-MM-dd") : ""),hidden=true } })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.vai_tro.ten, htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.DropDownListFor(model => model.vai_tro_id, ViewBag.VaiTroList as SelectList, "Vai Trò", new { @class = "form-control", @onchange = "onInput_NV('vt')" })
                     </div>
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.gioi_tinh)
-                        <div>
-                            <div class="checkbox">
-                                @Html.DropDownListFor(model => model.gioi_tinh, new SelectList(new[]
-                                   {
-                               new SelectListItem { Value = "null", Text = "Giới Tính"},
-                                       new SelectListItem { Value = "True", Text = "Nam"},
-                                       new SelectListItem { Value = "False", Text = "Nữ" },
-                                   },
-                                   "Value",
-                                   "Text"
-                                   ),
-                            new { @class = "form-control", @onchange = "onInput_NV('gt')" })
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.mat_khau, htmlAttributes: new { @class = "control-label" })
-                        <div>
-                            @Html.EditorFor(model => model.mat_khau, new { htmlAttributes = new { @value = @Html.DisplayFor(model => model.mat_khau), @type = "password", @class = "form-control", @onInput = "onInput_NV('mk')" } })
-                            @Html.ValidationMessageFor(model => model.mat_khau, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.so_cmnd, htmlAttributes: new { @class = "control-label" })
-                        <div>
-                            @Html.EditorFor(model => model.so_cmnd, new { htmlAttributes = new { @class = "form-control", @onInput = "onInput_NV('cmnd')" } })
-                            @Html.ValidationMessageFor(model => model.so_cmnd, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.so_dien_thoai, htmlAttributes: new { @class = "control-label" })
-                        <div>
-                            @Html.EditorFor(model => model.so_dien_thoai, new { htmlAttributes = new { @class = "form-control", @onInput = "onInput_NV('sdt')" } })
-                            @Html.ValidationMessageFor(model => model.so_dien_thoai, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.email, htmlAttributes: new { @class = "control-label" })
-                        <div>
-                            @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control", @onInput = "onInput_NV('email')" } })
-                            @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.dia_chi, htmlAttributes: new { @class = "control-label" })
-                        <div>
-                            @Html.EditorFor(model => model.dia_chi, new { htmlAttributes = new { @class = "form-control", @onInput = "onInput_NV('diachi')" } })
-                            @Html.ValidationMessageFor(model => model.dia_chi, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.gioi_tinh)
+                    <div>
+                        <div class="checkbox">
+                            @Html.DropDownListFor(model => model.gioi_tinh, new SelectList(new[]
+                               {
+                           new SelectListItem { Value = "null", Text = "Giới Tính"},
+                                   new SelectListItem { Value = "True", Text = "Nam"},
+                                   new SelectListItem { Value = "False", Text = "Nữ" },
+                               },
+                               "Value",
+                               "Text"
+                               ),
+                        new { @class = "form-control", @onchange = "onInput_NV('gt')" })
                         </div>
                     </div>
                 </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.mat_khau, htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.EditorFor(model => model.mat_khau, new { htmlAttributes = new { @value = @Html.DisplayFor(model => model.mat_khau), @type = "password", @class = "form-control", @onInput = "onInput_NV('mk')" } })
+                        @Html.ValidationMessageFor(model => model.mat_khau, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.so_cmnd, htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.EditorFor(model => model.so_cmnd, new { htmlAttributes = new { @type = "number", @class = "form-control", @onInput = "onInput_NV('cmnd')" } })
+                        @Html.ValidationMessageFor(model => model.so_cmnd, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.so_dien_thoai, htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.EditorFor(model => model.so_dien_thoai, new { htmlAttributes = new { @type = "number", @class = "form-control", @onInput = "onInput_NV('sdt')" } })
+                        @Html.ValidationMessageFor(model => model.so_dien_thoai, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.email, htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control", @onInput = "onInput_NV('email')" } })
+                        @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.dia_chi, htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.EditorFor(model => model.dia_chi, new { htmlAttributes = new { @class = "form-control", @onInput = "onInput_NV('diachi')" } })
+                        @Html.ValidationMessageFor(model => model.dia_chi, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
             </div>
             <div class="col-sm">
                 <p><center>Preview</center></p> <hr />

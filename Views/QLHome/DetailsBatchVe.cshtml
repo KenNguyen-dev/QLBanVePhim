@@ -5,6 +5,56 @@
     Layout = "~/Views/Shared/ViewQLHome.cshtml";
 }
 
+<style>
+    #xacNhan {
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: aliceblue;
+        width: 100%;
+        margin: auto;
+        display: none;
+        visibility: hidden;
+    }
+
+    #ve {
+        color: black;
+        width: 700px;
+        margin: auto;
+    }
+
+    @@media print {
+        body * {
+            visibility: hidden;
+        }
+
+        #xacNhan {
+            display: block;
+            visibility: visible;
+        }
+
+            #xacNhan * {
+                display: inline-block;
+                visibility: visible;
+            }
+
+            #xacNhan .row {
+                display: block;
+                width: 100% !important;
+            }
+
+                #xacNhan .row .col-6 {
+                    display: inline;
+                }
+
+        #xacNhan {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    }
+</style>
+
 <div class="container bodyContainer">
     <div class="card previewCardContainer">
         <div class="card-body previewCard">
@@ -119,7 +169,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Không</button>
-                <form action="/QLHome/SoldBatchVe/@ViewBag.BatchId" method="post">
+                <form onsubmit="window.print()" action="/QLHome/SoldBatchVe/@ViewBag.BatchId" method="post">
                     <input type="submit" class="btn btn-danger" value="Có" />
                 </form>
             </div>
@@ -148,4 +198,78 @@
             </div>
         </div>
     </div>
+</div>
+
+<div id="xacNhan">
+    @if (Model.Count() == 0)
+    { }
+    else
+    {
+        foreach (var item in Model)
+        {
+            <div class="card" id="ve" style="min-height:1px !important">
+                <div class="card-header">
+                    <h1 style="font-family:'Berlin Sans FB'">CINESTAR</h1>
+                    <p>VÉ ĐẶT</p>
+                </div>
+                <div class="card-body">
+                    <h2>@Html.DisplayFor(modelItem => item.id)</h2>
+                    <div class="container-fluid">
+                        <div class="row" style="font-size:25px;font-weight:bold;">
+                            <div class="col-6">
+                                MÃ KHÁCH HÀNG:
+                            </div>
+                            <div class="col-6">
+                                @Html.DisplayFor(modelItem => item.ve_dat_chi_tiet.ve_dat.khach_hang_id)
+                            </div>
+                        </div>
+                        <div class="row" style="font-size:25px;font-weight:bold;">
+                            <div class="col-6">
+                                PHIM:
+                            </div>
+                            <div class="col-6">
+                                @Html.DisplayFor(modelItem => item.suat_chieu.phim.ten)
+                            </div>
+                        </div>
+                        <div class="row" style="font-size:25px;font-weight:bold;">
+                            <div class="col-6">
+                                THỜI LƯỢNG:
+                            </div>
+                            <div class="col-6">
+                                @Html.DisplayFor(modelItem => item.suat_chieu.phim.thoi_luong) PHÚT
+                            </div>
+                        </div>
+                        <div class="row" style="font-size:25px;font-weight:bold;">
+                            <div class="col-6">
+                                THỜI GIAN BẮT ĐẦU:
+                            </div>
+                            <div class="col-6">
+                                @Html.DisplayFor(modelItem => item.suat_chieu.gio_bat_dau)
+                            </div>
+                        </div>
+                        <div class="row" style="font-size:25px;font-weight:bold;">
+                            <div class="col-6">
+                                NGÀY CHIẾU:
+                            </div>
+                            <div class="col-6">
+                                @Html.DisplayFor(model => item.suat_chieu.ngay_chieu)
+                            </div>
+                        </div>
+                        <div class="row" style="font-size:25px;font-weight:bold;">
+                            <div class="col-6">
+                                TỔNG TIỀN:
+                            </div>
+                            <div class="col-6">
+                                @Html.DisplayFor(modelItem => item.tong__tien) VND
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    Có thắc mắc? Vui lòng gọi số <br />
+                    098xxxxxxxxx
+                </div>
+            </div>
+        }
+    }
 </div>

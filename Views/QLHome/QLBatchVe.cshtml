@@ -76,47 +76,47 @@
                         </div>
                     </div>
                 }
-                    <table class="table table-hover shadow p-3 mb-5 bg-white rounded">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.FirstOrDefault().id)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.FirstOrDefault().khach_hang.ho_ten)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.FirstOrDefault().khach_hang.so_dien_thoai)
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @if (Model.Count() == 0)
+                <table class="table table-hover shadow p-3 mb-5 bg-white rounded">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.FirstOrDefault().id)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.FirstOrDefault().khach_hang.ho_ten)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.FirstOrDefault().khach_hang.so_dien_thoai)
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.Count() == 0)
+                        {
+                            <tr> <td colspan="5"> Records not found </td></tr>
+                        }
+                        else
+                        {
+                            foreach (var item in Model)
                             {
-                                <tr> <td colspan="5"> Records not found </td></tr>
+                                <tr onclick="window.location.href = '/QLHome/DetailsBatchVe/@Html.DisplayFor(modelItem => item.id)';">
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.id)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.khach_hang.ho_ten)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.khach_hang.so_dien_thoai)
+                                    </td>
+                                </tr>
                             }
-                            else
-                            {
-                                foreach (var item in Model)
-                                {
-                                    <tr onclick="window.location.href = '/QLHome/DetailsBatchVe/@Html.DisplayFor(modelItem => item.id)';">
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.id)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.khach_hang.ho_ten)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.khach_hang.so_dien_thoai)
-                                        </td>
-                                    </tr>
-                                }
-                            }
-                        </tbody>
-                    </table>
-                    <div>
-                    </div>
+                        }
+                    </tbody>
+                </table>
+                <div>
                 </div>
+            </div>
         </div>
     </div>
 </div>

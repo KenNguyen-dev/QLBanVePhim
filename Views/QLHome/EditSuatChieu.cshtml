@@ -32,7 +32,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.ngay_chieu, htmlAttributes: new { @class = "control-label" })
                         <div>
-                            @Html.EditorFor(model => model.ngay_chieu, new { htmlAttributes = new { @class = "form-control", @onInput = "onInput_SuatChieu('ngay')" } })
+                            @Html.EditorFor(model => model.ngay_chieu, new { htmlAttributes = new { @class = "form-control", @Value = (Model.ngay_chieu.HasValue ? Model.ngay_chieu.Value.ToString("yyyy-MM-dd") : ""), @onInput = "onInput_SuatChieu('ngay')" } })
                             @Html.ValidationMessageFor(model => model.ngay_chieu, "", new { @class = "text-danger" })
                         </div>
                     </div>

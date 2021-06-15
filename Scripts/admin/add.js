@@ -23,7 +23,9 @@ function onInput_SuatChieu(type) {
             break;
         case "ngay":
             var ngay_chieu = document.getElementById("ngay_chieu").value;
-            document.getElementById("previews_date").innerHTML = "Ngày chiếu: " + ngay_chieu;
+            const date = new Date(ngay_chieu);
+            const options = { year: 'numeric', month: 'numeric', day: 'numeric' };
+            document.getElementById("previews_date").innerHTML = "Ngày chiếu: " + date.toLocaleDateString('vi-VN', options);
             break;
         case "dinhdang":
             var ddpVal = document.getElementById("dinh_danh_phim_id");
@@ -110,7 +112,9 @@ function onInput_Phim(type) {
             break;
         case "ngcongchieu":
             var val = document.getElementById("ngay_cong_chieu").value;
-            document.getElementById("previews_ngcongchieu").innerHTML = "Ngày công chiếu: " + val;
+            const date = new Date(val);
+            const options = { year: 'numeric', month: 'numeric', day: 'numeric' };
+            document.getElementById("previews_ngcongchieu").innerHTML = "Ngày công chiếu: " + date.toLocaleDateString('vi-VN', options);
             break;
         case "ngonngu":
             var val = document.getElementById("ngon_ngu").value;

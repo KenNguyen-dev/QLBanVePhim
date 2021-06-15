@@ -55,14 +55,14 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.so_cmnd, htmlAttributes: new { @class = "control-label" })
                         <div>
-                            @Html.EditorFor(model => model.so_cmnd, new { htmlAttributes = new { @class = "form-control", @onInput = "onInput_NV('cmnd')" } })
+                            @Html.EditorFor(model => model.so_cmnd, new { htmlAttributes = new { @type = "number", @class = "form-control", @onInput = "onInput_NV('cmnd')" } })
                             @Html.ValidationMessageFor(model => model.so_cmnd, "", new { @class = "text-danger" })
                         </div>
                     </div>
                     <div class="form-group">
-                        @Html.LabelFor(model => model.so_dien_thoai, htmlAttributes: new { @class = "control-label" })
+                        @Html.LabelFor(model => model.so_dien_thoai, htmlAttributes: new {@class = "control-label" })
                         <div>
-                            @Html.EditorFor(model => model.so_dien_thoai, new { htmlAttributes = new { @class = "form-control", @onInput = "onInput_NV('sdt')" } })
+                            @Html.EditorFor(model => model.so_dien_thoai, new { htmlAttributes = new { @type = "number", @class = "form-control", @onInput = "onInput_NV('sdt')" } })
                             @Html.ValidationMessageFor(model => model.so_dien_thoai, "", new { @class = "text-danger" })
                         </div>
                     </div>
