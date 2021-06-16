@@ -1,5 +1,5 @@
 ﻿
-@model QLBanVePhim.Models.suat_chieu
+@model IEnumerable<QLBanVePhim.Models.phim>
 
 @{
     ViewBag.Title = "Lich Chieu Phim Ngay";
@@ -118,82 +118,33 @@
     }
 </style>
 <div class="container-fluid">
-    <div class="datepicker">
-        <h2>CHỌN NGÀY CHIẾU</h2>
-        <input type="date" name="ngaychieu" id="ngaychieu">
-    </div>
     <div class="wrapper">
-
         <div class="movieWrapper">
-            <div class="movieBox">
-                <div class="imgBox">
-                    <img src="https://cinestar.com.vn/pictures/Cinestar/03-2021/lm.jpg" />
+            @foreach (var phim in Model)
+            {
+                <div class="movieBox">
+                    <div class="imgBox">
+                        <img src=@phim.hinh_anh />
+                    </div>
+                    <div class="movieInfor">
+                        <h3>@phim.ten</h3>
+                        <p>@phim.thoi_luong</p>
+                    </div>
+                    <div class="giochieu">
+                        @foreach (var sc in ViewBag.DsSuatChieu)
+                        {
+                            if (sc.phim_id == phim.id)
+                            {                              
+                            <span>
+                                @sc.ngay_chieu.ToShortDateString()
+                                <br/>
+                                @sc.gio_bat_dau
+                            </span>
+                            }
+                        }
+                    </div>
                 </div>
-                <div class="movieInfor">
-                    <h3>Lật mặt 48h</h3>
-                    <p>Thời lượng: 180 phút</p>
-                </div>
-                <div class="giochieu">
-                    <span>22:30</span>
-                    <span>22:30</span>
-                    <span>22:30</span>
-                    <span>22:30</span>
-                    <span>22:30</span>
-                    <span>22:30</span>
-                    <span>22:30</span>
-                    <span>22:30</span>
-                    <span>22:30</span>
-                    <span>22:30</span>
-                    <span>22:30</span>
-                    <span>22:30</span>
-                    <span>22:30</span>
-                    <span>22:30</span>
-                </div>
-            </div>
-            <div class="movieBox">
-                <div class="imgBox">
-                    <img src="https://cinestar.com.vn/pictures/Cinestar/04-2021/bantay.jpg" />
-                </div>
-                <div class="movieInfor">
-                    <h3>Bàn tay diệt quỷ (C18)</h3>
-                    <p>Thời lượng: 120 phút</p>
-                </div>
-                <div class="giochieu">
-                    <span>22:30</span>
-                    <span>22:30</span>
-                    <span>22:30</span>
-                    <span>22:30</span>
-                    <span>22:30</span>
-                    <span>22:30</span>
-                    <span>22:30</span>
-                    <span>22:30</span>
-                    <span>22:30</span>
-                    <span>22:30</span>
-                    <span>22:30</span>
-                    <span>22:30</span>
-
-                </div>
-            </div>
-            <div class="movieBox">
-                <div class="imgBox">
-                    <img src="https://cinestar.com.vn/pictures/Cinestar/03-2021/bogia1203.jpg" />
-                </div>
-                <div class="movieInfor">
-                    <h3>Bố già (C13)</h3>
-                    <p>Thời lượng: 180 phút</p>
-                </div>
-                <div class="giochieu">
-                    <span>22:30</span>
-                    <span>22:30</span>
-                    <span>22:30</span>
-                    <span>22:30</span>
-                    <span>22:30</span>
-                    <span>22:30</span>
-                    <span>22:30</span>
-                    <span>22:30</span>
-                    <span>22:30</span>
-                </div>
-            </div>
+            }
         </div>
     </div>
 </div>

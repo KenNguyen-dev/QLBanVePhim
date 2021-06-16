@@ -205,9 +205,11 @@ namespace QLBanVePhim.Controllers
             return View(database.suat_chieu.Where(s => s.phim_id == id).FirstOrDefault());
         }
 
-        public ActionResult LichChieuPhimNgay(string id)
+        public ActionResult LichChieuPhimNgay()
         {
-            return View(database.suat_chieu.Where(s => s.phim_id == id).FirstOrDefault());
+            var sc = database.suat_chieu.ToList();
+            ViewBag.DsSuatChieu = sc;
+            return View(database.phim.ToList());
         }
 
         public ActionResult Confirmation()

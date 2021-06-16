@@ -69,15 +69,12 @@ li a:hover{
 
 /* ------------------Carousel------------------- */
 
-#myCarousel {
-    margin-left: 0px;
-    padding: 0px;
-}
 
 .carousel-item img {
     width: 100%;
     height: 500px;
 }
+
 
 /* ------------------Tutorial------------------- */
 
