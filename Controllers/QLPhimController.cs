@@ -67,7 +67,9 @@ namespace QLBanVePhim.Controllers
                      new SelectListItem { Selected = false, Text = "Đang Chiếu", Value = "Đang Chiếu"},
                      new SelectListItem { Selected = false, Text = "Ngưng Chiếu", Value = "Ngưng Chiếu"},
                 }, "Value", "Text");
-            return View(db.phim.Where(s => s.id == id).FirstOrDefault());
+            phim _phim = new phim();
+            _phim = db.phim.Where(s => s.id.Equals(id)).FirstOrDefault();
+            return View(_phim);
         }
 
         [HttpPost]

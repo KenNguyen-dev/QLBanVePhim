@@ -4,150 +4,152 @@
     ViewBag.Title = "EditPhim";
     Layout = "~/Views/Shared/ViewQLHome.cshtml";
 }
-
 <script src="~/Scripts/admin/add.js"></script>
-@using (Html.BeginForm())
+@if (Model != null)
 {
-    <div class="container bodyContainer">
-        <div class="row">
-            <div class="col-sm">
-                <p><center>Sửa Phim</center></p> <hr />
-                @Html.AntiForgeryToken()
-                <div class="form-horizontal">
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.ten, htmlAttributes: new { @class = "control-label" })
-                        <div>
-                            @Html.EditorFor(model => model.ten, new { htmlAttributes = new { @class = "form-control", @onInput = "onInput_Phim('ten')" } })
-                            @Html.ValidationMessageFor(model => model.ten, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.hinh_anh, htmlAttributes: new { @class = "control-label" })
-                        <div>
-                            @Html.EditorFor(model => model.hinh_anh, new { htmlAttributes = new { @class = "form-control", @onInput = "onInput_Phim('hinh')" } })
-                            @Html.ValidationMessageFor(model => model.hinh_anh, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.trailer, htmlAttributes: new { @class = "control-label" })
-                        <div>
-                            @Html.EditorFor(model => model.trailer, new { htmlAttributes = new { @class = "form-control", @onInput = "onInput_Phim('trailer')" } })
-                            @Html.ValidationMessageFor(model => model.trailer, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.loai_phim_id, htmlAttributes: new { @class = "control-label" })
-                        <div>
-                            @Html.DropDownListFor(model => model.loai_phim_id, ViewBag.LoaiPhimList as SelectList, "Loại Phim", new { @class = "form-control", @onchange = "onInput_Phim('loai')" })
-                        </div>
-                    </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.thoi_luong, htmlAttributes: new { @class = "control-label" })
-                        <div>
-                            @Html.EditorFor(model => model.thoi_luong, new { htmlAttributes = new { @class = "form-control", @onInput = "onInput_Phim('thoiluong')" } })
-                            @Html.ValidationMessageFor(model => model.thoi_luong, "", new { @class = "text-danger" })
+    using (Html.BeginForm())
+    {
+        <div class="container bodyContainer">
+            <div class="row">
+                <div class="col-sm">
+                    <p><center>Sửa Phim</center></p> <hr />
+                    @Html.AntiForgeryToken()
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ten, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.EditorFor(model => model.ten, new { htmlAttributes = new { @class = "form-control", @onInput = "onInput_Phim('ten')" } })
+                                @Html.ValidationMessageFor(model => model.ten, "", new { @class = "text-danger" })
+                            </div>
                         </div>
-                    </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.hinh_anh, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.EditorFor(model => model.hinh_anh, new { htmlAttributes = new { @class = "form-control", @onInput = "onInput_Phim('hinh')" } })
+                                @Html.ValidationMessageFor(model => model.hinh_anh, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.trailer, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.EditorFor(model => model.trailer, new { htmlAttributes = new { @class = "form-control", @onInput = "onInput_Phim('trailer')" } })
+                                @Html.ValidationMessageFor(model => model.trailer, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.loai_phim_id, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.DropDownListFor(model => model.loai_phim_id, ViewBag.LoaiPhimList as SelectList, "Loại Phim", new { @class = "form-control", @onchange = "onInput_Phim('loai')" })
+                            </div>
+                        </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.gioi_han_tuoi, htmlAttributes: new { @class = "control-label" })
-                        <div>
-                            @Html.EditorFor(model => model.gioi_han_tuoi, new { htmlAttributes = new { @class = "form-control", @onInput = "onInput_Phim('ghtuoi')" } })
-                            @Html.ValidationMessageFor(model => model.gioi_han_tuoi, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.thoi_luong, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.EditorFor(model => model.thoi_luong, new { htmlAttributes = new { @class = "form-control", @onInput = "onInput_Phim('thoiluong')" } })
+                                @Html.ValidationMessageFor(model => model.thoi_luong, "", new { @class = "text-danger" })
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.ngay_cong_chieu, htmlAttributes: new { @class = "control-label" })
-                        <div>
-                            @Html.EditorFor(model => model.ngay_cong_chieu, new { htmlAttributes = new { @class = "form-control", @Value = (Model.ngay_cong_chieu.HasValue ? Model.ngay_cong_chieu.Value.ToString("yyyy-MM-dd") : ""), @onInput = "onInput_Phim('ngcongchieu')" } })
-                            @Html.ValidationMessageFor(model => model.ngay_cong_chieu, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.gioi_han_tuoi, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.EditorFor(model => model.gioi_han_tuoi, new { htmlAttributes = new { @class = "form-control", @onInput = "onInput_Phim('ghtuoi')" } })
+                                @Html.ValidationMessageFor(model => model.gioi_han_tuoi, "", new { @class = "text-danger" })
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.ngon_ngu, htmlAttributes: new { @class = "control-label" })
-                        <div>
-                            @Html.EditorFor(model => model.ngon_ngu, new { htmlAttributes = new { @class = "form-control", @onInput = "onInput_Phim('ngonngu')" } })
-                            @Html.ValidationMessageFor(model => model.ngon_ngu, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ngay_cong_chieu, htmlAttributes: new { @class = "control-label" }) @*s*@
+                            <div>
+                                @Html.EditorFor(model => model.ngay_cong_chieu, new { htmlAttributes = new { @class = "form-control", @Value = (Model.ngay_cong_chieu.HasValue ? Model.ngay_cong_chieu.Value.ToString("yyyy-MM-dd") : ""), @onInput = "onInput_Phim('ngcongchieu')" } })
+                                @Html.ValidationMessageFor(model => model.ngay_cong_chieu, "", new { @class = "text-danger" })
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.dien_vien, htmlAttributes: new { @class = "control-label" })
-                        <div>
-                            @Html.EditorFor(model => model.dien_vien, new { htmlAttributes = new { @class = "form-control", @onInput = "onInput_Phim('dv')" } })
-                            @Html.ValidationMessageFor(model => model.dien_vien, "", new { @class = "text-danger" })
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ngon_ngu, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.EditorFor(model => model.ngon_ngu, new { htmlAttributes = new { @class = "form-control", @onInput = "onInput_Phim('ngonngu')" } })
+                                @Html.ValidationMessageFor(model => model.ngon_ngu, "", new { @class = "text-danger" })
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.quoc_gia, htmlAttributes: new { @class = "control-label" })
-                        <div>
-                            @Html.EditorFor(model => model.quoc_gia, new { htmlAttributes = new { @class = "form-control", @onInput = "onInput_Phim('quocgia')" } })
-                            @Html.ValidationMessageFor(model => model.quoc_gia, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.dien_vien, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.EditorFor(model => model.dien_vien, new { htmlAttributes = new { @class = "form-control", @onInput = "onInput_Phim('dv')" } })
+                                @Html.ValidationMessageFor(model => model.dien_vien, "", new { @class = "text-danger" })
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.nha_san_xuat, htmlAttributes: new { @class = "control-label" })
-                        <div>
-                            @Html.EditorFor(model => model.nha_san_xuat, new { htmlAttributes = new { @class = "form-control", @onInput = "onInput_Phim('nsx')" } })
-                            @Html.ValidationMessageFor(model => model.nha_san_xuat, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.quoc_gia, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.EditorFor(model => model.quoc_gia, new { htmlAttributes = new { @class = "form-control", @onInput = "onInput_Phim('quocgia')" } })
+                                @Html.ValidationMessageFor(model => model.quoc_gia, "", new { @class = "text-danger" })
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.tom_tat, htmlAttributes: new { @class = "control-label" })
-                        <div>
-                            @Html.TextAreaFor(model => model.tom_tat, new { @class = "form-control", @onInput = "onInput_Phim('tt')" })
-                            @Html.ValidationMessageFor(model => model.tom_tat, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.nha_san_xuat, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.EditorFor(model => model.nha_san_xuat, new { htmlAttributes = new { @class = "form-control", @onInput = "onInput_Phim('nsx')" } })
+                                @Html.ValidationMessageFor(model => model.nha_san_xuat, "", new { @class = "text-danger" })
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.trang_thai, htmlAttributes: new { @class = "control-label" })
-                        <div>
-                            @Html.DropDownListFor(model => model.trang_thai, ViewBag.TrangThaiList as SelectList, "----Chọn----", new { @class = "form-control", @onchange = "onInput_Phim('trth')" })
-                            @Html.ValidationMessageFor(model => model.trang_thai, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.tom_tat, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.TextAreaFor(model => model.tom_tat, new { @class = "form-control", @onInput = "onInput_Phim('tt')" })
+                                @Html.ValidationMessageFor(model => model.tom_tat, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.trang_thai, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.DropDownListFor(model => model.trang_thai, ViewBag.TrangThaiList as SelectList, "----Chọn----", new { @class = "form-control", @onchange = "onInput_Phim('trth')" })
+                                @Html.ValidationMessageFor(model => model.trang_thai, "", new { @class = "text-danger" })
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-sm">
-                <p><center>Preview</center></p> <hr />
+                <div class="col-sm">
+                    <p><center>Preview</center></p> <hr />
 
-                <div class="card previewCardContainer">
-                    <div class="card-body previewCard">
-                        <center>
-                            <img onerror="errorImg()" id="previews_hinh" style="max-height:250px; max-width:300px; width:auto;" src=@Html.DisplayFor(model => model.hinh_anh) />
-                            <h4 class="card-title" id="previews_ten">@Html.DisplayFor(model => model.ten)</h4>
-                            <p class="card-subtitle text-muted" id="previews_id">@Html.DisplayFor(model => model.id)</p><br />
-                        </center>
-                        <p class="card-text" id="previews_loai">Loại phim: @Html.DisplayFor(model => model.loai_phim.ten)</p>
-                        <p class="card-text" id="previews_thoiluong">Thời lượng: @Html.DisplayFor(model => model.thoi_luong)</p>
-                        <p class="card-text" id="previews_ghtuoi">Giới hạn tuổi: @Html.DisplayFor(model => model.gioi_han_tuoi)</p>
-                        <p class="card-text" id="previews_ngcongchieu">Ngày công chiếu: @Html.DisplayFor(model => model.ngay_cong_chieu)</p>
-                        <p class="card-text" id="previews_ngonngu">Ngôn ngữ: @Html.DisplayFor(model => model.ngon_ngu)</p>
-                        <p class="card-text" id="previews_dv">Diễn viên chính: @Html.DisplayFor(model => model.dien_vien)</p>
-                        <p class="card-text" id="previews_quocgia">Quốc gia: @Html.DisplayFor(model => model.quoc_gia)</p>
-                        <p class="card-text" id="previews_nsx">Nhà sản xuất: @Html.DisplayFor(model => model.nha_san_xuat)</p>
-                        <p class="card-text" style="word-wrap: break-word;" id="previews_tt">Tóm tắt: @Html.DisplayFor(model => model.tom_tat)</p>
-                        <p class="card-text" id="previews_trth">Trạng thái: @Html.DisplayFor(model => model.trang_thai)</p>
-                        <p class="card-text" id="previews_trailer">Trailer: @*@Html.Raw(Model.trailer)*@</p>
-                    </div>
+                    <div class="card previewCardContainer">
+                        <div class="card-body previewCard">
+                            <center>
+                                <img onerror="errorImg()" id="previews_image" style="max-height:250px; max-width:300px; width:auto;" src=@Html.DisplayFor(model => model.hinh_anh) />
+                                <h4 class="card-title" id="previews_ten">@Html.DisplayFor(model => model.ten)</h4>
+                                <p class="card-subtitle text-muted" id="previews_id">@Html.DisplayFor(model => model.id)</p><br />
+                            </center>
+                            <p class="card-text" id="previews_loai">Loại phim: @Html.DisplayFor(model => model.loai_phim.ten)</p>
+                            <p class="card-text" id="previews_thoiluong">Thời lượng: @Html.DisplayFor(model => model.thoi_luong)</p>
+                            <p class="card-text" id="previews_ghtuoi">Giới hạn tuổi: @Html.DisplayFor(model => model.gioi_han_tuoi)</p>
+                            <p class="card-text" id="previews_ngcongchieu">Ngày công chiếu: @Html.DisplayFor(model => model.ngay_cong_chieu)</p>
+                            <p class="card-text" id="previews_ngonngu">Ngôn ngữ: @Html.DisplayFor(model => model.ngon_ngu)</p>
+                            <p class="card-text" id="previews_dv">Diễn viên chính: @Html.DisplayFor(model => model.dien_vien)</p>
+                            <p class="card-text" id="previews_quocgia">Quốc gia: @Html.DisplayFor(model => model.quoc_gia)</p>
+                            <p class="card-text" id="previews_nsx">Nhà sản xuất: @Html.DisplayFor(model => model.nha_san_xuat)</p>
+                            <p class="card-text" style="word-wrap: break-word;" id="previews_tt">Tóm tắt: @Html.DisplayFor(model => model.tom_tat)</p>
+                            <p class="card-text" id="previews_trth">Trạng thái: @Html.DisplayFor(model => model.trang_thai)</p>
+                            <p class="card-text" id="previews_trailer">Trailer: @(new HtmlString(Model.trailer))</p>
+                        </div>
 
-                    <div class="form-group" style="padding-top:10px">
-                        <center>
-                            <input type="submit" value="Update" class="btn btn-primary" />
-                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
-                                Delete
-                            </button>
-                        </center>
+                        <div class="form-group" style="padding-top:10px">
+                            <center>
+                                <input type="submit" value="Update" class="btn btn-primary" />
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
+                                    Delete
+                                </button>
+                            </center>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    }
 }
-
 <!-- Modal -->
 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -170,4 +172,5 @@
         </div>
     </div>
 </div>
+
 @Scripts.Render("~/bundles/jqueryval")

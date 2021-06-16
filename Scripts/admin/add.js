@@ -96,49 +96,49 @@ function onInput_Phim(type) {
             break;
         case "hinh":
             var link = document.getElementById("hinh_anh").value;
-            document.getElementById("previews_hinh").src = link;
+            document.getElementById("previews_image").src = link;
             break;
         case "id":
             var id = document.getElementById("id").value;
             document.getElementById("previews_id").innerHTML = "" + id;
             break;
         case "thoiluong":
-            var val = document.getElementById("thoi_luong").value;
-            document.getElementById("previews_thoiluong").innerHTML = "Thời lượng: " + val + " phút";
+            var val1 = document.getElementById("thoi_luong").value;
+            document.getElementById("previews_thoiluong").innerHTML = "Thời lượng: " + val1 + " phút";
             break;
         case "ghtuoi":
-            var val = document.getElementById("gioi_han_tuoi").value;
-            document.getElementById("previews_ghtuoi").innerHTML = "Giới hạn tuổi: " + val;
+            var val2 = document.getElementById("gioi_han_tuoi").value;
+            document.getElementById("previews_ghtuoi").innerHTML = "Giới hạn tuổi: " + val2;
             break;
         case "ngcongchieu":
-            var val = document.getElementById("ngay_cong_chieu").value;
-            const date = new Date(val);
+            var val3 = document.getElementById("ngay_cong_chieu").value;
+            const date = new Date(val3);
             const options = { year: 'numeric', month: 'numeric', day: 'numeric' };
             document.getElementById("previews_ngcongchieu").innerHTML = "Ngày công chiếu: " + date.toLocaleDateString('vi-VN', options);
             break;
         case "ngonngu":
-            var val = document.getElementById("ngon_ngu").value;
-            document.getElementById("previews_ngonngu").innerHTML = "Ngôn ngữ: " + val;
+            var val4 = document.getElementById("ngon_ngu").value;
+            document.getElementById("previews_ngonngu").innerHTML = "Ngôn ngữ: " + val4;
             break;
         case "trailer":
-            var val = document.getElementById("trailer").value;
-            document.getElementById("previews_trailer").innerHTML = "Trailer: " + val;
+            var val5 = document.getElementById("trailer").value;
+            document.getElementById("previews_trailer").innerHTML = "Trailer: " + val5;
             break;
         case "dv":
-            var val = document.getElementById("dien_vien").value;
-            document.getElementById("previews_dv").innerHTML = "Diễn viên chính: " + val;
+            var val6 = document.getElementById("dien_vien").value;
+            document.getElementById("previews_dv").innerHTML = "Diễn viên chính: " + val6;
             break;
         case "quocgia":
-            var val = document.getElementById("quoc_gia").value;
-            document.getElementById("previews_quocgia").innerHTML = "Quốc gia: " + val;
+            var val7 = document.getElementById("quoc_gia").value;
+            document.getElementById("previews_quocgia").innerHTML = "Quốc gia: " + val7;
             break;
         case "nsx":
-            var val = document.getElementById("nha_san_xuat").value;
-            document.getElementById("previews_nsx").innerHTML = "Nhà sản xuất: " + val;
+            var val8 = document.getElementById("nha_san_xuat").value;
+            document.getElementById("previews_nsx").innerHTML = "Nhà sản xuất: " + val8;
             break;
         case "tt":
-            var val = document.getElementById("tom_tat").value;
-            document.getElementById("previews_tt").innerHTML = "Tóm tắt: " + val;
+            var val9 = document.getElementById("tom_tat").value;
+            document.getElementById("previews_tt").innerHTML = "Tóm tắt: " + val9;
             break;
         case "trth":
             var trthVal = document.getElementById("trang_thai");
@@ -153,35 +153,36 @@ function onInput_Phim(type) {
 function errorImg() {
     var link = "/Content/Images/default-thumbnail.jpg";
     document.getElementById("previews_image").src = link;
+    document.getElementById("previews_hinh").src = link;
 }
 
 function onInput_DoAn(type) {
     switch (type) {
         case "id":
-            var val = document.getElementById("do_an_id").value;
-            document.getElementById("previews_id").innerHTML = "ID:" + val;
+            var val1 = document.getElementById("do_an_id").value;
+            document.getElementById("previews_id").innerHTML = "ID:" + val1;
             break;
         case "ten":
-            var val = document.getElementById("do_an_ten").value;
-            document.getElementById("previews_ten").innerHTML = "" + val;
+            var val2 = document.getElementById("do_an_ten").value;
+            document.getElementById("previews_ten").innerHTML = "" + val2;
             break;
         case "gia":
-            var val = document.getElementById("don_gia").value;
-            document.getElementById("previews_gia").innerHTML = "Đơn Giá: " + val + " VND";
+            var val3 = document.getElementById("don_gia").value;
+            document.getElementById("previews_gia").innerHTML = "Đơn Giá: " + val3 + " VND";
             break;
         case "hinh":
-            var val = document.getElementById("do_an_hinh_anh").value;
-            document.getElementById("previews_hinh").src = val;
+            var val4 = document.getElementById("do_an_hinh_anh").value;
+            document.getElementById("previews_hinh").src = val4;
             break;
         case "loai":
-            var Val = document.getElementById("do_an_loai_do_an_id");
-            var v = Val.options[Val.selectedIndex].text;
-            document.getElementById("previews_loai").innerHTML = "Loại Đồ Ăn: " + v;
+            var Val5 = document.getElementById("do_an_loai_do_an_id");
+            var v5 = Val5.options[Val5.selectedIndex].text;
+            document.getElementById("previews_loai").innerHTML = "Loại Đồ Ăn: " + v5;
             break;
         case "size":
-            var Val = document.getElementById("kich_co_do_an_id");
-            var v = Val.options[Val.selectedIndex].text;
-            document.getElementById("previews_size").innerHTML = "Kích Cỡ Đồ Ăn: " + v;
+            var Val6 = document.getElementById("kich_co_do_an_id");
+            var v6 = Val6.options[Val6.selectedIndex].text;
+            document.getElementById("previews_size").innerHTML = "Kích Cỡ Đồ Ăn: " + v6;
             break;
         default:
             break;
@@ -190,13 +191,13 @@ function onInput_DoAn(type) {
 function onInput_DoAn2(type) {
     switch (type) {
         case "ten":
-            var val = document.getElementById("ten").value;
-            document.getElementById("previews_ten").innerHTML = "" + val;
+            var val8 = document.getElementById("ten").value;
+            document.getElementById("previews_ten").innerHTML = "" + val8;
             document.getElementById("submitBtn").disabled = false;
             break;
         case "hinh":
-            var val = document.getElementById("hinh_anh").value;
-            document.getElementById("previews_hinh").src = val;
+            var val9 = document.getElementById("hinh_anh").value;
+            document.getElementById("previews_hinh").src = val9;
             document.getElementById("submitBtn").disabled = false;
             break;
         case "loai":
@@ -210,24 +211,24 @@ function onInput_DoAn2(type) {
 function onInput_HoaDon(type) {
     switch (type) {
         case "da":
-            var daVal = document.getElementById("do_an_chi_tiet_id");
-            var price = document.getElementById("price").options[daVal.selectedIndex].text;
-            var sl = document.getElementById("so_luong").value;
-            document.getElementById("tongtien").innerHTML = parseInt(price) * parseInt(sl);
+            var daVal1 = document.getElementById("do_an_chi_tiet_id");
+            var price1 = document.getElementById("price").options[daVal1.selectedIndex].text;
+            var sl1 = document.getElementById("so_luong").value;
+            document.getElementById("tongtien").innerHTML = parseInt(price1) * parseInt(sl1);
             break;
         case "sl":
-            var daVal = document.getElementById("do_an_chi_tiet_id");
-            var price = document.getElementById("price").options[daVal.selectedIndex].text;
-            var sl = document.getElementById("so_luong").value;
-            if (parseInt(sl) < 1) {
+            var daVal2 = document.getElementById("do_an_chi_tiet_id");
+            var price2 = document.getElementById("price").options[daVal2.selectedIndex].text;
+            var sl2 = document.getElementById("so_luong").value;
+            if (parseInt(sl2) < 1) {
                 document.getElementById("so_luong").value = 1;
-                sl = 1;
+                sl2 = 1;
             }
-            if (parseInt(sl) > 99) {
+            if (parseInt(sl2) > 99) {
                 document.getElementById("so_luong").value = 99;
-                sl = 99;
+                sl2 = 99;
             }
-            document.getElementById("tongtien").innerHTML = parseInt(price) * parseInt(sl);
+            document.getElementById("tongtien").innerHTML = parseInt(price2) * parseInt(sl2);
             break;
         default:
             break;
