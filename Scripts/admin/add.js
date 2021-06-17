@@ -17,9 +17,9 @@ function onInput_SuatChieu(type) {
             document.getElementById("previews_image").src = link;
             break;
         case "gio":
-            var gio_bat_dau = document.getElementById("gio_bat_dau").value;
-            var gio_ket_thuc = document.getElementById("gio_ket_thuc").value;
-            document.getElementById("previews_time").innerHTML = gio_bat_dau + " - " + gio_ket_thuc;
+            //var gio_bat_dau = document.getElementById("gio_bat_dau").value;
+            //var gio_ket_thuc = document.getElementById("gio_ket_thuc").value;
+            //document.getElementById("previews_time").innerHTML = gio_bat_dau + " - " + gio_ket_thuc;
             break;
         case "ngay":
             var ngay_chieu = document.getElementById("ngay_chieu").value;
@@ -28,7 +28,7 @@ function onInput_SuatChieu(type) {
             document.getElementById("previews_date").innerHTML = "Ngày chiếu: " + date.toLocaleDateString('vi-VN', options);
             break;
         case "dinhdang":
-            var ddpVal = document.getElementById("dinh_danh_phim_id");
+            var ddpVal = document.getElementById("dinh_dang_phim_id");
             var ddp = ddpVal.options[ddpVal.selectedIndex].text;
             document.getElementById("previews_ddphim").innerHTML = "Định dạng phim: " + ddp;
             break;

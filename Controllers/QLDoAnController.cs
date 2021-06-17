@@ -89,7 +89,8 @@ namespace QLBanVePhim.Controllers
             }
             catch (Exception e)
             {
-                return Content(e.ToString());
+                ViewBag.Error = e.ToString();
+                return View("~/Views/QLHome/Error.cshtml");
             }
         }
 
@@ -179,7 +180,8 @@ namespace QLBanVePhim.Controllers
             }
             catch (Exception e)
             {
-                return Content(e.ToString());
+                ViewBag.Error = e.ToString();
+                return View("~/Views/QLHome/Error.cshtml");
             }
         }
 
@@ -200,7 +202,8 @@ namespace QLBanVePhim.Controllers
             }
             catch (Exception e)
             {
-                return Content(e.ToString());
+                ViewBag.Error = e.ToString();
+                return View("~/Views/QLHome/Error.cshtml");
             }
         }
 
@@ -222,7 +225,8 @@ namespace QLBanVePhim.Controllers
             }
             catch (Exception e)
             {
-                return Content(e.ToString());
+                ViewBag.Error = e.ToString();
+                return View("~/Views/QLHome/Error.cshtml");
             }
         }
 
@@ -307,7 +311,8 @@ namespace QLBanVePhim.Controllers
             }
             catch (Exception e)
             {
-                return Content(e.ToString());
+                ViewBag.Error = e.ToString();
+                return View("~/Views/QLHome/Error.cshtml");
             }
         }
 
@@ -357,7 +362,8 @@ namespace QLBanVePhim.Controllers
             }
             catch (Exception e)
             {
-                return Content(e.ToString());
+                ViewBag.Error = e.ToString();
+                return View("~/Views/QLHome/Error.cshtml");
             }
         }
 

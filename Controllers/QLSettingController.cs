@@ -31,6 +31,7 @@ namespace QLBanVePhim.Controllers
         // GET: QLSetting
         public ActionResult Index()
         {
+            QuanLyClass.InitDataCheck();
             if (!AuthCheck("admin"))
                 return RedirectToAction("Index", "QLHome");
 
@@ -55,27 +56,6 @@ namespace QLBanVePhim.Controllers
         }
 
         [HttpPost]
-        public ActionResult Add_DDP(FormCollection form)
-        {
-            if (!AuthCheck("admin"))
-                return RedirectToAction("Index", "QLHome");
-            try
-            {
-                dinh_dang_phim ddp = new dinh_dang_phim();
-                ddp.id = form["idDDP"];
-                ddp.ten = form["tenDDP"];
-                ddp.phu_thu = int.Parse(form["phuthuDDP"]);
-                db.dinh_dang_phim.Add(ddp);
-                db.SaveChanges();
-                return Redirect(Url.Action("Index", "QLSetting") + "#DDP");
-            }
-            catch (Exception e)
-            {
-                return Content(e.ToString());
-            }
-        }
-
-        [HttpPost]
         public ActionResult Update_DDP(FormCollection form)
         {
             if (!AuthCheck("admin"))
@@ -84,18 +64,6 @@ namespace QLBanVePhim.Controllers
             dinh_dang_phim ddp = db.dinh_dang_phim.Where(item => item.id == id).FirstOrDefault();
             ddp.phu_thu = int.Parse(form["phuthuDDP_edit"]);
             ddp.ten = form["tenDDP_edit"];
-            db.SaveChanges();
-            return Redirect(Url.Action("Index", "QLSetting") + "#DDP");
-        }
-
-        [HttpPost]
-        public ActionResult Delete_DDP(FormCollection form)
-        {
-            if (!AuthCheck("admin"))
-                return RedirectToAction("Index", "QLHome");
-            string id = form["idDDP_delete"].ToString();
-            dinh_dang_phim ddp = db.dinh_dang_phim.Where(item => item.id == id).FirstOrDefault();
-            db.Entry(ddp).State = System.Data.Entity.EntityState.Deleted;
             db.SaveChanges();
             return Redirect(Url.Action("Index", "QLSetting") + "#DDP");
         }
@@ -134,7 +102,8 @@ namespace QLBanVePhim.Controllers
             }
             catch (Exception e)
             {
-                return Content(e.ToString());
+                ViewBag.Error = e.ToString();
+                return View("~/Views/QLHome/Error.cshtml");
             }
         }
 
@@ -155,11 +124,19 @@ namespace QLBanVePhim.Controllers
         {
             if (!AuthCheck("admin"))
                 return RedirectToAction("Index", "QLHome");
-            string id = form["idLP_delete"].ToString();
-            loai_phim lp = db.loai_phim.Where(item => item.id == id).FirstOrDefault();
-            db.Entry(lp).State = System.Data.Entity.EntityState.Deleted;
-            db.SaveChanges();
-            return Redirect(Url.Action("Index", "QLSetting") + "#LP");
+            try
+            {
+                string id = form["idLP_delete"].ToString();
+                loai_phim lp = db.loai_phim.Where(item => item.id == id).FirstOrDefault();
+                db.Entry(lp).State = System.Data.Entity.EntityState.Deleted;
+                db.SaveChanges();
+                return Redirect(Url.Action("Index", "QLSetting") + "#LP");
+            }
+            catch (Exception e)
+            {
+                ViewBag.Error = e.ToString();
+                return View("~/Views/QLHome/Error.cshtml");
+            }
         }
 
         #endregion Loại Phim
@@ -261,7 +238,8 @@ namespace QLBanVePhim.Controllers
             }
             catch (Exception e)
             {
-                return Content(e.ToString());
+                ViewBag.Error = e.ToString();
+                return View("~/Views/QLHome/Error.cshtml");
             }
         }
 
@@ -282,11 +260,19 @@ namespace QLBanVePhim.Controllers
         {
             if (!AuthCheck("admin"))
                 return RedirectToAction("Index", "QLHome");
-            string id = form["idLF_delete"].ToString();
-            loai_do_an lf = db.loai_do_an.Where(item => item.id == id).FirstOrDefault();
-            db.Entry(lf).State = System.Data.Entity.EntityState.Deleted;
-            db.SaveChanges();
-            return Redirect(Url.Action("Index", "QLSetting") + "#LF");
+            try
+            {
+                string id = form["idLF_delete"].ToString();
+                loai_do_an lf = db.loai_do_an.Where(item => item.id == id).FirstOrDefault();
+                db.Entry(lf).State = System.Data.Entity.EntityState.Deleted;
+                db.SaveChanges();
+                return Redirect(Url.Action("Index", "QLSetting") + "#LF");
+            }
+            catch (Exception e)
+            {
+                ViewBag.Error = e.ToString();
+                return View("~/Views/QLHome/Error.cshtml");
+            }
         }
 
         #endregion Loại Đồ Ăn

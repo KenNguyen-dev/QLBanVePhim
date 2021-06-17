@@ -31,6 +31,7 @@ namespace QLBanVePhim.Controllers
         // GET: QLThongKe
         public ActionResult Index()
         {
+            QuanLyClass.TicketCheck();
             if (!AuthCheck("admin"))
                 return RedirectToAction("Index", "QLHome");
             return View();
@@ -68,12 +69,7 @@ namespace QLBanVePhim.Controllers
             var list = select.OrderByDescending(x => x.total).Take(9).ToList();
             ViewBag.ListPhim = list;
             ViewBag.ReturnCount = list.Count();
-            //string str = "";
-            //foreach (var x in select)
-            //{
-            //    str += x.ToString() + " ";
-            //}
-            //return Content(str);
+
             return PartialView("_Phim");
         }
 
@@ -94,12 +90,6 @@ namespace QLBanVePhim.Controllers
             var list = select.OrderByDescending(x => x.tong).Take(9).ToList();
             ViewBag.ListFood = list;
             ViewBag.ReturnCount = list.Count();
-            //string str = "";
-            //foreach (var x in select)
-            //{
-            //    str += x.ToString() + " ";
-            //}
-            //return Content(str);
             return PartialView("_Food");
         }
     }

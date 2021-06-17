@@ -61,6 +61,14 @@ namespace QLBanVePhim.Controllers
 
         public ActionResult TicketPrice()
         {
+            QuanLyClass.InitDataCheck();
+            ViewBag.GiaVe_Day = database.gia_ve.Find("WEEKDAY").don_gia ?? default(int);
+            ViewBag.GiaVe_End = database.gia_ve.Find("WEEKEND").don_gia ?? default(int);
+            ViewBag.GiaGhe_Normal = database.loai_ghe.Find("NORMAL").phu_thu ?? default(int);
+            ViewBag.GiaGhe_VIP = database.loai_ghe.Find("VIP").phu_thu ?? default(int);
+            ViewBag.DDP_2D = database.dinh_dang_phim.Find("2d").phu_thu ?? default(int);
+            ViewBag.DDP_3D = database.dinh_dang_phim.Find("3d").phu_thu ?? default(int);
+
             return View();
         }
 

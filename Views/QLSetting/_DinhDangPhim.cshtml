@@ -1,4 +1,6 @@
-﻿@model IEnumerable<QLBanVePhim.Models.dinh_dang_phim>
+﻿
+@model IEnumerable<QLBanVePhim.Models.dinh_dang_phim>
+
 <script>
     function toggle_edit_ddp(id) {
         $(".toggle-ddp-ten-" + id).toggle();
@@ -6,39 +8,7 @@
         $(".toggle-ddp-edit-" + id).toggle();
         $(".toggle-ddp-btnEdit-" + id).toggle();
     }
-    function toggle_delete_ddp(id) {
-        $(".toggle-ddp-delete-" + id).toggle();
-    }
-    function cancel_ddp() {
-        document.getElementById("btnAdd-DDP").style.display = "block";
-        document.getElementById("table-DDP").deleteRow(0);
-    }
-
-    $(function () {
-        $("#searchDDP").keyup(function () {
-            var data = { searchString: $(this).val() };
-            $("#table-DDP").load("/QLSetting/Render_DDP #table-DDP > *", data);
-        });
-    });
 </script>
-
-<script id="form_id_ddp" type="text/template">
-    <input class="form-control" type="text" name="idDDP" required form="form_add_ddp" />
-</script>
-<script id="form_ten_ddp" type="text/template">
-    <input class="form-control" type="text" name="tenDDP" required form="form_add_ddp" />
-</script>
-<script id="form_phuthu_ddp" type="text/template">
-    <input class="form-control" type="number" name="phuthuDDP" required form="form_add_ddp" />
-</script>
-<script id="form_submit_ddp" type="text/template">
-    <button type="submit" class="btn btn-success settingButtonCol" form="form_add_ddp"><i class="fas fa-save"></i> Lưu</button>
-</script>
-<script id="form_cancel_ddp" type="text/template">
-    <button type="submit" class="btn btn-danger settingButtonCol" onclick="cancel_ddp()"><i class="fas fa-undo"></i> Hủy</button>
-</script>
-
-<form action="/QLSetting/Add_DDP" method="POST" id="form_add_ddp"></form>
 
 <div class="settingTitle">
     <div class="row">
@@ -46,16 +16,11 @@
             <i class="fas fa-film" style="margin-right:10px"></i>Định Dạng Phim
         </div>
         <div class="col-3">
-            <button id="btnAdd-DDP" class="btn btn-success settingButtonCol" onclick="add_NewDDP()"><i class="fas fa-plus"></i> Thêm mới</button>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-12" style="margin-top:5px">
-            <input class="form-control" type="text" id="searchDDP" placeholder="Search theo @Html.DisplayNameFor(model => model.ten)" />
+            <button class="btn btn-secondary settingButtonCol disable"><i class="fas fa-lock"></i> Không thể thêm</button>
         </div>
     </div>
 </div>
-<table id="list-DDP" class="table table-hover shadow p-3 mb-5 bg-white rounded">
+<table class="table table-hover shadow p-3 mb-5 bg-white rounded">
     <thead class="thead-dark">
         <tr>
             <th>
@@ -73,7 +38,7 @@
             </th>
         </tr>
     </thead>
-    <tbody id="table-DDP">
+    <tbody id="table-GV">
         @if (Model.Count() == 0)
         {
             <tr> <td colspan="5"> Records not found </td></tr>
@@ -82,53 +47,37 @@
         {
             foreach (var item in Model)
             {
-                @*<tr onclick="window.location.href = '/QLPhim/EditPhim/@Html.DisplayFor(modelItem => item.id)';">*@
-                <tr class="settingTitleCol toggle-ddp-delete-@Html.DisplayFor(modelItem => item.id)">
-                    <td>
-                        @Html.DisplayFor(modelItem => item.id)
-                    </td>
-                    <td class="toggle-ddp-ten-@Html.DisplayFor(modelItem => item.id)">
-                        @Html.DisplayFor(modelItem => item.ten)
-                    </td>
-                    <td class="toggle-ddp-pt-@Html.DisplayFor(modelItem => item.id)">
-                        @Html.DisplayFor(modelItem => item.phu_thu)
-                    </td>
-                    <td class="toggle-ddp-edit-@Html.DisplayFor(modelItem => item.id)">
-                        <button id="btnDelete" class="btn btn-danger settingButtonCol" onclick="toggle_delete_ddp('@Html.DisplayFor(modelItem => item.id)')"><i class="fas fa-trash"></i> Xóa</button>
-                    </td>
-                    @using (Html.BeginForm("Update_DDP", "QLSetting", FormMethod.Post))
-                    {
-                        <td class="toggle-ddp-ten-@Html.DisplayFor(modelItem => item.id)" style="display:none">
-                            <input type="hidden" value="@item.id" name="idDDP_edit" required />
-                            <input type="text" value="@item.ten" name="tenDDP_edit" required class="form-control" />
-                        </td>
-                        <td class="toggle-ddp-pt-@Html.DisplayFor(modelItem => item.id)" style="display:none">
-                            <input type="number" value="@item.phu_thu" name="phuthuDDP_edit" class="form-control" required />
-                        </td>
-                        <td class="toggle-ddp-edit-@Html.DisplayFor(modelItem => item.id)" style="display:none">
-                            <button type="submit" id="btnSaveEdit" class="btn btn-success settingButtonCol"><i class="fas fa-save"></i> Lưu</button>
-                        </td>
-                    }
-                    <td>
-                        <button class="btn btn-primary settingButtonCol toggle-ddp-btnEdit-@Html.DisplayFor(modelItem => item.id)" onclick="toggle_edit_ddp('@Html.DisplayFor(modelItem => item.id)')"><i class="fas fa-edit"></i> Sửa</button>
-                        <button class="btn btn-danger settingButtonCol toggle-ddp-btnEdit-@Html.DisplayFor(modelItem => item.id)" onclick="toggle_edit_ddp('@Html.DisplayFor(modelItem => item.id)')" style="display:none"><i class="fas fa-undo"></i> Hủy</button>
-                    </td>
-                </tr>
-                <tr class="settingTitleCol toggle-ddp-delete-@Html.DisplayFor(modelItem => item.id)" style="display:none">
-                    <td colspan="5">
-                        @using (Html.BeginForm("Delete_DDP", "QLSetting", FormMethod.Post))
-                        {
-
-                            <span>Bạn có chắc muốn xóa @Html.DisplayFor(modelItem => item.ten)?</span>
-                            <input type="hidden" value="@item.id" name="idDDP_delete" />
-                            <button type="submit" class="btn btn-danger" style="margin-left:15px"><i class="fas fa-trash"></i> Xóa</button>
-                            <a class="btn btn-success" onclick="toggle_delete_ddp('@Html.DisplayFor(modelItem => item.id)')" style="margin-left:15px"><i class="fas fa-undo"></i> Hủy</a>
-                        }
-                    </td>
-                </tr>
+    <tr class="settingTitleCol">
+        <td>
+            @Html.DisplayFor(modelItem => item.id)
+        </td>
+        <td class="toggle-ddp-ten-@Html.DisplayFor(modelItem => item.id)">
+            @Html.DisplayFor(modelItem => item.ten)
+        </td>
+        <td class="toggle-ddp-pt-@Html.DisplayFor(modelItem => item.id)">
+            @Html.DisplayFor(modelItem => item.phu_thu)
+        </td>
+        <td class="toggle-ddp-edit-@Html.DisplayFor(modelItem => item.id)">
+        </td>
+        @using (Html.BeginForm("Update_DDP", "QLSetting", FormMethod.Post))
+        {
+            <td class="toggle-ddp-ten-@Html.DisplayFor(modelItem => item.id)" style="display:none">
+                <input type="hidden" value="@item.id" name="idDDP_edit" required />
+                <input type="text" value="@item.ten" name="tenDDP_edit" required class="form-control" />
+            </td>
+            <td class="toggle-ddp-pt-@Html.DisplayFor(modelItem => item.id)" style="display:none">
+                <input type="number" value="@item.phu_thu" name="phuthuDDP_edit" class="form-control" required />
+            </td>
+            <td class="toggle-ddp-edit-@Html.DisplayFor(modelItem => item.id)" style="display:none">
+                <button type="submit" id="btnSaveEdit" class="btn btn-success settingButtonCol"><i class="fas fa-save"></i> Lưu</button>
+            </td>
+        }
+    <td>
+        <button class="btn btn-primary settingButtonCol toggle-ddp-btnEdit-@Html.DisplayFor(modelItem => item.id)" onclick="toggle_edit_ddp('@Html.DisplayFor(modelItem => item.id)')"><i class="fas fa-edit"></i> Sửa</button>
+        <button class="btn btn-danger settingButtonCol toggle-ddp-btnEdit-@Html.DisplayFor(modelItem => item.id)" onclick="toggle_edit_ddp('@Html.DisplayFor(modelItem => item.id)')" style="display:none"><i class="fas fa-undo"></i> Hủy</button>
+    </td>
+    </tr>
             }
         }
     </tbody>
 </table>
-
-@Scripts.Render("~/bundles/jquery")

@@ -2086,7 +2086,7 @@
     <Content Include="Views\QLThongKe\_Overview.cshtml" />
     <Content Include="Views\QLThongKe\_Phim.cshtml" />
     <Content Include="Views\QLThongKe\_Food.cshtml" />
-    <Content Include="Views\QLHome\_InVe.cshtml" />
+    <Content Include="Views\QLHome\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -45,13 +45,15 @@ namespace QLBanVePhim.Controllers
         public static void InitDataCheck()
         {
             QLBanVePhimEntities db = new QLBanVePhimEntities();
-            var list_GiaVe = db.gia_ve.ToList();
-            var list_LoaiGhe = db.loai_ghe.ToList();
-            var list_FoodSize = db.kich_co_do_an.ToList();
+            var list_GiaVe = db.gia_ve.Where(x => x.id == "WEEKDAY" || x.id == "WEEKEND").ToList();
+            var list_LoaiGhe = db.loai_ghe.Where(x => x.id == "NORMAL" || x.id == "VIP").ToList();
+            var list_FoodSize = db.kich_co_do_an.Where(x => x.id == "S" || x.id == "M" || x.id == "L").ToList();
+            var list_DDP = db.dinh_dang_phim.Where(x => x.id == "2d" || x.id == "3d").ToList();
 
-            if (list_GiaVe.Count() == 0) InitDataGenerator("GiaVe");
-            if (list_LoaiGhe.Count() == 0) InitDataGenerator("LoaiGhe");
-            if (list_FoodSize.Count() == 0) InitDataGenerator("FoodSize");
+            if (list_GiaVe.Count() < 2) InitDataGenerator("GiaVe");
+            if (list_LoaiGhe.Count() < 2) InitDataGenerator("LoaiGhe");
+            if (list_FoodSize.Count() < 3) InitDataGenerator("FoodSize");
+            if (list_DDP.Count() < 2) InitDataGenerator("DDP");
         }
 
         private static void InitDataGenerator(string type)
@@ -60,58 +62,101 @@ namespace QLBanVePhim.Controllers
             switch (type)
             {
                 case "GiaVe":
-                    gia_ve gv = new gia_ve();
-                    gv.id = "WEEKDAY";
-                    gv.ten = "Ngay Thuong";
-                    gv.don_gia = 50000;
-                    db.gia_ve.Add(gv);
+                    if (db.gia_ve.Where(x => x.id == "WEEKDAY").ToList().Count() == 0)
+                    {
+                        gia_ve gv = new gia_ve();
+                        gv.id = "WEEKDAY";
+                        gv.ten = "Ngay Thuong";
+                        gv.don_gia = 50000;
+                        db.gia_ve.Add(gv);
+                    }
 
-                    gia_ve gv2 = new gia_ve();
-                    gv2.id = "WEEKEND";
-                    gv2.ten = "Cuoi Tuan";
-                    gv2.don_gia = 70000;
-                    db.gia_ve.Add(gv2);
+                    if (db.gia_ve.Where(x => x.id == "WEEKEND").ToList().Count() == 0)
+                    {
+                        gia_ve gv2 = new gia_ve();
+                        gv2.id = "WEEKEND";
+                        gv2.ten = "Cuoi Tuan";
+                        gv2.don_gia = 70000;
+                        db.gia_ve.Add(gv2);
+                    }
 
                     db.SaveChanges();
                     break;
 
                 case "LoaiGhe":
-                    loai_ghe lg = new loai_ghe();
-                    lg.id = "NORMAL";
-                    lg.ten_ghe = "Normal";
-                    lg.phu_thu = 0;
-                    db.loai_ghe.Add(lg);
-
-                    loai_ghe lg2 = new loai_ghe();
-                    lg2.id = "VIP";
-                    lg2.ten_ghe = "VIP";
-                    lg2.phu_thu = 0;
-                    db.loai_ghe.Add(lg2);
+                    if (db.loai_ghe.Where(x => x.id == "NORMAL").ToList().Count() == 0)
+                    {
+                        loai_ghe lg = new loai_ghe();
+                        lg.id = "NORMAL";
+                        lg.ten_ghe = "Normal";
+                        lg.phu_thu = 0;
+                        db.loai_ghe.Add(lg);
+                    }
+                    if (db.loai_ghe.Where(x => x.id == "VIP").ToList().Count() == 0)
+                    {
+                        loai_ghe lg2 = new loai_ghe();
+                        lg2.id = "VIP";
+                        lg2.ten_ghe = "VIP";
+                        lg2.phu_thu = 0;
+                        db.loai_ghe.Add(lg2);
+                    }
 
                     db.SaveChanges();
                     break;
 
                 case "FoodSize":
-                    kich_co_do_an fs = new kich_co_do_an
+                    if (db.kich_co_do_an.Where(x => x.id == "S").ToList().Count() == 0)
                     {
-                        id = "S",
-                        ten = "Nhỏ"
-                    };
-                    db.kich_co_do_an.Add(fs);
+                        kich_co_do_an fs = new kich_co_do_an
+                        {
+                            id = "S",
+                            ten = "Nhỏ"
+                        };
+                        db.kich_co_do_an.Add(fs);
+                    }
+                    if (db.kich_co_do_an.Where(x => x.id == "M").ToList().Count() == 0)
+                    {
+                        kich_co_do_an fs2 = new kich_co_do_an
+                        {
+                            id = "M",
+                            ten = "Vừa"
+                        };
+                        db.kich_co_do_an.Add(fs2);
+                    }
+                    if (db.kich_co_do_an.Where(x => x.id == "L").ToList().Count() == 0)
+                    {
+                        kich_co_do_an fs3 = new kich_co_do_an
+                        {
+                            id = "L",
+                            ten = "Lớn"
+                        };
+                        db.kich_co_do_an.Add(fs3);
+                    }
 
-                    kich_co_do_an fs2 = new kich_co_do_an
-                    {
-                        id = "M",
-                        ten = "Vừa"
-                    };
-                    db.kich_co_do_an.Add(fs2);
+                    db.SaveChanges();
+                    break;
 
-                    kich_co_do_an fs3 = new kich_co_do_an
+                case "DDP":
+                    if (db.dinh_dang_phim.Where(x => x.id == "2d").ToList().Count() == 0)
                     {
-                        id = "L",
-                        ten = "Lớn"
-                    };
-                    db.kich_co_do_an.Add(fs3);
+                        dinh_dang_phim ddp = new dinh_dang_phim
+                        {
+                            id = "2d",
+                            ten = "2D",
+                            phu_thu = 0
+                        };
+                        db.dinh_dang_phim.Add(ddp);
+                    }
+                    if (db.dinh_dang_phim.Where(x => x.id == "3d").ToList().Count() == 0)
+                    {
+                        dinh_dang_phim ddp2 = new dinh_dang_phim
+                        {
+                            id = "3d",
+                            ten = "3D",
+                            phu_thu = 20000
+                        };
+                        db.dinh_dang_phim.Add(ddp2);
+                    }
 
                     db.SaveChanges();
                     break;
@@ -256,7 +301,8 @@ namespace QLBanVePhim.Controllers
             }
             catch (Exception e)
             {
-                return Content(e.ToString());
+                ViewBag.Error = e.ToString();
+                return View("~/Views/QLHome/Error.cshtml");
             }
         }
 
@@ -293,7 +339,8 @@ namespace QLBanVePhim.Controllers
             }
             catch (Exception e)
             {
-                return Content(e.ToString());
+                ViewBag.Error = e.ToString();
+                return View("~/Views/QLHome/Error.cshtml");
             }
         }
 
@@ -363,14 +410,20 @@ namespace QLBanVePhim.Controllers
                 _phim = db.phim.Where(s => s.id == _suatchieu.phim_id).FirstOrDefault();
                 TimeSpan time = (TimeSpan)_suatchieu.gio_bat_dau;
                 TimeSpan thoiLuong = TimeSpan.FromMinutes(Convert.ToDouble(_phim.thoi_luong));
-                _suatchieu.gio_ket_thuc = time.Add(thoiLuong);
+                TimeSpan t = time.Add(thoiLuong);
+                if (t.Days > 0)
+                {
+                    t = t.Subtract(TimeSpan.FromDays(t.Days));
+                }
+                _suatchieu.gio_ket_thuc = t;
                 db.suat_chieu.Add(_suatchieu);
                 db.SaveChanges();
                 return RedirectToAction("QLSuatChieu");
             }
             catch (Exception e)
             {
-                return Content(e.ToString());
+                ViewBag.Error = e.ToString();
+                return View("~/Views/QLHome/Error.cshtml");
             }
         }
 
@@ -393,14 +446,27 @@ namespace QLBanVePhim.Controllers
         {
             if (!AuthCheck("admin"))
                 return RedirectToAction("Index");
-            phim _phim = new phim();
-            _phim = db.phim.Where(s => s.id == _suatchieu.phim_id).FirstOrDefault();
-            TimeSpan time = (TimeSpan)_suatchieu.gio_bat_dau;
-            TimeSpan thoiLuong = TimeSpan.FromMinutes(Convert.ToDouble(_phim.thoi_luong));
-            _suatchieu.gio_ket_thuc = time.Add(thoiLuong);
-            db.Entry(_suatchieu).State = System.Data.Entity.EntityState.Modified;
-            db.SaveChanges();
-            return RedirectToAction("QLSuatChieu");
+            try
+            {
+                phim _phim = new phim();
+                _phim = db.phim.Where(s => s.id == _suatchieu.phim_id).FirstOrDefault();
+                TimeSpan time = (TimeSpan)_suatchieu.gio_bat_dau;
+                TimeSpan thoiLuong = TimeSpan.FromMinutes(Convert.ToDouble(_phim.thoi_luong));
+                TimeSpan t = time.Add(thoiLuong);
+                if (t.Days > 0)
+                {
+                    t = t.Subtract(TimeSpan.FromDays(t.Days));
+                }
+                _suatchieu.gio_ket_thuc = t;
+                db.Entry(_suatchieu).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("QLSuatChieu");
+            }
+            catch (Exception e)
+            {
+                ViewBag.Error = e.ToString();
+                return View("~/Views/QLHome/Error.cshtml");
+            }
         }
 
         [HttpPost]
@@ -417,7 +483,8 @@ namespace QLBanVePhim.Controllers
             }
             catch (Exception e)
             {
-                return Content(e.ToString());
+                ViewBag.Error = e.ToString();
+                return View("~/Views/QLHome/Error.cshtml");
             }
         }
 
@@ -496,7 +563,8 @@ namespace QLBanVePhim.Controllers
             }
             catch (Exception e)
             {
-                return Content(e.ToString());
+                ViewBag.Error = e.ToString();
+                return View("~/Views/QLHome/Error.cshtml");
             }
         }
 
@@ -526,7 +594,8 @@ namespace QLBanVePhim.Controllers
             }
             catch (Exception e)
             {
-                return Content(e.ToString());
+                ViewBag.Error = e.ToString();
+                return View("~/Views/QLHome/Error.cshtml");
             }
         }
 
@@ -690,19 +759,19 @@ namespace QLBanVePhim.Controllers
 
         #region Login
 
-        private void InitDataCheck()
+        private void InitDataCheckAccount()
         {
             var list_VT = db.vai_tro.Where(x => x.id == "admin").ToList();
-            if (list_VT.Count() == 0) InitDataGenerator("VT");
+            if (list_VT.Count() == 0) InitDataGeneratorAcc("VT");
 
             var list_NV = db.nguoi_dung.Where(x => x.vai_tro.ten == "Admin").ToList();
-            if (list_NV.Count() == 0) InitDataGenerator("NV");
+            if (list_NV.Count() == 0) InitDataGeneratorAcc("NV");
 
             var list_VT2 = db.vai_tro.Where(x => x.id == "nhanvien").ToList();
-            if (list_VT2.Count() == 0) InitDataGenerator("VT2");
+            if (list_VT2.Count() == 0) InitDataGeneratorAcc("VT2");
         }
 
-        private void InitDataGenerator(string type)
+        private void InitDataGeneratorAcc(string type)
         {
             switch (type)
             {
@@ -746,7 +815,7 @@ namespace QLBanVePhim.Controllers
 
         public ActionResult Login()
         {
-            InitDataCheck();
+            InitDataCheckAccount();
             QuanLyClass.InitDataCheck();
             return View();
         }
