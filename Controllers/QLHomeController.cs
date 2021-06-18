@@ -408,6 +408,13 @@ namespace QLBanVePhim.Controllers
             {
                 phim _phim = new phim();
                 _phim = db.phim.Where(s => s.id == _suatchieu.phim_id).FirstOrDefault();
+
+                if (_suatchieu.ngay_chieu < _phim.ngay_cong_chieu)
+                {
+                    ViewBag.Error = "Error Date";
+                    return View("~/Views/QLHome/Error.cshtml");
+                }
+
                 TimeSpan time = (TimeSpan)_suatchieu.gio_bat_dau;
                 TimeSpan thoiLuong = TimeSpan.FromMinutes(Convert.ToDouble(_phim.thoi_luong));
                 TimeSpan t = time.Add(thoiLuong);
@@ -450,6 +457,13 @@ namespace QLBanVePhim.Controllers
             {
                 phim _phim = new phim();
                 _phim = db.phim.Where(s => s.id == _suatchieu.phim_id).FirstOrDefault();
+
+                if (_suatchieu.ngay_chieu < _phim.ngay_cong_chieu)
+                {
+                    ViewBag.Error = "Error Date";
+                    return View("~/Views/QLHome/Error.cshtml");
+                }
+
                 TimeSpan time = (TimeSpan)_suatchieu.gio_bat_dau;
                 TimeSpan thoiLuong = TimeSpan.FromMinutes(Convert.ToDouble(_phim.thoi_luong));
                 TimeSpan t = time.Add(thoiLuong);

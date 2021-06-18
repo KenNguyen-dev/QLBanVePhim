@@ -146,7 +146,7 @@ namespace QLBanVePhim.Controllers
                     }
                     veBan.ghe_id = ghe.id;
                     veBan.trang_thai = "Book";
-                    veBan.nhan_vien_id = 1;
+                    veBan.nhan_vien_id = database.nguoi_dung.FirstOrDefault().id;
                     //Dòng trên chỉ để test code
 
                     veDatChiTiet.id = veBan.id;

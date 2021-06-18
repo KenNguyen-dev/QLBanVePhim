@@ -32,10 +32,17 @@
             <text>Hãy kiểm tra lại dữ liệu bạn đã nhập<br />
                 ID bạn vừa nhập đã trùng với ID của dữ liệu khác</text><br />
         }
+        else if ((ViewBag.Error).ToString().Contains("Error Date"))
+        {
+            <text>Hãy kiểm tra lại dữ liệu bạn đã nhập<br />
+                Ngày chiếu của suất chiếu không được trước ngày công chiếu của phim</text><br />
+        }
         else
         {
-            <text>Hãy kiểm tra lại dữ liệu<br />
-                Lỗi không xác định! Hãy xem Error Log.</text><br />
+            <text>
+                Hãy kiểm tra lại dữ liệu<br />
+                Lỗi không xác định! Hãy xem Error Log.
+            </text><br />
         }
         <br /><br />
         <button type="button" class="btn btn-dark col-6" data-toggle="modal" data-target="#ErrorPopup">

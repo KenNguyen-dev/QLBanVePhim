@@ -66,7 +66,7 @@ namespace QLBanVePhim.Controllers
                              ten = db.phim.Where(x => x.id == phim.Key).Select(x => x.ten).FirstOrDefault(),
                              link = db.phim.Where(x => x.id == phim.Key).Select(x => x.hinh_anh).FirstOrDefault(),
                          };
-            var list = select.OrderByDescending(x => x.total).Take(9).ToList();
+            var list = select.OrderByDescending(x => x.total).ThenByDescending(x => x.book).Take(9).ToList();
             ViewBag.ListPhim = list;
             ViewBag.ReturnCount = list.Count();
 
