@@ -16,42 +16,42 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.do_an.id, htmlAttributes: new { @class = "control-label" })
                         <div>
-                            @Html.EditorFor(model => model.do_an.id, new { htmlAttributes = new { @class = "form-control", @onInput = "onInput_DoAn('id')" } })
+                            @Html.EditorFor(model => model.do_an.id, new { htmlAttributes = new { @required = "required", @class = "form-control", @onInput = "onInput_DoAn('id')" } })
                             @Html.ValidationMessageFor(model => model.do_an.id, "", new { @class = "text-danger" })
                         </div>
                     </div>
                     <div class="form-group">
                         @Html.LabelFor(model => model.do_an.ten, htmlAttributes: new { @class = "control-label" })
                         <div>
-                            @Html.EditorFor(model => model.do_an.ten, new { htmlAttributes = new { @class = "form-control", @onInput = "onInput_DoAn('ten')" } })
+                            @Html.EditorFor(model => model.do_an.ten, new { htmlAttributes = new { @required = "required", @class = "form-control", @onInput = "onInput_DoAn('ten')" } })
                             @Html.ValidationMessageFor(model => model.do_an.ten, "", new { @class = "text-danger" })
                         </div>
                     </div>
                     <div class="form-group">
                         @Html.LabelFor(model => model.do_an.hinh_anh, htmlAttributes: new { @class = "control-label" })
                         <div>
-                            @Html.EditorFor(model => model.do_an.hinh_anh, new { htmlAttributes = new { @class = "form-control", @onInput = "onInput_DoAn('hinh')" } })
+                            @Html.EditorFor(model => model.do_an.hinh_anh, new { htmlAttributes = new { @required = "required", @class = "form-control", @onInput = "onInput_DoAn('hinh')" } })
                             @Html.ValidationMessageFor(model => model.do_an.hinh_anh, "", new { @class = "text-danger" })
                         </div>
                     </div>
                     <div class="form-group">
                         @Html.LabelFor(model => model.don_gia, htmlAttributes: new { @class = "control-label" })
                         <div>
-                            @Html.EditorFor(model => model.don_gia, new { htmlAttributes = new { @class = "form-control", @onInput = "onInput_DoAn('gia')" } })
+                            @Html.EditorFor(model => model.don_gia, new { htmlAttributes = new { @required = "required", @class = "form-control", @onInput = "onInput_DoAn('gia')" } })
                             @Html.ValidationMessageFor(model => model.don_gia, "", new { @class = "text-danger" })
                         </div>
                     </div>
                     <div class="form-group">
                         @Html.LabelFor(model => model.do_an.loai_do_an.ten, htmlAttributes: new { @class = "control-label" })
                         <div>
-                            @Html.DropDownListFor(model => model.do_an.loai_do_an_id, ViewBag.LoaiDoAn as SelectList, "---- Chọn ----", new { @class = "form-control", @onchange = "onInput_DoAn('loai')" })
+                            @Html.DropDownListFor(model => model.do_an.loai_do_an_id, ViewBag.LoaiDoAn as SelectList, "---- Chọn ----", new { @required = "required", @class = "form-control", @onchange = "onInput_DoAn('loai')" })
                             @Html.ValidationMessageFor(model => model.do_an.loai_do_an_id, "", new { @class = "text-danger" })
                         </div>
                     </div>
                     <div class="form-group">
                         @Html.LabelFor(model => model.kich_co_do_an.ten, htmlAttributes: new { @class = "control-label" })
                         <div>
-                            @Html.DropDownListFor(model => model.kich_co_do_an_id, ViewBag.Size as SelectList, "---- Chọn ----", new { @class = "form-control", @onchange = "onInput_DoAn('size')" })
+                            @Html.DropDownListFor(model => model.kich_co_do_an_id, ViewBag.Size as SelectList, "---- Chọn ----", new { @required = "required", @class = "form-control", @onchange = "onInput_DoAn('size')" })
                             @Html.ValidationMessageFor(model => model.kich_co_do_an_id, "", new { @class = "text-danger" })
                         </div>
                     </div>
